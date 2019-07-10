@@ -6,8 +6,8 @@ import javax.persistence.Entity;
 import javax.persistence.Table;
 import java.util.Date;
 
-@Entity
-@Table(name = "PRICE")
+/*@Entity
+@Table(name = "PRICE")*/
 public class Price {
 
     private long id;
