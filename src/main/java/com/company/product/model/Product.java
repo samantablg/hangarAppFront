@@ -9,7 +9,6 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
-import javax.validation.constraints.NotEmpty;
 import com.company.hangar.model.Hangar;
 
 @Entity
@@ -17,31 +16,52 @@ import com.company.hangar.model.Hangar;
 public class Product {
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	//@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@GeneratedValue(strategy = javax.persistence.GenerationType.IDENTITY )
 	private long id;
-	@Column(name = "product")
-	@NotEmpty
+	@Column(name = "name")
 	private String name;
+	@Column(name="description")
+	private String  description;
+	@Column(name="state")
+	private boolean state = true;
 	@ManyToOne(fetch = FetchType.EAGER)
-	@JoinColumn(name="idHangar")
+	@JoinColumn(name="hangar")
 	private Hangar hangar;
-	
+
 	public Product() {}
-	
-	public Product(String name) {
+
+	public Product(String name, String description) {
 		this.name = name;
+		this.description = description;
 	}
-	
+
 	public Product(String name, Hangar hangar) {
 		this.name = name;
 		this.hangar = hangar;
 	}
-	
+
+	public Product(String name, String description, Hangar hangar) {
+		this.name = name;
+		this.description = description;
+		this.hangar = hangar;
+	}
+
 	public Product(long id, String name, Hangar hangar) {
 		this.id = id;
 		this.name = name;
 		this.hangar = hangar;
 	}
+
+	public Product(Long id, String name, String description, Hangar hangar) {
+		this.id = id;
+		this.name = name;
+		this.description = description;
+		this.hangar = hangar;
+	}
+
+
+
 
 	public long getId() {
 		return id;
@@ -65,5 +85,21 @@ public class Product {
 
 	public void setHangar(Hangar hangar) {
 		this.hangar = hangar;
+	}
+
+	public String getDescription() {
+		return description;
+	}
+
+	public void setDescription(String description) {
+		this.description = description;
+	}
+
+	public boolean isState() {
+		return state;
+	}
+
+	public void setState(boolean state) {
+		this.state = state;
 	}
 }

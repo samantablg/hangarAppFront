@@ -6,12 +6,16 @@ import com.company.product.model.Product;
 
 public interface ProductDAO {
 	
-	public List<Product> getAllProducts();
+	List<Product> getAllProducts();
 	
-	public Product getProduct(Long id);
+	Product getProduct(Long id);
 	
-	public Product createProduct(Product product);
+	Product createProduct(Product product);
 	
-	public Product deleteProduct(Long id);
+	//Product deleteProduct(Long id);
+
+	boolean existProduct(Long id);
+
+	Product updateProduct(Product product);
 
 }

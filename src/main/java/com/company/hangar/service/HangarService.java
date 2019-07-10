@@ -12,6 +12,10 @@ public interface HangarService {
 	
 	Hangar createHangar(Hangar hangar);
 	
-	Hangar deleteHangar(Long id);
+	//Hangar deleteHangar(Long id);
+
+	boolean hangarExist(Hangar hangar);
+
+	boolean hangarExistById(Long id);
 	
 }

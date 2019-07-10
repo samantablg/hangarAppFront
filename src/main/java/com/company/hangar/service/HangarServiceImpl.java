@@ -15,7 +15,8 @@ public class HangarServiceImpl implements HangarService {
 	
 	@Autowired
 	HangarDAO hangarDAO;
-	
+
+	@Override
 	public List<Hangar> getAllHangars() {
 	
 		List<Hangar> hangars = hangarDAO.getAllHangars();
@@ -23,31 +24,40 @@ public class HangarServiceImpl implements HangarService {
 			return hangars;
 		throw new HangarNotFoundException();
 	}
-	
-	
+
+	@Override
+	public boolean hangarExist(Hangar hangar) { //Comprobamos si existe por id
+		return hangarDAO.existHangar(hangar.getId());
+	}
+
+	@Override
 	public Hangar getHangar(Long id) {
 
 		if (id > 0 && id <= MaxValueId())
 			return hangarDAO.getHangar(id);
 		throw new HangarNotFoundException(id);
 	}
-	
+
+	@Override
 	public Hangar createHangar(Hangar hangar) {
-		
-		if (!HangarExist(hangar))
-			return hangarDAO.createHangar(hangar);
+
+		Hangar newHangar = hangarDAO.createHangar(hangar);
+		if (newHangar != null)
+			return newHangar;
 		throw new HangarExistException();
 	}
-	
-	@Override
-	public Hangar deleteHangar(Long id) {
-		//si el hangar tiene productos asociados no lo puedo eliminar
-		if (id > 0 && id <= MaxValueId())
+
+	/*public Hangar deleteHangar(Long id) {
+		if (hangarDAO.existHangar(id))
 			return hangarDAO.deleteHangar(id);
 		return null;
+	}*/
+
+	@Override
+	public boolean hangarExistById(Long id) {
+		return hangarDAO.existHangar(id);
 	}
-	
-	
+
 	@ResponseStatus(value=HttpStatus.NOT_FOUND)
 	private class HangarNotFoundException extends RuntimeException {
 
@@ -76,11 +86,13 @@ public class HangarServiceImpl implements HangarService {
 		}
 	}
 	
-	private boolean HangarExist(Hangar hangar) {
+	/*public boolean hangarExistByName(Hangar hangar) {
 		
 		List<Hangar> hangars = hangarDAO.getAllHangars();
-		
+
 		int cont = 0;
+
+
 		for (Hangar h: hangars) {
 			if (h.getName().equals(hangar.getName()))
 				cont++;
@@ -88,7 +100,7 @@ public class HangarServiceImpl implements HangarService {
 		if(cont > 0)
 			return true;
 		return false;
-	}
+	}*/
 	
 	private long MaxValueId() {
 		

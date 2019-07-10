@@ -7,14 +7,14 @@ public class HangarRequest {
     @NotEmpty
     private String name;
 
-    //@NotEmpty
-    //private String adress;
+    @NotEmpty
+    private String address;
 
     public HangarRequest() { }
 
-    public HangarRequest(String name) {
+    public HangarRequest(String name, String address) {
         this.name = name;
-        //this.adress = adress;
+        this.address = address;
     }
 
     public String getName() {
@@ -25,7 +25,7 @@ public class HangarRequest {
         this.name = name;
     }
 
-    //public String getAdress() { return adress; }
+    public String getAddress() { return address; }
 
-    //public void setAdress(String adress) { this.adress = adress; }
+    public void setAddress(String address) { this.address = address; }
 }

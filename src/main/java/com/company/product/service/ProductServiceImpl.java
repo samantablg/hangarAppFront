@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import com.company.hangar.service.HangarServiceImpl;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
@@ -33,44 +34,60 @@ public class ProductServiceImpl implements ProductService {
 	}
 
 	@Override
-	public Product getProduct(Long id) {
-		
+	public List<Product> getAllActiveProducts() {
+
 		List<Product> products = productDAO.getAllProducts();
-		if(id > 0 && id<=products.size())
+		List<Product> result = new ArrayList<>();
+
+		if(products != null) {
+			for(Product p: products)
+				if(p.isState())
+					result.add(p);
+
+			/*return products.stream()
+					.filter(p -> p.isState().equals(true))
+					.toArray();*/
+			return result;
+		}
+		throw new ProductNotFoundException();
+	}
+
+	@Override
+	public Product getProduct(Long id) {
+
+		if(productDAO.existProduct(id))
 			return productDAO.getProduct(id);
 		throw new ProductNotFoundException(id);
 	}
 
-	//TODO Refactor createProduct() and createProductToHangar()
-
 
 	@Override
 	public Product createProduct(Product product) {
-		
-		if(product.getName() != null && product.getHangar() != null) {
-			if(!ProductOfHangarExist(product)) 
-				return productDAO.createProduct(product);
-			throw new ProductExistException();		
-		} else {
-			throw new ProductEmptyException();
-		}
 
+		if(hangarService.hangarExist(product.getHangar())) {
+			if (!ProductOfHangarExist(product))
+				return productDAO.createProduct(product);
+			throw new ProductExistException();
+		}
+		throw new HangarExistException();
 	}
 
 	@Override
-	public Product createProductToHangar(String name, Long id) {
+	public Product createProductToHangar(Product product, Long id) {
 
-		if(hangarService.getHangar(id) != null)
-			if(!ProductOfHangarExist(new Product(name, hangarService.getHangar(id))))
-				return productDAO.createProduct(new Product(name, hangarService.getHangar(id)));
-
-		throw new ProductExistException();
+		if(hangarService.hangarExistById(id)) {
+			product.setHangar(hangarService.getHangar(id));
+			if (!ProductOfHangarExist(product))
+				return productDAO.createProduct(product);
+			throw new ProductExistException();
+		}
+		throw new HangarExistException();
 	}
 
 	@Override
 	public List<Product> getAllProductsOfHangar(Long id) {
 		
-		List<Product> result = new ArrayList<Product>();
+		List<Product> result = new ArrayList<>();
 		List<Product> products = productDAO.getAllProducts();
 		for(Product p: products) {
 			if (p.getHangar().getId() == id) {
@@ -85,7 +102,7 @@ public class ProductServiceImpl implements ProductService {
 	
 	/*public Product deleteProduct(Long id) {
 		
-		if (id > 0 &&  id <= productDAO.getAllProducts().size()) 
+		if (productDAO.existProduct(id))
 			return productDAO.deleteProduct(id);	
 		throw new ProductNotFoundException(id);
 	}*/
@@ -121,6 +138,16 @@ public class ProductServiceImpl implements ProductService {
 
 		public ProductExistException() {
 			super("Product already exist");
+		}
+	}
+
+	@ResponseStatus(value=HttpStatus.BAD_REQUEST)
+	private class HangarExistException extends RuntimeException {
+
+		private static final long serialVersionUID = -8795820457855546654L;
+
+		public HangarExistException() {
+			super("Hangar not exist");
 		}
 	}
 	
@@ -171,5 +198,17 @@ public class ProductServiceImpl implements ProductService {
 
 		List<Product> listUpper = convertToUpperCase(listLetter);
 		return filterProductByLength(listUpper);
+	}
+
+	@Override
+	public Product updateState(Long id) {
+
+		if(productDAO.existProduct(id)) {
+			Product product = productDAO.getProduct(id);
+			product.setState(false);
+			Product aProduct = product;
+			return productDAO.updateProduct(aProduct);
+		}
+		throw new ProductNotFoundException(id);
 	}
 }

@@ -34,19 +34,29 @@ public class ProductDAOImpl implements ProductDAO {
 	
 	@Override
 	public Product createProduct(Product product) {
-		
-		Product saveProduct = productRepository.save(product);
-		if(saveProduct != null)
-			return saveProduct;		
+
+		if(productRepository.findProductByNameAndAndHangar(product.getName(), product.getHangar()) == null) {
+			return productRepository.save(product);
+		}
 		return null;
 	}
 	
-	public Product deleteProduct(Long id) {
+	/*public Product deleteProduct(Long id) {
 		
 		Product product = productRepository.getOne(id);
 		if(product != null)
 			productRepository.delete(product);
 		return null;	
+	}*/
+
+
+	@Override
+	public boolean existProduct(Long id) {
+		return productRepository.existsById(id);
 	}
 
+	@Override
+	public Product updateProduct(Product product) {
+		return productRepository.save(product);
+	}
 }

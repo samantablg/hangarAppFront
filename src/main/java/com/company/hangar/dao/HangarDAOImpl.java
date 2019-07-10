@@ -34,21 +34,26 @@ public class HangarDAOImpl implements HangarDAO {
 	}
 
 	@Override
+
 	public Hangar createHangar(Hangar hangar) {
-		
-		Hangar saveHangar = hangarRepository.save(hangar);
-		if(saveHangar != null)
-			return saveHangar;
+
+		if(hangarRepository.findHangarByNameAndAdress(hangar.getName(), hangar.getAddress()) == null)
+			return hangarRepository.save(hangar);
 		return null;
 	}
 
-	@Override
+	/*@Override
 	public Hangar deleteHangar(Long id) {
 		
 		Hangar hangar = hangarRepository.getOne(id);
 		if(hangar != null)
 			hangarRepository.delete(hangar);
 		return null;
+	}*/
+
+	@Override
+	public boolean existHangar(Long id) {
+		return hangarRepository.existsById(id);
 	}
 
 }

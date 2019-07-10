@@ -1,6 +1,1 @@
-com\company\controller\CompanyController.class
-com\company\model\Product.class
 com\company\Application.class
-com\company\repo\ClientRepository.class
-com\company\repo\ProductRepository.class
-com\company\model\Client.class

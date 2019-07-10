@@ -4,6 +4,7 @@ import com.company.hangar.model.Hangar;
 import com.company.hangar.model.HangarRequest;
 import com.company.hangar.service.HangarServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
@@ -23,13 +24,13 @@ public class HangarController {
 	}
 
 	@GetMapping("/hangar/{id}")
-	public Hangar getHangartById(@PathVariable Long id) {
+	public Hangar getHangarById(@PathVariable Long id) {
 		return hangarService.getHangar(id);
 	}
 
 	@PostMapping("/hangar")
 	public Hangar createHangar(@Valid @RequestBody HangarRequest hangar) {
-		Hangar newHangar = new Hangar(hangar.getName());
+		Hangar newHangar = new Hangar(hangar.getName(), hangar.getAddress());
 		return hangarService.createHangar(newHangar);
 	}
 
@@ -50,7 +51,7 @@ public class HangarController {
 	@DeleteMapping("/hangar/{id}")
 	public Hangar deleteHangar(@PathVariable Long id) {
 		return hangarService.deleteHangar(id);
-	}
-	*/
+	}*/
+
 
 }

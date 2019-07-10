@@ -1,37 +1,38 @@
 package com.company.hangar.model;
 
 import javax.persistence.*;
-import java.util.ArrayList;
-import java.util.List;
 
 @Entity
 @Table(name="HANGAR")
 public class Hangar {
 
 	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
+	//@GeneratedValue(strategy=GenerationType.AUTO)
+	@GeneratedValue(strategy = javax.persistence.GenerationType.IDENTITY )
 	private long id;
 	@Column(name="name")
 	private String name;
-    //Column(name="adress")
-	//private String adress;
+    @Column(name="address")
+	private String address;
+    @Column(name="state")
+    private boolean state = true;
 
 	public Hangar() {}
 	
-	public Hangar(String name)
+	public Hangar(String name, String address)
 	{
 		this.name = name;
-		//this.adress = adress;
+		this.address = address;
 	}
 	
 	public Hangar(long id) {
 		this.id = id;
 	}
 	
-	public Hangar(long id, String name) {
+	public Hangar(long id, String name, String address) {
 		this.id = id;
 		this.name = name;
-		//this.adress = adress;
+		this.address = address;
 	}
 
 	
@@ -47,7 +48,12 @@ public class Hangar {
 	public void setName(String name) {
 		this.name = name;
 	}
-	//public String getAdress() { return adress; }
-	//public void setAdress(String adress) { this.adress = adress; }
-	
+	public String getAddress() { return address; }
+	public void setAddress(String address) { this.address = address; }
+	public boolean isState() {
+		return state;
+	}
+	public void setState(boolean state) {
+		this.state = state;
+	}
 }
