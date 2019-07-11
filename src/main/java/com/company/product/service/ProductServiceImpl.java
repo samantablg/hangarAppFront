@@ -152,6 +152,11 @@ public class ProductServiceImpl implements ProductService {
 
 		if(productDAO.existProduct(id)) {
 			Product product = productDAO.getProduct(id);
+			long newQuantity = product.getQuantity() + quantity;
+			product.setQuantity(newQuantity);
+			if(newQuantity<=0) {
+				updateState(id);
+			}
 			return productDAO.updateProduct(product);
 		}
 		throw new ProductNotFoundException(id);
@@ -184,6 +189,10 @@ public class ProductServiceImpl implements ProductService {
 		List<Product> listUpper = convertToUpperCase(listLetter);
 		return filterProductByLength(listUpper);
 	}
+
+	/*Exception*/
+
+	//TODO manejarlas desde un fichero externo en /utils
 
 	@ResponseStatus(value = HttpStatus.NOT_FOUND)
 	private class ProductNotFoundException extends RuntimeException {
