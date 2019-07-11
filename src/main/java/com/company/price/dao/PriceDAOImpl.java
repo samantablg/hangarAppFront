@@ -1,4 +1,6 @@
 package com.company.price.dao;
 
-public class PriceDAOImpl {
-}
+import org.springframework.stereotype.Component;
+
+@Component
+public class PriceDAOImpl implements PriceDAO {}

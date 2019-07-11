@@ -1,4 +1,4 @@
 package com.company.price.dao;
 
-public interface PriceDao {
+public interface PriceDAO {
 }
