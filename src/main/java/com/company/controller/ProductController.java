@@ -30,7 +30,7 @@ public class ProductController {
 	@GetMapping("/product/{id}")
 	public Product getProductById(@PathVariable Long id) { return productService.getProduct(id); }
 
-	//TODO refactor código
+	//TODO refactor código -> manejo de excepciones en servicio
 	@PostMapping("/product")
 	public HttpStatus createProduct(@Valid @RequestBody ProductRequest product) {
 		Product newProduct = new Product(product.getName(), product.getDescription(), product.getQuantity(), product.getHangar());
@@ -43,7 +43,8 @@ public class ProductController {
 
 		return HttpStatus.OK;
 	}
-	
+
+	//TODO refactor código -> manejo de excepciones en servicio
 	@PostMapping("/hangar/{id}/product")
 	public HttpStatus createProductToHangar(@Valid @RequestBody ProductRequest product, @PathVariable Long id) {
 		Product newProduct = new Product(product.getName(), product.getDescription(), product.getQuantity());
