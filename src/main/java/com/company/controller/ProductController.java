@@ -2,10 +2,10 @@ package com.company.controller;
 
 import java.util.List;
 
-import com.company.price.model.Price;
 import com.company.product.model.ProductRequest;
 import com.company.product.model.ProductResponse;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 import com.company.product.model.Product;
@@ -31,9 +31,16 @@ public class ProductController {
 	public Product getProductById(@PathVariable Long id) { return productService.getProduct(id); }
 	
 	@PostMapping("/product")
-	public Product createProduct(@Valid @RequestBody ProductRequest product) {
+	public HttpStatus createProduct(@Valid @RequestBody ProductRequest product) {
 		Product newProduct = new Product(product.getName(), product.getDescription(), product.getQuantity(), product.getHangar());
-		return productService.createProduct(newProduct);
+		try {
+			productService.createProduct(newProduct);
+			productService.createEntryPrice(newProduct, product.getPrice());
+		} catch (Exception e){
+			return null;
+		}
+
+		return HttpStatus.OK;
 	}
 	
 	@PostMapping("/hangar/{id}/product")
@@ -66,9 +73,9 @@ public class ProductController {
 	@PutMapping("/product/{id}/{quant}")
 	public Product updateQuantity(@PathVariable Long id, @PathVariable Long quant) { return productService.updateQuantity(id, quant); }
 
-    @PostMapping("/price")
-	public Product testPrice() {
-		return productService.createEntryPrice();
+    /*@PostMapping("/price")
+	public Product testPrice(Product product, float price) {
+		return productService.createEntryPrice(product, price);
 	}
-
+*/
 }

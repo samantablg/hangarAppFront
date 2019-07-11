@@ -26,6 +26,6 @@ public interface ProductService {
 
 	Product updateQuantity(Long id, Long quantity);
 
-	Product createEntryPrice();
+	Product createEntryPrice(Product product, float price);
 
 }

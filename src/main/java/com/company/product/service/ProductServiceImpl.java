@@ -163,9 +163,9 @@ public class ProductServiceImpl implements ProductService {
 	}
 
 	@Override
-	public Product createEntryPrice() {
-		priceService.createEntryPrice().getProduct();
-		return null;
+	public Product createEntryPrice(Product product, float price) {
+		priceService.createEntryPrice(product, price);
+		return product;
 	}
 
 	/*Ejercicio java 8*/

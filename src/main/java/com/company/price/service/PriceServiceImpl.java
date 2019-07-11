@@ -17,11 +17,10 @@ public class PriceServiceImpl implements PriceService {
     ProductService productService;
 
     @Override
-    public Price createEntryPrice() {
+    public Price createEntryPrice(Product product, float price) {
 
-        Product product = productService.getProduct((long)6);
-        Price price = new Price(product, 8);
-        return priceRepository.save(price);
+        Price newEntry = new Price(product, price);
+        return priceRepository.save(newEntry);
     }
 
 }
