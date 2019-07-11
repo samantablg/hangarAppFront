@@ -2,6 +2,7 @@ package com.company.controller;
 
 import java.util.List;
 
+import com.company.price.service.PriceService;
 import com.company.product.model.ProductRequest;
 import com.company.product.model.ProductResponse;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,6 +21,9 @@ public class ProductController {
 	@Autowired
 	ProductService productService;
 
+	@Autowired
+	PriceService priceService;
+
 	@GetMapping("/products")
 	public List<Product> getAllActiveProducts() { return productService.getAllActiveProducts();	}
 
@@ -32,12 +36,14 @@ public class ProductController {
 	@PostMapping("/product")
 	public Product createProduct(@Valid @RequestBody ProductRequest product) {
 		Product newProduct = new Product(product.getName(), product.getDescription(), product.getHangar());
+		//if(product.getPrice() >0)
+			//productService.
+
 		return productService.createProduct(newProduct);
 	}
 	
 	@PostMapping("/hangar/{id}/product")
 	public Product createProductToHangar(@Valid @RequestBody ProductRequest product, @PathVariable Long id) {
-
 		Product newProduct = new Product(product.getName(), product.getDescription());
 		return productService.createProductToHangar(newProduct, id);
 	}

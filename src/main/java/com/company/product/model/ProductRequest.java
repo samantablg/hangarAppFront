@@ -13,6 +13,8 @@ public class ProductRequest {
 
     private Hangar hangar;
 
+    private double price;
+
     public ProductRequest() {  }
 
     public ProductRequest(String name) {
@@ -35,6 +37,19 @@ public class ProductRequest {
         this.hangar = hangar;
     }
 
+    public ProductRequest(String name, Hangar hangar, double price) {
+        this.name = name;
+        this.hangar = hangar;
+        this.price = price;
+    }
+
+    public ProductRequest(@NotEmpty String name, String description, Hangar hangar, double price) {
+        this.name = name;
+        this.description = description;
+        this.hangar = hangar;
+        this.price = price;
+    }
+
     public String getName() {
         return name;
     }
@@ -51,11 +66,13 @@ public class ProductRequest {
         return hangar;
     }
 
-    public String getDescription() {
-        return description;
-    }
+    public String getDescription() { return description; }
 
     public void setDescription(String description) {
         this.description = description;
     }
+
+    public double getPrice() { return price; }
+
+    public void setPrice(double price) { this.price = price; }
 }

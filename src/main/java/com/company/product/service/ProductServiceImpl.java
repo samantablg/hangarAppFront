@@ -7,6 +7,7 @@ import java.util.stream.Collectors;
 
 import com.company.hangar.service.HangarServiceImpl;
 
+import com.company.price.service.PriceServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
@@ -23,6 +24,9 @@ public class ProductServiceImpl implements ProductService {
 
 	@Autowired
 	HangarServiceImpl hangarService;
+
+	@Autowired
+	PriceServiceImpl priceService;
 
 	@Override
 	public List<Product> getAllProducts() {
@@ -211,4 +215,5 @@ public class ProductServiceImpl implements ProductService {
 		}
 		throw new ProductNotFoundException(id);
 	}
+
 }
