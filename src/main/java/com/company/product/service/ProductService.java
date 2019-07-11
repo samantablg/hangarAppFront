@@ -24,4 +24,6 @@ public interface ProductService {
 
 	Product updateState(Long id);
 
+	Product updateQuantity(Long id, Long quantity);
+
 }

@@ -22,7 +22,7 @@ public class Product {
 	@Column(name="description")
 	private String  description;
 	@Column(name="quantity")
-	private long quantity;
+	private long quantity = 1;
 	@Column(name="state")
 	private boolean state = true;
 	@ManyToOne(fetch = FetchType.EAGER)

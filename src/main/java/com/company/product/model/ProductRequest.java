@@ -3,6 +3,7 @@ package com.company.product.model;
 import com.company.hangar.model.Hangar;
 
 import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 
 public class ProductRequest {
 
@@ -13,6 +14,7 @@ public class ProductRequest {
 
     private Hangar hangar;
 
+    @NotNull
     private long quantity;
 
     private double price;

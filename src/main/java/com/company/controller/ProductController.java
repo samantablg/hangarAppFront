@@ -28,7 +28,7 @@ public class ProductController {
 	@GetMapping("/products")
 	public List<Product> getAllActiveProducts() { return productService.getAllActiveProducts();	}
 
-	@GetMapping("/allproducts")
+	@GetMapping("/allProducts")
 	public List<Product> getAllProducts() { return productService.getAllProducts();	}
 	
 	@GetMapping("/product/{id}")
@@ -58,17 +58,20 @@ public class ProductController {
 		return productService.getAllProductsOfHangar(id);
 	}
 
-	@GetMapping("products/search/{letter}")
+	@GetMapping("/products/search/{letter}")
 	public ProductResponse filterProducts(@PathVariable char letter) {
 	    Product filterProduct = productService.filterName(letter);
 		return new ProductResponse(filterProduct.getName(), filterProduct.getHangar());
 	}
 
-	@PutMapping("product/{id}")
+	@PutMapping("/product/{id}")
 	public Product updateState(@PathVariable Long id)
 	{
 		return productService.updateState(id);
 	}
+
+	@PutMapping("/product/{id}/{quant}")
+	public Product updateQuantity(@PathVariable Long id, @PathVariable Long quant) { return productService.updateQuantity(id, quant); }
 
 /*	@PostMapping("/price")
 	public Price testPrice() {
