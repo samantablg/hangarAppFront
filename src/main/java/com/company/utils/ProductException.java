@@ -1,4 +1,3 @@
-/*
 package com.company.utils;
 
 import org.springframework.http.HttpStatus;
@@ -6,54 +5,39 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 
 public class ProductException {
 
-    //TODO modificar para utilizarlo en el servicio de producto
+    @ResponseStatus(HttpStatus.NOT_FOUND)
+    public static class NotFound extends RuntimeException {
 
-    @ResponseStatus(value = HttpStatus.NOT_FOUND)
-    public class ProductNotFoundException extends RuntimeException {
-
-        private static final long serialVersionUID = 7295910574475009536L;
-
-        public ProductNotFoundException() {
-            super("There is not product");
+        public NotFound() {
+            super("There are no products in the database");
         }
 
-        public ProductNotFoundException(Long id) {
+        public NotFound(Long id) {
             super(String.format("The product %d doesn't exist", id));
         }
     }
 
-    @ResponseStatus(value=HttpStatus.BAD_REQUEST)
-    public class ProductEmptyException extends RuntimeException {
-
-        private static final long serialVersionUID = -2343578248323481893L;
+    @ResponseStatus(HttpStatus.BAD_REQUEST)
+    public static class ProductEmptyException extends RuntimeException {
 
         public ProductEmptyException() {
             super("Product without info");
         }
     }
 
-    @ResponseStatus(value=HttpStatus.BAD_REQUEST)
-    public class ProductExistException extends RuntimeException {
-
-        private static final long serialVersionUID = -8795820457855546654L;
+    @ResponseStatus(HttpStatus.BAD_REQUEST)
+    public static class ProductExistException extends RuntimeException {
 
         public ProductExistException() {
             super("Product already exist");
         }
-
-        public ProductExistException(String name) {
-            super(String.format("The product %s exists, you can insert more quantity", name));
-        }
     }
 
-    @ResponseStatus(value=HttpStatus.BAD_REQUEST)
-    public class HangarExistException extends RuntimeException {
-
-        private static final long serialVersionUID = -8795820457855546654L;
+    @ResponseStatus(HttpStatus.BAD_REQUEST)
+    public static class HangarExistException extends RuntimeException {
 
         public HangarExistException() {
             super("Hangar not exist");
         }
     }
 }
-*/

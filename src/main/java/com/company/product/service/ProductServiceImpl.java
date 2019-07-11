@@ -8,6 +8,7 @@ import java.util.stream.Collectors;
 import com.company.hangar.service.HangarServiceImpl;
 
 import com.company.price.service.PriceServiceImpl;
+import com.company.utils.ProductException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
@@ -34,7 +35,7 @@ public class ProductServiceImpl implements ProductService {
 		List<Product> products = productDAO.getAllProducts();
 		if(products != null)
 			return products;
-		throw new ProductNotFoundException();
+		throw new ProductException.NotFound();
 	}
 
 	@Override
@@ -50,7 +51,7 @@ public class ProductServiceImpl implements ProductService {
 
 			return result;
 		}
-		throw new ProductNotFoundException();
+		throw new ProductException.NotFound();
 	}
 
 	@Override
@@ -58,7 +59,7 @@ public class ProductServiceImpl implements ProductService {
 
 		if(productDAO.existProduct(id))
 			return productDAO.getProduct(id);
-		throw new ProductNotFoundException(id);
+		throw new ProductException.NotFound(id);
 	}
 
 
@@ -68,9 +69,9 @@ public class ProductServiceImpl implements ProductService {
 		if(hangarService.hangarExist(product.getHangar())) {
 			if (!ProductOfHangarExist(product))
 				return productDAO.createProduct(product);
-			throw new ProductExistException();
+			throw new ProductException.ProductExistException();
 		}
-		throw new HangarExistException();
+		throw new ProductException.HangarExistException();
 	}
 
 	@Override
@@ -80,9 +81,10 @@ public class ProductServiceImpl implements ProductService {
 			product.setHangar(hangarService.getHangar(id));
 			if (!ProductOfHangarExist(product))
 				return productDAO.createProduct(product);
-			throw new ProductExistException();
+
+			throw new ProductException.NotFound();
 		}
-		throw new HangarExistException();
+		throw new ProductException.HangarExistException();
 	}
 
 	@Override
@@ -98,14 +100,14 @@ public class ProductServiceImpl implements ProductService {
 
 		if (result.size() > 0)
 			return result;
-		throw new ProductNotFoundException();
+		throw new ProductException.NotFound();
 	}
 
 	public Product deleteProduct(Long id) {
 
 		if (productDAO.existProduct(id))
 			return productDAO.deleteProduct(id);
-		throw new ProductNotFoundException(id);
+		throw new ProductException.NotFound(id);
 	}
 
 	private boolean ProductOfHangarExist(Product product) {
@@ -144,7 +146,7 @@ public class ProductServiceImpl implements ProductService {
 			return productDAO.updateProduct(aProduct);
 
 		}
-		throw new ProductNotFoundException(id);
+		throw new ProductException.NotFound(id);
 	}
 
 	@Override
@@ -159,7 +161,7 @@ public class ProductServiceImpl implements ProductService {
 			}
 			return productDAO.updateProduct(product);
 		}
-		throw new ProductNotFoundException(id);
+		throw new ProductException.NotFound(id);
 	}
 
 	@Override
@@ -194,54 +196,6 @@ public class ProductServiceImpl implements ProductService {
 
 		List<Product> listUpper = convertToUpperCase(listLetter);
 		return filterProductByLength(listUpper);
-	}
-
-	/*Exception*/
-
-	//TODO manejarlas desde un fichero externo en /utils
-
-	@ResponseStatus(value = HttpStatus.NOT_FOUND)
-	private class ProductNotFoundException extends RuntimeException {
-
-		private static final long serialVersionUID = 7295910574475009536L;
-
-		public ProductNotFoundException() {
-			super("There is not product");
-		}
-
-		public ProductNotFoundException(Long id) {
-			super(String.format("The product %d doesn't exist", id));
-		}
-	}
-
-	@ResponseStatus(value=HttpStatus.BAD_REQUEST)
-	private class ProductEmptyException extends RuntimeException {
-
-		private static final long serialVersionUID = -2343578248323481893L;
-
-		public ProductEmptyException() {
-			super("Product without info");
-		}
-	}
-
-	@ResponseStatus(value=HttpStatus.BAD_REQUEST)
-	private class ProductExistException extends RuntimeException {
-
-		private static final long serialVersionUID = -8795820457855546654L;
-
-		public ProductExistException() {
-			super("Product already exist");
-		}
-	}
-
-	@ResponseStatus(value=HttpStatus.BAD_REQUEST)
-	private class HangarExistException extends RuntimeException {
-
-		private static final long serialVersionUID = -8795820457855546654L;
-
-		public HangarExistException() {
-			super("Hangar not exist");
-		}
 	}
 
 }
