@@ -25,9 +25,9 @@ public class ProductServiceImpl implements ProductService {
 	@Autowired
 	HangarServiceImpl hangarService;
 
-	/*@Autowired
+	@Autowired
 	PriceServiceImpl priceService;
-*/
+
 	@Override
 	public List<Product> getAllProducts() {
 
@@ -160,6 +160,12 @@ public class ProductServiceImpl implements ProductService {
 			return productDAO.updateProduct(product);
 		}
 		throw new ProductNotFoundException(id);
+	}
+
+	@Override
+	public Product createEntryPrice() {
+		priceService.createEntryPrice().getProduct();
+		return null;
 	}
 
 	/*Ejercicio java 8*/

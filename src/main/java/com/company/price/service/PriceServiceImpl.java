@@ -19,9 +19,8 @@ public class PriceServiceImpl implements PriceService {
     @Override
     public Price createEntryPrice() {
 
-        Product product = productService.getProduct((long) 4);
-        Price price = new Price(product, 5);
-        System.out.println(price);
+        Product product = productService.getProduct((long)6);
+        Price price = new Price(product, 8);
         return priceRepository.save(price);
     }
 

@@ -3,7 +3,6 @@ package com.company.controller;
 import java.util.List;
 
 import com.company.price.model.Price;
-import com.company.price.service.PriceServiceImpl;
 import com.company.product.model.ProductRequest;
 import com.company.product.model.ProductResponse;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,9 +20,6 @@ public class ProductController {
 
 	@Autowired
 	ProductService productService;
-
-	/*@Autowired
-	PriceServiceImpl priceService;*/
 
 	@GetMapping("/products")
 	public List<Product> getAllActiveProducts() { return productService.getAllActiveProducts();	}
@@ -65,17 +61,14 @@ public class ProductController {
 	}
 
 	@PutMapping("/product/{id}")
-	public Product updateState(@PathVariable Long id)
-	{
-		return productService.updateState(id);
-	}
+	public Product updateState(@PathVariable Long id) {	return productService.updateState(id); }
 
 	@PutMapping("/product/{id}/{quant}")
 	public Product updateQuantity(@PathVariable Long id, @PathVariable Long quant) { return productService.updateQuantity(id, quant); }
 
-/*	@PostMapping("/price")
-	public Price testPrice() {
-		return priceService.createEntryPrice();
-	}*/
+    @PostMapping("/price")
+	public Product testPrice() {
+		return productService.createEntryPrice();
+	}
 
 }
