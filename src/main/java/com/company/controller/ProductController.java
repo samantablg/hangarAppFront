@@ -29,14 +29,15 @@ public class ProductController {
 	
 	@GetMapping("/product/{id}")
 	public Product getProductById(@PathVariable Long id) { return productService.getProduct(id); }
-	
+
+	//TODO refactor código
 	@PostMapping("/product")
 	public HttpStatus createProduct(@Valid @RequestBody ProductRequest product) {
 		Product newProduct = new Product(product.getName(), product.getDescription(), product.getQuantity(), product.getHangar());
 		try {
 			productService.createProduct(newProduct);
 			productService.createEntryPrice(newProduct, product.getPrice());
-		} catch (Exception e){
+		} catch(Exception e){
 			return null;
 		}
 
@@ -44,9 +45,21 @@ public class ProductController {
 	}
 	
 	@PostMapping("/hangar/{id}/product")
-	public Product createProductToHangar(@Valid @RequestBody ProductRequest product, @PathVariable Long id) {
+	public HttpStatus createProductToHangar(@Valid @RequestBody ProductRequest product, @PathVariable Long id) {
 		Product newProduct = new Product(product.getName(), product.getDescription(), product.getQuantity());
-		return productService.createProductToHangar(newProduct, id);
+		try {
+			productService.createProductToHangar(newProduct, id);
+			productService.createEntryPrice(newProduct, product.getPrice());
+		} catch(Exception e) {
+			return null;
+		}
+		return HttpStatus.OK;
+	}
+
+	@PostMapping("/product/{id}/price")
+	public Product UpdatePrice(@PathVariable Long id, @RequestBody float price) {
+		Product product = productService.getProduct(id);
+		return productService.createEntryPrice(product, price);
 	}
 	
 	/* Este método ya no se usa, se utiliza el estado activo o inactivo*/

@@ -17,6 +17,7 @@ public class ProductRequest {
     @NotNull
     private long quantity;
 
+    @NotNull
     private float price;
 
     public ProductRequest() {  }

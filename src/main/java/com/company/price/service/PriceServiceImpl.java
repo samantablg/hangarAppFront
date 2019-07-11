@@ -18,7 +18,6 @@ public class PriceServiceImpl implements PriceService {
 
     @Override
     public Price createEntryPrice(Product product, float price) {
-
         Price newEntry = new Price(product, price);
         return priceRepository.save(newEntry);
     }
