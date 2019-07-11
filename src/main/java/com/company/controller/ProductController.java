@@ -2,7 +2,8 @@ package com.company.controller;
 
 import java.util.List;
 
-import com.company.price.service.PriceService;
+import com.company.price.model.Price;
+import com.company.price.service.PriceServiceImpl;
 import com.company.product.model.ProductRequest;
 import com.company.product.model.ProductResponse;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,8 +22,8 @@ public class ProductController {
 	@Autowired
 	ProductService productService;
 
-	@Autowired
-	PriceService priceService;
+	/*@Autowired
+	PriceServiceImpl priceService;*/
 
 	@GetMapping("/products")
 	public List<Product> getAllActiveProducts() { return productService.getAllActiveProducts();	}
@@ -35,25 +36,22 @@ public class ProductController {
 	
 	@PostMapping("/product")
 	public Product createProduct(@Valid @RequestBody ProductRequest product) {
-		Product newProduct = new Product(product.getName(), product.getDescription(), product.getHangar());
-		//if(product.getPrice() >0)
-			//productService.
-
+		Product newProduct = new Product(product.getName(), product.getDescription(), product.getQuantity(), product.getHangar());
 		return productService.createProduct(newProduct);
 	}
 	
 	@PostMapping("/hangar/{id}/product")
 	public Product createProductToHangar(@Valid @RequestBody ProductRequest product, @PathVariable Long id) {
-		Product newProduct = new Product(product.getName(), product.getDescription());
+		Product newProduct = new Product(product.getName(), product.getDescription(), product.getQuantity());
 		return productService.createProductToHangar(newProduct, id);
 	}
 	
 	/* Este método ya no se usa, se utiliza el estado activo o inactivo*/
 
-	/*@DeleteMapping("/product/{id}")
+	@DeleteMapping("/product/{id}")
 	public Product deleteProduct(@PathVariable Long id) {
 		return productService.deleteProduct(id);
-	}*/
+	}
 
 	@GetMapping("/hangar/{id}/products")
 	public List<Product> showProductsOfHangar(@PathVariable Long id) {
@@ -71,5 +69,10 @@ public class ProductController {
 	{
 		return productService.updateState(id);
 	}
+
+/*	@PostMapping("/price")
+	public Price testPrice() {
+		return priceService.createEntryPrice();
+	}*/
 
 }

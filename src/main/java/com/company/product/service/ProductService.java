@@ -18,7 +18,7 @@ public interface ProductService {
 	
 	List<Product> getAllProductsOfHangar(Long id);
 
-	//Product deleteProduct(Long id);
+	Product deleteProduct(Long id);
 
 	Product filterName(char letter);
 

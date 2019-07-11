@@ -41,13 +41,13 @@ public class ProductDAOImpl implements ProductDAO {
 		return null;
 	}
 	
-	/*public Product deleteProduct(Long id) {
+	public Product deleteProduct(Long id) {
 		
 		Product product = productRepository.getOne(id);
 		if(product != null)
 			productRepository.delete(product);
 		return null;	
-	}*/
+	}
 
 
 	@Override

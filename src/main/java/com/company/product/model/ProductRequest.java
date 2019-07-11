@@ -13,6 +13,8 @@ public class ProductRequest {
 
     private Hangar hangar;
 
+    private long quantity;
+
     private double price;
 
     public ProductRequest() {  }
@@ -50,6 +52,14 @@ public class ProductRequest {
         this.price = price;
     }
 
+    public ProductRequest(@NotEmpty String name, String description, Hangar hangar, long quantity, double price) {
+        this.name = name;
+        this.description = description;
+        this.hangar = hangar;
+        this.quantity = quantity;
+        this.price = price;
+    }
+
     public String getName() {
         return name;
     }
@@ -75,4 +85,8 @@ public class ProductRequest {
     public double getPrice() { return price; }
 
     public void setPrice(double price) { this.price = price; }
+
+    public long getQuantity() { return quantity; }
+
+    public void setQuantity(long quantity) { this.quantity = quantity;  }
 }

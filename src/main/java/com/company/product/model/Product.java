@@ -4,7 +4,6 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -16,13 +15,14 @@ import com.company.hangar.model.Hangar;
 public class Product {
 
 	@Id
-	//@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@GeneratedValue(strategy = javax.persistence.GenerationType.IDENTITY )
 	private long id;
 	@Column(name = "name")
 	private String name;
 	@Column(name="description")
 	private String  description;
+	@Column(name="quantity")
+	private long quantity;
 	@Column(name="state")
 	private boolean state = true;
 	@ManyToOne(fetch = FetchType.EAGER)
@@ -47,6 +47,12 @@ public class Product {
 		this.hangar = hangar;
 	}
 
+	public Product(String name, String description, long quantity) {
+		this.name = name;
+		this.description = description;
+		this.quantity = quantity;
+	}
+
 	public Product(long id, String name, Hangar hangar) {
 		this.id = id;
 		this.name = name;
@@ -60,8 +66,12 @@ public class Product {
 		this.hangar = hangar;
 	}
 
-
-
+	public Product(String name, String description, long quantity, Hangar hangar) {
+		this.name = name;
+		this.description = description;
+		this.quantity = quantity;
+		this.hangar = hangar;
+	}
 
 	public long getId() {
 		return id;
@@ -94,6 +104,10 @@ public class Product {
 	public void setDescription(String description) {
 		this.description = description;
 	}
+
+	public long getQuantity() {	return quantity; }
+
+	public void setQuantity(long quantity) { this.quantity = quantity; }
 
 	public boolean isState() {
 		return state;

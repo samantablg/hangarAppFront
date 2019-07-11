@@ -12,7 +12,7 @@ public interface ProductDAO {
 	
 	Product createProduct(Product product);
 	
-	//Product deleteProduct(Long id);
+	Product deleteProduct(Long id);
 
 	boolean existProduct(Long id);
 

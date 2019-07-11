@@ -104,12 +104,12 @@ public class ProductServiceImpl implements ProductService {
 		throw new ProductNotFoundException();
 	}
 	
-	/*public Product deleteProduct(Long id) {
+	public Product deleteProduct(Long id) {
 		
 		if (productDAO.existProduct(id))
 			return productDAO.deleteProduct(id);	
 		throw new ProductNotFoundException(id);
-	}*/
+	}
 	
 	@ResponseStatus(value = HttpStatus.NOT_FOUND)
 	private class ProductNotFoundException extends RuntimeException {
@@ -209,9 +209,15 @@ public class ProductServiceImpl implements ProductService {
 
 		if(productDAO.existProduct(id)) {
 			Product product = productDAO.getProduct(id);
-			product.setState(false);
+			if(product.isState()) {
+				product.setState(false);
+			} else {
+				product.setState(true);
+			}
+
 			Product aProduct = product;
 			return productDAO.updateProduct(aProduct);
+
 		}
 		throw new ProductNotFoundException(id);
 	}
