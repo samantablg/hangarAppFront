@@ -2,6 +2,7 @@ package com.company.hangar.service;
 
 import java.util.List;
 
+import com.company.utils.HangarException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
@@ -22,7 +23,7 @@ public class HangarServiceImpl implements HangarService {
 		List<Hangar> hangars = hangarDAO.getAllHangars();
 		if(hangars != null)
 			return hangars;
-		throw new HangarNotFoundException();
+		throw new HangarException.HangarNotFoundException();
 	}
 
 	@Override
@@ -35,7 +36,7 @@ public class HangarServiceImpl implements HangarService {
 
 		if (id > 0 && id <= MaxValueId())
 			return hangarDAO.getHangar(id);
-		throw new HangarNotFoundException(id);
+		throw new HangarException.HangarNotFoundException(id);
 	}
 
 	@Override
@@ -44,7 +45,7 @@ public class HangarServiceImpl implements HangarService {
 		Hangar newHangar = hangarDAO.createHangar(hangar);
 		if (newHangar != null)
 			return newHangar;
-		throw new HangarExistException();
+		throw new HangarException.HangarExistException();
 	}
 
 	/*public Hangar deleteHangar(Long id) {
@@ -56,34 +57,6 @@ public class HangarServiceImpl implements HangarService {
 	@Override
 	public boolean hangarExistById(Long id) {
 		return hangarDAO.existHangar(id);
-	}
-
-	@ResponseStatus(value=HttpStatus.NOT_FOUND)
-	private class HangarNotFoundException extends RuntimeException {
-
-		private static final long serialVersionUID = 8253309007526137827L;
-
-		public HangarNotFoundException() {
-			super("There is not hangar");
-		}
-		
-		public HangarNotFoundException(Long id) {
-			super(String.format("The hangar %d doesn't exist", id));
-		}
-	}
-	
-	@ResponseStatus(value=HttpStatus.CONFLICT)
-	public class HangarExistException extends RuntimeException {
-			
-		private static final long serialVersionUID = -2343578248323481893L;
-
-		public HangarExistException() {
-			super("Hangar already exist");
-		}
-		
-		public HangarExistException(Long id) {
-			super(String.format("The hangar %d already exist", id));
-		}
 	}
 	
 	/*public boolean hangarExistByName(Hangar hangar) {
