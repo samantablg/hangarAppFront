@@ -38,7 +38,7 @@ public class ProductController {
 			productService.createProduct(newProduct);
 			productService.createEntryPrice(newProduct, product.getPrice());
 		} catch(Exception e){
-			return null;
+			return HttpStatus.BAD_REQUEST;
 		}
 
 		return HttpStatus.OK;
@@ -52,7 +52,7 @@ public class ProductController {
 			productService.createProductToHangar(newProduct, id);
 			productService.createEntryPrice(newProduct, product.getPrice());
 		} catch(Exception e) {
-			return null;
+			return HttpStatus.BAD_REQUEST;
 		}
 		return HttpStatus.OK;
 	}
