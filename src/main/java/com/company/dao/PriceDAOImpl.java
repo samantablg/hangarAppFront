@@ -23,7 +23,7 @@ public class PriceDAOImpl implements PriceDAO {
 
     @Override
     public List<Price> getAllPrices() {
-        return null;
+        return priceRepository.findAll();
     }
 
     @Override
