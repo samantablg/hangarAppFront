@@ -1,4 +1,4 @@
-package com.company.hangar.model;
+package com.company.model;
 
 import javax.persistence.*;
 

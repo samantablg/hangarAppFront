@@ -2,14 +2,14 @@ package com.company.controller;
 
 import java.util.List;
 
-import com.company.product.model.ProductRequest;
-import com.company.product.model.ProductResponse;
+import com.company.model.ProductRequest;
+import com.company.model.ProductResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
-import com.company.product.model.Product;
-import com.company.product.service.ProductService;
+import com.company.model.Product;
+import com.company.service.ProductService;
 
 import javax.validation.Valid;
 
@@ -31,7 +31,7 @@ public class ProductController {
 	public Product getProductById(@PathVariable Long id) { return productService.getProduct(id); }
 
 	//TODO refactor código -> manejo de excepciones en servicio
-	@PostMapping("/product")
+	/*@PostMapping("/product")
 	public HttpStatus createProduct(@Valid @RequestBody ProductRequest product) {
 		Product newProduct = new Product(product.getName(), product.getDescription(), product.getQuantity(), product.getHangar());
 		try {
@@ -42,7 +42,7 @@ public class ProductController {
 		}
 
 		return HttpStatus.OK;
-	}
+	}*/
 
 	//TODO refactor código -> manejo de excepciones en servicio
 	@PostMapping("/hangar/{id}/product")

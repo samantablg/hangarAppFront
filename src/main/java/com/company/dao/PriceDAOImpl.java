@@ -1,6 +1,6 @@
-package com.company.price.dao;
+package com.company.dao;
 
-import com.company.price.model.Price;
+import com.company.model.Price;
 import org.springframework.stereotype.Component;
 
 import java.util.List;

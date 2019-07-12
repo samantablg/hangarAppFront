@@ -1,8 +1,8 @@
-package com.company.hangar.service;
+package com.company.service;
 
 import java.util.List;
 
-import com.company.hangar.model.Hangar;
+import com.company.model.Hangar;
 
 public interface HangarService {
 	

@@ -1,12 +1,12 @@
-package com.company.product.dao;
+package com.company.dao;
 
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import com.company.product.model.Product;
-import com.company.product.repository.ProductRepository;
+import com.company.model.Product;
+import com.company.repository.ProductRepository;
 
 @Component
 public class ProductDAOImpl implements ProductDAO {

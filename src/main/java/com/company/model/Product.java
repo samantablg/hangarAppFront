@@ -1,4 +1,4 @@
-package com.company.product.model;
+package com.company.model;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -8,7 +8,6 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
-import com.company.hangar.model.Hangar;
 
 @Entity
 @Table(name = "PRODUCT")

@@ -1,6 +1,6 @@
-package com.company.price.repository;
+package com.company.repository;
 
-import com.company.price.model.Price;
+import com.company.model.Price;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface PriceRepository extends JpaRepository<Price, Long> {

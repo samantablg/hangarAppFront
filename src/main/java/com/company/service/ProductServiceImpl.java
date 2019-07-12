@@ -1,21 +1,16 @@
-package com.company.product.service;
+package com.company.service;
 
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import com.company.hangar.service.HangarServiceImpl;
-
-import com.company.price.service.PriceServiceImpl;
 import com.company.utils.ProductException;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.ResponseStatus;
 
-import com.company.product.dao.ProductDAO;
-import com.company.product.model.Product;
+import com.company.dao.ProductDAO;
+import com.company.model.Product;
 
 @Service
 public class ProductServiceImpl implements ProductService {

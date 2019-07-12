@@ -1,6 +1,5 @@
-package com.company.product.model;
+package com.company.model;
 
-import com.company.hangar.model.Hangar;
 
 public class ProductResponse {
 

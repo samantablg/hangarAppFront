@@ -1,9 +1,8 @@
-package com.company.price.service;
+package com.company.service;
 
-import com.company.price.model.Price;
-import com.company.price.repository.PriceRepository;
-import com.company.product.model.Product;
-import com.company.product.service.ProductService;
+import com.company.model.Price;
+import com.company.repository.PriceRepository;
+import com.company.model.Product;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -22,4 +21,8 @@ public class PriceServiceImpl implements PriceService {
         return priceRepository.save(newEntry);
     }
 
+    @Override
+    public Price createEntryPrice2(Price price) {
+        return priceRepository.save(price);
+    }
 }

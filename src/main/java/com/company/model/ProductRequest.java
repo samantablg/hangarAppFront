@@ -1,6 +1,4 @@
-package com.company.product.model;
-
-import com.company.hangar.model.Hangar;
+package com.company.model;
 
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;

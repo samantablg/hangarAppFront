@@ -1,9 +1,9 @@
-package com.company.price.model;
+package com.company.model;
 
-import com.company.product.model.Product;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import java.util.Date;
 
 @Entity
@@ -16,8 +16,10 @@ public class Price {
     @Column(name="date")
     private Date date;
     @Column(name="price")
+    @NotNull
     private float price;
     @ManyToOne(fetch = FetchType.EAGER)
+    @NotNull
     @JoinColumn(name="product")
     @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
     private Product product;

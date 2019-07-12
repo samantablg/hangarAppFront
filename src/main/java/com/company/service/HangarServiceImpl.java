@@ -1,15 +1,13 @@
-package com.company.hangar.service;
+package com.company.service;
 
 import java.util.List;
 
 import com.company.utils.HangarException;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.ResponseStatus;
 
-import com.company.hangar.dao.HangarDAO;
-import com.company.hangar.model.Hangar;
+import com.company.dao.HangarDAO;
+import com.company.model.Hangar;
 
 @Service
 public class HangarServiceImpl implements HangarService {

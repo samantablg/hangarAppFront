@@ -1,8 +1,8 @@
-package com.company.hangar.dao;
+package com.company.dao;
 
 import java.util.List;
 
-import com.company.hangar.model.Hangar;
+import com.company.model.Hangar;
 
 public interface HangarDAO {
 	

@@ -1,12 +1,12 @@
-package com.company.hangar.dao;
+package com.company.dao;
 
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import com.company.hangar.model.Hangar;
-import com.company.hangar.repository.HangarRepository;
+import com.company.model.Hangar;
+import com.company.repository.HangarRepository;
 
 @Component
 public class HangarDAOImpl implements HangarDAO {

@@ -1,10 +1,9 @@
 package com.company.controller;
 
-import com.company.hangar.model.Hangar;
-import com.company.hangar.model.HangarRequest;
-import com.company.hangar.service.HangarServiceImpl;
+import com.company.model.Hangar;
+import com.company.model.HangarRequest;
+import com.company.service.HangarServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;

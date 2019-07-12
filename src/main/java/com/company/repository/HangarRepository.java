@@ -1,8 +1,8 @@
-package com.company.hangar.repository;
+package com.company.repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
-import com.company.hangar.model.Hangar;
+import com.company.model.Hangar;
 import org.springframework.data.jpa.repository.Query;
 
 public interface HangarRepository extends JpaRepository<Hangar, Long> {

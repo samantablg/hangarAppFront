@@ -1,11 +1,11 @@
-package com.company.product.repository;
+package com.company.repository;
 
-import com.company.hangar.model.Hangar;
+import com.company.model.Hangar;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
-import com.company.product.model.Product;
+import com.company.model.Product;
 
 @Repository
 public interface ProductRepository extends JpaRepository<Product, Long> {
