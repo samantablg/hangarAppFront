@@ -7,8 +7,4 @@ public interface PriceService {
 
     Price createEntryPrice(Product product, float price);
 
-    Price createEntryPrice2(Price price);
-
-
-
 }
