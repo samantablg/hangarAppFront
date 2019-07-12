@@ -28,4 +28,6 @@ public interface ProductService {
 
 	Product createEntryPrice(Product product, float price);
 
+	boolean existProduct(Long id);
+
 }

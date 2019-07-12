@@ -11,7 +11,7 @@ import java.util.List;
 
 @RestController
 @CrossOrigin
-@RequestMapping("/api")
+@RequestMapping("/api/price")
 public class PriceController {
 
     @Autowired
@@ -31,6 +31,16 @@ public class PriceController {
     @GetMapping("/prices")
     public List<Price> getPrices() {
         return priceService.getAllPrices();
+    }
+
+    @PostMapping("/product/{id}")
+    public Price UpdatePrice(@PathVariable Long id, @RequestBody float price) {
+        return priceService.createEntryPriceToProduct(id, price);
+    }
+
+    @GetMapping("/product/{id}")
+    public List<Price> getPricesOfProduct(@PathVariable Long id) {
+        return priceService.getAllPricesOfProduct(id);
     }
 
 }

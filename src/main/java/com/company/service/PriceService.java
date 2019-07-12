@@ -11,4 +11,8 @@ public interface PriceService {
 
     List<Price> getAllPrices();
 
+    Price createEntryPriceToProduct(Long id, float price);
+
+    List<Price> getAllPricesOfProduct(Long id);
+
 }

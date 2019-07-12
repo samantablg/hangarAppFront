@@ -193,4 +193,8 @@ public class ProductServiceImpl implements ProductService {
 		return filterProductByLength(listUpper);
 	}
 
+	@Override
+	public boolean existProduct(Long id) {
+		return productDAO.existProduct(id);
+	}
 }

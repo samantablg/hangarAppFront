@@ -1,6 +1,7 @@
 package com.company.dao;
 
 import com.company.model.Price;
+import com.company.model.Product;
 
 import java.util.List;
 
@@ -12,5 +13,5 @@ public interface PriceDAO {
 
     Price getProductPrice(Long id);
 
-    List<Price> getAllPricesOfProducts(Long id);
+    List<Price> getAllPricesOfProduct(Product product);
 }

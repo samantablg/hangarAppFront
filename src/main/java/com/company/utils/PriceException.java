@@ -16,4 +16,13 @@ public class PriceException {
             super(String.format("The price %d doesn't exist", id));
         }
     }
+
+    @ResponseStatus(HttpStatus.BAD_REQUEST)
+    public static class PriceExistException extends RuntimeException {
+
+        public PriceExistException() {
+            super("Product and price already exist");
+        }
+    }
+
 }
