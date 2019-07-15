@@ -1,18 +1,21 @@
 package com.company.model;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotEmpty;
 
 @Entity
 @Table(name="HANGAR")
 public class Hangar {
 
 	@Id
-	//@GeneratedValue(strategy=GenerationType.AUTO)
-	@GeneratedValue(strategy = javax.persistence.GenerationType.IDENTITY )
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	//@GeneratedValue(strategy = javax.persistence.GenerationType.IDENTITY )
 	private long id;
 	@Column(name="name")
+	@NotEmpty
 	private String name;
     @Column(name="address")
+	@NotEmpty
 	private String address;
     @Column(name="state")
     private boolean state = true;

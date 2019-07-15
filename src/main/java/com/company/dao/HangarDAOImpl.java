@@ -37,7 +37,7 @@ public class HangarDAOImpl implements HangarDAO {
 
 	public Hangar createHangar(Hangar hangar) {
 
-		if(hangarRepository.findHangarByNameAndAdress(hangar.getName(), hangar.getAddress()) == null)
+		if(hangarRepository.findHangarByNameAndAddress(hangar.getName(), hangar.getAddress()) == null)
 			return hangarRepository.save(hangar);
 		return null;
 	}
