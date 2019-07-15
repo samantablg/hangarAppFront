@@ -14,17 +14,17 @@ public interface ProductService {
 
 	Product createProduct(Product product);
 
-	Product createProductToHangar(Product product, Long id);
+	//Product createProductToHangar(Product product, Long id);
 	
-	List<Product> getAllProductsOfHangar(Long id);
+	//List<Product> getAllProductsOfHangar(Long id);
 
 	Product deleteProduct(Long id);
 
-	Product filterName(char letter);
+	//Product filterName(char letter);
 
 	Product updateState(Long id);
 
-	Product updateQuantity(Long id, Long quantity);
+	//Product updateQuantity(Long id, Long quantity);
 
 	Product createEntryPrice(Product product, float price);
 

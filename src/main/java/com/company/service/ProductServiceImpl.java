@@ -57,8 +57,16 @@ public class ProductServiceImpl implements ProductService {
 		throw new ProductException.NotFound(id);
 	}
 
-
 	@Override
+	public Product createProduct(Product product) {
+
+		if(!productDAO.existProductByName(product))
+			return productDAO.createProduct(product);
+		throw new ProductException.ProductExistException();
+	}
+
+	//TODO estos métodos ya no tienen sentido aquí porque se pueden crear productos sin asignarle hangar
+	/*@Override
 	public Product createProduct(Product product) {
 
 		if(hangarService.hangarExist(product.getHangar())) {
@@ -80,9 +88,9 @@ public class ProductServiceImpl implements ProductService {
 			throw new ProductException.NotFound();
 		}
 		throw new ProductException.HangarExistException();
-	}
+	}*/
 
-	@Override
+	/*@Override
 	public List<Product> getAllProductsOfHangar(Long id) {
 
 		List<Product> result = new ArrayList<>();
@@ -96,7 +104,7 @@ public class ProductServiceImpl implements ProductService {
 		if (result.size() > 0)
 			return result;
 		throw new ProductException.NotFound();
-	}
+	}*/
 
 	public Product deleteProduct(Long id) {
 
@@ -144,7 +152,7 @@ public class ProductServiceImpl implements ProductService {
 		throw new ProductException.NotFound(id);
 	}
 
-	@Override
+	/*@Override
 	public Product updateQuantity(Long id, Long quantity) {
 
 		if(productDAO.existProduct(id)) {
@@ -158,16 +166,24 @@ public class ProductServiceImpl implements ProductService {
 		}
 		throw new ProductException.NotFound(id);
 	}
-
+*/
 	@Override
 	public Product createEntryPrice(Product product, float price) {
 		priceService.createEntryPrice(product, price);
 		return product;
 	}
 
-	/*Ejercicio java 8*/
+	@Override
+	public boolean existProduct(Long id) {
+		return productDAO.existProduct(id);
+	}
 
-	private List<Product> searchByFirstLetter(char letter) {
+	/*Ejercicio java 8
+
+	TODO actualizar al nuevo modelo producto -> sin hangar asignado
+	 */
+
+	/*private List<Product> searchByFirstLetter(char letter) {
 
 		List<Product> products = productDAO.getAllProducts();
 		return products.stream()
@@ -191,10 +207,5 @@ public class ProductServiceImpl implements ProductService {
 
 		List<Product> listUpper = convertToUpperCase(listLetter);
 		return filterProductByLength(listUpper);
-	}
-
-	@Override
-	public boolean existProduct(Long id) {
-		return productDAO.existProduct(id);
-	}
+	}*/
 }

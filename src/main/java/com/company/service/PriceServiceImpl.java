@@ -23,7 +23,6 @@ public class PriceServiceImpl implements PriceService {
     @Override
     public Price createEntryPrice(Product product, float price) {
         try {
-            productService.createProduct(product);
             Price newEntry = new Price(product, price);
             return priceDAO.createEntryPrice(newEntry);
         } catch (Exception e) {

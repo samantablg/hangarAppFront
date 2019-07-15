@@ -35,7 +35,7 @@ public class ProductDAOImpl implements ProductDAO {
 	@Override
 	public Product createProduct(Product product) {
 
-		if(productRepository.findProductByNameAndAndHangar(product.getName(), product.getHangar()) == null) {
+		if(productRepository.findProductByName(product.getName()) == null) {
 			return productRepository.save(product);
 		}
 		return null;
@@ -58,5 +58,12 @@ public class ProductDAOImpl implements ProductDAO {
 	@Override
 	public Product updateProduct(Product product) {
 		return productRepository.save(product);
+	}
+
+	@Override
+	public boolean existProductByName(Product product) {
+		if(productRepository.findProductByName(product.getName()) != null)
+			return true;
+		return false;
 	}
 }

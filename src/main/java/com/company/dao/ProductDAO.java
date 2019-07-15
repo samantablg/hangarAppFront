@@ -18,4 +18,6 @@ public interface ProductDAO {
 
 	Product updateProduct(Product product);
 
+	boolean existProductByName(Product product);
+
 }

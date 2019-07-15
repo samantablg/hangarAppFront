@@ -44,12 +44,25 @@ public class ProductController {
 		return HttpStatus.OK;
 	}*/
 
+	@PostMapping("/product")
+	public HttpStatus createProduct(@Valid @RequestBody ProductRequest product) {
+		Product newProduct = new Product(product.getName(), product.getDescription());
+		try {
+			productService.createProduct(newProduct);
+			productService.createEntryPrice(newProduct, product.getPrice());
+		} catch(Exception e){
+			return HttpStatus.BAD_REQUEST;
+		}
+
+		return HttpStatus.OK;
+	}
+
 	//TODO refactor código -> manejo de excepciones en servicio
 	@PostMapping("/hangar/{id}/product")
 	public HttpStatus createProductToHangar(@Valid @RequestBody ProductRequest product, @PathVariable Long id) {
-		Product newProduct = new Product(product.getName(), product.getDescription(), product.getQuantity());
+		Product newProduct = new Product(product.getName(), product.getDescription());
 		try {
-			productService.createProductToHangar(newProduct, id);
+			productService.createProduct(newProduct);
 			productService.createEntryPrice(newProduct, product.getPrice());
 		} catch(Exception e) {
 			return HttpStatus.BAD_REQUEST;
@@ -70,7 +83,8 @@ public class ProductController {
 		return productService.deleteProduct(id);
 	}
 
-	@GetMapping("/hangar/{id}/products")
+	//TODO pendiente de refactor -> cambio de modelo de producto
+	/*@GetMapping("/hangar/{id}/products")
 	public List<Product> showProductsOfHangar(@PathVariable Long id) {
 		return productService.getAllProductsOfHangar(id);
 	}
@@ -79,14 +93,14 @@ public class ProductController {
 	public ProductResponse filterProducts(@PathVariable char letter) {
 	    Product filterProduct = productService.filterName(letter);
 		return new ProductResponse(filterProduct.getName(), filterProduct.getHangar());
-	}
+	}*/
 
 	@PutMapping("/product/{id}")
 	public Product updateState(@PathVariable Long id) {	return productService.updateState(id); }
 
-	@PutMapping("/product/{id}/{quant}")
+	/*@PutMapping("/product/{id}/{quant}")
 	public Product updateQuantity(@PathVariable Long id, @PathVariable Long quant) { return productService.updateQuantity(id, quant); }
-
+*/
     /*@PostMapping("/price")
 	public Product testPrice(Product product, float price) {
 		return productService.createEntryPrice(product, price);
