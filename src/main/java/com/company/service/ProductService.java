@@ -30,4 +30,5 @@ public interface ProductService {
 
 	boolean existProduct(Long id);
 
+	Product associateProductToHangar(Long id);
 }

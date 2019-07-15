@@ -2,14 +2,16 @@ package com.company.model;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
+import java.io.Serializable;
 
 @Entity
 @Table(name="HANGAR")
-public class Hangar {
+public class Hangar implements Serializable {
+
+	private static final long serialVersionUID = -3064410667944568903L;
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	//@GeneratedValue(strategy = javax.persistence.GenerationType.IDENTITY )
 	private long id;
 	@Column(name="name")
 	@NotEmpty
@@ -20,7 +22,7 @@ public class Hangar {
     @Column(name="state")
     private boolean state = true;
 
-	public Hangar() {}
+	/*public Hangar() {}
 	
 	public Hangar(String name, String address)
 	{
@@ -36,7 +38,7 @@ public class Hangar {
 		this.id = id;
 		this.name = name;
 		this.address = address;
-	}
+	}*/
 
 	
 	public long getId() {

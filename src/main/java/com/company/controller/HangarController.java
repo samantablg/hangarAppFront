@@ -28,7 +28,9 @@ public class HangarController {
 
 	@PostMapping("/hangar")
 	public Hangar createHangar(@Valid @RequestBody Hangar hangar) {
-		Hangar newHangar = new Hangar(hangar.getName(), hangar.getAddress());
+		Hangar newHangar = new Hangar();
+		newHangar.setName(hangar.getName());
+		newHangar.setAddress(hangar.getAddress());
 		return hangarService.createHangar(newHangar);
 	}
 

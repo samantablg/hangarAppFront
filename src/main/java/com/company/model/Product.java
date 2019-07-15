@@ -1,10 +1,13 @@
 package com.company.model;
 
 import javax.persistence.*;
+import java.io.Serializable;
 
 @Entity
 @Table(name = "PRODUCT")
-public class Product {
+public class Product implements Serializable {
+
+	private static final long serialVersionUID = -3064410667944568902L;
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -16,12 +19,12 @@ public class Product {
 	@Column(name="state")
 	private boolean state = true;
 
-	public Product() {}
+	/*public Product() {}
 
 	public Product(String name, String description) {
 		this.name = name;
 		this.description = description;
-	}
+	}*/
 
 	public long getId() {
 		return id;

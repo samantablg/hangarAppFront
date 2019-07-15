@@ -5,6 +5,8 @@ import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import com.company.model.Hangar;
+import com.company.model.Product_Hangar;
 import com.company.utils.ProductException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -23,6 +25,9 @@ public class ProductServiceImpl implements ProductService {
 
 	@Autowired
 	PriceServiceImpl priceService;
+
+	@Autowired
+	Product_HangarServiceImpl product_hangarService;
 
 	@Override
 	public List<Product> getAllProducts() {
@@ -176,6 +181,19 @@ public class ProductServiceImpl implements ProductService {
 	@Override
 	public boolean existProduct(Long id) {
 		return productDAO.existProduct(id);
+	}
+
+	@Override
+	public Product associateProductToHangar(Long id) {
+		Product product = getProduct((long)17);
+		Hangar hangar = hangarService.getHangar(id);
+
+		Product_Hangar product_hangar = new Product_Hangar();
+		product_hangar.setHangar(hangar.getId());
+		product_hangar.setProduct(product.getId());
+		product_hangar.setAmount(5);
+		product_hangarService.associateProductToHangar(product_hangar);
+		return product;
 	}
 
 	/*Ejercicio java 8
