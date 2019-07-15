@@ -14,12 +14,12 @@ public class Product_Hangar implements Serializable {
 
     @Id
     @Column(name = "hangar")
-    @NotEmpty
+    //@NotEmpty
     private long hangar;
 
     @Id
     @Column(name = "product")
-    @NotEmpty
+    //@NotEmpty
     private long product;
 
     @Column(name = "amount")
