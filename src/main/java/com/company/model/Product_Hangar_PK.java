@@ -1,8 +1,5 @@
 package com.company.model;
 
-import org.springframework.stereotype.Component;
-
-import javax.persistence.Embeddable;
 import java.io.Serializable;
 import java.util.Objects;
 

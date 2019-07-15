@@ -22,7 +22,9 @@ public class PriceServiceImpl implements PriceService {
     @Override
     public Price createEntryPrice(Product product, float price) {
         try {
-            Price newEntry = new Price(product, price);
+            Price newEntry = new Price();
+            newEntry.setPrice(price);
+            newEntry.setProduct(product);
             return priceDAO.createEntryPrice(newEntry);
         } catch (Exception e) {
             throw new ProductException.ProductExistException();
@@ -43,7 +45,9 @@ public class PriceServiceImpl implements PriceService {
 
         if(productService.existProduct(id)) {
             Product product = productService.getProduct(id);
-            Price newPrice = new Price(product, price);
+            Price newPrice = new Price();
+            newPrice.setPrice(price);
+            newPrice.setProduct(product);
             return priceDAO.createEntryPrice(newPrice);
         }
         throw new PriceException.PriceNotFoundException();

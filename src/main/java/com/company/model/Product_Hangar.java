@@ -13,27 +13,17 @@ public class Product_Hangar implements Serializable {
     private static final long serialVersionUID = -3064410667944568907L;
 
     @Id
-    //@ManyToOne(cascade=CascadeType.ALL, fetch = FetchType.EAGER)
-    //@JoinColumn(name = "hangar", foreignKey = @ForeignKey(name="hangar_fk"))
     @Column(name = "hangar")
-    //@NotEmpty
+    @NotEmpty
     private long hangar;
+
     @Id
-    //@ManyToOne(cascade=CascadeType.ALL, fetch = FetchType.EAGER)
-    //@JoinColumn(name = "product", foreignKey = @ForeignKey(name="product_fk"))
     @Column(name = "product")
-    //@NotEmpty
+    @NotEmpty
     private long product;
+
     @Column(name = "amount")
     private long amount;
-
-    //public Product_Hangar() { }
-
-   /* public Product_Hangar(@NotEmpty long hangar, @NotEmpty long product, long amount) {
-        this.hangar = hangar;
-        this.product = product;
-        this.amount = amount;
-    }*/
 
     public long getHangar() {
         return hangar;
