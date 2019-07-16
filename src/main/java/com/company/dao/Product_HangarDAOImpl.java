@@ -19,7 +19,17 @@ public class Product_HangarDAOImpl implements Product_HangarDAO {
     }
 
     @Override
-    public List<Product_Hangar> getProductsOfHangar() {
+    public List<Product_Hangar> getAll() {
         return product_hangarRepository.findAll();
+    }
+
+    @Override
+    public List<Product_Hangar> getProductsOfHangar(long hangar) {
+        return product_hangarRepository.findAllByHangar(hangar);
+    }
+
+    @Override
+    public List<Product_Hangar> getHangarsOfProduct(long product) {
+        return product_hangarRepository.findAllByProduct(product);
     }
 }

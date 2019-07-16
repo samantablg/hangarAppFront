@@ -8,5 +8,10 @@ public interface Product_HangarDAO {
 
     Product_Hangar addProductToHangar(Product_Hangar product_hangar);
 
-    List<Product_Hangar> getProductsOfHangar();
+    List<Product_Hangar> getAll();
+
+    List<Product_Hangar> getProductsOfHangar(long hangar);
+
+    List<Product_Hangar> getHangarsOfProduct(long product);
+
 }

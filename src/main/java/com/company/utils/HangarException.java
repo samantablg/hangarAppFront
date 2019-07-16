@@ -27,4 +27,5 @@ public class HangarException {
             super(String.format("The hangar %d already exist", id));
         }
     }
+
 }

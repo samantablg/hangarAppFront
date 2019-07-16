@@ -2,6 +2,8 @@ package com.company.service;
 
 import com.company.dao.Product_HangarDAO;
 import com.company.model.Product_Hangar;
+import com.company.utils.HangarException;
+import com.company.utils.ProductException;
 import com.company.utils.Product_HangarException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -28,7 +30,29 @@ public class Product_HangarServiceImpl implements Product_HangarService {
     }
 
     @Override
-    public List<Product_Hangar> getProductsOfHangars() {
-        return product_hangarDAO.getProductsOfHangar();
+    public List<Product_Hangar> getAll() {
+        return product_hangarDAO.getAll();
+    }
+
+    @Override
+    public List<Product_Hangar> getProductsOfHangar(long id) {
+        if(hangarService.hangarExistById(id)) {
+            List<Product_Hangar> result = product_hangarDAO.getProductsOfHangar(id);
+            if(result != null)
+                return result;
+            throw new Product_HangarException.HangarNotAssociatedException(id);
+        }
+        throw new HangarException.HangarNotFoundException(id);
+    }
+
+    @Override
+    public List<Product_Hangar> getHangarsOfProduct(long id) {
+        if(productService.existProduct(id)) {
+            List<Product_Hangar> result = product_hangarDAO.getHangarsOfProduct(id);
+            if(result != null)
+                return result;
+            throw new Product_HangarException.ProductNotAssociatedException(id);
+        }
+        throw new ProductException.NotFound(id);
     }
 }

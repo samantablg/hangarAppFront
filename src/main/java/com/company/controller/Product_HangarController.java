@@ -13,18 +13,30 @@ import java.util.List;
 public class Product_HangarController {
 
 
-
     @Autowired
     Product_HangarServiceImpl product_hangarService;
 
-    //TODO existe producto, existe hangar...
     @PostMapping(value = "/productOfHangar", produces = "application/json; charset=utf-8")
-    public Product_Hangar addProductToHangar(@RequestBody Product_Hangar product_hangar) {
-        return product_hangarService.associateProductToHangar(product_hangar);
+    public Product_Hangar addProductToHangar(@RequestBody ProductOfHangar product_hangar) {
+        Product_Hangar p_h = new Product_Hangar();
+        p_h.setAmount(product_hangar.getAmount());
+        p_h.setProduct(product_hangar.getProduct());
+        p_h.setHangar(product_hangar.getHangar());
+        return product_hangarService.associateProductToHangar(p_h);
     }
 
     @GetMapping("/productsOfHangar")
     public List<Product_Hangar> getProducts() {
-        return product_hangarService.getProductsOfHangars();
+        return product_hangarService.getAll();
+    }
+
+    @GetMapping("/products/hangar/{idHangar}")
+    public List<Product_Hangar> getProductOfHangar(@PathVariable Long idHangar) {
+        return product_hangarService.getProductsOfHangar(idHangar);
+    }
+
+    @GetMapping("/products/{idProduct}")
+    public List<Product_Hangar> getHangarsOfProduct(@PathVariable Long idProduct) {
+        return product_hangarService.getHangarsOfProduct(idProduct);
     }
 }
