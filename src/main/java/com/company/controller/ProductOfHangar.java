@@ -1,11 +1,11 @@
 package com.company.controller;
 
+import javax.validation.constraints.NotEmpty;
+
 public class ProductOfHangar {
 
     private long hangar;
-
     private long product;
-
     private long amount;
 
     public long getHangar() {

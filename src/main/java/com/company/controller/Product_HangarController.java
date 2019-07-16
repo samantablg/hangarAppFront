@@ -39,4 +39,15 @@ public class Product_HangarController {
     public List<Product_Hangar> getHangarsOfProduct(@PathVariable Long idProduct) {
         return product_hangarService.getHangarsOfProduct(idProduct);
     }
+
+    @PutMapping(value="/productOfHangar/update", produces = "application/json; charset=utf-8")
+    public Product_Hangar updateAmount(@RequestBody ProductOfHangar update) {
+        return product_hangarService.updateAmount(update.getProduct(), update.getHangar(), update.getAmount());
+    }
+
+    @PutMapping(value="/productOfHangar/delete", produces = "application/json; charset=utf-8")
+    public Product_Hangar unlinkProductOfHangar(@RequestBody ProductOfHangar delete) {
+        return product_hangarService.unlinkProductOfHangar(delete.getProduct(), delete.getHangar());
+    }
+
 }

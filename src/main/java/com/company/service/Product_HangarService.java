@@ -1,6 +1,5 @@
 package com.company.service;
 
-import com.company.model.Hangar;
 import com.company.model.Product_Hangar;
 
 import java.util.List;
@@ -14,5 +13,9 @@ public interface Product_HangarService {
     List<Product_Hangar> getProductsOfHangar(long id);
 
     List<Product_Hangar> getHangarsOfProduct(long id);
+
+    Product_Hangar updateAmount(long product, long hangar, long amount);
+
+    Product_Hangar unlinkProductOfHangar(long product, long hangar);
 
 }

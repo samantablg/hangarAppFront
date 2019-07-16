@@ -29,4 +29,12 @@ public class Product_HangarException {
         }
     }
 
+    @ResponseStatus(HttpStatus.BAD_REQUEST)
+    public static class ProductAndHangarNotAssociatedException extends RuntimeException {
+
+        public ProductAndHangarNotAssociatedException() {
+            super("The product is not in the hangar");
+        }
+    }
+
 }

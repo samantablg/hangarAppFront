@@ -55,4 +55,24 @@ public class Product_HangarServiceImpl implements Product_HangarService {
         }
         throw new ProductException.NotFound(id);
     }
+
+    @Override
+    public Product_Hangar updateAmount(long product, long hangar, long amount) {
+        Product_Hangar update = product_hangarDAO.getRelationship(product, hangar);
+        if(update != null) {
+            update.setAmount(amount);
+            return product_hangarDAO.updateAmount(update);
+        }
+        throw new Product_HangarException.ProductAndHangarNotAssociatedException();
+    }
+
+    @Override
+    public Product_Hangar unlinkProductOfHangar(long product, long hangar) {
+        Product_Hangar delete = product_hangarDAO.getRelationship(product, hangar);
+        if(delete != null) {
+            product_hangarDAO.deleteRelationship(delete);
+            return delete;
+        }
+        throw new Product_HangarException.ProductAndHangarNotAssociatedException();
+    }
 }
