@@ -1,0 +1,21 @@
+<div class="container d-flex row">
+    <h2>{{ hangar[1] }}</h2>
+</div>
+
+<table class="table table-condensed table-hover">
+    <caption>
+        Relationship
+    </caption>
+    <thead>
+        <tr>
+            <th scope="col">Product</th>
+            <th scope="col">Amount</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let item of productsOfHangar; let i = index">
+            <td>{{ item.product }}</td>
+            <td>{{ item.amount }}</td>
+        </tr>
+    </tbody>
+</table>

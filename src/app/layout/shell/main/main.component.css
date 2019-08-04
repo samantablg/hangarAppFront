@@ -1,0 +1,11 @@
+.container {
+  min-height: 90%;
+  margin-right: auto;
+  margin-left: auto;
+  margin-top: auto;
+}
+
+main {
+  overflow: auto;
+  padding-bottom: 100px;
+}

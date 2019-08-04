@@ -1,0 +1,21 @@
+<div *ngIf="showHistoric">
+
+    <table class="table table-condensed table-hover">
+        <caption>
+            Prices of {{ product.name }}
+        </caption>
+        <thead>
+            <tr>
+                <th scope="col">Date</th>
+                <th scope="col">Price</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let price of prices; let i = index">
+                <td> {{ price.date | date}}</td>
+                <td> {{ price.price }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+</div>

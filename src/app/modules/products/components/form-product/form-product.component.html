@@ -1,0 +1,21 @@
+<form [formGroup]="formProduct" (ngSubmit)="saveProduct($event)">
+    <div>
+        <div class="form-group row">
+            <label class="col-form-label" for="name">Name</label>
+            <input formControlName="name" id="name" type="text" class="form-control">
+            <div *ngIf="name.touched && name.invalid" class="alert alert-danger">
+                <div *ngIf="name?.errors['required']">Name is required.</div>
+            </div>
+        </div>
+        <div class="form-group row">
+            <label class="col-form-label" for="description">Description</label>
+            <input formControlName="description" id="description" type="text" class="form-control">
+            <div *ngIf="name.touched && name.invalid" class="alert alert-danger">
+                <div *ngIf="description?.errors['required']">Description is required.</div>
+            </div>
+        </div>
+        <div class="form-group row">
+            <button type="submit" class="btn">Save</button>
+        </div>
+    </div>
+</form>

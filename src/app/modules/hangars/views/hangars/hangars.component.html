@@ -1,0 +1,19 @@
+<app-button [hangarSelected]="currentHangar" [isSelect]="isSelected"></app-button>
+
+<table class="table table-condensed table-hover">
+    <caption>
+        List of hangars
+    </caption>
+    <thead>
+        <tr>
+            <th scope="col">Hangar</th>
+            <th scope="col">Address</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let hangar of hangars; let i = index" (dblclick)="getHangar(i)" (click)="hangarSelected($event, hangar)" [class.highlight]="hangar.name === currentHangar">
+            <td class="td1">{{ hangar.name }}</td>
+            <td>{{ hangar.address }}</td>
+        </tr>
+    </tbody>
+</table>
