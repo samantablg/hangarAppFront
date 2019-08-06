@@ -1,6 +1,6 @@
 import { HangarModel } from 'src/app/core/models/hangar.interface';
 import { Component, OnInit, Input } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { HangarService } from '../../../../core/services/hangar.service';
 
 @Component({
@@ -19,8 +19,15 @@ export class FormHangarComponent implements OnInit {
 
   constructor( private hangarService: HangarService ) {
     this.formHangar = new FormGroup({
-      name: new FormControl(''),
-      address: new FormControl(''),
+      name: new FormControl('', [
+        Validators.required,
+        Validators.minLength(3)
+      ]
+      ),
+      address: new FormControl('', [
+        Validators.required,
+        Validators.minLength(3)
+      ]),
       id: new FormControl('')
     });
   }

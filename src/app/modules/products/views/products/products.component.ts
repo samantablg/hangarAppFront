@@ -1,4 +1,4 @@
-import { HangarModel } from 'src/app/core/models/hangar.interface';
+import { CommunicationService } from './../../../../core/services/communication.service';
 import { BasicHangarModel } from 'src/app/core/models/basic-hangar.interface';
 import { ProductService } from '../../../../core/services/product.service';
 import { Component, OnInit } from '@angular/core';
@@ -17,7 +17,7 @@ export class ProductsComponent implements OnInit {
   hangars: BasicHangarModel[] = [];
   hangar: BasicHangarModel;
 
-  constructor( private productService: ProductService, private router: Router ) { }
+  constructor( private productService: ProductService, private comService: CommunicationService, private router: Router ) { }
 
   ngOnInit() {
     this.productService.loadProducts().subscribe( data => {
@@ -27,7 +27,8 @@ export class ProductsComponent implements OnInit {
 
   getProduct( id: number ) {
     this.product = this. products[id];
-    this.router.navigate(['/products/product', id + 1], {state: {data: this.product}});
+    this.comService.setData(this.product);
+    this.router.navigate(['/products/product', id + 1]);
   }
 
   insertProduct() {

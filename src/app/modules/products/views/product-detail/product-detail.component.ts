@@ -1,6 +1,7 @@
+import { CommunicationService } from './../../../../core/services/communication.service';
 import { ProductService } from '../../../../core/services/product.service';
 import { ProductModel } from 'src/app/core/models/product.interface';
-import { Component, OnInit, Input, Output, EventEmitter, HostListener } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
 @Component({
@@ -10,15 +11,14 @@ import { Router } from '@angular/router';
 })
 export class ProductDetailComponent implements OnInit {
 
-  @Input() product: ProductModel;
+  product: ProductModel;
   insertPrice = true;
   showHistoric = true;
 
-  constructor(private productService: ProductService, private router: Router) {
-    this.product = this.router.getCurrentNavigation().extras.state.data;
-   }
+  constructor(private productService: ProductService, private comService: CommunicationService, private router: Router) { }
 
   ngOnInit() {
+    this.product = this.comService.getData();
     this.insertPrice = false;
     this.showHistoric = false;
   }
@@ -32,7 +32,8 @@ export class ProductDetailComponent implements OnInit {
   }
 
   public editProduct() {
-    this.router.navigate(['/products/modify'], {state: {data: this.product}});
+    this.comService.setData(this.product);
+    this.router.navigate(['/products/modify']);
   }
 
 }

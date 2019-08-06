@@ -1,7 +1,6 @@
+import { CommunicationService } from './../../../../core/services/communication.service';
 import { HangarModel } from 'src/app/core/models/hangar.interface';
-import { Component, OnInit, Input } from '@angular/core';
-import { Router } from '@angular/router';
-import { FormControl, FormGroup } from '@angular/forms';
+import { Component, OnInit } from '@angular/core';
 import { HangarService } from '../../../../core/services/hangar.service';
 
 @Component({
@@ -9,12 +8,13 @@ import { HangarService } from '../../../../core/services/hangar.service';
   templateUrl: './form-hangar-modify.component.html',
   styleUrls: ['./form-hangar-modify.component.css']
 })
-export class FormHangarModifyComponent {
+export class FormHangarModifyComponent implements OnInit {
 
-  @Input() hangar: HangarModel;
+  hangar: HangarModel;
 
-  constructor(private hangarService: HangarService, private router: Router) {
-    this.hangar = this.router.getCurrentNavigation().extras.state.data;
+  constructor(private hangarService: HangarService, private comService: CommunicationService ) { }
+
+  ngOnInit() {
+    this.hangar = this.comService.getData();
   }
-  
 }

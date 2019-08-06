@@ -1,7 +1,6 @@
 import { TranslateModule } from '@ngx-translate/core';
 import { ListPriceComponent } from './components/list-price/list-price.component';
 import { ProductsRoutingModule } from './products-routing.module';
-import { RouterModule } from '@angular/router';
 import { ProductsComponent } from './views/products/products.component';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
@@ -15,8 +14,11 @@ import { ProductModifyComponent } from './views/product-modify/product-modify.co
 import { AddProductsHangarComponent } from './components/add-products-hangar/add-products-hangar.component';
 
 @NgModule({
-  declarations: [ProductsComponent, ProductDetailComponent, FormPriceComponent,
-     ListPriceComponent, FormProductComponent, ProductsOfHangarComponent, ProductNewComponent, ProductModifyComponent, AddProductsHangarComponent],
+  declarations: [
+    ProductsComponent, ProductDetailComponent, FormPriceComponent,
+    ListPriceComponent, FormProductComponent, ProductsOfHangarComponent, ProductNewComponent,
+    ProductModifyComponent, AddProductsHangarComponent
+  ],
   imports: [
     CommonModule, ProductsRoutingModule, ReactiveFormsModule, TranslateModule
   ],

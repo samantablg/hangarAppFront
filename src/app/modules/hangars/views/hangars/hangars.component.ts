@@ -1,4 +1,4 @@
-import { TranslateService } from '@ngx-translate/core';
+import { CommunicationService } from './../../../../core/services/communication.service';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { HangarModel } from 'src/app/core/models/hangar.interface';
@@ -17,7 +17,7 @@ export class HangarsComponent implements OnInit {
   hangarData: HangarModel;
   public currentHangar: any;
 
-  constructor( private hangarService: HangarService, private router: Router ) { }
+  constructor( private hangarService: HangarService, private comService: CommunicationService, private router: Router ) { }
 
 
   ngOnInit() {
@@ -29,22 +29,14 @@ export class HangarsComponent implements OnInit {
 
   getHangar( id: number ) {
     this.hangar = this.hangars[id];
-    this.router.navigate(['/hangars/hangar', id + 1], {state: {data: this.hangar}});
+    this.comService.setData(this.hangar);
+    this.router.navigate(['/hangars/hangar', id + 1]);
   }
 
   hangarSelected(event: any, hangar: HangarModel) {
     this.currentHangar = hangar;
     this.isSelected = !this.isSelected;
-    console.log(this.currentHangar);
-    this.selectHangarAction();
-  }
-
-  public selectHangarAction() {
-    if (this.isSelected) {
-      console.log('hangar is selected');
-    } else {
-      console.log('no select');
-    }
+    this.comService.setData(this.currentHangar);
   }
 
 }

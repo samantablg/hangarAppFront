@@ -1,17 +1,21 @@
 <form [formGroup]="formProduct" (ngSubmit)="saveProduct($event)">
     <div>
         <div class="form-group row">
-            <label class="col-form-label" for="name">{{ 'name.text' | translate }}</label>
-            <input formControlName="name" id="name" type="text" class="form-control">
-            <div *ngIf="name.touched && name.invalid" class="alert alert-danger">
-                <div *ngIf="name?.errors['required']">Name is required.</div>
+            <label class="col-form-label" for="name">{{
+        'name.text' | translate
+      }}</label>
+            <input formControlName="name" id="name" type="text" class="form-control" />
+            <div *ngIf="name.touched && name.invalid">
+                {{ 'name-form.text' | translate }}
             </div>
         </div>
         <div class="form-group row">
-            <label class="col-form-label" for="description">{{ 'description.text' | translate }}</label>
-            <input formControlName="description" id="description" type="text" class="form-control">
-            <div *ngIf="name.touched && name.invalid" class="alert alert-danger">
-                <div *ngIf="description?.errors['required']">Description is required.</div>
+            <label class="col-form-label" for="description">{{
+        'description.text' | translate
+      }}</label>
+            <input formControlName="description" id="description" type="text" class="form-control" />
+            <div *ngIf="(description?.errors)['required']">
+                {{ 'description-form.text' | translate }}
             </div>
         </div>
         <div class="form-group row">
