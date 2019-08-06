@@ -24,7 +24,7 @@ const routes: Routes = [
     component: ProductsOfHangarComponent
   },
   {
-    path:'modify',
+    path: 'modify',
     component: ProductModifyComponent
   }
 

@@ -16,13 +16,13 @@ export class HomeComponent implements OnInit {
     this.hangarCard = {
       title: 'Hangars',
       url: 'hangars',
-      img: '../../../../assets/hangars.png'
+      img: '../../../../assets/img/hangars.png'
     };
 
     this.productCard = {
       title: 'Products',
       url: 'products',
-      img: '../../../../assets/products.png'
+      img: '../../../../assets/img/products.png'
     };
   }
 

@@ -27,7 +27,7 @@ export class FormProductComponent implements OnInit {
     if (this.isEdit) {
       this.name.setValue(this.productSelect.name),
       this.description.setValue(this.productSelect.description),
-      this.id.setValue(this.productSelect.id)
+      this.id.setValue(this.productSelect.id);
     }
   }
 
@@ -44,7 +44,7 @@ export class FormProductComponent implements OnInit {
   }
 
   saveProduct() {
-    if(this.isEdit) {
+    if (this.isEdit) {
       console.log(this.formProduct.value);
       return this.productService.updateProduct(this.formProduct.value);
     }

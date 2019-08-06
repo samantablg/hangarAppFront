@@ -1,3 +1,4 @@
+import { Router } from '@angular/router';
 import { Component, OnInit, Input } from '@angular/core';
 import { HangarModel } from 'src/app/core/models/hangar.interface';
 
@@ -9,21 +10,28 @@ import { HangarModel } from 'src/app/core/models/hangar.interface';
 export class ButtonComponent implements OnInit {
 
   @Input() isSelect: boolean;
-  @Input() hangarSelected: HangarModel;
+  @Input() hangarSelected?: HangarModel;
   sideBarIsOpened = false;
-  addNewHangar = false;
 
-  constructor() { }
+  constructor( private router: Router ) { }
 
   ngOnInit() {
   }
 
-  toggleSideBar(shouldOpen: boolean) {
+  toggleSideBar() {
     if (this.isSelect) {
       this.sideBarIsOpened = !this.sideBarIsOpened;
-    } this.addNewHangar = !this.addNewHangar;
-
+    } else {
+      this.router.navigate(['hangars/new']);
+    }
   }
 
+  /*toggleSideBar() {
+    if (this.isSelect) {
+      this.emitSideBarWithHangar.emit();
+    } else {
+      this.emitSideBarEmpty.emit();
+    }
+  }*/
 
 }

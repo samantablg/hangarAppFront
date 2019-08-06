@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter, HostListener } from '@angular/core';
 
 @Component({
   selector: 'app-navbar',
@@ -7,7 +7,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class NavbarComponent implements OnInit {
 
+  @Output() emitChangeLang = new EventEmitter();
+
   constructor() { }
 
   ngOnInit() {  }
+
+  emitLanguage() {
+    this.emitChangeLang.emit();
+  }
 }

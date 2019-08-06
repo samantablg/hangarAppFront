@@ -2,8 +2,12 @@
     <a class="navbar-brand" [routerLink]="['']">App</a>
     <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
         <div class="navbar-nav">
-            <a class="nav-item nav-link" [routerLink]="['hangars']">Hangar</a>
-            <a class="nav-item nav-link" [routerLink]="['products']">Product</a>
+            <a class="nav-item nav-link" [routerLink]="['hangars']">{{ 'hangar.text' | translate }}</a>
+            <a class="nav-item nav-link" [routerLink]="['products']">{{ 'product.text' | translate }}</a>
+            <a class="nav-item nav-link" [routerLink]="['about']">{{ 'about-nav.text' | translate }}</a>
         </div>
+    </div>
+    <div>
+        <a class="change" (click)="emitLanguage()">{{ 'change.text' | translate }}</a>
     </div>
 </nav>

@@ -6,9 +6,9 @@
         <div class="card-body">
             <p class="card-text">{{product.description}}</p>
             <div class="row justify-content-end">
-                <a (click)="editProduct()" class="btn">Edit Product</a>
-                <a (click)="addPrice()" class="btn">Add Price</a>
-                <a (click)="getPrices()" class="btn">Historic</a>
+                <a (click)="editProduct()" class="btn">{{ 'edit.text' | translate }}</a>
+                <a (click)="addPrice()" class="btn">{{ 'add-price.text' | translate }}</a>
+                <a (click)="getPrices()" class="btn">{{ 'historic.text' | translate }}</a>
             </div>
         </div>
     </div>

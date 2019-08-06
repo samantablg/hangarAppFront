@@ -1,8 +1,8 @@
-import { ProductModel } from './../../../../core/models/product.interface';
+import { ProductService } from './../../../../core/services/product.service';
 import { Component, OnInit, Input } from '@angular/core';
 import { Router } from '@angular/router';
 import { ProductOfHangarModel } from 'src/app/core/models/product-hangar.interface';
-import { ProductService } from 'src/app/core/services/product.service';
+import { ProductToHangarService } from 'src/app/core/services/product-hangar.service';
 
 @Component({
   selector: 'app-products-of-hangar',
@@ -13,16 +13,22 @@ export class ProductsOfHangarComponent implements OnInit {
 
   @Input() hangar: any;
   productsOfHangar: ProductOfHangarModel[] = [];
-  products: ProductModel[] = [];
+  insertProduct = true;
 
   constructor(private productService: ProductService, private router: Router) {
     this.hangar = this.router.getCurrentNavigation().extras.state.data;
+    this.insertProduct = false;
   }
 
   ngOnInit() {
     this.productService.loadRelationships(this.hangar[0]).subscribe( data => {
       this.productsOfHangar = data;
     });
+  }
+
+  linkToHangar() {
+    console.log('clicked');
+    this.insertProduct = !this.insertProduct;
   }
 
 }

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input, HostBinding } from '@angular/core';
 
 @Component({
   selector: 'app-hangar-new',
@@ -7,9 +7,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HangarNewComponent implements OnInit {
 
+  @HostBinding('class.new-hangar') @Input()
+  newHangar = false;
+
   constructor() { }
 
   ngOnInit() {
   }
 
 }
+

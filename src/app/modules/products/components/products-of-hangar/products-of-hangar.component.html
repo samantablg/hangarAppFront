@@ -1,15 +1,16 @@
-<div class="container d-flex row">
-    <h2>{{ hangar[1] }}</h2>
+<div class="container d-flex row justify-content-between">
+    <h3>{{ hangar[1] }}</h3>
+    <a class="addProd" (click)="linkToHangar()"><strong>{{ 'insertProduct.text' | translate }}</strong></a>
 </div>
 
 <table class="table table-condensed table-hover">
     <caption>
-        Relationship
+        {{ 'relationships.text' | translate }}
     </caption>
     <thead>
         <tr>
-            <th scope="col">Product</th>
-            <th scope="col">Amount</th>
+            <th scope="col">{{ 'product.text' | translate }}</th>
+            <th scope="col">{{ 'amount.text' | translate }}</th>
         </tr>
     </thead>
     <tbody>
@@ -19,3 +20,5 @@
         </tr>
     </tbody>
 </table>
+
+<app-add-products-hangar [insertProduct]="insertProduct"></app-add-products-hangar>

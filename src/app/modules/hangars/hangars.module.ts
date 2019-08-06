@@ -1,3 +1,4 @@
+import { TranslateModule } from '@ngx-translate/core';
 import { HangarsRoutingModule } from './hangars-routing.module';
 import { HangarsComponent } from './views/hangars/hangars.component';
 import { NgModule } from '@angular/core';
@@ -14,10 +15,14 @@ import { HangarNewComponent } from './views/hangar-new/hangar-new.component';
 @NgModule({
   declarations: [
     HangarsComponent, HangarDetailComponent, SidebarComponent,
-    SidebarToggleComponent, ButtonComponent, FormHangarComponent, FormHangarModifyComponent, HangarNewComponent
+    SidebarToggleComponent,
+    ButtonComponent,
+    FormHangarComponent,
+    FormHangarModifyComponent,
+    HangarNewComponent
   ],
   imports: [
-    CommonModule, HangarsRoutingModule, ReactiveFormsModule
+    CommonModule, HangarsRoutingModule, ReactiveFormsModule, TranslateModule
   ],
   exports: [HangarsComponent]
 })

@@ -14,7 +14,6 @@ export class ProductService {
   private urlApi = 'http://localhost:8888/api/';
   products: ProductModel[] = [];
   basicDataHangars: BasicHangarModel[] = [];
-  productsOfHangar: ProductOfHangarModel[] = [];
 
   constructor( private http: HttpClient, private hangarService: HangarService ) {
     this.loadHangars();

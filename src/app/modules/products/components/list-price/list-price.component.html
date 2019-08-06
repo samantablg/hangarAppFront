@@ -2,12 +2,12 @@
 
     <table class="table table-condensed table-hover">
         <caption>
-            Prices of {{ product.name }}
+            {{ 'prices-of.text' | translate }} {{ product.name }}
         </caption>
         <thead>
             <tr>
-                <th scope="col">Date</th>
-                <th scope="col">Price</th>
+                <th scope="col">{{ 'date.text' | translate }}</th>
+                <th scope="col">{{ 'price.text' | translate }}</th>
             </tr>
         </thead>
         <tbody>
@@ -17,5 +17,4 @@
             </tr>
         </tbody>
     </table>
-
 </div>

@@ -13,6 +13,7 @@ export class FormHangarComponent implements OnInit {
   @Input() isReadOnly?: boolean;
   @Input() isEdit?: boolean;
   @Input() hangarSelect: HangarModel;
+  @Input() addNewHangar?: boolean;
   formHangar: FormGroup;
   hangar: HangarModel;
 
@@ -43,7 +44,6 @@ export class FormHangarComponent implements OnInit {
   get id() {
     return this.formHangar.get('id');
   }
-
 
   saveHangar() {
     if (this.isEdit) {

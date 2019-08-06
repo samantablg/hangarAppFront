@@ -23,7 +23,6 @@ export class ProductsComponent implements OnInit {
     this.productService.loadProducts().subscribe( data => {
       this.products = data;
     });
-
   }
 
   getProduct( id: number ) {

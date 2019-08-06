@@ -1,3 +1,5 @@
+import { ProductOfHangarModel } from 'src/app/core/models/product-hangar.interface';
+import { ProductService } from './product.service';
 import { HangarModel } from './../models/hangar.interface';
 import { BasicHangarModel } from './../models/basic-hangar.interface';
 import { Injectable } from '@angular/core';

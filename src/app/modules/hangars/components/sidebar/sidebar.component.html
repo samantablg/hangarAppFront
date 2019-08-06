@@ -2,17 +2,22 @@
     <ul class="nav flex-column">
         <li class="nav-item">
             <a class="nav-link active" (click)="getHangar(1)">
-        View hangar
+        {{ 'view-hangar.text' | translate }}
       </a>
         </li>
         <li class="nav-item">
             <a class="nav-link active" (click)="modifyHangar()">
-        Modify hangar
+                {{ 'modify-hangar.text' | translate }}
       </a>
         </li>
         <li class="nav-item">
+            <a class="nav-link active" (click)="addProductsToHangar()">
+              {{ 'add-prod.text' | translate }}
+    </a>
+        </li>
+        <li class="nav-item">
             <a class="nav-link active" (click)="newHangar()">
-        Add new hangar
+                {{ 'add-hangar.text' | translate }}
       </a>
         </li>
     </ul>
