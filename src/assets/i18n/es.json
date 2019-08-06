@@ -33,5 +33,7 @@
     "address-form.text": "Inserta la ubicación del hangar",
     "description-form.text": "Añade una descripción",
     "hangarCard.text": "Hangares",
-    "productCard.text": "Productos"
+    "productCard.text": "Productos",
+    "next.text": "Siguiente",
+    "previous.text": "Anterior"
 }

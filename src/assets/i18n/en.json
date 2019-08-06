@@ -33,5 +33,7 @@
     "address-form.text": "Insert the address",
     "description-form.text": "Insert the description",
     "hangarCard.text": "Hangars",
-    "productCard.text": "Products"
+    "productCard.text": "Products",
+    "next.text": "Next",
+    "previous.text": "Previous"
 }

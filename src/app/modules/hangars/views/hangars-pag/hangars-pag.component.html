@@ -1,5 +1,3 @@
-<app-button [hangarSelected]="currentHangar" [isSelect]="isSelected"></app-button>
-
 <table class="table table-condensed table-hover">
     <caption>
         {{ 'list-hangars.text' | translate }}
@@ -11,9 +9,12 @@
         </tr>
     </thead>
     <tbody>
-        <tr *ngFor="let hangar of hangars; let i = index" (dblclick)="getHangar(i)" (click)="hangarSelected($event, hangar)">
+        <tr *ngFor="let hangar of hangars; let i = index">
             <td class="td1">{{ hangar.name }}</td>
             <td>{{ hangar.address }}</td>
         </tr>
     </tbody>
 </table>
+
+<button (click)="seePrevious()">{{ 'previous.text' | translate }}</button>
+<button (click)="seeNext()">{{ 'next.text' | translate }}</button>

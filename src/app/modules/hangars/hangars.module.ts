@@ -11,6 +11,7 @@ import { FormHangarComponent } from './components/form-hangar/form-hangar.compon
 import { ReactiveFormsModule } from '@angular/forms';
 import { FormHangarModifyComponent } from './views/hangar-modify/form-hangar-modify.component';
 import { HangarNewComponent } from './views/hangar-new/hangar-new.component';
+import { HangarsPagComponent } from './views/hangars-pag/hangars-pag.component';
 
 @NgModule({
   declarations: [
@@ -19,7 +20,8 @@ import { HangarNewComponent } from './views/hangar-new/hangar-new.component';
     ButtonComponent,
     FormHangarComponent,
     FormHangarModifyComponent,
-    HangarNewComponent
+    HangarNewComponent,
+    HangarsPagComponent
   ],
   imports: [
     CommonModule, HangarsRoutingModule, ReactiveFormsModule, TranslateModule
@@ -27,4 +29,5 @@ import { HangarNewComponent } from './views/hangar-new/hangar-new.component';
   exports: [HangarsComponent]
 })
 
-export class HangarsModule { }
+export class HangarsModule {
+}

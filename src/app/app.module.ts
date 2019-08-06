@@ -32,15 +32,7 @@ import { TranslateHttpLoader } from '@ngx-translate/http-loader';
     ProductsModule,
     ReactiveFormsModule,
     CoreModule,
-    TranslateModule.forRoot({
-      loader: {
-        provide: TranslateLoader,
-        useFactory: (http: HttpClient) => {
-          return new TranslateHttpLoader(http);
-        },
-        deps: [ HttpClient ]
-      }
-    })
+    TranslateModule
   ],
   providers: [],
   bootstrap: [AppComponent]

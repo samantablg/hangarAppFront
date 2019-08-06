@@ -26,6 +26,11 @@ export class HangarService {
                 .get<HangarModel[]>(`${ this.urlApi }hangars`);
   }
 
+  public loadHangarsPage(page: number, items: number ): Observable<HangarModel[]> {
+    return this.http
+                .get<HangarModel[]>(`${ this.urlApi }hangars/${ page }/${ items }`);
+  }
+
   public loadBasicInfoHangars(): Observable<any> {
     return this.http
                 .get<any>(`${ this.urlApi }basicDataHangars`);
