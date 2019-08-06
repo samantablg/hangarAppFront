@@ -1,6 +1,6 @@
 import { ProductService } from '../../../../core/services/product.service';
 import { ProductModel } from '../../../../core/models/product.interface';
-import { FormGroup, FormControl } from '@angular/forms';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Component, OnInit, Input } from '@angular/core';
 
 @Component({
@@ -17,8 +17,13 @@ export class FormProductComponent implements OnInit {
 
   constructor( private productService: ProductService ) {
     this.formProduct = new FormGroup({
-      name: new FormControl(''),
-      description: new FormControl(''),
+      name: new FormControl('', [
+        Validators.required,
+        Validators.minLength(3)
+      ]),
+      description: new FormControl('', [
+        Validators.required
+      ]),
       id: new FormControl('')
     });
   }
@@ -45,7 +50,6 @@ export class FormProductComponent implements OnInit {
 
   saveProduct() {
     if (this.isEdit) {
-      console.log(this.formProduct.value);
       return this.productService.updateProduct(this.formProduct.value);
     }
     return this.productService.postProduct(this.formProduct.value);

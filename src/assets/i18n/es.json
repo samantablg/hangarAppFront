@@ -28,5 +28,10 @@
     "add-prod.text": "Añadir productos",
     "amount.text": "Cantidad",
     "relationships.text": "Relaciones",
-    "insertProduct.text": "Añadir producto"
+    "insertProduct.text": "Añadir producto",
+    "name-form.text": "Inserta un nombre válido",
+    "address-form.text": "Inserta la ubicación del hangar",
+    "description-form.text": "Añade una descripción",
+    "hangarCard.text": "Hangares",
+    "productCard.text": "Productos"
 }

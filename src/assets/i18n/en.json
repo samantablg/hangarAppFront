@@ -28,5 +28,10 @@
     "add-prod.text": "Add products",
     "amount.text": "Amount",
     "relationships.text": "Relationships",
-    "insertProduct.text": "Add product"
+    "insertProduct.text": "Add product",
+    "name-form.text": "Insert a valid name",
+    "address-form.text": "Insert the address",
+    "description-form.text": "Insert the description",
+    "hangarCard.text": "Hangars",
+    "productCard.text": "Products"
 }
