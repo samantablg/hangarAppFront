@@ -1,5 +1,6 @@
+import { CommunicationService } from './../../../../core/services/communication.service';
 import { ProductService } from '../../../../core/services/product.service';
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Optional } from '@angular/core';
 import { Router } from '@angular/router';
 import { ProductOfHangarModel } from 'src/app/core/models/product-hangar.interface';
 
@@ -10,12 +11,12 @@ import { ProductOfHangarModel } from 'src/app/core/models/product-hangar.interfa
 })
 export class ProductsOfHangarComponent implements OnInit {
 
-  @Input() hangar: any;
+  hangar: any;
   productsOfHangar: ProductOfHangarModel[] = [];
   insertProduct = true;
 
-  constructor(private productService: ProductService, private router: Router) {
-    this.hangar = this.router.getCurrentNavigation().extras.state.data;
+  constructor(private productService: ProductService, private comService: CommunicationService, private router: Router) {
+    this.hangar = this.comService.getData();
     this.insertProduct = false;
   }
 
@@ -26,7 +27,6 @@ export class ProductsOfHangarComponent implements OnInit {
   }
 
   linkToHangar() {
-    console.log('clicked');
     this.insertProduct = !this.insertProduct;
   }
 

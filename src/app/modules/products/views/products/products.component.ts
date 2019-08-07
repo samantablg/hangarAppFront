@@ -49,7 +49,8 @@ export class ProductsComponent implements OnInit {
 
   viewProductsOfHangar( id: number ) {
     this.hangar = this.hangars[id];
-    this.router.navigate(['/products/hangar', id + 1], { state: {data: this.hangar}});
+    this.comService.setData(this.hangar);
+    this.router.navigate(['/products/hangar', id + 1]);
   }
 
   onScroll() {

@@ -5,7 +5,7 @@
         'name.text' | translate
       }}</label>
             <input formControlName="name" id="name" type="text" class="form-control" />
-            <div *ngIf="(name?.errors)['required']">
+            <div *ngIf="(name?.errors)">
                 {{ 'name-form.text' | translate }}
             </div>
         </div>
@@ -14,7 +14,7 @@
         'description.text' | translate
       }}</label>
             <input formControlName="description" id="description" type="text" class="form-control" />
-            <div *ngIf="(description?.errors)['required']">
+            <div *ngIf="(description?.errors)">
                 {{ 'description-form.text' | translate }}
             </div>
         </div>
