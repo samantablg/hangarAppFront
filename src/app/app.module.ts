@@ -12,8 +12,7 @@ import { CardComponent } from './shared/components/card/card.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { SearchComponent } from './shared/components/search/search.component';
 import { AboutComponent } from './shared/views/about/about.component';
-import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
-import { TranslateHttpLoader } from '@ngx-translate/http-loader';
+import { TranslateModule } from '@ngx-translate/core';
 
 @NgModule({
   declarations: [
@@ -32,9 +31,10 @@ import { TranslateHttpLoader } from '@ngx-translate/http-loader';
     ProductsModule,
     ReactiveFormsModule,
     CoreModule,
-    TranslateModule
+    TranslateModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {
+}

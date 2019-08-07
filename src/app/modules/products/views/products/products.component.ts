@@ -12,16 +12,23 @@ import { ProductModel } from 'src/app/core/models/product.interface';
 })
 export class ProductsComponent implements OnInit {
 
-  public products: ProductModel[] = [];
-  private product: ProductModel;
+  products: ProductModel[] = [];
+  scrollProducts: ProductModel[] = [];
+  product: ProductModel;
   hangars: BasicHangarModel[] = [];
   hangar: BasicHangarModel;
+  page = 0;
+  items = 6;
+  totalElements: number;
+  totalPages: number;
 
   constructor( private productService: ProductService, private comService: CommunicationService, private router: Router ) { }
 
   ngOnInit() {
-    this.productService.loadProducts().subscribe( data => {
-      this.products = data;
+    this.productService.loadProductsPage(this.page, this.items).subscribe( data => {
+      this.products = data['content'];
+      this.totalElements = data['totalElements'];
+      this.totalPages = data['totalPages'];
     });
   }
 
@@ -43,6 +50,18 @@ export class ProductsComponent implements OnInit {
   viewProductsOfHangar( id: number ) {
     this.hangar = this.hangars[id];
     this.router.navigate(['/products/hangar', id + 1], { state: {data: this.hangar}});
+  }
+
+  onScroll() {
+    this.page++;
+    if (this.page < this.totalElements / this.items ) {
+      this.productService.loadProductsPage(this.page, this.items).subscribe( data => {
+        this.scrollProducts = data['content'];
+        this.products.push(...this.scrollProducts);
+      });
+    } else {
+      this.page = this.totalPages - 1;
+    }
   }
 
 }

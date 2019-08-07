@@ -16,14 +16,18 @@ export class HangarsComponent implements OnInit {
   isSelected = true;
   hangarData: HangarModel;
   public currentHangar: any;
+  page = 0;
+  items = 5;
+  total: number;
 
   constructor( private hangarService: HangarService, private comService: CommunicationService, private router: Router ) { }
 
 
   ngOnInit() {
     this.isSelected = false;
-    this.hangarService.loadHangars().subscribe( data => {
-      this.hangars = data;
+    this.hangarService.loadHangarsPage(this.page, this.items).subscribe( data => {
+      this.hangars = data['content'];
+      this.total = data['totalPages'];
     });
   }
 
@@ -37,6 +41,28 @@ export class HangarsComponent implements OnInit {
     this.currentHangar = hangar;
     this.isSelected = !this.isSelected;
     this.comService.setData(this.currentHangar);
+  }
+
+  public seeNext() {
+    this.page++;
+    if (this.page < this.total % this.items ) {
+      this.hangarService.loadHangarsPage(this.page, this.items).subscribe( data => {
+        this.hangars = data['content'];
+      });
+    } else {
+      this.page = this.total - 1;
+    }
+  }
+
+  public seePrevious() {
+    this.page--;
+    if ( this.page >= 0 ) {
+      this.hangarService.loadHangarsPage(this.page, this.items).subscribe( data => {
+        this.hangars = data['content'];
+      });
+    } else {
+      this.page = 0;
+    }
   }
 
 }

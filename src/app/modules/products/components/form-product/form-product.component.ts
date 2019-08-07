@@ -18,8 +18,7 @@ export class FormProductComponent implements OnInit {
   constructor( private productService: ProductService ) {
     this.formProduct = new FormGroup({
       name: new FormControl('', [
-        Validators.required,
-        Validators.minLength(3)
+        Validators.required
       ]),
       description: new FormControl('', [
         Validators.required

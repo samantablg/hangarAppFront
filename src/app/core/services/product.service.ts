@@ -28,6 +28,11 @@ export class ProductService {
                 .get<ProductModel[]>(`${ this.urlApi }products`);
   }
 
+  public loadProductsPage(page: number, items: number ): Observable<ProductModel[]> {
+    return this.http
+                .get<ProductModel[]>(`${ this.urlApi }products/${ page }/${ items }`);
+  }
+
   public getProducts(): ProductModel[] {
     this.loadProducts();
     return this.products;

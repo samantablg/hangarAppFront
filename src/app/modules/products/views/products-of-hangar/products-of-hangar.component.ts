@@ -1,8 +1,7 @@
-import { ProductService } from './../../../../core/services/product.service';
+import { ProductService } from '../../../../core/services/product.service';
 import { Component, OnInit, Input } from '@angular/core';
 import { Router } from '@angular/router';
 import { ProductOfHangarModel } from 'src/app/core/models/product-hangar.interface';
-import { ProductToHangarService } from 'src/app/core/services/product-hangar.service';
 
 @Component({
   selector: 'app-products-of-hangar',

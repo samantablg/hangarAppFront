@@ -5,7 +5,7 @@
         'name.text' | translate
       }}</label>
             <input formControlName="name" id="name" type="text" class="form-control" />
-            <div *ngIf="name.touched && name.invalid">
+            <div *ngIf="(name?.errors)['required']">
                 {{ 'name-form.text' | translate }}
             </div>
         </div>

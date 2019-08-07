@@ -8,11 +8,11 @@ import { ProductDetailComponent } from './views/product-detail/product-detail.co
 import { FormPriceComponent } from './components/form-price/form-price.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { FormProductComponent } from './components/form-product/form-product.component';
-import { ProductsOfHangarComponent } from './components/products-of-hangar/products-of-hangar.component';
+import { ProductsOfHangarComponent } from './views/products-of-hangar/products-of-hangar.component';
 import { ProductNewComponent } from './views/product-new/product-new.component';
 import { ProductModifyComponent } from './views/product-modify/product-modify.component';
 import { AddProductsHangarComponent } from './components/add-products-hangar/add-products-hangar.component';
-
+import { InfiniteScrollModule } from 'ngx-infinite-scroll';
 @NgModule({
   declarations: [
     ProductsComponent, ProductDetailComponent, FormPriceComponent,
@@ -20,9 +20,11 @@ import { AddProductsHangarComponent } from './components/add-products-hangar/add
     ProductModifyComponent, AddProductsHangarComponent
   ],
   imports: [
-    CommonModule, ProductsRoutingModule, ReactiveFormsModule, TranslateModule
+    CommonModule, ProductsRoutingModule, ReactiveFormsModule, TranslateModule, InfiniteScrollModule
   ],
   exports: [ProductsComponent, ProductsOfHangarComponent]
 })
 
-export class ProductsModule { }
+export class ProductsModule {
+
+}

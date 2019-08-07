@@ -2,7 +2,7 @@ import { FormProductComponent } from './components/form-product/form-product.com
 import { ProductDetailComponent } from './views/product-detail/product-detail.component';
 import { ProductsComponent } from './views/products/products.component';
 import { ProductModifyComponent } from './views/product-modify/product-modify.component';
-import { ProductsOfHangarComponent } from './components/products-of-hangar/products-of-hangar.component';
+import { ProductsOfHangarComponent } from './views/products-of-hangar/products-of-hangar.component';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
@@ -27,7 +27,6 @@ const routes: Routes = [
     path: 'modify',
     component: ProductModifyComponent
   }
-
 ];
 
 @NgModule({
