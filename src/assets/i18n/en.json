@@ -31,9 +31,15 @@
     "insertProduct.text": "Add product",
     "name-form.text": "Insert a valid name",
     "address-form.text": "Insert the address",
+    "owner-form.text": "Insert the owner",
+    "email-form.text": "Insert the email",
+    "phone-form.text": "Insert the phone",
     "description-form.text": "Insert the description",
     "hangarCard.text": "Hangars",
     "productCard.text": "Products",
     "next.text": "Next",
-    "previous.text": "Previous"
+    "previous.text": "Previous",
+    "owner.text": "Owner",
+    "email.text": "Email",
+    "phone.text": "Phone"
 }
