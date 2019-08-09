@@ -17,7 +17,6 @@ export class HangarDetailComponent implements OnInit {
 
   ngOnInit() {
     this.hangar = this.comService.getData();
-    console.log(this.hangar);
   }
 
 }

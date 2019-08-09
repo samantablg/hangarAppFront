@@ -1,5 +1,3 @@
-import { CommunicationService } from './../../../../core/services/communication.service';
-import { ProductOfHangarModel } from 'src/app/core/models/product-hangar.interface';
 import { FormGroup, FormControl } from '@angular/forms';
 import { ProductToHangarService } from './../../../../core/services/product-hangar.service';
 import { ProductService } from './../../../../core/services/product.service';
@@ -13,40 +11,24 @@ import { ProductModel } from 'src/app/core/models/product.interface';
 })
 export class AddProductsHangarComponent implements OnInit {
 
+  formProductToHangar = new FormGroup({
+    hangar: new FormControl(''),
+    product: new FormControl(''),
+    amount: new FormControl('')
+  });
+
   @Input() insertProduct: boolean;
-  @Input() hangar: any;
-  idHangar: number;
+  // formProductToHangar: FormGroup;
   products: ProductModel[] = [];
-  productToHangar: ProductOfHangarModel;
-  formProductToHangar: FormGroup;
 
-
-  constructor( private productService: ProductService, private comService: CommunicationService ) {
-    this.hangar = this.comService.getData();
-    this.formProductToHangar = new FormGroup({
-      hangar: new FormControl(''),
-      product: new FormControl(''),
-      amount: new FormControl('')
-    });
+  constructor( private productService: ProductService, private productToHangarService: ProductToHangarService ) {
   }
 
   ngOnInit() {
-    console.log(this.hangar.id);
     this.productService.loadProducts().subscribe( data => {
       this.products = data;
     });
-
-
   }
-
-  get product() {
-    return this.formProductToHangar.get('hangar');
-  }
-
-  get amount() {
-    return this.formProductToHangar.get('amount');
-  }
-
 
   addProduct() {
     console.log('save');

@@ -8,14 +8,12 @@
         <tr>
             <th scope="col">Hangar</th>
             <th scope="col">{{ 'address.text' | translate }}</th>
-            <th scope="col">{{ 'owner.text' | translate }}</th>
         </tr>
     </thead>
     <tbody>
         <tr *ngFor="let hangar of hangars; let i = index" (dblclick)="getHangar(i)" (click)="hangarSelected($event, hangar)">
             <td class="td1">{{ hangar.name }}</td>
             <td>{{ hangar.address }}</td>
-            <td>{{ hangar.owner }}</td>
         </tr>
     </tbody>
 </table>

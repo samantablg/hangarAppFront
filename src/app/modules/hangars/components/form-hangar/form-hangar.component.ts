@@ -28,21 +28,6 @@ export class FormHangarComponent implements OnInit {
         Validators.required,
         Validators.minLength(3)
       ]),
-      owner: new FormControl('', [
-        Validators.required,
-        Validators.minLength(3)
-      ]
-      ),
-      email: new FormControl('', [
-        Validators.required,
-        Validators.minLength(6)
-      ]
-      ),
-      phone: new FormControl('', [
-        Validators.required,
-        Validators.minLength(9)
-      ]
-      ),
       id: new FormControl('')
     });
   }
@@ -51,9 +36,6 @@ export class FormHangarComponent implements OnInit {
     if (this.isReadOnly || this.isEdit) {
       this.name.setValue(this.hangarSelect.name);
       this.address.setValue(this.hangarSelect.address);
-      this.owner.setValue(this.hangarSelect.owner);
-      this.email.setValue(this.hangarSelect.email);
-      this.phone.setValue(this.hangarSelect.phone);
       this.id.setValue(this.hangarSelect.id);
     }
   }
@@ -64,18 +46,6 @@ export class FormHangarComponent implements OnInit {
 
   get address() {
     return this.formHangar.get('address');
-  }
-
-  get owner() {
-    return this.formHangar.get('owner');
-  }
-
-  get email() {
-    return this.formHangar.get('email');
-  }
-
-  get phone() {
-    return this.formHangar.get('phone');
   }
 
   get id() {

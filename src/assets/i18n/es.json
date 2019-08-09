@@ -30,16 +30,10 @@
     "relationships.text": "Relaciones",
     "insertProduct.text": "Añadir producto",
     "name-form.text": "Inserta un nombre válido",
-    "owner-form.text": "Inserta el propietario",
-    "email-form.text": "Inserta un email de contacto",
-    "phone-form.text": "Inserta un teléfono de contacto",
     "address-form.text": "Inserta la ubicación del hangar",
     "description-form.text": "Añade una descripción",
     "hangarCard.text": "Hangares",
     "productCard.text": "Productos",
     "next.text": "Siguiente",
-    "previous.text": "Anterior",
-    "owner.text": "Propietario",
-    "email.text": "Email",
-    "phone.text": "Teléfono"
+    "previous.text": "Anterior"
 }
