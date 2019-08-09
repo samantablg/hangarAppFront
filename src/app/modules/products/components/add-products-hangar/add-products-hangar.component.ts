@@ -14,6 +14,7 @@ import { ProductModel } from 'src/app/core/models/product.interface';
 export class AddProductsHangarComponent implements OnInit {
 
   @Input() insertProduct: boolean;
+  @Input() hangar: any;
   idHangar: number;
   products: ProductModel[] = [];
   productToHangar: ProductOfHangarModel;
@@ -21,7 +22,7 @@ export class AddProductsHangarComponent implements OnInit {
 
 
   constructor( private productService: ProductService, private comService: CommunicationService ) {
-    // this.hangarSelect = this.comService.getData();
+    this.hangar = this.comService.getData();
     this.formProductToHangar = new FormGroup({
       hangar: new FormControl(''),
       product: new FormControl(''),
@@ -30,6 +31,7 @@ export class AddProductsHangarComponent implements OnInit {
   }
 
   ngOnInit() {
+    console.log(this.hangar.id);
     this.productService.loadProducts().subscribe( data => {
       this.products = data;
     });

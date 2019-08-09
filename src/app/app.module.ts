@@ -13,6 +13,8 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { SearchComponent } from './shared/components/search/search.component';
 import { AboutComponent } from './shared/views/about/about.component';
 import { TranslateModule } from '@ngx-translate/core';
+import { LoginComponent } from './shared/views/login/login.component';
+import { LogoutComponent } from './shared/views/logout/logout.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +22,9 @@ import { TranslateModule } from '@ngx-translate/core';
     HomeComponent,
     CardComponent,
     SearchComponent,
-    AboutComponent
+    AboutComponent,
+    LoginComponent,
+    LogoutComponent
   ],
   imports: [
     BrowserModule,
