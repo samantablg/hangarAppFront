@@ -1,0 +1,24 @@
+<div class="container d-flex row justify-content-between">
+    <h3>{{ hangar[1] }}</h3>
+    <a class="addProd" (click)="linkToHangar()"><strong>{{ 'insertProduct.text' | translate }}</strong></a>
+</div>
+
+<table class="table table-condensed table-hover">
+    <caption>
+        {{ 'relationships.text' | translate }}
+    </caption>
+    <thead>
+        <tr>
+            <th scope="col">{{ 'product.text' | translate }}</th>
+            <th scope="col">{{ 'amount.text' | translate }}</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let item of productsOfHangar; let i = index">
+            <td>{{ item.product }}</td>
+            <td>{{ item.amount }}</td>
+        </tr>
+    </tbody>
+</table>
+
+<app-add-products-hangar [insertProduct]="insertProduct" [hangar]="hangar"></app-add-products-hangar>

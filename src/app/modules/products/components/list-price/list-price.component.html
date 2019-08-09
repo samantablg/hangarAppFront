@@ -1,0 +1,20 @@
+<div *ngIf="showHistoric">
+
+    <table class="table table-condensed table-hover">
+        <caption>
+            {{ 'prices-of.text' | translate }} {{ product.name }}
+        </caption>
+        <thead>
+            <tr>
+                <th scope="col">{{ 'date.text' | translate }}</th>
+                <th scope="col">{{ 'price.text' | translate }}</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let price of prices; let i = index">
+                <td> {{ price.date | date}}</td>
+                <td> {{ price.price }}</td>
+            </tr>
+        </tbody>
+    </table>
+</div>

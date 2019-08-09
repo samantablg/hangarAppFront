@@ -1,0 +1,25 @@
+<form [formGroup]="formProduct" (ngSubmit)="saveProduct($event)">
+    <div>
+        <div class="form-group row">
+            <label class="col-form-label" for="name">{{
+        'name.text' | translate
+      }}</label>
+            <input formControlName="name" id="name" type="text" class="form-control" />
+            <div *ngIf="(name?.errors)">
+                {{ 'name-form.text' | translate }}
+            </div>
+        </div>
+        <div class="form-group row">
+            <label class="col-form-label" for="description">{{
+        'description.text' | translate
+      }}</label>
+            <input formControlName="description" id="description" type="text" class="form-control" />
+            <div *ngIf="(description?.errors)">
+                {{ 'description-form.text' | translate }}
+            </div>
+        </div>
+        <div class="form-group row">
+            <button type="submit" class="btn">{{ 'save.text' | translate }}</button>
+        </div>
+    </div>
+</form>

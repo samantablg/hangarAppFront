@@ -1,0 +1,24 @@
+<div class="sidebar-sticky d-flex justify-content-center">
+    <ul class="nav flex-column">
+        <li class="nav-item">
+            <a class="nav-link active" (click)="getHangar(1)">
+        {{ 'view-hangar.text' | translate }}
+      </a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link active" (click)="modifyHangar()">
+                {{ 'modify-hangar.text' | translate }}
+      </a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link active" (click)="addProductsToHangar()">
+              {{ 'add-prod.text' | translate }}
+    </a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link active" (click)="newHangar()">
+                {{ 'add-hangar.text' | translate }}
+      </a>
+        </li>
+    </ul>
+</div>
