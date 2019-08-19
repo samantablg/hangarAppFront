@@ -41,5 +41,11 @@
     "previous.text": "Previous",
     "owner.text": "Owner",
     "email.text": "Email",
-    "phone.text": "Phone"
+    "phone.text": "Phone",
+    "login": {
+        "user": "User",
+        "password": "Password",
+        "login": "Login",
+        "logout": "Logout"
+    }
 }

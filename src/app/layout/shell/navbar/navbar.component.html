@@ -14,4 +14,7 @@
     <li style="float:right">
         <a class="change" (click)="emitLanguage()">{{ 'change.text' | translate }}</a>
     </li>
+    <li style="float:right">
+        <a *ngIf="loginService.isUserLoggedIn()" routerLink="/logout" class="nav-link">{{ 'login.logout' | translate }}</a>
+    </li>
 </ul>

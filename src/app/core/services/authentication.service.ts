@@ -1,24 +1,31 @@
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { UserModel } from '../models/user.interface';
+import { map } from 'rxjs/operators';
+import { Observable } from 'rxjs';
 
+export class JwtResponse {
+  constructor(
+    public jwttoken: string,
+     ) {}
+}
 @Injectable({
   providedIn: 'root'
 })
 export class AuthenticationService {
 
-  constructor() { }
+  constructor(private httpClient: HttpClient) { }
 
-  aunthenticate(username, password) {
-    if (username === 'sami' && password === 'sami') {
-      sessionStorage.setItem('username', username);
-      return true;
-    } else {
-      return false;
-    }
+  aunthenticate(username: string, password: string): Observable<any> {
+    return this.httpClient.post<any>('http://localhost:8888/authenticate', {username, password});
   }
 
-  isUserLoggedIn() {
+  isUserLoggedIn(): boolean {
     const user = sessionStorage.getItem('username');
-    return !(user === null);
+    if (user === null) {
+      return false;
+    }
+    return true;
   }
 
   logOut() {

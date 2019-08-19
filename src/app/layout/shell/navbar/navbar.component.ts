@@ -1,3 +1,4 @@
+import { AuthenticationService } from './../../../core/services/authentication.service';
 import { Component, OnInit, Output, EventEmitter, HostListener } from '@angular/core';
 
 @Component({
@@ -9,7 +10,7 @@ export class NavbarComponent implements OnInit {
 
   @Output() emitChangeLang = new EventEmitter();
 
-  constructor() { }
+  constructor( public loginService: AuthenticationService ) { }
 
   ngOnInit() {  }
 

@@ -1,8 +1,8 @@
 <div class="container">
     <div>
-        Username: <input type="text" name="username"> Password: <input type="password" name="password">
+        {{ 'login.user' | translate }}: <input type="text" name="username" [(ngModel)]="username"> {{ 'login.password' | translate }}: <input type="password" name="password" [(ngModel)]="password">
     </div>
-    <button (click)=checkLogin() class="btn btn-success">
-    Login
+    <button (click)=checkLogin() class="btn">
+    {{ 'login.login' | translate }}
   </button>
 </div>

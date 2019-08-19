@@ -41,5 +41,11 @@
     "previous.text": "Anterior",
     "owner.text": "Propietario",
     "email.text": "Email",
-    "phone.text": "Teléfono"
+    "phone.text": "Teléfono",
+    "login": {
+        "user": "Usuario",
+        "password": "Contraseña",
+        "login": "Iniciar sesión",
+        "logout": "Cerrar sesión"
+    }
 }

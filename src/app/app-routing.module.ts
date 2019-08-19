@@ -9,8 +9,8 @@ import { LoginComponent } from './shared/views/login/login.component';
 const routes: Routes = [
   { path: '', component: HomeComponent, canActivate: [AuthGuardService] },
   { path: 'login', component: LoginComponent },
-  { path: 'logout', component: LogoutComponent },
   { path: 'about', component: AboutComponent },
+  { path: 'logout', component: LogoutComponent, canActivate: [AuthGuardService] },
   { path: 'hangars',
   loadChildren: () => import('./modules/hangars/hangars.module').then(m => m.HangarsModule), canActivate: [AuthGuardService]
   },

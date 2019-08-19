@@ -9,22 +9,27 @@ import { Router } from '@angular/router';
 })
 export class LoginComponent implements OnInit {
 
-  username = 'sami';
+  username = '';
   password = '';
   invalidLogin = false;
 
-  constructor(private router: Router, private loginservice: AuthenticationService) { }
+  constructor(private router: Router, private loginService: AuthenticationService) { }
 
   ngOnInit() {
   }
 
   checkLogin() {
-    if (this.loginservice.aunthenticate(this.username, this.password)) {
-      this.router.navigate(['']);
-      this.invalidLogin = false;
-    } else {
-      this.invalidLogin = true;
-      }
+    this.loginService.aunthenticate(this.username, this.password).subscribe( userData => {
+        if (userData.token != null) {
+          sessionStorage.setItem('username', this.username);
+          const tokenStr = 'Bearer ' + userData.token;
+          sessionStorage.setItem('token', tokenStr);
+          this.invalidLogin = false;
+          this.router.navigate(['']);
+        } else {
+          this.invalidLogin = true;
+        }
+      });
   }
 
 }
