@@ -1,6 +1,7 @@
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
 <ul>
     <li>
-        <a class="navbar-brand" [routerLink]="['']">App</a>
+        <a class="nav-item nav-link" [routerLink]="['']">App</a>
     </li>
     <li>
         <a class="nav-item nav-link" [routerLink]="['hangars']">{{ 'hangar.text' | translate }}</a>
@@ -12,9 +13,12 @@
         <a class="nav-item nav-link" [routerLink]="['about']">{{ 'about-nav.text' | translate }}</a>
     </li>
     <li style="float:right">
+        <a *ngIf="loginService.isUserLoggedIn()" class="nav-link">{{ user }}</a>
+    </li>
+    <li style="float:right">
         <a class="change" (click)="emitLanguage()">{{ 'change.text' | translate }}</a>
     </li>
     <li style="float:right">
-        <a *ngIf="loginService.isUserLoggedIn()" routerLink="/logout" class="nav-link">{{ 'login.logout' | translate }}</a>
+        <a *ngIf="loginService.isUserLoggedIn()" [routerLink]="['logout']" class="nav-link">{{ 'login.logout' | translate }}</a>
     </li>
 </ul>

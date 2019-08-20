@@ -31,7 +31,6 @@ export class AddProductsHangarComponent implements OnInit {
   }
 
   ngOnInit() {
-    console.log(this.hangar.id);
     this.productService.loadProducts().subscribe( data => {
       this.products = data;
     });

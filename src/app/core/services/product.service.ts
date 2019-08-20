@@ -41,6 +41,10 @@ export class ProductService {
   public getProduct(id: number): ProductModel {
     return this.products[id];
   }
+  public getProductById(id: number): Observable<ProductModel> {
+    return this.http
+                .get<ProductModel>(`${ this.urlApi }product/${ id }`);
+  }
 
   public postProduct(product: ProductModel) {
     return this.http

@@ -8,13 +8,18 @@ import { Component, OnInit, Output, EventEmitter, HostListener } from '@angular/
 })
 export class NavbarComponent implements OnInit {
 
+  user: string;
+
   @Output() emitChangeLang = new EventEmitter();
 
-  constructor( public loginService: AuthenticationService ) { }
+  constructor( public loginService: AuthenticationService ) {
+    this.user = loginService.getName();
+  }
 
-  ngOnInit() {  }
+  ngOnInit() { }
 
   emitLanguage() {
     this.emitChangeLang.emit();
   }
+
 }

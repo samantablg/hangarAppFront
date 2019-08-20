@@ -26,12 +26,4 @@ export class ButtonComponent implements OnInit {
     }
   }
 
-  /*toggleSideBar() {
-    if (this.isSelect) {
-      this.emitSideBarWithHangar.emit();
-    } else {
-      this.emitSideBarEmpty.emit();
-    }
-  }*/
-
 }

@@ -4,7 +4,7 @@ import { HangarsModule } from './modules/hangars/hangars.module';
 import { ProductsModule } from './modules/products/products.module';
 import { LayoutModule } from './layout/layout.module';
 import { BrowserModule } from '@angular/platform-browser';
-import { HttpClientModule, HttpClient, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -15,7 +15,7 @@ import { SearchComponent } from './shared/components/search/search.component';
 import { AboutComponent } from './shared/views/about/about.component';
 import { TranslateModule } from '@ngx-translate/core';
 import { LoginComponent } from './shared/views/login/login.component';
-import { LogoutComponent } from './shared/views/logout/logout.component';
+import { LogoutComponent } from './shared/components/logout/logout.component';
 
 @NgModule({
   declarations: [

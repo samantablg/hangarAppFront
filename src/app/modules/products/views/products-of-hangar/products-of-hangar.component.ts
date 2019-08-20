@@ -1,3 +1,4 @@
+import { ProductModel } from 'src/app/core/models/product.interface';
 import { CommunicationService } from './../../../../core/services/communication.service';
 import { ProductService } from '../../../../core/services/product.service';
 import { Component, OnInit, Input, Optional } from '@angular/core';
@@ -14,6 +15,7 @@ export class ProductsOfHangarComponent implements OnInit {
   hangar: any;
   productsOfHangar: ProductOfHangarModel[] = [];
   insertProduct = true;
+  product: ProductModel;
 
   constructor(private productService: ProductService, private comService: CommunicationService, private router: Router) {
     this.hangar = this.comService.getData();
@@ -28,6 +30,16 @@ export class ProductsOfHangarComponent implements OnInit {
 
   linkToHangar() {
     this.insertProduct = !this.insertProduct;
+  }
+
+  seeProduct(id: number) {
+    this.productService.getProductById(id).subscribe( data => {
+      this.product = data;
+    });
+    if (this.product != null) {
+      this.comService.setData(this.product);
+      this.router.navigate(['products/product', id]);
+    }
   }
 
 }

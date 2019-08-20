@@ -15,7 +15,7 @@ export class ProductDetailComponent implements OnInit {
   insertPrice = true;
   showHistoric = true;
 
-  constructor(private productService: ProductService, private comService: CommunicationService, private router: Router) { }
+  constructor(private comService: CommunicationService, private router: Router) { }
 
   ngOnInit() {
     this.product = this.comService.getData();

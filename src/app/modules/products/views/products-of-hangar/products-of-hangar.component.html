@@ -11,12 +11,16 @@
         <tr>
             <th scope="col">{{ 'product.text' | translate }}</th>
             <th scope="col">{{ 'amount.text' | translate }}</th>
+            <th></th>
         </tr>
     </thead>
     <tbody>
         <tr *ngFor="let item of productsOfHangar; let i = index">
             <td>{{ item.product }}</td>
             <td>{{ item.amount }}</td>
+            <td class="td1">
+                <a (click)="seeProduct(item.product)">{{ 'more.text' | translate }}</a>
+            </td>
         </tr>
     </tbody>
 </table>

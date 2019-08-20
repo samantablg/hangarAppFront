@@ -31,4 +31,8 @@ export class AuthenticationService {
   logOut() {
     sessionStorage.removeItem('username');
   }
+
+  getName(): string {
+    return sessionStorage.getItem('username');
+  }
 }

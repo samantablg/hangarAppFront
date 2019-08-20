@@ -1,5 +1,5 @@
 import { AuthGuardService } from './core/services/auth-guard.service';
-import { LogoutComponent } from './shared/views/logout/logout.component';
+import { LogoutComponent } from './shared/components/logout/logout.component';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { HomeComponent } from './shared/views/home/home.component';
