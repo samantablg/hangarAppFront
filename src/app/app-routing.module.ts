@@ -5,10 +5,12 @@ import { Routes, RouterModule } from '@angular/router';
 import { HomeComponent } from './shared/views/home/home.component';
 import { AboutComponent } from './shared/views/about/about.component';
 import { LoginComponent } from './shared/views/login/login.component';
+import { RegisterComponent } from './shared/views/register/register.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent, canActivate: [AuthGuardService] },
   { path: 'login', component: LoginComponent },
+  { path: 'register', component: RegisterComponent },
   { path: 'about', component: AboutComponent },
   { path: 'logout', component: LogoutComponent, canActivate: [AuthGuardService] },
   { path: 'hangars',

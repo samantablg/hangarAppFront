@@ -1,23 +1,17 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { UserModel } from '../models/user.interface';
-import { map } from 'rxjs/operators';
 import { Observable } from 'rxjs';
 
-export class JwtResponse {
-  constructor(
-    public jwttoken: string,
-     ) {}
-}
 @Injectable({
   providedIn: 'root'
 })
 export class AuthenticationService {
 
-  constructor(private httpClient: HttpClient) { }
+  private urlApi = 'http://localhost:8888/';
+  constructor(private http: HttpClient) { }
 
   aunthenticate(username: string, password: string): Observable<any> {
-    return this.httpClient.post<any>('http://localhost:8888/authenticate', {username, password});
+    return this.http.post<any>(`${ this.urlApi }authenticate`, {username, password});
   }
 
   isUserLoggedIn(): boolean {

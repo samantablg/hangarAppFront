@@ -16,6 +16,8 @@ import { AboutComponent } from './shared/views/about/about.component';
 import { TranslateModule } from '@ngx-translate/core';
 import { LoginComponent } from './shared/views/login/login.component';
 import { LogoutComponent } from './shared/components/logout/logout.component';
+import { RegisterComponent } from './shared/views/register/register.component';
+import { FormUserComponent } from './shared/components/form-user/form-user.component';
 
 @NgModule({
   declarations: [
@@ -25,7 +27,9 @@ import { LogoutComponent } from './shared/components/logout/logout.component';
     SearchComponent,
     AboutComponent,
     LoginComponent,
-    LogoutComponent
+    LogoutComponent,
+    RegisterComponent,
+    FormUserComponent
   ],
   imports: [
     BrowserModule,

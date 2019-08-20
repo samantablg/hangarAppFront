@@ -1,4 +1,4 @@
-<form [formGroup]="formLogin" (ngSubmit)="checkLogin()">
+<form [formGroup]="formUser" (ngSubmit)="saveUser()">
     <div>
         <div class="form-group row">
             <label for="username" class="col-form-label">{{ 'login.user' | translate }}</label>
@@ -9,9 +9,7 @@
             <input type="password" class="form-control" formControlName="password">
         </div>
         <div class="form-group row">
-            <button type="submit" class="btn">{{ 'login.login' | translate }}</button>
+            <button type="submit" class="btn">{{ 'save.text' | translate }}</button>
         </div>
-        <a (click)=newUser() class="btn2">{{ 'login.register' | translate }} </a>
-
     </div>
 </form>
