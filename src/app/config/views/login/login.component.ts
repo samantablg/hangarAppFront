@@ -1,5 +1,5 @@
 import { FormGroup, FormControl } from '@angular/forms';
-import { AuthenticationService } from './../../../core/services/authentication.service';
+import { AuthenticationService } from '../../../core/services/config/authentication.service';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
@@ -46,7 +46,7 @@ export class LoginComponent implements OnInit {
   }
 
   newUser() {
-    this.router.navigate(['register']);
+    this.router.navigate(['login/register']);
   }
 
 }

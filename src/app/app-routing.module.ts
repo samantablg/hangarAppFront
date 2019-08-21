@@ -1,18 +1,15 @@
-import { AuthGuardService } from './core/services/auth-guard.service';
-import { LogoutComponent } from './shared/components/logout/logout.component';
+import { AuthGuardService } from './core/services/config/auth-guard.service';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { HomeComponent } from './shared/views/home/home.component';
 import { AboutComponent } from './shared/views/about/about.component';
-import { LoginComponent } from './shared/views/login/login.component';
-import { RegisterComponent } from './shared/views/register/register.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent, canActivate: [AuthGuardService] },
-  { path: 'login', component: LoginComponent },
-  { path: 'register', component: RegisterComponent },
   { path: 'about', component: AboutComponent },
-  { path: 'logout', component: LogoutComponent, canActivate: [AuthGuardService] },
+  { path: 'login',
+  loadChildren: () => import('./config/config.module').then(m => m.ConfigModule)
+  },
   { path: 'hangars',
   loadChildren: () => import('./modules/hangars/hangars.module').then(m => m.HangarsModule), canActivate: [AuthGuardService]
   },

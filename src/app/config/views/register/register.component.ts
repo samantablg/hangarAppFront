@@ -1,7 +1,7 @@
-import { UserModel } from './../../../core/models/user.interface';
+import { UserModel } from '../../../core/models/user.interface';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Component, OnInit } from '@angular/core';
-import { RegisterService } from 'src/app/core/services/register.service';
+import { RegisterService } from 'src/app/core/services/config/register.service';
 import { Router } from '@angular/router';
 
 @Component({
