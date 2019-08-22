@@ -1,3 +1,4 @@
+import { HangarService } from './../../../../core/services/hangar.service';
 import { CommunicationService } from './../../../../core/services/communication.service';
 import { BasicHangarModel } from 'src/app/core/models/basic-hangar.interface';
 import { ProductService } from '../../../../core/services/product.service';
@@ -22,7 +23,10 @@ export class ProductsComponent implements OnInit {
   totalElements: number;
   totalPages: number;
 
-  constructor( private productService: ProductService, private comService: CommunicationService, private router: Router ) { }
+  constructor( private productService: ProductService,
+               private comService: CommunicationService,
+               private router: Router,
+               private hangarService: HangarService ) { }
 
   ngOnInit() {
     this.productService.loadProductsPage(this.page, this.items).subscribe( data => {
@@ -44,7 +48,10 @@ export class ProductsComponent implements OnInit {
 
 
   getHangars() {
-    this.hangars = this.productService.getListhangars();
+    this.hangarService.loadBasicInfoHangars().subscribe( data => {
+        this.hangars = data;
+        console.log(this.hangars);
+    });
   }
 
   viewProductsOfHangar( id: number ) {

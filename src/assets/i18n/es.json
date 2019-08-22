@@ -48,10 +48,10 @@
         "logout": "Cerrar sesión",
         "register": "Registrar nuevo usuario"
     },
-    
+
     "search": {
         "find": "Buscar",
         "message": "Sin resultados de búsqueda",
-        "insert": "Hangar"
+        "insert": "Inserta hangar"
     }
 }

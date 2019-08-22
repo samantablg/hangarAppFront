@@ -13,11 +13,8 @@ export class ProductService {
 
   private urlApi = 'http://localhost:8888/api/';
   products: ProductModel[] = [];
-  basicDataHangars: BasicHangarModel[] = [];
 
-  constructor( private http: HttpClient, private hangarService: HangarService ) {
-    this.loadHangars();
-  }
+  constructor( private http: HttpClient, private hangarService: HangarService ) { }
 
   httpOptions = {
     headers: new HttpHeaders( { 'Content-Type': 'application/json' })
@@ -61,19 +58,16 @@ export class ProductService {
                 });
   }
 
-  public loadHangars() {
-    this.hangarService.loadBasicInfoHangars().subscribe( data => {
-      this.basicDataHangars = data;
-    });
-  }
-
-  public getListhangars() {
-    return this.basicDataHangars;
-  }
-
   public loadRelationships(id: number): Observable<ProductOfHangarModel[]> {
     return this.http
                .get<ProductOfHangarModel[]>(`${ this.urlApi }products/hangar/${ id }`);
+  }
+
+  public postProductToHangar( productOfHangar: ProductOfHangarModel) {
+    return this.http
+                .post(`${ this.urlApi }productOfHangar`, productOfHangar).subscribe( data => {
+                  console.log(data);
+                });
   }
 
 }

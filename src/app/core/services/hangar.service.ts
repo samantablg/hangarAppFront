@@ -44,11 +44,6 @@ export class HangarService {
     return this.hangars;
   }
 
-  public getBasicDataHangars(): BasicHangarModel[] {
-    this.loadBasicInfoHangars();
-    return this.basicHangars;
-  }
-
   public getHangar(id: number): HangarModel {
     return this.hangars[id];
   }
