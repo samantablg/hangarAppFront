@@ -1,6 +1,8 @@
-<app-button [hangarSelected]="currentHangar" [isSelect]="isSelected"></app-button>
+<div *ngIf="!this.existHangarsOfSearch">
+    <h3>{{ 'search.message' | translate }}</h3>
+</div>
 
-<table class="table table-condensed table-hover">
+<table *ngIf="this.existHangarsOfSearch" class="table table-condensed table-hover">
     <caption>
         {{ 'list-hangars.text' | translate }}
     </caption>
@@ -12,13 +14,10 @@
         </tr>
     </thead>
     <tbody>
-        <tr *ngFor="let hangar of hangars; let i = index" (dblclick)="getHangar(i)" (click)="hangarSelected($event, hangar)">
+        <tr *ngFor="let hangar of hangars; let i = index" (dblclick)="getHangar(i)">
             <td class="td1">{{ hangar.name }}</td>
             <td>{{ hangar.address }}</td>
             <td>{{ hangar.owner }}</td>
         </tr>
     </tbody>
 </table>
-
-<button (click)="seePrevious()">{{ 'previous.text' | translate }}</button>
-<button (click)="seeNext()">{{ 'next.text' | translate }}</button>

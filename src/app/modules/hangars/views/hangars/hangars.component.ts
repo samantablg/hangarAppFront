@@ -1,5 +1,5 @@
 import { CommunicationService } from './../../../../core/services/communication.service';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { Router } from '@angular/router';
 import { HangarModel } from 'src/app/core/models/hangar.interface';
 import { HangarService } from 'src/app/core/services/hangar.service';
@@ -21,7 +21,6 @@ export class HangarsComponent implements OnInit {
   total: number;
 
   constructor( private hangarService: HangarService, private comService: CommunicationService, private router: Router ) { }
-
 
   ngOnInit() {
     this.isSelected = false;

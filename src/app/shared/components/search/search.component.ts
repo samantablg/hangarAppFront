@@ -1,4 +1,9 @@
+import { CommunicationService } from './../../../core/services/communication.service';
+import { HangarModel } from 'src/app/core/models/hangar.interface';
+import { HangarService } from './../../../core/services/hangar.service';
+import { FormGroup, FormControl } from '@angular/forms';
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-search',
@@ -7,14 +12,28 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SearchComponent implements OnInit {
 
-  search: string;
+  formSearch: FormGroup;
+  result: HangarModel[] = [];
 
-  constructor() { }
+  constructor(private router: Router, private hangarService: HangarService, private comService: CommunicationService) {
+    this.formSearch = new FormGroup({
+      search: new FormControl('')
+    });
+   }
 
   ngOnInit() {}
 
   searchHangar() {
-    console.log(this.search);
+    if (this.formSearch.value.search !== '') {
+      this.hangarService.findHangarsByName(this.formSearch.value.search).subscribe( data  => {
+        this.result = data;
+        this.comService.setData(this.result);
+        this.router.navigate(['hangars/search']);
+      },
+      (error) => {
+        this.comService.setData('');
+        this.router.navigate(['hangars/search']);
+      });
+    }
   }
-
 }

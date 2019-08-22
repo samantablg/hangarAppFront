@@ -1,5 +1,4 @@
 import { Component, Output, EventEmitter, HostListener } from '@angular/core';
-import { SidebarComponent } from '../sidebar/sidebar.component';
 
 @Component({
   selector: 'app-sidebar-toggle',

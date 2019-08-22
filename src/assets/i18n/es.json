@@ -5,7 +5,6 @@
     "about-nav.text": "Sobre nosotros",
     "hangars.text": "Hangares",
     "products.text": "Productos",
-    "search.text": "Buscar",
     "list.text": "Lista",
     "change.text": "Cambiar idioma",
     "address.text": "Ubicación",
@@ -48,5 +47,11 @@
         "login": "Iniciar sesión",
         "logout": "Cerrar sesión",
         "register": "Registrar nuevo usuario"
+    },
+    
+    "search": {
+        "find": "Buscar",
+        "message": "Sin resultados de búsqueda",
+        "insert": "Hangar"
     }
 }

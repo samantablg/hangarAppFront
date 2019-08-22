@@ -5,7 +5,6 @@
     "about-nav.text": "About",
     "hangars.text": "Hangars",
     "products.text": "Products",
-    "search.text": "Search",
     "list.text": "List",
     "change.text": "Change language",
     "address.text": "Address",
@@ -48,5 +47,10 @@
         "login": "Login",
         "logout": "Logout",
         "register": "Register new user"
+    },
+    "search": {
+        "find": "Search",
+        "message": "No search results",
+        "insert": "Hangar"
     }
 }

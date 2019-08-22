@@ -1,0 +1,12 @@
+body {
+    font-family: Verdana, sans-serif;
+    font-size: 18px;
+}
+
+.td1 {
+    cursor: pointer;
+}
+
+.td1:hover {
+    color: #0C9;
+}
