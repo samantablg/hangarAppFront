@@ -14,7 +14,7 @@ export class SearchComponent implements OnInit {
   ngOnInit() {}
 
   searchHangar() {
-    console.log('pendiente de hacer');
+    console.log(this.search);
   }
 
 }

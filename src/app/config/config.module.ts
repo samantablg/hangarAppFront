@@ -1,7 +1,6 @@
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BasicAuthHtppInterceptorService } from '../core/services/config/basic-auth-htpp-interceptor.service';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
-import { ConfigRoutingModule } from './config-routing.module';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormUserComponent } from './components/form-user/form-user.component';
@@ -19,7 +18,6 @@ import { TranslateModule } from '@ngx-translate/core';
   ],
   imports: [
     CommonModule,
-    ConfigRoutingModule,
     FormsModule,
     TranslateModule,
     ReactiveFormsModule
