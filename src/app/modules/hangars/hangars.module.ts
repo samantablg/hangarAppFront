@@ -14,7 +14,9 @@ import { HangarNewComponent } from './views/hangar-new/hangar-new.component';
 import { HangarsResultComponent } from './views/hangars-result/hangars-result.component';
 @NgModule({
   declarations: [
-    HangarsComponent, HangarDetailComponent, SidebarComponent,
+    HangarsComponent,
+    HangarDetailComponent,
+    SidebarComponent,
     SidebarToggleComponent,
     ButtonComponent,
     FormHangarComponent,

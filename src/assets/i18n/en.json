@@ -43,10 +43,20 @@
     "phone.text": "Phone",
     "login": {
         "user": "User",
+        "user-form": "Username is required",
+        "user-length": "Username should be minimum 3 characters",
+        "user-space": "Username can not contain space",
+        "user-exist": "Username already taken",
         "password": "Password",
+        "password-form": "Password is required",
         "login": "Login",
         "logout": "Logout",
-        "register": "Register new user"
+        "register": "Register new user",
+        "header": "Login",
+        "sign": "Sign in",
+        "invalid": "Invalid login",
+        "password-match": "Insert the password again",
+        "password-fail": "Password do not match"
     },
     "search": {
         "find": "Search",

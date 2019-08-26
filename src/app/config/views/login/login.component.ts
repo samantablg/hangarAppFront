@@ -39,10 +39,12 @@ export class LoginComponent implements OnInit {
           sessionStorage.setItem('token', tokenStr);
           this.invalidLogin = false;
           this.router.navigate(['']);
-        } else {
+        }
+        this.invalidLogin = true;
+      }, (err) => {
           this.invalidLogin = true;
         }
-      });
+      );
   }
 
   newUser() {

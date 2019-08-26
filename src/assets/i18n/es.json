@@ -43,12 +43,21 @@
     "phone.text": "Teléfono",
     "login": {
         "user": "Usuario",
+        "user-form": "Nombre de usuario requerido",
+        "user-length": "El nombre de usuario debe tener como mínimo 3 caracteres",
+        "user-space": "El nombre de usuario no debe tener espacio",
+        "user-exist": "El nombre de usuario ya existe",
         "password": "Contraseña",
+        "password-form": "La contraseña es requerida",
         "login": "Iniciar sesión",
         "logout": "Cerrar sesión",
-        "register": "Registrar nuevo usuario"
+        "register": "Registrar nuevo usuario",
+        "header": "Iniciar sesión",
+        "sign": "Regístrese",
+        "invalid": "Login inválido",
+        "password-match": "Inserta la contraseña otra vez",
+        "password-fail": "Las contraseñas no coinciden"
     },
-
     "search": {
         "find": "Buscar",
         "message": "Sin resultados de búsqueda",
