@@ -36,37 +36,21 @@ export class HangarService {
 
   public findHangarsByName(name: string): Observable<HangarModel[]> {
     return this.http
-                .get<HangarModel[]>(`${ this.urlApi }search?name=${ name }`);
-  }
-
-  public getHangars(): HangarModel[] {
-    this.loadHangars();
-    return this.hangars;
+                .get<HangarModel[]>(`${ this.urlApi }search?h_name=${ name }`);
   }
 
   public getHangar(id: number): HangarModel {
     return this.hangars[id];
   }
 
-  public hangarSelect(data: any): any {
-    this.data = data;
-  }
-
-  public useHangarData(): any {
-    return this.data;
-  }
-
   public postHangar(hangar: any) {
     return this.http
-                .post<HangarModel>(`${ this.urlApi }hangar`, hangar).subscribe( data => {
-                  console.log(data);
-                });
+                .post<HangarModel>(`${ this.urlApi }hangar`, hangar);
   }
 
   public updateHangar(hangar: HangarModel) {
-    return this.http.put(`${ this.urlApi }hangar`, hangar).subscribe( data => {
-                  console.log(data);
-                });
+    return this.http
+                .put(`${ this.urlApi }hangar`, hangar);
   }
 
 }

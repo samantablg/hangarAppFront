@@ -13,11 +13,12 @@ import { ProductNewComponent } from './views/product-new/product-new.component';
 import { ProductModifyComponent } from './views/product-modify/product-modify.component';
 import { AddProductsHangarComponent } from './components/add-products-hangar/add-products-hangar.component';
 import { InfiniteScrollModule } from 'ngx-infinite-scroll';
+import { ProductsResultComponent } from './views/products-result/products-result.component';
 @NgModule({
   declarations: [
     ProductsComponent, ProductDetailComponent, FormPriceComponent,
     ListPriceComponent, FormProductComponent, ProductsOfHangarComponent, ProductNewComponent,
-    ProductModifyComponent, AddProductsHangarComponent
+    ProductModifyComponent, AddProductsHangarComponent, ProductsResultComponent
   ],
   imports: [
     CommonModule, ProductsRoutingModule, ReactiveFormsModule, TranslateModule, InfiniteScrollModule

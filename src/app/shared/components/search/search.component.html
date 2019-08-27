@@ -1,10 +1,26 @@
-<form [formGroup]="formSearch" (ngSubmit)="searchHangar()">
-    <div>
-        <div class="form-group row">
-            <input type="text" class="form-control" formControlName="search" name="search Hangar" placeholder="{{ 'search.insert' | translate}}" />
+<form [formGroup]="formSearch" (ngSubmit)="searchApp()" class="form-inline md-form mr-auto mb-4">
+    <div class="d-flex column justify-content-between">
+        <div class="form-group">
+            <input type="text" class="form-control" formControlName="search" name="search" placeholder="{{ 'search.insert' | translate }}" />
         </div>
-        <div class="form-group row">
-            <button type="submit" class="btn">{{ 'search.find' | translate }}</button>
+
+        <div class="form-group">
+            <div>
+                <select class="form-control" formControlName="type" name="type">
+          <option value="">{{ "search.text" | translate }}</option>
+          <option
+            *ngFor="let option of type; let i; of: index"
+            [value]="option"
+          >
+            {{ option | translate }}
+          </option>
+        </select>
+            </div>
+        </div>
+        <div class="form-group">
+            <button type="submit" class="btn">
+        {{ "search.find" | translate }}
+      </button>
         </div>
     </div>
 </form>

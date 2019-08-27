@@ -1,7 +1,7 @@
 <div class="card row align-items-center">
     <img class="card-img-top" [src]="card.img" alt="{{ card.title }}">
     <div class="card-body">
-        <h4 class="card-title">{{ card.title }}</h4>
+        <h4 class="card-title">{{ card.title | translate }}</h4>
     </div>
     <div class="card-footer">
         <a routerLink="{{ card.url }}" class="btn">{{ 'list.text' | translate }}</a>

@@ -1,4 +1,4 @@
-import { AuthenticationService } from '../../../core/services/config/authentication.service';
+import { AuthenticationService } from '../../../config/services/authentication.service';
 import { Component, Output, EventEmitter, OnChanges, SimpleChanges } from '@angular/core';
 
 @Component({

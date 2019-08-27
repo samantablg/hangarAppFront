@@ -2,6 +2,7 @@ import { HangarModel } from 'src/app/core/models/hangar.interface';
 import { Component, OnInit, Input } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { HangarService } from '../../../../core/services/hangar.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-form-hangar',
@@ -17,7 +18,7 @@ export class FormHangarComponent implements OnInit {
   formHangar: FormGroup;
   hangar: HangarModel;
 
-  constructor( private hangarService: HangarService ) {
+  constructor(private hangarService: HangarService, private router: Router) {
     this.formHangar = new FormGroup({
       name: new FormControl('', [
         Validators.required,
@@ -84,9 +85,20 @@ export class FormHangarComponent implements OnInit {
 
   saveHangar() {
     if (this.isEdit) {
-      return this.hangarService.updateHangar(this.formHangar.value);
+      this.hangarService.updateHangar(this.formHangar.value).subscribe( data => {
+        window.alert('hangar modified');
+        this.router.navigate(['hangars']);
+      }, (err) => {
+        window.alert('error');
+      });
+    } else {
+        this.hangarService.postHangar(this.formHangar.value).subscribe( data => {
+          window.alert('hangar save');
+          this.router.navigate(['hangars']);
+        }, (err) => {
+          window.alert('error');
+        });
+      }
     }
-    return this.hangarService.postHangar(this.formHangar.value);
-  }
 
 }

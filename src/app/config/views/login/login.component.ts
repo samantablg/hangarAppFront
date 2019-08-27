@@ -1,5 +1,5 @@
 import { FormGroup, FormControl } from '@angular/forms';
-import { AuthenticationService } from '../../../core/services/config/authentication.service';
+import { AuthenticationService } from '../../services/authentication.service';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
@@ -33,7 +33,7 @@ export class LoginComponent implements OnInit {
 
   checkLogin() {
     this.loginService.aunthenticate(this.formLogin.value.username, this.formLogin.value.password).subscribe( userData => {
-        if (userData.token != null) {
+        if (userData.token !== '') {
           sessionStorage.setItem('username', this.formLogin.value.username);
           const tokenStr = 'Bearer ' + userData.token;
           sessionStorage.setItem('token', tokenStr);

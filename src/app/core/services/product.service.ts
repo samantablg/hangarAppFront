@@ -70,4 +70,9 @@ export class ProductService {
                 });
   }
 
+  public findProductsByName(name: string): Observable<ProductModel[]> {
+    return this.http
+                .get<ProductModel[]>(`${ this.urlApi }product/search?p_name=${ name }`);
+  }
+
 }

@@ -1,7 +1,7 @@
 import { LogoutComponent } from './config/components/logout/logout.component';
 import { RegisterComponent } from './config/views/register/register.component';
 import { LoginComponent } from './config/views/login/login.component';
-import { AuthGuardService } from './core/services/config/auth-guard.service';
+import { AuthGuardService } from './config/services/auth-guard.service';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { HomeComponent } from './shared/views/home/home.component';

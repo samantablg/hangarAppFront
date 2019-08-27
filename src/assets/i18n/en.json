@@ -1,4 +1,6 @@
 {
+    "hangar": "Hangar",
+    "product": "Product",
     "about.text": "A hangar is a closed building structure to hold aircraft or spacecraft. Hangars are built of metal, wood, or concrete. The word hangar comes from Middle French hanghart ('enclosure near a house'), of Germanic origin, from Frankish *haimgard ('home-enclosure', 'fence around a group of houses'), from *haim ('home, village, hamlet') and gard ('yard').",
     "hangar.text": "Hangar",
     "product.text": "Product",
@@ -61,6 +63,7 @@
     "search": {
         "find": "Search",
         "message": "No search results",
-        "insert": "Hangar"
+        "insert": "Search in the app",
+        "text": "Select the type"
     }
 }

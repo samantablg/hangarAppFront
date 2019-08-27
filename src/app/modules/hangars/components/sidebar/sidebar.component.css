@@ -1,4 +1,4 @@
-:host {
+:host() {
     box-sizing: border-box;
     display: none;
     position: absolute;

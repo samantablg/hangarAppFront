@@ -1,5 +1,5 @@
 import { AbstractControl, ValidationErrors } from '@angular/forms';
-import { RegisterService } from 'src/app/core/services/config/register.service';
+import { RegisterService } from '../../services/register.service';
 
 export class RegisterValidators {
 
