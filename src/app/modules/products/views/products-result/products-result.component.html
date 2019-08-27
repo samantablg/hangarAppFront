@@ -1,1 +1,23 @@
-<p>products-result works!</p>
+<div *ngIf="!this.existProductOfSearch">
+    <h3>{{ 'search.message' | translate }}</h3>
+</div>
+
+<table *ngIf="this.existProductOfSearch" class="table table-condensed table-hover">
+    <caption>
+        {{ 'products.list' | translate }}
+    </caption>
+    <thead>
+        <tr>
+            <th scope="col">{{ 'product' | translate }}</th>
+            <th scope="col">{{ 'desc.text' | translate }}</th>
+
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let product of products; let i = index" (dblclick)="getProduct(i)">
+            <td class="td1">{{ product.name }}</td>
+            <td>{{ product.description }}</td>
+
+        </tr>
+    </tbody>
+</table>

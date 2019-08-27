@@ -1,3 +1,4 @@
+import { ProductsResultComponent } from './views/products-result/products-result.component';
 import { FormProductComponent } from './components/form-product/form-product.component';
 import { ProductDetailComponent } from './views/product-detail/product-detail.component';
 import { ProductsComponent } from './views/products/products.component';
@@ -26,6 +27,10 @@ const routes: Routes = [
   {
     path: 'modify',
     component: ProductModifyComponent
+  },
+  {
+    path: 'search',
+    component: ProductsResultComponent
   }
 ];
 

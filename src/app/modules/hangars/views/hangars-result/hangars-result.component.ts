@@ -1,4 +1,3 @@
-import { HangarService } from 'src/app/core/services/hangar.service';
 import { HangarModel } from 'src/app/core/models/hangar.interface';
 import { CommunicationService } from './../../../../core/services/communication.service';
 import { Component, OnInit } from '@angular/core';
@@ -15,7 +14,7 @@ export class HangarsResultComponent implements OnInit {
   hangar: HangarModel;
   existHangarsOfSearch: boolean;
 
-  constructor(private comService: CommunicationService, private hangarService: HangarService, private router: Router) {
+  constructor(private comService: CommunicationService, private router: Router) {
     this.hangars = this.comService.getData();
     if ( this.hangars !== undefined && this.hangars.length > 0) {
       this.existHangarsOfSearch = true;
