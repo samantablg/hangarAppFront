@@ -1,4 +1,6 @@
 {
+    "product-name": "Product",
+    "hangar-name": "Hangar",
     "login": {
         "user": "User",
         "user-form": "Username is required",

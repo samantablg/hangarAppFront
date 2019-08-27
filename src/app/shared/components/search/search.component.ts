@@ -15,7 +15,7 @@ import { ProductService } from 'src/app/core/services/product.service';
 export class SearchComponent implements OnInit {
   formSearch: FormGroup;
   result: HangarModel[] | ProductModel[] = [];
-  type = ['hangar', 'product'];
+  type = ['hangar-name', 'product-name'];
 
   constructor(
     private router: Router,
@@ -68,9 +68,9 @@ export class SearchComponent implements OnInit {
   }
 
   searchApp() {
-    if (this.formSearch.value.type === 'product') {
+    if (this.formSearch.value.type === 'product-name') {
       return this.searchProduct();
-    } else if (this.formSearch.value.type === 'hangar') {
+    } else if (this.formSearch.value.type === 'hangar-name') {
       return this.searchHangar();
     }
   }

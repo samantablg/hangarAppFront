@@ -1,4 +1,6 @@
 {
+    "product-name": "Producto",
+    "hangar-name": "Hangar",
     "login": {
         "user": "Usuario",
         "user-form": "Nombre de usuario requerido",

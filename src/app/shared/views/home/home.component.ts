@@ -14,13 +14,13 @@ export class HomeComponent implements OnInit {
 
   ngOnInit() {
     this.hangarCard = {
-      title: 'hangar',
+      title: 'hangar-name',
       url: 'hangars',
       img: '../../../../assets/img/hangars.png'
     };
 
     this.productCard = {
-      title: 'product',
+      title: 'product-name',
       url: 'products',
       img: '../../../../assets/img/products.png'
     };
