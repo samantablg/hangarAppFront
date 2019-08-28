@@ -75,4 +75,9 @@ export class ProductService {
                 .get<ProductModel[]>(`${ this.urlApi }search/product?p_name=${ name }`);
   }
 
+  public productExistByName(name: string) {
+    return this.http
+                .get<boolean>(`${ this.urlApi }product/exist/${ name }`);
+  }
+
 }

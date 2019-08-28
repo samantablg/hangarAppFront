@@ -2,6 +2,7 @@ import { ProductService } from '../../../../core/services/product.service';
 import { ProductModel } from '../../../../core/models/product.interface';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Component, OnInit, Input } from '@angular/core';
+import { ProductAsyncValidators } from './form-product.validators';
 
 @Component({
   selector: 'app-form-product',
@@ -20,7 +21,8 @@ export class FormProductComponent implements OnInit {
       name: new FormControl('', [
         Validators.required,
         Validators.minLength(3),
-      ]),
+      ],
+      [ProductAsyncValidators.shouldBeUnique(this.productService)]),
       description: new FormControl('', [
         Validators.required
       ]),

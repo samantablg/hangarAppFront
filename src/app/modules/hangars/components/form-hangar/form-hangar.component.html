@@ -6,12 +6,7 @@
       }}</label>
             <input formControlName="name" id="name" type="text" class="form-control" [readonly]="isReadOnly" />
             <div *ngIf="name.pending">{{ "form.uniqueness" | translate }}</div>
-            <div *ngIf="name.touched && isEdit && name.value != hangarSelect.name" class="alert alert-danger">
-                <div *ngIf="!!name.errors.shouldBeUnique">
-                    {{ "login.user-exist" | translate }}
-                </div>
-            </div>
-            <div *ngIf="name.touched && !isEdit" class="alert alert-danger">
+            <div *ngIf="name.touched && name.invalid && name.value != hangarSelect.name" class="alert alert-danger">
                 <div *ngIf="!!name.errors.shouldBeUnique">
                     {{ "login.user-exist" | translate }}
                 </div>
