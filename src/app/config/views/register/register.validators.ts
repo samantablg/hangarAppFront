@@ -17,7 +17,6 @@ export class RegisterAsyncValidators {
       (resolve, reject) => {
         registerService.userExistsByUsername(control.value as string)
         .subscribe(response => {
-          console.log(response);
           if (response) {
             resolve({shouldBeUnique: true});
           } else {

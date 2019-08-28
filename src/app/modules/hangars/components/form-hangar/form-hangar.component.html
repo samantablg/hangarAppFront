@@ -3,27 +3,43 @@
         <div class="form-group row">
             <label class="col-form-label" for="name">{{ 'name.text' | translate }}</label>
             <input formControlName="name" id="name" type="text" class="form-control" [readonly]="isReadOnly">
-            <div *ngIf="(name?.errors)">{{ 'name-form.text' | translate }}</div>
+            <div *ngIf="name.pending">Checking for uniqueness...</div>
+            <div *ngIf="name.touched && !isEdit" class="alert alert-danger">
+                <div *ngIf="!!name.errors.shouldBeUnique && !isEdit">{{ 'login.user-exist' | translate }}</div>
+                <div *ngIf="!!name.errors.minlength">{{ 'product.name' | translate }}</div>
+                <div *ngIf="!!name.errors.required"> {{ 'name-form.text' | translate }}</div>
+            </div>
         </div>
         <div class="form-group row">
-            <label class="col-form-label" for="address">{{ 'address.text' | translate }}</label>
+            <label class="col-form-label" for="address">{{ 'hangar.address' | translate }}</label>
             <input formControlName="address" id="address" type="text" class="form-control" [readonly]="isReadOnly">
-            <div *ngIf="(address?.errors)">{{ 'address-form.text' | translate }}</div>
+            <div *ngIf="address.touched && address.invalid" class="alert alert-danger">
+                <div *ngIf="!!address.errors.required">{{ 'address-form.text' | translate }}</div>
+            </div>
+
         </div>
         <div class="form-group row">
-            <label class="col-form-label" for="address">{{ 'owner.text' | translate }}</label>
+            <label class="col-form-label" for="owner">{{ 'hangar.owner' | translate }}</label>
             <input formControlName="owner" id="owner" type="text" class="form-control" [readonly]="isReadOnly">
-            <div *ngIf="(owner?.errors)">{{ 'owner-form.text' | translate }}</div>
+            <div *ngIf="owner.touched && owner.invalid" class="alert alert-danger">
+                <div *ngIf="!!owner.errors.required">{{ 'owner-form.text' | translate }}</div>
+            </div>
         </div>
         <div class="form-group row">
-            <label class="col-form-label" for="email">{{ 'email.text' | translate }}</label>
+            <label class="col-form-label" for="email">{{ 'hangar.email' | translate }}</label>
             <input formControlName="email" id="email" type="text" class="form-control" [readonly]="isReadOnly">
-            <div *ngIf="(email?.errors)">{{ 'email-form.text' | translate }}</div>
+            <div *ngIf="email.touched && email.invalid" class="alert alert-danger">
+                <div *ngIf="!!email.errors.required">{{ 'email-form.text' | translate }}</div>
+            </div>
+
         </div>
         <div class="form-group row">
-            <label class="col-form-label" for="phone">{{ 'phone.text' | translate }}</label>
+            <label class="col-form-label" for="phone">{{ 'hangar.phone' | translate }}</label>
             <input formControlName="phone" id="phone" type="text" class="form-control" [readonly]="isReadOnly">
-            <div *ngIf="(phone?.errors)">{{ 'phone-form.text' | translate }}</div>
+            <div *ngIf="phone.touched && phone.invalid" class="alert alert-danger">
+                <div *ngIf="!!phone.errors.required">{{ 'phone-form.text' | translate }}</div>
+                <div *ngIf="!!phone.errors.minlength">{{ 'phone-form.length' | translate }}</div>
+            </div>
         </div>
         <div class="form-group row" *ngIf="!isReadOnly">
             <button type="submit" class="btn">{{ 'save.text' | translate }}</button>

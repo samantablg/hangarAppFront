@@ -53,4 +53,9 @@ export class HangarService {
                 .put(`${ this.urlApi }hangar`, hangar);
   }
 
+  public hangarExistByName(name: string) {
+    return this.http
+                .get<boolean>(`${ this.urlApi }hangar/exist/${ name }`);
+  }
+
 }

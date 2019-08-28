@@ -3,7 +3,11 @@
     <a class="addProd" (click)="linkToHangar()"><strong>{{ 'insertProduct.text' | translate }}</strong></a>
 </div>
 
-<table class="table table-condensed table-hover">
+<div *ngIf="hangarEmpty">
+    <h5>{{ 'hangar.empty' | translate }}</h5>
+</div>
+
+<table *ngIf="!hangarEmpty" class="table table-condensed table-hover">
     <caption>
         {{ 'relationships.text' | translate }}
     </caption>

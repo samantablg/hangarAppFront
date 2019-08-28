@@ -1,3 +1,4 @@
+import { HangarAsyncValidators } from './form-hangar.validators';
 import { HangarModel } from 'src/app/core/models/hangar.interface';
 import { Component, OnInit, Input } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
@@ -10,7 +11,6 @@ import { Router } from '@angular/router';
   styleUrls: ['./form-hangar.component.css']
 })
 export class FormHangarComponent implements OnInit {
-
   @Input() isReadOnly?: boolean;
   @Input() isEdit?: boolean;
   @Input() hangarSelect: HangarModel;
@@ -20,10 +20,10 @@ export class FormHangarComponent implements OnInit {
 
   constructor(private hangarService: HangarService, private router: Router) {
     this.formHangar = new FormGroup({
-      name: new FormControl('', [
-        Validators.required,
-        Validators.minLength(3)
-      ]
+      name: new FormControl(
+        '',
+        [Validators.required, Validators.minLength(3)],
+        [HangarAsyncValidators.shouldBeUnique(this.hangarService)]
       ),
       address: new FormControl('', [
         Validators.required,
@@ -32,19 +32,17 @@ export class FormHangarComponent implements OnInit {
       owner: new FormControl('', [
         Validators.required,
         Validators.minLength(3)
-      ]
-      ),
+      ]),
       email: new FormControl('', [
         Validators.required,
         Validators.minLength(6)
-      ]
-      ),
+      ]),
       phone: new FormControl('', [
         Validators.required,
         Validators.minLength(9)
-      ]
-      ),
-      id: new FormControl('')
+      ]),
+      id: new FormControl(''),
+      state: new FormControl(true)
     });
   }
 
@@ -85,20 +83,30 @@ export class FormHangarComponent implements OnInit {
 
   saveHangar() {
     if (this.isEdit) {
-      this.hangarService.updateHangar(this.formHangar.value).subscribe( data => {
-        window.alert('hangar modified');
-        this.router.navigate(['hangars']);
-      }, (err) => {
-        window.alert('error');
-      });
-    } else {
-        this.hangarService.postHangar(this.formHangar.value).subscribe( data => {
-          window.alert('hangar save');
+      console.log(this.formHangar.value);
+      this.hangarService.updateHangar(this.formHangar.value).subscribe(
+        data => {
+          window.alert('hangar modified');
+          console.log(data);
           this.router.navigate(['hangars']);
-        }, (err) => {
+        },
+        err => {
           window.alert('error');
-        });
+        }
+      );
+    }
+    if (!this.isEdit) {
+      if (!this.formHangar.invalid) {
+        this.hangarService.postHangar(this.formHangar.value).subscribe(
+          data => {
+            window.alert('hangar save');
+            this.router.navigate(['hangars']);
+          },
+          err => {
+            window.alert('error');
+          }
+        );
       }
     }
-
+  }
 }

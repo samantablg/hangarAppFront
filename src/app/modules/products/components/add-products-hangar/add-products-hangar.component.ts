@@ -4,6 +4,7 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { ProductService } from './../../../../core/services/product.service';
 import { Component, OnInit, Input } from '@angular/core';
 import { ProductModel } from 'src/app/core/models/product.interface';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-add-products-hangar',
@@ -21,8 +22,12 @@ export class AddProductsHangarComponent implements OnInit {
 
 
   constructor( private productService: ProductService,
-               private comService: CommunicationService) {
+               private comService: CommunicationService,
+               private router: Router) {
     this.hangar = this.comService.getData();
+    if (this.hangar === undefined) {
+      this.router.navigate(['']);
+    }
     this.formProductToHangar = new FormGroup({
       hangar: new FormControl(this.hangar[0]),
       product: new FormControl('', [
@@ -56,6 +61,7 @@ export class AddProductsHangarComponent implements OnInit {
     this.productService.postProductToHangar(this.formProductToHangar.value);
     this.insertProduct = false;
     window.alert('save!');
+    this.router.navigate(['products']);
   }
 
 }

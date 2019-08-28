@@ -16,6 +16,7 @@ export class ProductsOfHangarComponent implements OnInit {
   productsOfHangar: ProductOfHangarModel[] = [];
   insertProduct = true;
   product: ProductModel;
+  hangarEmpty: boolean;
 
   constructor(private productService: ProductService, private comService: CommunicationService, private router: Router) {
     this.hangar = this.comService.getData();
@@ -25,6 +26,11 @@ export class ProductsOfHangarComponent implements OnInit {
   ngOnInit() {
     this.productService.loadRelationships(this.hangar[0]).subscribe( data => {
       this.productsOfHangar = data;
+      if (this.productsOfHangar.length > 0) {
+        this.hangarEmpty = false;
+      } else {
+        this.hangarEmpty = true;
+      }
     });
   }
 

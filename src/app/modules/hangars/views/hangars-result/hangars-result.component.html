@@ -4,13 +4,13 @@
 
 <table *ngIf="this.existHangarsOfSearch" class="table table-condensed table-hover">
     <caption>
-        {{ 'list-hangars.text' | translate }}
+        {{ 'hangar.list' | translate }}
     </caption>
     <thead>
         <tr>
-            <th scope="col">Hangar</th>
-            <th scope="col">{{ 'address.text' | translate }}</th>
-            <th scope="col">{{ 'owner.text' | translate }}</th>
+            <th scope="col">{{ 'hangar-name' | translate }}</th>
+            <th scope="col">{{ 'hangar.address' | translate }}</th>
+            <th scope="col">{{ 'hangar.owner' | translate }}</th>
         </tr>
     </thead>
     <tbody>

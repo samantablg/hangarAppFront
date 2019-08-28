@@ -5,4 +5,5 @@ export interface HangarModel {
   owner: string;
   email: string;
   phone: number;
+  state: boolean;
 }

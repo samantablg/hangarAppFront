@@ -46,7 +46,6 @@ export class RegisterComponent implements OnInit {
   saveUser() {
     if (this.formUser.value.password !== '' && this.formUser.value.password === this.formUser.value.passwordMatch ) {
       this.passwordIncorrect = false;
-      console.log(this.formUser.invalid);
       if (!this.formUser.invalid) {
         const user: UserModel = {'username': this.formUser.value.username, 'password': this.formUser.value.password};
         this.registerService.postUser(user);

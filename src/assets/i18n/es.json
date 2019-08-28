@@ -27,7 +27,9 @@
     "product": {
         "": "Producto",
         "list": "Lista de productos",
-        "text": "Producto"
+        "text": "Producto",
+        "desc": "Descripción",
+        "name": "Debe contener al menos tres caracteres"
     },
     "hangar": {
         "": "Hangar",
@@ -36,7 +38,8 @@
         "owner": "Propietario",
         "email": "Email",
         "phone": "Teléfono",
-        "list": "Lista de hangares"
+        "list": "Lista de hangares",
+        "empty": "Este hangar no tiene productos almacenados"
     },
     "about.text": "El Hangar es un lugar utilizado para guardar aeronaves, generalmente de grandes dimensiones y situado en los aeródromos. También se denomina hangar, en los portaaviones, al lugar en el que, con similar fin, pernoctan y se arman los aviones. Este puede estar blindado, para protegerse de los ataques aéreos, o puede prescindirse de él para ganar espacio, como fue el caso de los portaaviones japoneses, siendo estos más vulnerables a los ataques aéreos. En todo caso es una parte altamente funcional de los portaaviones, ya que es donde se hace el mantenimiento de las aeronaves.",
     "about-nav.text": "Sobre nosotros",
@@ -48,7 +51,6 @@
     "modify-hangar.text": "Modificar hangar",
     "add-hangar.text": "Nuevo hangar",
     "name.text": "Nombre",
-    "description.text": "Descripción",
     "save.text": "Guardar",
     "new-prod.text": "Nuevo producto",
     "prod-hangar.text": "Productos de hangar",
@@ -72,5 +74,6 @@
     "hangarCard.text": "Hangares",
     "productCard.text": "Productos",
     "next": "Siguiente",
-    "previous": "Anterior"
+    "previous": "Anterior",
+    "phone-form.length": "Teléfono incorrecto"
 }

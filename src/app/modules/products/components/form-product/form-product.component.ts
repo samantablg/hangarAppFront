@@ -18,7 +18,8 @@ export class FormProductComponent implements OnInit {
   constructor( private productService: ProductService ) {
     this.formProduct = new FormGroup({
       name: new FormControl('', [
-        Validators.required
+        Validators.required,
+        Validators.minLength(3),
       ]),
       description: new FormControl('', [
         Validators.required
@@ -48,10 +49,12 @@ export class FormProductComponent implements OnInit {
   }
 
   saveProduct() {
-    if (this.isEdit) {
-      return this.productService.updateProduct(this.formProduct.value);
+    if (!this.formProduct.invalid) {
+      if (this.isEdit) {
+        return this.productService.updateProduct(this.formProduct.value);
+      }
+      return this.productService.postProduct(this.formProduct.value);
     }
-    return this.productService.postProduct(this.formProduct.value);
   }
 
 }

@@ -50,7 +50,6 @@ export class ProductsComponent implements OnInit {
   getHangars() {
     this.hangarService.loadBasicInfoHangars().subscribe( data => {
         this.hangars = data;
-        console.log(this.hangars);
     });
   }
 
