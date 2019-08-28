@@ -24,7 +24,8 @@ export class FormProductComponent implements OnInit {
       description: new FormControl('', [
         Validators.required
       ]),
-      id: new FormControl('')
+      id: new FormControl(''),
+      state: new FormControl(true)
     });
   }
 
