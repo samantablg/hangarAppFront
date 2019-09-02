@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { AuthenticationService } from './../../config/services/authentication.service';
+import { Component } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
 
 @Component({
@@ -6,7 +7,7 @@ import { TranslateService } from '@ngx-translate/core';
   templateUrl: './shell.component.html',
   styleUrls: ['./shell.component.css']
 })
-export class ShellComponent implements OnInit {
+export class ShellComponent {
 
   public activeLang = 'es';
 
@@ -24,7 +25,5 @@ export class ShellComponent implements OnInit {
     }
     this.translate.use(this.activeLang);
   }
-
-  ngOnInit() { }
 
 }

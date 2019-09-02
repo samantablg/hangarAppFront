@@ -84,29 +84,42 @@ export class FormHangarComponent implements OnInit {
   saveHangar() {
     if (this.isEdit) {
       console.log(this.formHangar.value);
-      this.hangarService.updateHangar(this.formHangar.value).subscribe(
-        data => {
-          window.alert('hangar modified');
-          console.log(data);
-          this.router.navigate(['hangars']);
-        },
-        err => {
-          window.alert('error');
-        }
-      );
-    }
-    if (!this.isEdit) {
+      this.updateHangar(this.formHangar.value);
+    } else {
       if (!this.formHangar.invalid) {
-        this.hangarService.postHangar(this.formHangar.value).subscribe(
-          data => {
-            window.alert('hangar save');
-            this.router.navigate(['hangars']);
-          },
-          err => {
-            window.alert('error');
-          }
-        );
+        this.postHangar(this.formHangar.value);
       }
     }
+  }
+
+  updateHangar(hangar: HangarModel) {
+    this.hangarService.updateHangar(hangar).subscribe(
+      data => {
+        window.alert('hangar modified');
+        this.router.navigate(['hangars']);
+      },
+      err => {
+        window.alert('error');
+      }
+    );
+  }
+
+  postHangar(hangar: HangarModel) {
+    this.hangarService.postHangar(hangar).subscribe(
+      data => {
+        window.alert('hangar save');
+        this.router.navigate(['hangars']);
+      },
+      err => {
+        window.alert('error');
+      }
+    );
+  }
+
+  deleteHangar() {
+    this.hangarService.deleteHangar(this.hangarSelect.id).subscribe( data => {
+      console.log(data);
+      this.router.navigate(['/hangars']);
+    });
   }
 }

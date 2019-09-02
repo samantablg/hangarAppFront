@@ -14,7 +14,9 @@
                             <strong>{{ 'prod-hangar.text' | translate }}</strong>
                         </a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <a *ngFor="let item of hangars; let i = index" (click)="viewProductsOfHangar(i)" class="dropdown-item">{{item[1]}}</a>
+                            <a *ngFor="let hangar of hangars; let i = index" (click)="viewProductsOfHangar(hangar)" class="dropdown-item">
+                              {{ hangar.name }}
+                            </a>
                         </div>
                     </li>
                 </ul>

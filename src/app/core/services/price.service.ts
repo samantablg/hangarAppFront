@@ -13,10 +13,6 @@ export class PriceService {
 
   constructor( private http: HttpClient) { }
 
-  httpOptions = {
-    headers: new  HttpHeaders( { 'Content-Type': 'application/json' })
-  };
-
   public postPrice(price: number, id: number) {
     return this.http
                 .post<PriceModel>(`${ this.urlApi }product/${id}`, price).subscribe( data => {

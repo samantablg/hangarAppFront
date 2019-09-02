@@ -15,10 +15,10 @@ export class ProductDetailComponent implements OnInit {
   insertPrice = true;
   showHistoric = true;
 
-  constructor(private comService: CommunicationService, private router: Router) { }
+  constructor(private comService: CommunicationService, private router: Router, private productService: ProductService) { }
 
   ngOnInit() {
-    this.product = this.comService.getData();
+    this.product = this.comService.getDataRelativeToProduct();
     this.insertPrice = false;
     this.showHistoric = false;
   }
@@ -32,8 +32,17 @@ export class ProductDetailComponent implements OnInit {
   }
 
   public editProduct() {
-    this.comService.setData(this.product);
+    this.comService.setDataRelativeToProduct(this.product);
     this.router.navigate(['/products/modify']);
+  }
+
+  public deleteProduct() {
+    this.productService.deleteProduct(this.product.id).subscribe( data => {
+      window.alert('product deleted');
+      this.router.navigate(['/products']);
+    }, err => {
+      window.alert('fail');
+    });
   }
 
 }

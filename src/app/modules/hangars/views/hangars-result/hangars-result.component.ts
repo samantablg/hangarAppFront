@@ -15,12 +15,8 @@ export class HangarsResultComponent implements OnInit {
   existHangarsOfSearch: boolean;
 
   constructor(private comService: CommunicationService, private router: Router) {
-    this.hangars = this.comService.getData();
-    if ( this.hangars !== undefined && this.hangars.length > 0) {
-      this.existHangarsOfSearch = true;
-    } else {
-      this.existHangarsOfSearch = false;
-    }
+    this.hangars = this.comService.getDataRelativeToHangar();
+    this.existHangarsOfSearch = ( this.hangars && this.hangars.length > 0);
   }
 
   ngOnInit() {
@@ -28,7 +24,7 @@ export class HangarsResultComponent implements OnInit {
 
   getHangar( id: number ) {
     this.hangar = this.hangars[id];
-    this.comService.setData(this.hangar);
+    this.comService.setDataRelativeToHangar(this.hangar);
     this.router.navigate(['/hangars/hangar', id + 1]);
   }
 

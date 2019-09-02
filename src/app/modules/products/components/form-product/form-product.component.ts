@@ -3,6 +3,7 @@ import { ProductModel } from '../../../../core/models/product.interface';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Component, OnInit, Input } from '@angular/core';
 import { ProductAsyncValidators } from './form-product.validators';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-form-product',
@@ -16,7 +17,7 @@ export class FormProductComponent implements OnInit {
   formProduct: FormGroup;
   product: ProductModel;
 
-  constructor( private productService: ProductService ) {
+  constructor( private productService: ProductService, private router: Router ) {
     this.formProduct = new FormGroup({
       name: new FormControl('', [
         Validators.required,
@@ -52,12 +53,37 @@ export class FormProductComponent implements OnInit {
   }
 
   saveProduct() {
-    if (!this.formProduct.invalid) {
-      if (this.isEdit) {
-        return this.productService.updateProduct(this.formProduct.value);
+    if (this.isEdit) {
+      this.updateProduct(this.formProduct.value);
+    } else {
+      if (!this.formProduct.invalid) {
+        this.postProduct(this.formProduct.value);
       }
-      return this.productService.postProduct(this.formProduct.value);
     }
+  }
+
+  updateProduct(product: ProductModel) {
+    this.productService.updateProduct(product).subscribe(
+      data => {
+        window.alert('product modified');
+        this.router.navigate(['products']);
+      },
+      err => {
+        window.alert('error');
+      }
+    );
+  }
+
+  postProduct(product: ProductModel) {
+    this.productService.postProduct(product).subscribe(
+      data => {
+        window.alert('product save');
+        this.router.navigate(['products']);
+      },
+      err => {
+        window.alert('error');
+      }
+    );
   }
 
 }

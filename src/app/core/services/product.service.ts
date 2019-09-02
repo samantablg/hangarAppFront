@@ -5,6 +5,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { ProductOfHangarModel } from '../models/product-hangar.interface';
+import { ProductWithNameOfHangarModel } from '../models/product-hangar-extended.interface';
 
 @Injectable({
   providedIn: 'root'
@@ -45,17 +46,11 @@ export class ProductService {
 
   public postProduct(product: ProductModel) {
     return this.http
-                .post<ProductModel>(`${ this.urlApi }product`, product)
-                .subscribe( data => {
-                  console.log(data);
-                });
+                .post<ProductModel>(`${ this.urlApi }product`, product);
   }
 
   public updateProduct(product: ProductModel) {
-    console.log(product);
-    return this.http.put(`${ this.urlApi }product`, product).subscribe( data => {
-                  console.log(data);
-                });
+    return this.http.put(`${ this.urlApi }product`, product);
   }
 
   public loadRelationships(id: number): Observable<ProductOfHangarModel[]> {
@@ -63,11 +58,24 @@ export class ProductService {
                .get<ProductOfHangarModel[]>(`${ this.urlApi }products/hangar/${ id }`);
   }
 
+  public loadRelationshipsWithNameOfProduct(id: number): Observable<ProductWithNameOfHangarModel[]> {
+    return this.http
+               .get<ProductWithNameOfHangarModel[]>(`${ this.urlApi }link/productsOfHangar/${ id }`);
+  }
+
+  public updateAmountOfRelationShip(productOfHangar: ProductOfHangarModel) {
+    return this.http
+                .put(`${ this.urlApi }productOfHangar/update`, productOfHangar);
+  }
+
+  public unlinkProductOfHangar( productOfHangar: ProductOfHangarModel): Observable<ProductOfHangarModel> {
+    return this.http
+                .put<ProductOfHangarModel>(`${ this.urlApi }productOfHangar/delete`, productOfHangar);
+  }
+
   public postProductToHangar( productOfHangar: ProductOfHangarModel) {
     return this.http
-                .post(`${ this.urlApi }productOfHangar`, productOfHangar).subscribe( data => {
-                  console.log(data);
-                });
+                .post(`${ this.urlApi }productOfHangar`, productOfHangar);
   }
 
   public findProductsByName(name: string): Observable<ProductModel[]> {
@@ -78,6 +86,11 @@ export class ProductService {
   public productExistByName(name: string) {
     return this.http
                 .get<boolean>(`${ this.urlApi }product/exist/${ name }`);
+  }
+
+  public deleteProduct(id: number) {
+    return this.http
+                .put(`${ this.urlApi }product/${ id }`, '');
   }
 
 }

@@ -14,7 +14,7 @@ export class ProductModifyComponent implements OnInit {
   constructor(private comService: CommunicationService) { }
 
   ngOnInit() {
-    this.product = this.comService.getData();
+    this.product = this.comService.getDataRelativeToProduct();
   }
 
 }

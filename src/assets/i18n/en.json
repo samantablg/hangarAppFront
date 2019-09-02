@@ -29,7 +29,8 @@
         "list": "List of products",
         "text": "Product",
         "desc": "Description",
-        "name": "Should be minimum 3 characters"
+        "name": "Should be minimum 3 characters",
+        "delete": "Delete product"
     },
     "hangar": {
         "": "Hangar",
@@ -39,10 +40,16 @@
         "email": "Email",
         "phone": "Phone",
         "list": "List of hangars",
-        "empty": "This hangar has no products stored"
+        "empty": "This hangar has no products stored",
+        "delete": "Delete Hangar"
     },
     "form": {
         "uniqueness": "Checking for uniqueness..."
+    },
+    "util": {
+        "management": "Management",
+        "delete": "Delete",
+        "amount": "Change the amount"
     },
     "about.text": "A hangar is a closed building structure to hold aircraft or spacecraft. Hangars are built of metal, wood, or concrete. The word hangar comes from Middle French hanghart ('enclosure near a house'), of Germanic origin, from Frankish *haimgard ('home-enclosure', 'fence around a group of houses'), from *haim ('home, village, hamlet') and gard ('yard').",
     "about-nav.text": "About",

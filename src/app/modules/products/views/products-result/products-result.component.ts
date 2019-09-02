@@ -15,7 +15,7 @@ export class ProductsResultComponent implements OnInit {
   existProductOfSearch: boolean;
 
   constructor(private comService: CommunicationService, private router: Router) {
-    this.products = this.comService.getData();
+    this.products = this.comService.getDataRelativeToProduct();
     if (this.products !== undefined && this.products.length > 0) {
       this.existProductOfSearch = true;
     } else {

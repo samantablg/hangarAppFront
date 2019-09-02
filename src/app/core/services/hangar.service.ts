@@ -36,7 +36,7 @@ export class HangarService {
 
   public findHangarsByName(name: string): Observable<HangarModel[]> {
     return this.http
-                .get<HangarModel[]>(`${ this.urlApi }search?h_name=${ name }`);
+                .get<HangarModel[]>(`${ this.urlApi }search?hangarName=${ name }`);
   }
 
   public getHangar(id: number): HangarModel {
@@ -56,6 +56,10 @@ export class HangarService {
   public hangarExistByName(name: string) {
     return this.http
                 .get<boolean>(`${ this.urlApi }hangar/exist/${ name }`);
+  }
+
+  public deleteHangar(id: number) {
+    return this.http.put(`${ this.urlApi }hangar/${ id }`, '');
   }
 
 }

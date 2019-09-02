@@ -2,6 +2,7 @@ import { CommunicationService } from './../../../../core/services/communication.
 import { HangarModel } from 'src/app/core/models/hangar.interface';
 import { Component, OnInit, Input } from '@angular/core';
 import { HangarService } from '../../../../core/services/hangar.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-hangar-detail',
@@ -12,12 +13,14 @@ export class HangarDetailComponent implements OnInit {
 
   hangar: HangarModel;
 
-  constructor(private hangarService: HangarService, private comService: CommunicationService ) {
+  constructor(private hangarService: HangarService, private comService: CommunicationService, private router: Router ) {
   }
 
   ngOnInit() {
-    this.hangar = this.comService.getData();
-    console.log(this.hangar);
+    this.hangar = this.comService.getDataRelativeToHangar();
+    if (!this.hangar) {
+      this.router.navigate(['hangars']);
+    }
   }
 
 }

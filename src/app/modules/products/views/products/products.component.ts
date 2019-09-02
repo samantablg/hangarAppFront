@@ -34,11 +34,14 @@ export class ProductsComponent implements OnInit {
       this.totalElements = data['totalElements'];
       this.totalPages = data['totalPages'];
     });
+    if (!this.products) {
+      this.router.navigate(['']);
+    }
   }
 
   getProduct( id: number ) {
     this.product = this. products[id];
-    this.comService.setData(this.product);
+    this.comService.setDataRelativeToProduct(this.product);
     this.router.navigate(['/products/product', id + 1]);
   }
 
@@ -46,17 +49,15 @@ export class ProductsComponent implements OnInit {
     this.router.navigate(['products/new']);
   }
 
-
   getHangars() {
     this.hangarService.loadBasicInfoHangars().subscribe( data => {
-        this.hangars = data;
+      this.hangars = data;
     });
   }
 
-  viewProductsOfHangar( id: number ) {
-    this.hangar = this.hangars[id];
-    this.comService.setData(this.hangar);
-    this.router.navigate(['/products/hangar', id + 1]);
+  viewProductsOfHangar( hangar: BasicHangarModel ) {
+    this.comService.setDataRelativeToHangar(hangar);
+    this.router.navigate(['/products/hangar', hangar.id]);
   }
 
   onScroll() {

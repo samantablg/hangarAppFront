@@ -1,13 +1,13 @@
 <div class="container d-flex row justify-content-between">
-    <h3>{{ hangar[1] }}</h3>
+    <h3>{{ hangar.name }}</h3>
     <a class="addProd" (click)="linkToHangar()"><strong>{{ 'insertProduct.text' | translate }}</strong></a>
 </div>
 
-<div *ngIf="hangarEmpty">
+<div *ngIf="isHangarEmpty">
     <h5>{{ 'hangar.empty' | translate }}</h5>
 </div>
 
-<table *ngIf="!hangarEmpty" class="table table-condensed table-hover">
+<table *ngIf="!isHangarEmpty" class="table table-condensed table-hover">
     <caption>
         {{ 'relationships.text' | translate }}
     </caption>
@@ -15,18 +15,21 @@
         <tr>
             <th scope="col">{{ 'product.text' | translate }}</th>
             <th scope="col">{{ 'amount.text' | translate }}</th>
-            <th></th>
+            <th scope="col">{{ 'util.management' | translate }}</th>
         </tr>
     </thead>
     <tbody>
-        <tr *ngFor="let item of productsOfHangar; let i = index">
-            <td>{{ item.product }}</td>
-            <td>{{ item.amount }}</td>
+        <tr *ngFor="let productOfHangar of productsWithNameOfHangar; let i = index">
             <td class="td1">
-                <a (click)="seeProduct(item.product)">{{ 'more.text' | translate }}</a>
+                <a (click)="seeProduct(productOfHangar.product)">{{ productOfHangar.nameProduct }}</a>
+            </td>
+            <td>{{ productOfHangar.amount }}</td>
+            <td>
+                <a (click)="deleteRelationship(productOfHangar)">{{ 'util.delete' | translate }}</a>
+                <a (click)="modifyAmount(productOfHangar.product)">{{ 'form.amount' | translate }}</a>
             </td>
         </tr>
     </tbody>
 </table>
 
-<app-add-products-hangar [insertProduct]="insertProduct" [hangar]="hangar"></app-add-products-hangar>
+<app-add-products-hangar [isProductInsert]="isProductInsert" [isAmountModify]="isAmountModify" [hangar]="hangar" [idProduct]="idProduct"></app-add-products-hangar>

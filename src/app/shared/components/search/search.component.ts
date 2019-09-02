@@ -33,16 +33,15 @@ export class SearchComponent implements OnInit {
 
   searchHangar() {
     if (this.formSearch.value.search !== '') {
+      console.log(this.formSearch.value);
       this.hangarService
         .findHangarsByName(this.formSearch.value.search)
         .subscribe(
           data => {
-            this.result = data;
-            this.comService.setData(this.result);
+            this.comService.setDataRelativeToHangar(data);
             this.router.navigate(['hangars/search']);
           },
           error => {
-            this.comService.setData('');
             window.alert('Sin resultado de búsqueda');
           }
         );
@@ -55,12 +54,10 @@ export class SearchComponent implements OnInit {
         .findProductsByName(this.formSearch.value.search)
         .subscribe(
           data => {
-            this.result = data;
-            this.comService.setData(this.result);
+            this.comService.setDataRelativeToProduct(data);
             this.router.navigate(['products/search']);
           },
           error => {
-            this.comService.setData('');
             window.alert('Sin resultado de búsqueda');
           }
         );
