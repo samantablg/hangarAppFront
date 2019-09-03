@@ -31,7 +31,8 @@
         "desc": "Descripción",
         "name": "Debe contener al menos tres caracteres",
         "delete": "Borrar producto",
-        "exist": "El nombre del producto ya existe"
+        "exist": "El nombre del producto ya existe",
+        "amount": "Actualice el numero de productos de este tipo que hay en el hangar"
     },
     "hangar": {
         "": "Hangar",
@@ -47,7 +48,8 @@
     },
     "form": {
         "uniqueness": "Verificando la existencia...",
-        "amount": "Cambiar la cantidad"
+        "amount": "Cambiar la cantidad",
+        "product": "Seleccione el producto que quiere almacenar"
     },
     "util": {
         "management": "Gestión",

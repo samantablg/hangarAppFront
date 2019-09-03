@@ -23,25 +23,24 @@ export class AddProductsHangarComponent implements OnInit {
   formProductToHangar: FormGroup;
 
 
-  constructor( private productService: ProductService,
-               private comService: CommunicationService,
-               private router: Router) {
-                this.hangar = this.comService.getDataRelativeToHangar();
-                if (this.hangar === undefined) {
-                  this.router.navigate(['products']);
+  constructor(private productService: ProductService, private comService: CommunicationService, private router: Router) {
+    this.hangar = this.comService.getDataRelativeToHangar();
+    if (this.hangar === undefined) {
+      this.router.navigate(['products']);
+    }
   }
-                this.formProductToHangar = new FormGroup({
-    hangar: new FormControl(this.hangar.id),
-    product: new FormControl(this.idProduct, [
-      Validators.required
-    ]),
-    amount: new FormControl('', [
-      Validators.required
-    ])
-  });
-}
 
   ngOnInit() {
+    this.formProductToHangar = new FormGroup({
+      hangar: new FormControl(this.hangar.id),
+      product: new FormControl(this.idProduct, [
+        Validators.required
+      ]),
+      amount: new FormControl('', [
+        Validators.required
+      ])
+    });
+
     this.productService.loadProducts().subscribe( data => {
       this.products = data;
     });

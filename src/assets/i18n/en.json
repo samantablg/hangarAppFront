@@ -31,7 +31,8 @@
         "desc": "Description",
         "name": "Should be minimum 3 characters",
         "delete": "Delete product",
-        "exist": "Product name already taken"
+        "exist": "Product name already taken",
+        "amount": "Update the number of products"
     },
     "hangar": {
         "": "Hangar",
@@ -46,7 +47,9 @@
         "exist": "Hangar name already taken"
     },
     "form": {
-        "uniqueness": "Checking for uniqueness..."
+        "uniqueness": "Checking for uniqueness...",
+        "amount": "Modify the amount",
+        "product": "Select the product you want to store"
     },
     "util": {
         "management": "Management",
