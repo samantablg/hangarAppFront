@@ -1,6 +1,6 @@
 import { HangarAsyncValidators } from './form-hangar.validators';
 import { HangarModel } from 'src/app/core/models/hangar.interface';
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, ɵConsole } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { HangarService } from '../../../../core/services/hangar.service';
 import { Router } from '@angular/router';
@@ -13,7 +13,7 @@ import { Router } from '@angular/router';
 export class FormHangarComponent implements OnInit {
   @Input() isReadOnly?: boolean;
   @Input() isEdit?: boolean;
-  @Input() hangarSelect: HangarModel;
+  @Input() hangarSelect?: HangarModel;
   @Input() addNewHangar?: boolean;
   formHangar: FormGroup;
   hangar: HangarModel;

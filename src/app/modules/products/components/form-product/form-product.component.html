@@ -3,18 +3,34 @@
         <div class="form-group row">
             <label class="col-form-label" for="name">{{'name.text' | translate}}</label>
             <input formControlName="name" id="name" type="text" class="form-control" />
-            <div *ngIf="name.pending">{{ "form.uniqueness" | translate }}</div>
-            <div *ngIf="name.touched && name.invalid && name.value!=productSelect.name" class="alert alert-danger">
-                <div *ngIf="!!name.errors.shouldBeUnique">
-                    {{ "login.user-exist" | translate }}
-                </div>
-                <div *ngIf="!!name.errors.minlength">
-                    {{ "product.name" | translate }}
-                </div>
-                <div *ngIf="!!name.errors.required">
-                    {{ "name-form.text" | translate }}
+            <div *ngIf="name.pending">{{ 'form.uniqueness' | translate }}</div>
+            <div *ngIf="productSelect">
+                <div *ngIf="name.touched && name.invalid && name.value!=productSelect.name" class="alert alert-danger">
+                    <div *ngIf="!!name.errors.shouldBeUnique">
+                        {{ 'product.exist' | translate }}
+                    </div>
+                    <div *ngIf="!!name.errors.minlength">
+                        {{ 'product.name' | translate }}
+                    </div>
+                    <div *ngIf="!!name.errors.required">
+                        {{ 'name-form.text' | translate }}
+                    </div>
                 </div>
             </div>
+            <div *ngIf="!productSelect">
+                <div *ngIf="name.touched && name.invalid" class="alert alert-danger">
+                    <div *ngIf="!!name.errors.shouldBeUnique">
+                        {{ 'product.exist' | translate }}
+                    </div>
+                    <div *ngIf="!!name.errors.minlength">
+                        {{ 'product.name' | translate }}
+                    </div>
+                    <div *ngIf="!!name.errors.required">
+                        {{ 'name-form.text' | translate }}
+                    </div>
+                </div>
+            </div>
+
         </div>
         <div class="form-group row">
             <label class="col-form-label" for="description">{{ 'product.desc' | translate }}</label>

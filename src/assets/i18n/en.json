@@ -30,7 +30,8 @@
         "text": "Product",
         "desc": "Description",
         "name": "Should be minimum 3 characters",
-        "delete": "Delete product"
+        "delete": "Delete product",
+        "exist": "Product name already taken"
     },
     "hangar": {
         "": "Hangar",
@@ -41,7 +42,8 @@
         "phone": "Phone",
         "list": "List of hangars",
         "empty": "This hangar has no products stored",
-        "delete": "Delete Hangar"
+        "delete": "Delete Hangar",
+        "exist": "Hangar name already taken"
     },
     "form": {
         "uniqueness": "Checking for uniqueness..."

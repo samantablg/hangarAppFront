@@ -13,7 +13,7 @@ import { Router } from '@angular/router';
 export class FormProductComponent implements OnInit {
 
   @Input() isEdit?: boolean;
-  @Input() productSelect: ProductModel;
+  @Input() productSelect?: ProductModel;
   formProduct: FormGroup;
   product: ProductModel;
 
@@ -75,7 +75,7 @@ export class FormProductComponent implements OnInit {
   }
 
   postProduct(product: ProductModel) {
-    this.productService.postProduct(product).subscribe(
+    this.productService.postProduct({ id: 1, name: 'sami', description: '', state: true,  }).subscribe(
       data => {
         window.alert('product save');
         this.router.navigate(['products']);

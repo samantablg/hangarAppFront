@@ -31,11 +31,6 @@ export class ProductService {
                 .get<ProductModel[]>(`${ this.urlApi }products/${ page }/${ items }`);
   }
 
-  public getProducts(): ProductModel[] {
-    this.loadProducts();
-    return this.products;
-  }
-
   public getProduct(id: number): ProductModel {
     return this.products[id];
   }
@@ -91,6 +86,11 @@ export class ProductService {
   public deleteProduct(id: number) {
     return this.http
                 .put(`${ this.urlApi }product/${ id }`, '');
+  }
+
+  public deleteProductIfIsNotLink(id: number) {
+    return this.http
+                .get<boolean>(`${ this.urlApi }productOfHangar/link/${ id }`);
   }
 
 }

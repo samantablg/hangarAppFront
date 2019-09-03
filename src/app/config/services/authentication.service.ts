@@ -16,10 +16,7 @@ export class AuthenticationService {
 
   isUserLoggedIn(): boolean {
     const user = sessionStorage.getItem('username');
-    if (user === null) {
-      return false;
-    }
-    return true;
+    return !(user === null);
   }
 
   logOut() {

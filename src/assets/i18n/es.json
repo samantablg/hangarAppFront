@@ -30,7 +30,8 @@
         "text": "Producto",
         "desc": "Descripción",
         "name": "Debe contener al menos tres caracteres",
-        "delete": "Borrar producto"
+        "delete": "Borrar producto",
+        "exist": "El nombre del producto ya existe"
     },
     "hangar": {
         "": "Hangar",
@@ -41,7 +42,8 @@
         "phone": "Teléfono",
         "list": "Lista de hangares",
         "empty": "Este hangar no tiene productos almacenados",
-        "delete": "Borrar hangar"
+        "delete": "Borrar hangar",
+        "exist": "El nombre del hangar ya existe"
     },
     "form": {
         "uniqueness": "Verificando la existencia...",

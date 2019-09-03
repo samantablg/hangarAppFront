@@ -6,17 +6,35 @@
       }}</label>
             <input formControlName="name" id="name" type="text" class="form-control" [readonly]="isReadOnly" />
             <div *ngIf="name.pending">{{ "form.uniqueness" | translate }}</div>
-            <div *ngIf="name.touched && name.invalid && name.value != hangarSelect.name" class="alert alert-danger">
-                <div *ngIf="!!name.errors.shouldBeUnique">
-                    {{ "login.user-exist" | translate }}
-                </div>
-                <div *ngIf="!!name.errors.minlength">
-                    {{ "product.name" | translate }}
-                </div>
-                <div *ngIf="!!name.errors.required">
-                    {{ "name-form.text" | translate }}
+
+            <div *ngIf="hangarSelect">
+                <div *ngIf="name.touched && name.invalid && name.value!=hangarSelect.name" class="alert alert-danger">
+                    <div *ngIf="!!name.errors.shouldBeUnique">
+                        {{ 'hangar.exist' | translate }}
+                    </div>
+                    <div *ngIf="!!name.errors.minlength">
+                        {{ "product.name" | translate }}
+                    </div>
+                    <div *ngIf="!!name.errors.required">
+                        {{ "name-form.text" | translate }}
+                    </div>
                 </div>
             </div>
+
+            <div *ngIf="!hangarSelect">
+                <div *ngIf="name.touched && name.invalid" class="alert alert-danger">
+                    <div *ngIf="!!name.errors.shouldBeUnique">
+                        {{ 'hangar.exist' | translate }}
+                    </div>
+                    <div *ngIf="!!name.errors.minlength">
+                        {{ "product.name" | translate }}
+                    </div>
+                    <div *ngIf="!!name.errors.required">
+                        {{ "name-form.text" | translate }}
+                    </div>
+                </div>
+            </div>
+
         </div>
         <div class="form-group row">
             <label class="col-form-label" for="address">{{

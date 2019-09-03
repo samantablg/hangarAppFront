@@ -13,8 +13,7 @@ export class HangarDetailComponent implements OnInit {
 
   hangar: HangarModel;
 
-  constructor(private hangarService: HangarService, private comService: CommunicationService, private router: Router ) {
-  }
+  constructor( private comService: CommunicationService, private router: Router ) { }
 
   ngOnInit() {
     this.hangar = this.comService.getDataRelativeToHangar();
