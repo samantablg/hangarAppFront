@@ -39,9 +39,7 @@ export class ProductDetailComponent implements OnInit {
   public deleteProduct() {
     this.productService.deleteProductIfIsNotLink(this.product.id).subscribe( data => {
       if (data) {
-        console.log(data);
-        window.alert(`product can't be deleted`)
-        ;
+        window.alert(`product can't be deleted`);
       } else {
         window.alert('product deleted');
         this.router.navigate(['/products']);

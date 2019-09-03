@@ -32,7 +32,8 @@
         "name": "Debe contener al menos tres caracteres",
         "delete": "Borrar producto",
         "exist": "El nombre del producto ya existe",
-        "amount": "Actualice el numero de productos de este tipo que hay en el hangar"
+        "amount": "Actualice el numero de productos de este tipo que hay en el hangar",
+        "manage": "Gestionar productos"
     },
     "hangar": {
         "": "Hangar",
@@ -75,7 +76,6 @@
     "prices-of.text": "Precios de",
     "date.text": "Fecha",
     "price.text": "Precios",
-    "add-prod.text": "Añadir productos",
     "amount.text": "Cantidad",
     "relationships.text": "Relaciones",
     "insertProduct.text": "Añadir producto",

@@ -32,7 +32,7 @@ export class SidebarComponent {
     this.router.navigate(['/hangars/modify']);
   }
 
-  addProductsToHangar() {
+  manageProductsOfHangar() {
     this.id = this.setHangar.id;
     this.comService.setDataRelativeToHangar(this.setHangar);
     this.router.navigate(['/products/hangar', this.id + 1]);

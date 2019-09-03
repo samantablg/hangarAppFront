@@ -35,6 +35,8 @@ export class ProductsOfHangarComponent implements OnInit {
       this.productService.loadRelationshipsWithNameOfProduct(this.hangar.id).subscribe( data => {
         this.productsWithNameOfHangar = data;
         this.isHangarEmpty = !(this.productsWithNameOfHangar.length > 0);
+      }, err => {
+        this.isHangarEmpty = true;
       });
     } else {
       this.router.navigate(['products']);
@@ -62,9 +64,14 @@ export class ProductsOfHangarComponent implements OnInit {
 
   deleteRelationship(productOfHangar: ProductOfHangarModel) {
     this.productService.unlinkProductOfHangar(productOfHangar).subscribe( response => {
-      this.router.navigate(['products']);
+      if (response) {
+        window.alert('borrado');
+        this.router.navigate(['products']);
+      } else {
+        window.alert('fail');
+      }
     }, err => {
-      window.alert('fallo al borrar');
+      window.alert(err);
     });
   }
 

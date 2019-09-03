@@ -93,4 +93,9 @@ export class ProductService {
                 .get<boolean>(`${ this.urlApi }productOfHangar/link/${ id }`);
   }
 
+  public loadProductsNotAssociateToHangarById(idHangar: number): Observable<ProductModel[]> {
+    return this.http
+                .get<ProductModel[]>(`${ this.urlApi }products/unlink/${ idHangar }`);
+  }
+
 }

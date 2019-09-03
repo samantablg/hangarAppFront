@@ -32,7 +32,8 @@
         "name": "Should be minimum 3 characters",
         "delete": "Delete product",
         "exist": "Product name already taken",
-        "amount": "Update the number of products"
+        "amount": "Update the number of products",
+        "manage": "Manage products"
     },
     "hangar": {
         "": "Hangar",
@@ -76,7 +77,6 @@
     "prices-of.text": "Prices of",
     "date.text": "Date",
     "price.text": "Prices",
-    "add-prod.text": "Add products",
     "amount.text": "Amount",
     "relationships.text": "Relationships",
     "insertProduct.text": "Add product",

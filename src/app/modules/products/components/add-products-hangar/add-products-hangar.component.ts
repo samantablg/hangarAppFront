@@ -41,8 +41,9 @@ export class AddProductsHangarComponent implements OnInit {
       ])
     });
 
-    this.productService.loadProducts().subscribe( data => {
+    this.productService.loadProductsNotAssociateToHangarById(this.hangar.id).subscribe( data => {
       this.products = data;
+      console.log(this.products);
     });
 
     if (this.isAmountModify) {
