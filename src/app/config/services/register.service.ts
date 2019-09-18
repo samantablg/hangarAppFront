@@ -10,10 +10,6 @@ export class RegisterService {
   private url = 'http://localhost:8888/register';
   constructor(private http: HttpClient) { }
 
-  // httpOptions = {
-  //   headers: new HttpHeaders( { 'Content-Type': 'application/json' })
-  // };
-
   headers = new HttpHeaders({'Access-Control-Allow-Origin' : '*'});
 
   public postUser(user: UserModel) {
@@ -24,7 +20,7 @@ export class RegisterService {
                 });
   }
 
-  public userExistsByUsername(username: string) {
+  public isUserByUsername(username: string) {
     return this.http
                 .get<boolean>(`${ this.url }/${ username }`);
   }

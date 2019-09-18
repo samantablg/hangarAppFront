@@ -1,3 +1,4 @@
+import { ProductExtendedModel } from './../models/product-extended.interface';
 import { BasicHangarModel } from 'src/app/core/models/basic-hangar.interface';
 import { HangarService } from 'src/app/core/services/hangar.service';
 import { ProductModel } from './../models/product.interface';
@@ -15,7 +16,7 @@ export class ProductService {
   private urlApi = 'http://localhost:8888/api/';
   products: ProductModel[] = [];
 
-  constructor( private http: HttpClient, private hangarService: HangarService ) { }
+  constructor( private http: HttpClient ) { }
 
   httpOptions = {
     headers: new HttpHeaders( { 'Content-Type': 'application/json' })
@@ -24,6 +25,11 @@ export class ProductService {
   public loadProducts(): Observable<ProductModel[]> {
     return this.http
                 .get<ProductModel[]>(`${ this.urlApi }products`);
+  }
+
+  public loadProductsExtended(): Observable<ProductExtendedModel[]> {
+    return this.http
+                .get<ProductExtendedModel[]>(`${ this.urlApi }productsExtended`);
   }
 
   public loadProductsPage(page: number, items: number ): Observable<ProductModel[]> {

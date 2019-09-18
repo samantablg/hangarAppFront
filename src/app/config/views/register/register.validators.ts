@@ -15,7 +15,7 @@ export class RegisterAsyncValidators {
   static shouldBeUnique(registerService: RegisterService) {
     return (control: AbstractControl): Promise<ValidationErrors | null> => new Promise(
       (resolve, reject) => {
-        registerService.userExistsByUsername(control.value as string)
+        registerService.isUserByUsername(control.value as string)
         .subscribe(response => {
           if (response) {
             resolve({shouldBeUnique: true});
