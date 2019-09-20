@@ -1,5 +1,5 @@
+import { ProductOfHangarService } from 'src/app/core/services/product-of-hangar.service';
 import { CommunicationService } from './../../../../core/services/communication.service';
-import { ProductService } from '../../../../core/services/product.service';
 import { ProductModel } from 'src/app/core/models/product.interface';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
@@ -15,7 +15,10 @@ export class ProductDetailComponent implements OnInit {
   insertPrice = true;
   showHistoric = true;
 
-  constructor(private comService: CommunicationService, private router: Router, private productService: ProductService) { }
+  constructor(private comService: CommunicationService,
+              private router: Router,
+              private productOfHangarService: ProductOfHangarService
+    ) { }
 
   ngOnInit() {
     this.product = this.comService.getDataRelativeToProduct();
@@ -37,7 +40,7 @@ export class ProductDetailComponent implements OnInit {
   }
 
   public deleteProduct() {
-    this.productService.deleteProductIfIsNotLink(this.product.id).subscribe( data => {
+    this.productOfHangarService.deleteProductIfIsNotLink(this.product.id).subscribe( data => {
       if (data) {
         window.alert(`product can't be deleted`);
       } else {

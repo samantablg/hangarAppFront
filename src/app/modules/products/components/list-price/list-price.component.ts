@@ -1,4 +1,4 @@
-import { PriceService } from '../../../../core/services/price.service';
+import { ProductService } from './../../../../core/services/product.service';
 import { ProductModel } from '../../../../core/models/product.interface';
 import { Component, OnInit, Input } from '@angular/core';
 import { PriceModel } from 'src/app/core/models/price.interface';
@@ -14,11 +14,11 @@ export class ListPriceComponent implements OnInit {
   @Input() product: ProductModel;
   prices: PriceModel[] = [];
 
-  constructor(private priceService: PriceService) {
+  constructor(private productService: ProductService) {
   }
 
   ngOnInit() {
-    this.priceService.loadPrices(this.product.id).subscribe( data => {
+    this.productService.loadPrices(this.product.id).subscribe( data => {
       this.prices = data;
     });
   }

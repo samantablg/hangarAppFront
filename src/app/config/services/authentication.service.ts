@@ -19,6 +19,10 @@ export class AuthenticationService {
     return !(user === null);
   }
 
+  isSessionClose(): boolean {
+    return false;
+  }
+
   logOut() {
     sessionStorage.removeItem('username');
   }

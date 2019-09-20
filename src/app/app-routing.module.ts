@@ -13,11 +13,9 @@ const routes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'logout', component: LogoutComponent, canActivate: [AuthGuardService] },
   { path: 'register', component: RegisterComponent },
-  { path: 'hangars',
-  loadChildren: () => import('./modules/hangars/hangars.module').then(m => m.HangarsModule), canActivate: [AuthGuardService]
+  { path: 'hangars', loadChildren: './modules/hangars/hangars.module#HangarsModule', canActivate: [AuthGuardService]
   },
-  { path: 'products',
-  loadChildren: () => import('./modules/products/products.module').then(m => m.ProductsModule), canActivate: [AuthGuardService]
+  { path: 'products', loadChildren: './modules/products/products.module#ProductsModule', canActivate: [AuthGuardService]
   },
   { path: '**', pathMatch: 'full', redirectTo: ''}
 ];

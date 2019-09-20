@@ -1,7 +1,5 @@
 import { ConfigModule } from './config/config.module';
 import { CoreModule } from './core/core.module';
-import { HangarsModule } from './modules/hangars/hangars.module';
-import { ProductsModule } from './modules/products/products.module';
 import { LayoutModule } from './layout/layout.module';
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule } from '@angular/common/http';
@@ -25,16 +23,14 @@ import { TranslateModule } from '@ngx-translate/core';
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule,
     HttpClientModule,
     LayoutModule,
-    HangarsModule,
-    ProductsModule,
     ReactiveFormsModule,
     CoreModule,
     TranslateModule,
     FormsModule,
-    ConfigModule
+    ConfigModule,
+    AppRoutingModule
   ],
   bootstrap: [AppComponent]
 })

@@ -19,7 +19,7 @@
         </tr>
     </thead>
     <tbody>
-        <tr *ngFor="let productOfHangar of productsWithNameOfHangar; let i = index">
+        <tr *ngFor="let productOfHangar of productsOfHangarExtended">
             <td class="td1">
                 <a (click)="seeProduct(productOfHangar.product)">{{ productOfHangar.nameProduct }}</a>
             </td>

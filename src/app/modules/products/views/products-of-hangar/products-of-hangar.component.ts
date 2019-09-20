@@ -5,7 +5,8 @@ import { ProductService } from '../../../../core/services/product.service';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { ProductOfHangarModel } from 'src/app/core/models/product-hangar.interface';
-import { ProductWithNameOfHangarModel } from 'src/app/core/models/product-hangar-extended.interface';
+import { ProductOfHangarService } from 'src/app/core/services/product-of-hangar.service';
+import { ProductOfHangarExtendedModel } from 'src/app/core/models/product-hangar-extended.interface';
 
 @Component({
   selector: 'app-products-of-hangar',
@@ -15,7 +16,7 @@ import { ProductWithNameOfHangarModel } from 'src/app/core/models/product-hangar
 export class ProductsOfHangarComponent implements OnInit {
 
   hangar: BasicHangarModel;
-  productsWithNameOfHangar: ProductWithNameOfHangarModel[] = [];
+  productsOfHangarExtended: ProductOfHangarExtendedModel[] = [];
   productsOfHangar: ProductOfHangarModel[] = [];
   isProductInsert: boolean;
   isAmountModify: boolean;
@@ -24,7 +25,10 @@ export class ProductsOfHangarComponent implements OnInit {
   isHangarEmpty: boolean;
   productOfHangar: ProductOfHangarModel;
 
-  constructor(private productService: ProductService, private comService: CommunicationService, private router: Router) {
+  constructor(private productOfHangarService: ProductOfHangarService,
+              private productService: ProductService,
+              private comService: CommunicationService,
+              private router: Router) {
     this.isProductInsert = false;
     this.isAmountModify = false;
     this.hangar = this.comService.getDataRelativeToHangar();
@@ -32,9 +36,9 @@ export class ProductsOfHangarComponent implements OnInit {
 
   ngOnInit() {
     if (this.hangar) {
-      this.productService.loadRelationshipsWithNameOfProduct(this.hangar.id).subscribe( data => {
-        this.productsWithNameOfHangar = data;
-        this.isHangarEmpty = !(this.productsWithNameOfHangar.length > 0);
+      this.productOfHangarService.loadRelationshipsWithNameOfProduct(this.hangar.id).subscribe( data => {
+        this.productsOfHangarExtended = data;
+        this.isHangarEmpty = !(this.productsOfHangarExtended.length > 0);
       }, err => {
         this.isHangarEmpty = true;
       });
@@ -63,7 +67,7 @@ export class ProductsOfHangarComponent implements OnInit {
   }
 
   deleteRelationship(productOfHangar: ProductOfHangarModel) {
-    this.productService.unlinkProductOfHangar(productOfHangar).subscribe( response => {
+    this.productOfHangarService.unlinkProductOfHangar(productOfHangar).subscribe( response => {
       if (response) {
         window.alert('borrado');
         this.router.navigate(['products']);

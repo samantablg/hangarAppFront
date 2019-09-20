@@ -36,7 +36,7 @@ export class HangarService {
 
   public findHangarsByName(name: string): Observable<HangarModel[]> {
     return this.http
-                .get<HangarModel[]>(`${ this.urlApi }search?hangarName=${ name }`);
+                .get<HangarModel[]>(`${ this.urlApi }search?name=${ name }`);
   }
 
   public getHangar(id: number): HangarModel {

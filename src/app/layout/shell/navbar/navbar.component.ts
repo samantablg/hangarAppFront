@@ -9,9 +9,12 @@ import { Component, Output, EventEmitter, OnChanges, SimpleChanges, Input, Chang
 })
 export class NavbarComponent {
 
+  name: String;
   @Output() emitChangeLang = new EventEmitter();
 
-  constructor( public loginService: AuthenticationService) { }
+  constructor( public loginService: AuthenticationService) { 
+    this.name = this.loginService.getName();
+  }
 
   emitLanguage() {
     this.emitChangeLang.emit();

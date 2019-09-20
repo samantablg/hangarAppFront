@@ -1,4 +1,4 @@
-import { PriceService } from '../../../../core/services/price.service';
+import { ProductService } from './../../../../core/services/product.service';
 import { PriceModel } from '../../../../core/models/price.interface';
 import { ProductModel } from 'src/app/core/models/product.interface';
 import { FormGroup, FormControl } from '@angular/forms';
@@ -17,14 +17,16 @@ export class FormPriceComponent {
 
   @Input() insertPrice: boolean;
 
-  constructor(private priceService: PriceService ) {
+  constructor(private productService: ProductService ) {
     this.formPrice = new FormGroup({
       price: new FormControl('')
     });
   }
 
   savePrice() {
-    this.priceService.postPrice(this.formPrice.value.price, this.product.id);
+    this.productService.postPrice(this.formPrice.value.price, this.product.id).subscribe( data => {
+                  console.log(data);
+                });
     this.insertPrice = !this.insertPrice;
   }
 

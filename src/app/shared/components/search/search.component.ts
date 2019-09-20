@@ -42,6 +42,7 @@ export class SearchComponent implements OnInit {
             this.router.navigate(['hangars/search']);
           },
           error => {
+            console.error(error);
             window.alert('Sin resultado de búsqueda');
           }
         );

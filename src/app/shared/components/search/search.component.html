@@ -9,7 +9,7 @@
                 <select class="form-control" formControlName="type" name="type">
           <option value="">{{ "search.text" | translate }}</option>
           <option
-            *ngFor="let option of type; let i of index"
+            *ngFor="let option of type"
             [value]="option"
           >
             {{ option  | translate }}

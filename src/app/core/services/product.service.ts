@@ -1,12 +1,9 @@
 import { ProductExtendedModel } from './../models/product-extended.interface';
-import { BasicHangarModel } from 'src/app/core/models/basic-hangar.interface';
-import { HangarService } from 'src/app/core/services/hangar.service';
 import { ProductModel } from './../models/product.interface';
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { ProductOfHangarModel } from '../models/product-hangar.interface';
-import { ProductWithNameOfHangarModel } from '../models/product-hangar-extended.interface';
+import { PriceModel } from '../models/price.interface';
 
 @Injectable({
   providedIn: 'root'
@@ -15,6 +12,7 @@ export class ProductService {
 
   private urlApi = 'http://localhost:8888/api/';
   products: ProductModel[] = [];
+  prices: PriceModel[] = [];
 
   constructor( private http: HttpClient ) { }
 
@@ -54,34 +52,9 @@ export class ProductService {
     return this.http.put(`${ this.urlApi }product`, product);
   }
 
-  public loadRelationships(id: number): Observable<ProductOfHangarModel[]> {
-    return this.http
-               .get<ProductOfHangarModel[]>(`${ this.urlApi }products/hangar/${ id }`);
-  }
-
-  public loadRelationshipsWithNameOfProduct(id: number): Observable<ProductWithNameOfHangarModel[]> {
-    return this.http
-               .get<ProductWithNameOfHangarModel[]>(`${ this.urlApi }link/productsOfHangar/${ id }`);
-  }
-
-  public updateAmountOfRelationShip(productOfHangar: ProductOfHangarModel) {
-    return this.http
-                .put(`${ this.urlApi }productOfHangar/update`, productOfHangar);
-  }
-
-  public unlinkProductOfHangar( productOfHangar: ProductOfHangarModel): Observable<ProductOfHangarModel> {
-    return this.http
-                .put<ProductOfHangarModel>(`${ this.urlApi }productOfHangar/delete`, productOfHangar);
-  }
-
-  public postProductToHangar( productOfHangar: ProductOfHangarModel) {
-    return this.http
-                .post(`${ this.urlApi }productOfHangar`, productOfHangar);
-  }
-
   public findProductsByName(name: string): Observable<ProductModel[]> {
     return this.http
-                .get<ProductModel[]>(`${ this.urlApi }search/product?p_name=${ name }`);
+                .get<ProductModel[]>(`${ this.urlApi }search/product?name=${ name }`);
   }
 
   public productExistByName(name: string) {
@@ -94,14 +67,24 @@ export class ProductService {
                 .put(`${ this.urlApi }product/${ id }`, '');
   }
 
-  public deleteProductIfIsNotLink(id: number) {
-    return this.http
-                .get<boolean>(`${ this.urlApi }productOfHangar/link/${ id }`);
-  }
-
   public loadProductsNotAssociateToHangarById(idHangar: number): Observable<ProductModel[]> {
     return this.http
                 .get<ProductModel[]>(`${ this.urlApi }products/unlink/${ idHangar }`);
+  }
+
+  public postPrice(price: number, id: number) {
+    return this.http
+                .post<PriceModel>(`${ this.urlApi }price/product/${id}`, price);
+  }
+
+  public loadPrices(id: number): Observable<PriceModel[]> {
+    return this.http
+                .get<PriceModel[]>(`${ this.urlApi }product/${ id }`);
+  }
+
+  public getHistoricOfProduct(id: number): PriceModel[] {
+    this.loadPrices(id);
+    return this.prices;
   }
 
 }

@@ -4,7 +4,7 @@
             <div *ngIf="!isAmountModify" class="form-group row">
                 <label class="col-form-label" for="amount">{{ 'product.text' | translate }}</label>
                 <select class="form-control" formControlName="product" id="name" type="number">
-                    <option>{{ 'search.text' | translate }}</option>
+                    <option>{{ 'form.product' | translate }}</option>
                     <option *ngFor="let product of products" [value]=product.id>
                       {{ product.name }}
                     </option>

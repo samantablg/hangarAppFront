@@ -6,6 +6,7 @@ import { ProductService } from './../../../../core/services/product.service';
 import { Component, OnInit, Input } from '@angular/core';
 import { ProductModel } from 'src/app/core/models/product.interface';
 import { Router } from '@angular/router';
+import { ProductOfHangarService } from 'src/app/core/services/product-of-hangar.service';
 
 @Component({
   selector: 'app-add-products-hangar',
@@ -23,7 +24,10 @@ export class AddProductsHangarComponent implements OnInit {
   formProductToHangar: FormGroup;
 
 
-  constructor(private productService: ProductService, private comService: CommunicationService, private router: Router) {
+  constructor(private productService: ProductService,
+              private productOfHangarService: ProductOfHangarService,
+              private comService: CommunicationService,
+              private router: Router) {
     this.hangar = this.comService.getDataRelativeToHangar();
     if (this.hangar === undefined) {
       this.router.navigate(['products']);
@@ -44,6 +48,10 @@ export class AddProductsHangarComponent implements OnInit {
     this.productService.loadProductsNotAssociateToHangarById(this.hangar.id).subscribe( data => {
       this.products = data;
       console.log(this.products);
+    }, err => {
+      this.productService.loadProducts().subscribe( data => {
+        this.products = data;
+      });
     });
 
     if (this.isAmountModify) {
@@ -63,7 +71,7 @@ export class AddProductsHangarComponent implements OnInit {
   addProduct() {
     if (this.isAmountModify) {
       this.product.setValue(this.idProduct);
-      this.productService.updateAmountOfRelationShip(this.formProductToHangar.value)
+      this.productOfHangarService.updateAmountOfRelationShip(this.formProductToHangar.value)
       .subscribe( data => {
         this.isAmountModify = !this.isAmountModify;
         window.alert('update');
@@ -72,7 +80,7 @@ export class AddProductsHangarComponent implements OnInit {
         window.alert('error');
       });
     } else {
-      this.productService.postProductToHangar(this.formProductToHangar.value)
+      this.productOfHangarService.postProductToHangar(this.formProductToHangar.value)
       .subscribe( data => {
         this.isProductInsert = !this.isProductInsert;
         window.alert('save!');
