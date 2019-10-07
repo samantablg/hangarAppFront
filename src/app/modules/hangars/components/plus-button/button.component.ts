@@ -1,5 +1,5 @@
 import { Router } from '@angular/router';
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, Input, OnInit, OnChanges } from '@angular/core';
 import { HangarModel } from 'src/app/core/models/hangar.interface';
 
 @Component({
@@ -15,8 +15,7 @@ export class ButtonComponent implements OnInit {
 
   constructor( private router: Router ) { }
 
-  ngOnInit() {
-  }
+  ngOnInit() {}
 
   toggleSideBar() {
     if (this.isSelect) {

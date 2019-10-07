@@ -1,9 +1,7 @@
-import { CommunicationService } from './../../../../core/services/communication.service';
-import { Component, OnInit, Input } from '@angular/core';
-import { Router } from '@angular/router';
+import { Component, OnInit } from '@angular/core';
 import { HangarModel } from 'src/app/core/models/hangar.interface';
-import { HangarService } from 'src/app/core/services/hangar.service';
-
+import { Store } from '@ngrx/store';
+import { State } from 'src/app/store/state';
 @Component({
   selector: 'app-hangars',
   templateUrl: './hangars.component.html',
@@ -12,57 +10,20 @@ import { HangarService } from 'src/app/core/services/hangar.service';
 export class HangarsComponent implements OnInit {
 
   hangars: HangarModel[] = [];
-  private hangar: HangarModel;
-  isSelected = true;
-  hangarData: HangarModel;
-  public currentHangar: any;
   page = 0;
   items = 5;
   total: number;
+  hangarDetail: HangarModel;
 
-  constructor( private hangarService: HangarService, private comService: CommunicationService, private router: Router ) {
-    this.isSelected = false;
-    this.hangarService.loadHangarsPage(this.page, this.items).subscribe( data => {
-      this.hangars = data['content'];
-      this.total = data['totalPages'];
-    });
-  }
+  constructor(public store: Store<State>) { }
 
   ngOnInit() {
-  }
-
-  getHangar( id: number ) {
-    this.hangar = this.hangars[id];
-    this.comService.setDataRelativeToHangar(this.hangar);
-    this.router.navigate(['/hangars/hangar', id + 1]);
-  }
-
-  hangarSelected(event: any, hangar: HangarModel) {
-    this.currentHangar = hangar;
-    this.isSelected = !this.isSelected;
-    this.comService.setDataRelativeToHangar(this.currentHangar);
-  }
-
-  public seeNext() {
-    this.page++;
-    if (this.page < this.total % this.items ) {
-      this.hangarService.loadHangarsPage(this.page, this.items).subscribe( data => {
-        this.hangars = data['content'];
+    this.store.select('hangar')
+      .subscribe( data => {
+        this.hangars = data.hangars;
       });
-    } else {
-      this.page = this.total - 1;
-    }
-  }
 
-  public seePrevious() {
-    this.page--;
-    if ( this.page >= 0 ) {
-      this.hangarService.loadHangarsPage(this.page, this.items).subscribe( data => {
-        this.hangars = data['content'];
-      });
-    } else {
-      this.page = 0;
-    }
+    this.store.dispatch({ type: '[HANGAR] LOAD_HANGARS' });
   }
 
 }

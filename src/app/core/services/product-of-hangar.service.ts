@@ -18,7 +18,7 @@ export class ProductOfHangarService {
                .get<ProductOfHangarModel[]>(`${ this.urlApi }products/hangar/${ id }`);
   }
 
-  public loadRelationshipsWithNameOfProduct(id: number): Observable<ProductOfHangarExtendedModel[]> {
+  public loadRelationshipsExtended(id: number): Observable<ProductOfHangarExtendedModel[]> {
     return this.http
                .get<ProductOfHangarExtendedModel[]>(`${ this.urlApi }link/productsOfHangar/${ id }`);
   }
@@ -38,8 +38,14 @@ export class ProductOfHangarService {
                 .post(`${ this.urlApi }productOfHangar`, productOfHangar);
   }
 
-  public deleteProductIfIsNotLink(id: number) {
+  public isProductLinkToHangar(id: number) {
     return this.http
-                .get<boolean>(`${ this.urlApi }productOfHangar/link/${ id }`);
+                .get<boolean>(`${ this.urlApi }productOfHangar/product/${ id }`);
   }
+
+  public isHangarNotEmpty(id: number) {
+    return this.http.get<boolean>(`${ this.urlApi }productOfHangar/hangar/${ id }`);
+  }
+
+
 }

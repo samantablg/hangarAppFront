@@ -19,7 +19,7 @@ export class AuthenticationService {
     return !(user === null);
   }
 
-  isSessionClose(): boolean {
+  isSessionClose(): boolean { // TODO
     return false;
   }
 

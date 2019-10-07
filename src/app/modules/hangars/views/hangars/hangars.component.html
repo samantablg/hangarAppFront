@@ -1,24 +1,4 @@
-<app-button [hangarSelected]="currentHangar" [isSelect]="isSelected"></app-button>
-
-<table class="table table-condensed table-hover">
-    <caption>
-        {{ 'hangar.list' | translate }}
-    </caption>
-    <thead>
-        <tr>
-            <th scope="col">Hangar</th>
-            <th scope="col">{{ 'hangar.address' | translate }}</th>
-            <th scope="col">{{ 'hangar.owner' | translate }}</th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr *ngFor="let hangar of hangars; let i = index" (dblclick)="getHangar(i)" (click)="hangarSelected($event, hangar)">
-            <td class="td1">{{ hangar.name }}</td>
-            <td>{{ hangar.address }}</td>
-            <td>{{ hangar.owner }}</td>
-        </tr>
-    </tbody>
-</table>
-
-<button (click)="seePrevious()">{{ 'previous' | translate }}</button>
-<button (click)="seeNext()">{{ 'next' | translate }}</button>
+<div class="container">
+    <app-hangar-list [hangars$]="hangars"></app-hangar-list>
+</div>
+<!-- (seeNextHangars)=" seeNext() " (seePreviousHangars)="seePrevious()" -->

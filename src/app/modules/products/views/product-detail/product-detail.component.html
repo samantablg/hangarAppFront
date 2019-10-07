@@ -1,7 +1,7 @@
-<div class="container d-flex row">
+<div *ngIf="this.product" class="container d-flex row">
     <div class="card">
         <div class="card-header justify-content-start">
-            <h2>{{product.name}}</h2>
+            <h2>{{product.name }}</h2>
         </div>
         <div class="card-body">
             <p class="card-text">{{product.description}}</p>
@@ -14,10 +14,9 @@
         </div>
     </div>
 
-    <nav class="navbar">
+    <div *ngIf="this.product">
         <app-form-price [insertPrice]="insertPrice" [product]="product"></app-form-price>
-    </nav>
 
-    <app-list-price [showHistoric]="showHistoric" [product]="product"></app-list-price>
-
+        <app-price-list [showHistoric]="showHistoric" [product]="product"></app-price-list>
+    </div>
 </div>

@@ -13,12 +13,12 @@
         <a class="nav-item nav-link" [routerLink]="['about']">{{ 'about-nav.text' | translate }}</a>
     </li>
     <li style="float:right">
-        <a *ngIf="loginService.isUserLoggedIn()" class="nav-item">{{ name }}</a>
+        <a *ngIf="this.loginService.isUserLoggedIn" class="nav-item">{{ this.loginService.getName() }}</a>
     </li>
     <li style="float:right">
         <a class="change" (click)="emitLanguage()">{{ 'change.text' | translate }}</a>
     </li>
     <li style="float:right">
-        <a *ngIf="loginService.isUserLoggedIn()" [routerLink]="['logout']" class="nav-link">{{ 'login.logout' | translate }}</a>
+        <a *ngIf="this.loginService.isUserLoggedIn()" (click)="logoutSession()" class="nav-link">{{ 'login.logout' | translate }}</a>
     </li>
 </ul>

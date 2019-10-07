@@ -1,5 +1,4 @@
 import { HangarService } from './../../../../core/services/hangar.service';
-import { CommunicationService } from './../../../../core/services/communication.service';
 import { BasicHangarModel } from 'src/app/core/models/basic-hangar.interface';
 import { ProductService } from '../../../../core/services/product.service';
 import { Component, OnInit } from '@angular/core';
@@ -16,15 +15,13 @@ export class ProductsComponent implements OnInit {
   products: ProductModel[] = [];
   scrollProducts: ProductModel[] = [];
   product: ProductModel;
-  hangars: BasicHangarModel[] = [];
-  hangar: BasicHangarModel;
+  hangars: BasicHangarModel[];
   page = 0;
   items = 6;
   totalElements: number;
   totalPages: number;
 
   constructor( private productService: ProductService,
-               private comService: CommunicationService,
                private router: Router,
                private hangarService: HangarService ) { }
 
@@ -39,10 +36,8 @@ export class ProductsComponent implements OnInit {
     }
   }
 
-  getProduct( id: number ) {
-    this.product = this. products[id];
-    this.comService.setDataRelativeToProduct(this.product);
-    this.router.navigate(['/products/product', id + 1]);
+  getProduct( product: ProductModel ) {
+    this.router.navigate(['/products/product', product.id]);
   }
 
   insertProduct() {
@@ -50,13 +45,14 @@ export class ProductsComponent implements OnInit {
   }
 
   getHangars() {
-    this.hangarService.loadBasicInfoHangars().subscribe( data => {
+    this.hangarService.loadBasicInfoHangars()
+    .subscribe( data => {
       this.hangars = data;
     });
   }
 
   viewProductsOfHangar( hangar: BasicHangarModel ) {
-    this.comService.setDataRelativeToHangar(hangar);
+    console.log(hangar.id);
     this.router.navigate(['/products/hangar', hangar.id]);
   }
 

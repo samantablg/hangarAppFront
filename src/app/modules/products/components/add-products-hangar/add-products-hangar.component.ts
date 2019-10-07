@@ -1,5 +1,4 @@
 import { BasicHangarModel } from 'src/app/core/models/basic-hangar.interface';
-import { CommunicationService } from './../../../../core/services/communication.service';
 import { ProductOfHangarModel } from 'src/app/core/models/product-hangar.interface';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { ProductService } from './../../../../core/services/product.service';
@@ -17,7 +16,7 @@ export class AddProductsHangarComponent implements OnInit {
 
   @Input() isProductInsert: boolean;
   @Input() isAmountModify: boolean;
-  @Input() hangar: BasicHangarModel;
+  @Input() idHangar: number;
   @Input() idProduct: number;
   products: ProductModel[] = [];
   productToHangar: ProductOfHangarModel;
@@ -26,17 +25,11 @@ export class AddProductsHangarComponent implements OnInit {
 
   constructor(private productService: ProductService,
               private productOfHangarService: ProductOfHangarService,
-              private comService: CommunicationService,
-              private router: Router) {
-    this.hangar = this.comService.getDataRelativeToHangar();
-    if (this.hangar === undefined) {
-      this.router.navigate(['products']);
-    }
-  }
+              private router: Router) { }
 
   ngOnInit() {
     this.formProductToHangar = new FormGroup({
-      hangar: new FormControl(this.hangar.id),
+      hangar: new FormControl(this.idHangar),
       product: new FormControl(this.idProduct, [
         Validators.required
       ]),
@@ -45,7 +38,7 @@ export class AddProductsHangarComponent implements OnInit {
       ])
     });
 
-    this.productService.loadProductsNotAssociateToHangarById(this.hangar.id).subscribe( data => {
+    this.productService.loadProductsNotAssociateToHangarById(this.idHangar).subscribe( data => {
       this.products = data;
       console.log(this.products);
     }, err => {

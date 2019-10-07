@@ -1,8 +1,8 @@
-<div *ngIf="!this.existProductOfSearch">
+<div *ngIf="!this.isProducts">
     <h3>{{ 'search.message' | translate }}</h3>
 </div>
 
-<table *ngIf="this.existProductOfSearch" class="table table-condensed table-hover">
+<table *ngIf="this.isProducts" class="table table-condensed table-hover">
     <caption>
         {{ 'product.list' | translate }}
     </caption>
@@ -13,7 +13,7 @@
         </tr>
     </thead>
     <tbody>
-        <tr *ngFor="let product of products; let i = index" (dblclick)="getProduct(i)">
+        <tr *ngFor="let product of products" (dblclick)="getProduct(product)">
             <td class="td1">{{ product.name }}</td>
             <td>{{ product.description }}</td>
         </tr>

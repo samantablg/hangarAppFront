@@ -3,6 +3,7 @@ import { BasicHangarModel } from './../models/basic-hangar.interface';
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -10,28 +11,37 @@ import { Observable } from 'rxjs';
 export class HangarService {
 
   private urlApi = 'http://localhost:8888/api/';
-  hangars: HangarModel[] = [];
-  basicHangars: BasicHangarModel[] = [];
-  data: any;
 
   constructor( private http: HttpClient ) {}
-  httpOptions = {
-    headers: new  HttpHeaders( { 'Content-Type': 'application/json' })
-  };
+  // TODO: Cambiar la forma de recibir la informacón del back
 
   public loadHangars(): Observable<HangarModel[]> {
     return this.http
-                .get<HangarModel[]>(`${ this.urlApi }hangars`);
+      .get<HangarModel[]>(`${ this.urlApi }hangars`)
+      .pipe(
+        map(result => result )
+      );
+  }
+
+  public loadHangarById(id: number): Observable<HangarModel> {
+    return this.http
+      .get<HangarModel>(`${ this.urlApi }hangar/${ id }`)
+      .pipe(
+        map(result => result )
+      );
   }
 
   public loadHangarsPage(page: number, items: number ): Observable<HangarModel[]> {
     return this.http
-                .get<HangarModel[]>(`${ this.urlApi }hangars/${ page }/${ items }`);
+      .get<HangarModel[]>(`${ this.urlApi }hangars/${ page }/${ items }`)
+      .pipe(
+        map(result => result )
+      );
   }
 
-  public loadBasicInfoHangars(): Observable<any> {
+  public loadBasicInfoHangars(): Observable<BasicHangarModel[]> {
     return this.http
-                .get<any>(`${ this.urlApi }basicDataHangars`);
+                .get<BasicHangarModel[]>(`${ this.urlApi }basicDataHangars`);
   }
 
   public findHangarsByName(name: string): Observable<HangarModel[]> {
@@ -39,11 +49,7 @@ export class HangarService {
                 .get<HangarModel[]>(`${ this.urlApi }search?name=${ name }`);
   }
 
-  public getHangar(id: number): HangarModel {
-    return this.hangars[id];
-  }
-
-  public postHangar(hangar: any) {
+  public postHangar(hangar: BasicHangarModel) {
     return this.http
                 .post<HangarModel>(`${ this.urlApi }hangar`, hangar);
   }

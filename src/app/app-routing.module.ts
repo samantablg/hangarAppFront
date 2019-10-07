@@ -13,10 +13,9 @@ const routes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'logout', component: LogoutComponent, canActivate: [AuthGuardService] },
   { path: 'register', component: RegisterComponent },
-  { path: 'hangars', loadChildren: './modules/hangars/hangars.module#HangarsModule', canActivate: [AuthGuardService]
-  },
-  { path: 'products', loadChildren: './modules/products/products.module#ProductsModule', canActivate: [AuthGuardService]
-  },
+  { path: 'hangars', loadChildren: './modules/hangars/hangars.module#HangarsModule', canActivate: [AuthGuardService] },
+  { path: 'products', loadChildren: './modules/products/products.module#ProductsModule', canActivate: [AuthGuardService] },
+  { path: 'commerce', loadChildren: './modules/commerce/commerce.module#CommerceModule', canActivate: [AuthGuardService] },
   { path: '**', pathMatch: 'full', redirectTo: ''}
 ];
 @NgModule({

@@ -1,5 +1,4 @@
-import { AuthenticationService } from './../../config/services/authentication.service';
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
 
 @Component({
@@ -7,17 +6,21 @@ import { TranslateService } from '@ngx-translate/core';
   templateUrl: './shell.component.html',
   styleUrls: ['./shell.component.css']
 })
-export class ShellComponent {
+export class ShellComponent implements OnInit {
 
   public activeLang = 'es';
+  public isUserLogin: boolean;
+  public username: string;
 
-  constructor( private translate: TranslateService ) {
+  constructor( private translate: TranslateService ) { }
+
+  ngOnInit() {
     this.translate.setDefaultLang(this.activeLang);
     this.translate.use(this.activeLang);
   }
 
+
   public changeLang() {
-    console.log();
     if ( this.activeLang === 'es') {
       this.activeLang = 'en';
     } else {
@@ -25,5 +28,6 @@ export class ShellComponent {
     }
     this.translate.use(this.activeLang);
   }
+
 
 }

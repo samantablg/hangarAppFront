@@ -1,7 +1,7 @@
+import { HangarService } from 'src/app/core/services/hangar.service';
 import { HangarModel } from 'src/app/core/models/hangar.interface';
-import { CommunicationService } from './../../../../core/services/communication.service';
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-hangars-result',
@@ -12,21 +12,26 @@ export class HangarsResultComponent implements OnInit {
 
   hangars: HangarModel[] = [];
   hangar: HangarModel;
-  existHangarsOfSearch: boolean;
+  isHangars: boolean;
 
-  constructor(private comService: CommunicationService, private router: Router) {
-    this.hangars = this.comService.getDataRelativeToHangar();
-    this.existHangarsOfSearch = ( this.hangars && this.hangars.length > 0);
-  }
+  constructor(private route: ActivatedRoute, private router: Router, private hangarService: HangarService) {}
 
   ngOnInit() {
-  }
+    this.route.params
+    .subscribe( data => {
+      if (data) {
+        this.hangarService
+        .findHangarsByName(data.name)
+        .subscribe( resp => {
+          this.hangars = resp;
+          this.isHangars = (this.hangars.length > 0);
+        });
+      }
+  });
+}
 
-  getHangar( id: number ) {
-    this.hangar = this.hangars[id];
-    this.comService.setDataRelativeToHangar(this.hangar);
-    this.router.navigate(['/hangars/hangar', id + 1]);
-  }
-
+getHangar( hangar: HangarModel ) {
+  this.router.navigate(['/hangars/hangar', hangar.id]);
+}
 
 }

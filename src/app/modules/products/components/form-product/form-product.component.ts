@@ -3,7 +3,7 @@ import { ProductModel } from '../../../../core/models/product.interface';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Component, OnInit, Input } from '@angular/core';
 import { ProductAsyncValidators } from './form-product.validators';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-form-product',
@@ -12,33 +12,47 @@ import { Router } from '@angular/router';
 })
 export class FormProductComponent implements OnInit {
 
-  @Input() isEdit?: boolean;
-  @Input() productSelect?: ProductModel;
-  formProduct: FormGroup;
+  isEdit: boolean;
   product: ProductModel;
+  productSelect: ProductModel;
 
-  constructor( private productService: ProductService, private router: Router ) {
-    this.formProduct = new FormGroup({
-      name: new FormControl('', [
-        Validators.required,
-        Validators.minLength(3),
-      ],
-      [ProductAsyncValidators.shouldBeUnique(this.productService)]),
-      description: new FormControl('', [
-        Validators.required
-      ]),
-      id: new FormControl(''),
-      state: new FormControl(true)
+  formProduct = new FormGroup({
+    name: new FormControl('', [
+      Validators.required,
+      Validators.minLength(3),
+    ],
+    [ProductAsyncValidators.shouldBeUnique(this.productService)]),
+    description: new FormControl('', [
+      Validators.required
+    ]),
+    id: new FormControl(''),
+    state: new FormControl(true)
+  });
+
+  constructor( private productService: ProductService,
+               private route: ActivatedRoute,
+               private router: Router ) { }
+
+  ngOnInit() {
+    this.route.params
+    .subscribe(
+      data => {
+        console.log(data);
+        if (data) {
+          this.isEdit = true;
+          this.productService.loadProductById(data.id)
+          .subscribe( response => {
+            this.productSelect = response;
+            this.name.setValue(this.productSelect.name),
+            this.description.setValue(this.productSelect.description),
+            this.id.setValue(this.productSelect.id);
+        });
+      } else {
+        this.isEdit = false;
+      }
     });
   }
 
-  ngOnInit() {
-    if (this.isEdit) {
-      this.name.setValue(this.productSelect.name),
-      this.description.setValue(this.productSelect.description),
-      this.id.setValue(this.productSelect.id);
-    }
-  }
 
   get name() {
     return this.formProduct.get('name');
@@ -75,15 +89,13 @@ export class FormProductComponent implements OnInit {
   }
 
   postProduct(product: ProductModel) {
-    this.productService.postProduct({ id: 1, name: 'sami', description: '', state: true,  }).subscribe(
-      data => {
-        window.alert('product save');
-        this.router.navigate(['products']);
-      },
-      err => {
-        window.alert('error');
-      }
-    );
+    this.productService.postProduct(product)
+    .subscribe( data => {
+      window.alert('product save');
+      this.router.navigate(['products']);
+    }, err => {
+      window.alert('error');
+    });
   }
 
 }

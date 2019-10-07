@@ -8,7 +8,7 @@
             <div *ngIf="name.pending">{{ "form.uniqueness" | translate }}</div>
 
             <div *ngIf="hangarSelect">
-                <div *ngIf="name.touched && name.invalid && name.value!=hangarSelect.name" class="alert alert-danger">
+                <div *ngIf="name.touched && name.invalid && name.value!=hangarSelect.name && !isReadOnly" class="alert alert-danger">
                     <div *ngIf="!!name.errors.shouldBeUnique">
                         {{ 'hangar.exist' | translate }}
                     </div>
@@ -22,7 +22,7 @@
             </div>
 
             <div *ngIf="!hangarSelect">
-                <div *ngIf="name.touched && name.invalid" class="alert alert-danger">
+                <div *ngIf="name.touched && name.invalid && !isReadOnly " class="alert alert-danger">
                     <div *ngIf="!!name.errors.shouldBeUnique">
                         {{ 'hangar.exist' | translate }}
                     </div>

@@ -1,6 +1,6 @@
+import { AuthenticationService } from './../../../config/services/authentication.service';
+import { Component, Output, EventEmitter, OnChanges } from '@angular/core';
 import { Router } from '@angular/router';
-import { AuthenticationService } from '../../../config/services/authentication.service';
-import { Component, Output, EventEmitter, OnChanges, SimpleChanges, Input, ChangeDetectorRef } from '@angular/core';
 
 @Component({
   selector: 'app-navbar',
@@ -9,15 +9,16 @@ import { Component, Output, EventEmitter, OnChanges, SimpleChanges, Input, Chang
 })
 export class NavbarComponent {
 
-  name: String;
   @Output() emitChangeLang = new EventEmitter();
 
-  constructor( public loginService: AuthenticationService) { 
-    this.name = this.loginService.getName();
-  }
+  constructor( private router: Router, public loginService: AuthenticationService ) { }
 
   emitLanguage() {
     this.emitChangeLang.emit();
+  }
+
+  logoutSession() {
+    this.router.navigate(['/logout']);
   }
 
 }

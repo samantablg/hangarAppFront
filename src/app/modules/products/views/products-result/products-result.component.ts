@@ -1,7 +1,7 @@
-import { CommunicationService } from './../../../../core/services/communication.service';
+import { ProductService } from './../../../../core/services/product.service';
 import { ProductModel } from 'src/app/core/models/product.interface';
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-products-result',
@@ -12,24 +12,25 @@ export class ProductsResultComponent implements OnInit {
 
   products: ProductModel[] = [];
   product: ProductModel;
-  existProductOfSearch: boolean;
+  isProducts: boolean;
 
-  constructor(private comService: CommunicationService, private router: Router) {
-    this.products = this.comService.getDataRelativeToProduct();
-    if (this.products !== undefined && this.products.length > 0) {
-      this.existProductOfSearch = true;
-    } else {
-      this.existProductOfSearch = false;
-    }
-   }
+  constructor(private route: ActivatedRoute , private router: Router, private productService: ProductService) { }
 
   ngOnInit() {
+    this.route.params
+    .subscribe( data => {
+      if (data) {
+        this.productService.findProductsByName(data.name)
+        .subscribe( resp => {
+          this.products = resp;
+          this.isProducts = (this.products.length > 0);
+        });
+      }
+  });
   }
 
-  getProduct( id: number ) {
-    this.product = this.products[id];
-    this.comService.setData(this.product);
-    this.router.navigate(['hangars/hangar', id + 1]);
+  getProduct( product: ProductModel ) {
+    this.router.navigate(['products/product', product.id]);
   }
 
 }

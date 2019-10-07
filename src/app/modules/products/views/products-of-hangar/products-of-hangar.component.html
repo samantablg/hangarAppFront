@@ -1,5 +1,5 @@
 <div class="container d-flex row justify-content-between">
-    <h3>{{ hangar.name }}</h3>
+    <h3>Hangar {{ this.idHangar }}</h3>
     <a class="addProd" (click)="linkToHangar()"><strong>{{ 'insertProduct.text' | translate }}</strong></a>
 </div>
 
@@ -32,4 +32,4 @@
     </tbody>
 </table>
 
-<app-add-products-hangar [isProductInsert]="isProductInsert" [isAmountModify]="isAmountModify" [hangar]="hangar" [idProduct]="idProduct"></app-add-products-hangar>
+<app-add-products-hangar [isProductInsert]="isProductInsert" [isAmountModify]="isAmountModify" [idProduct]="idProduct" [idHangar]="idHangar"></app-add-products-hangar>

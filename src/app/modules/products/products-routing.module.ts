@@ -2,19 +2,18 @@ import { ProductsResultComponent } from './views/products-result/products-result
 import { FormProductComponent } from './components/form-product/form-product.component';
 import { ProductDetailComponent } from './views/product-detail/product-detail.component';
 import { ProductsComponent } from './views/products/products.component';
-import { ProductModifyComponent } from './views/product-modify/product-modify.component';
 import { ProductsOfHangarComponent } from './views/products-of-hangar/products-of-hangar.component';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
 const routes: Routes = [
-    {
-        path: '',
-        component: ProductsComponent
-    },
-    {
-      path: 'product/:id',
-      component: ProductDetailComponent
+  {
+    path: '',
+    component: ProductsComponent
+  },
+  {
+    path: 'product/:id',
+    component: ProductDetailComponent
   },
   {
     path: 'new',
@@ -25,11 +24,11 @@ const routes: Routes = [
     component: ProductsOfHangarComponent
   },
   {
-    path: 'modify',
-    component: ProductModifyComponent
+    path: 'modify/:id',
+    component: FormProductComponent
   },
   {
-    path: 'search',
+    path: 'search/:name',
     component: ProductsResultComponent
   }
 ];

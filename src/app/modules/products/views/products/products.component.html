@@ -24,17 +24,5 @@
         </div>
     </nav>
 
-    <div class="card-columns">
-        <div *ngFor="let product of products; let i = index" class="card animated fadeIn fastcard-width-33">
-            <div class="card-body">
-                <h4 class="card-title">{{ product.name }}</h4>
-                <p class="card-text">{{ product.description }}</p>
-            </div>
-            <div class="card-footer">
-                <button (click)="getProduct(i)" type="button" class="btn">
-                    {{ 'more.text' | translate }}
-        </button>
-            </div>
-        </div>
-    </div>
+    <app-product-list [products]="products" (getProduct)="getProduct($event)"></app-product-list>
 </div>

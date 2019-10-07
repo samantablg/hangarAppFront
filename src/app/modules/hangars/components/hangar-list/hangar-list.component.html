@@ -1,0 +1,26 @@
+<app-button [hangarSelected]="hangarSelected" [isSelect]="isSelected"></app-button>
+
+<table class="table table-condensed table-hover">
+    <caption>
+        {{ 'hangar.list' | translate }}
+    </caption>
+    <thead>
+        <tr>
+            <th scope="col">Hangar</th>
+            <th scope="col">{{ 'hangar.address' | translate }}</th>
+            <th scope="col">{{ 'hangar.owner' | translate }}</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let hangar of hangars$ | paginate: { itemsPerPage: 5, currentPage: page }">
+            <td class="td1 ">{{ hangar.name }}</td>
+            <td>{{ hangar.address }}</td>
+            <td>{{ hangar.owner }}</td>
+        </tr>
+    </tbody>
+</table>
+
+<pagination-controls (pageChange)="page=$event"></pagination-controls>
+
+<!-- <button (click)="this.seePreviousHangars.emit() ">{{ 'previous' | translate }}</button>
+<button (click)="this.seeNextHangars.emit() ">{{ 'next' | translate }}</button> -->

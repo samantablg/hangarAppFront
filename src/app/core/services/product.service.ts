@@ -11,8 +11,6 @@ import { PriceModel } from '../models/price.interface';
 export class ProductService {
 
   private urlApi = 'http://localhost:8888/api/';
-  products: ProductModel[] = [];
-  prices: PriceModel[] = [];
 
   constructor( private http: HttpClient ) { }
 
@@ -35,10 +33,7 @@ export class ProductService {
                 .get<ProductModel[]>(`${ this.urlApi }products/${ page }/${ items }`);
   }
 
-  public getProduct(id: number): ProductModel {
-    return this.products[id];
-  }
-  public getProductById(id: number): Observable<ProductModel> {
+  public loadProductById(id: number): Observable<ProductModel> {
     return this.http
                 .get<ProductModel>(`${ this.urlApi }product/${ id }`);
   }
@@ -64,7 +59,7 @@ export class ProductService {
 
   public deleteProduct(id: number) {
     return this.http
-                .put(`${ this.urlApi }product/${ id }`, '');
+                .put(`${ this.urlApi }product/${ id }`, id);
   }
 
   public loadProductsNotAssociateToHangarById(idHangar: number): Observable<ProductModel[]> {
@@ -74,17 +69,12 @@ export class ProductService {
 
   public postPrice(price: number, id: number) {
     return this.http
-                .post<PriceModel>(`${ this.urlApi }price/product/${id}`, price);
+                .post<PriceModel>(`${ this.urlApi }price/product/${ id }`, price);
   }
 
-  public loadPrices(id: number): Observable<PriceModel[]> {
+  public loadPricesOfProduct(id: number): Observable<PriceModel[]> {
     return this.http
-                .get<PriceModel[]>(`${ this.urlApi }product/${ id }`);
-  }
-
-  public getHistoricOfProduct(id: number): PriceModel[] {
-    this.loadPrices(id);
-    return this.prices;
+                .get<PriceModel[]>(`${ this.urlApi }price/product/${ id }`);
   }
 
 }

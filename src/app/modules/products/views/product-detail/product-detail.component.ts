@@ -1,8 +1,8 @@
+import { ProductService } from './../../../../core/services/product.service';
 import { ProductOfHangarService } from 'src/app/core/services/product-of-hangar.service';
-import { CommunicationService } from './../../../../core/services/communication.service';
 import { ProductModel } from 'src/app/core/models/product.interface';
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-product-detail',
@@ -12,18 +12,29 @@ import { Router } from '@angular/router';
 export class ProductDetailComponent implements OnInit {
 
   product: ProductModel;
-  insertPrice = true;
-  showHistoric = true;
+  insertPrice = false;
+  showHistoric = false;
+  id: number;
 
-  constructor(private comService: CommunicationService,
-              private router: Router,
-              private productOfHangarService: ProductOfHangarService
-    ) { }
+  constructor(private router: Router,
+              private productOfHangarService: ProductOfHangarService,
+              private route: ActivatedRoute,
+              private productService: ProductService
+    ) {
+      console.log(this.product);
+     }
 
   ngOnInit() {
-    this.product = this.comService.getDataRelativeToProduct();
-    this.insertPrice = false;
-    this.showHistoric = false;
+
+    this.route.params.subscribe(
+      data => {
+        this.id = data.id;
+      }
+    );
+    this.productService.loadProductById(this.id)
+    .subscribe( data => {
+      this.product = data;
+    });
   }
 
   public addPrice() {
@@ -35,17 +46,19 @@ export class ProductDetailComponent implements OnInit {
   }
 
   public editProduct() {
-    this.comService.setDataRelativeToProduct(this.product);
-    this.router.navigate(['/products/modify']);
+    this.router.navigate(['/products/modify', this.product.id]);
   }
 
   public deleteProduct() {
-    this.productOfHangarService.deleteProductIfIsNotLink(this.product.id).subscribe( data => {
+    this.productOfHangarService.isProductLinkToHangar(this.product.id).subscribe( data => {
       if (data) {
         window.alert(`product can't be deleted`);
       } else {
-        window.alert('product deleted');
-        this.router.navigate(['/products']);
+        this.productService.deleteProduct(this.product.id)
+        .subscribe( response => {
+          window.alert('product deleted');
+          this.router.navigate(['/products']);
+        });
       }
     }, err => {
       window.alert('fail');

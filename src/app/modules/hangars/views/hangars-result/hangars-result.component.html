@@ -1,8 +1,8 @@
-<div *ngIf="!this.existHangarsOfSearch">
+<div *ngIf="!this.isHangars">
     <h3>{{ 'search.message' | translate }}</h3>
 </div>
 
-<table *ngIf="this.existHangarsOfSearch" class="table table-condensed table-hover">
+<table *ngIf="this.isHangars" class="table table-condensed table-hover">
     <caption>
         {{ 'hangar.list' | translate }}
     </caption>
@@ -14,7 +14,7 @@
         </tr>
     </thead>
     <tbody>
-        <tr *ngFor="let hangar of hangars; let i = index" (dblclick)="getHangar(i)">
+        <tr *ngFor="let hangar of hangars" (dblclick)="getHangar(hangar)">
             <td class="td1">{{ hangar.name }}</td>
             <td>{{ hangar.address }}</td>
             <td>{{ hangar.owner }}</td>

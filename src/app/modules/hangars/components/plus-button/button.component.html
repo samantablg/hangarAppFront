@@ -1,7 +1,7 @@
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
 
-<app-sidebar [isOpen]="sideBarIsOpened" [setHangar]="hangarSelected"></app-sidebar>
-
 <a (click)="toggleSideBar()" class="float">
     <i class="fa fa-plus my-float"></i>
 </a>
+
+<app-sidebar [isOpen]="sideBarIsOpened" [hangar]="hangarSelected"></app-sidebar>

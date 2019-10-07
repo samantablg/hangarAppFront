@@ -1,5 +1,4 @@
 import { ProductModel } from './../../../core/models/product.interface';
-import { CommunicationService } from './../../../core/services/communication.service';
 import { HangarModel } from 'src/app/core/models/hangar.interface';
 import { HangarService } from './../../../core/services/hangar.service';
 import { FormGroup, FormControl } from '@angular/forms';
@@ -17,12 +16,7 @@ export class SearchComponent implements OnInit {
   result: HangarModel[] | ProductModel[] = [];
   type = ['hangar-name', 'product-name'];
 
-  constructor(
-    private router: Router,
-    private hangarService: HangarService,
-    private productService: ProductService,
-    private comService: CommunicationService
-  ) {
+  constructor( private router: Router ) {
     this.formSearch = new FormGroup({
       search: new FormControl(''),
       type: new FormControl('')
@@ -33,35 +27,13 @@ export class SearchComponent implements OnInit {
 
   searchHangar() {
     if (this.formSearch.value.search !== '') {
-      console.log(this.formSearch.value);
-      this.hangarService
-        .findHangarsByName(this.formSearch.value.search)
-        .subscribe(
-          data => {
-            this.comService.setDataRelativeToHangar(data);
-            this.router.navigate(['hangars/search']);
-          },
-          error => {
-            console.error(error);
-            window.alert('Sin resultado de búsqueda');
-          }
-        );
+      this.router.navigate(['hangars/search', this.formSearch.value.search]);
     }
   }
 
   searchProduct() {
     if (this.formSearch.value.search !== '') {
-      this.productService
-        .findProductsByName(this.formSearch.value.search)
-        .subscribe(
-          data => {
-            this.comService.setDataRelativeToProduct(data);
-            this.router.navigate(['products/search']);
-          },
-          error => {
-            window.alert('Sin resultado de búsqueda');
-          }
-        );
+      this.router.navigate(['products/search', this.formSearch.value.search]);
     }
   }
 
