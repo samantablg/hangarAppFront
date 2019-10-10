@@ -1,7 +1,7 @@
+import { MinifiedModel } from './../models/minified.interface';
 import { HangarModel } from './../models/hangar.interface';
-import { BasicHangarModel } from './../models/basic-hangar.interface';
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 
@@ -19,7 +19,7 @@ export class HangarService {
     return this.http
       .get<HangarModel[]>(`${ this.urlApi }hangars`)
       .pipe(
-        map(result => result )
+        map(result => result)
       );
   }
 
@@ -27,7 +27,7 @@ export class HangarService {
     return this.http
       .get<HangarModel>(`${ this.urlApi }hangar/${ id }`)
       .pipe(
-        map(result => result )
+        map(result => result)
       );
   }
 
@@ -39,9 +39,9 @@ export class HangarService {
       );
   }
 
-  public loadBasicInfoHangars(): Observable<BasicHangarModel[]> {
+  public loadBasicInfoHangars(): Observable<MinifiedModel[]> {
     return this.http
-                .get<BasicHangarModel[]>(`${ this.urlApi }basicDataHangars`);
+                .get<MinifiedModel[]>(`${ this.urlApi }basicDataHangars`);
   }
 
   public findHangarsByName(name: string): Observable<HangarModel[]> {
@@ -49,7 +49,7 @@ export class HangarService {
                 .get<HangarModel[]>(`${ this.urlApi }search?name=${ name }`);
   }
 
-  public postHangar(hangar: BasicHangarModel) {
+  public postHangar(hangar: HangarModel) {
     return this.http
                 .post<HangarModel>(`${ this.urlApi }hangar`, hangar);
   }

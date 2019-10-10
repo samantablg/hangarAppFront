@@ -1,7 +1,9 @@
-import { ProductState } from './product.state';
-import { HangarState } from './hangar.state';
+import { CommerceState } from './commerce.state';
+import { ProductsState } from './products.state';
+import { HangarsState } from './hangars.state';
 
 export interface State {
-  hangar: HangarState;
-  product: ProductState;
+  hangars: HangarsState;
+  products: ProductsState;
+  commerce: CommerceState;
 }

@@ -1,10 +1,7 @@
-import { HangarService } from './../../../../core/services/hangar.service';
-import { BasicHangarModel } from 'src/app/core/models/basic-hangar.interface';
-import { ProductService } from '../../../../core/services/product.service';
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
 import { ProductModel } from 'src/app/core/models/product.interface';
-
+import { Store } from '@ngrx/store';
+import { State } from 'src/app/store/state';
 @Component({
   selector: 'app-products',
   templateUrl: './products.component.html',
@@ -13,15 +10,30 @@ import { ProductModel } from 'src/app/core/models/product.interface';
 export class ProductsComponent implements OnInit {
 
   products: ProductModel[] = [];
-  scrollProducts: ProductModel[] = [];
+  loading: boolean;
+  error: any;
+  /* scrollProducts: ProductModel[] = [];
   product: ProductModel;
-  hangars: BasicHangarModel[];
   page = 0;
   items = 6;
   totalElements: number;
-  totalPages: number;
+  totalPages: number; */
 
-  constructor( private productService: ProductService,
+  constructor(public store: Store<State>) { }
+
+  ngOnInit() {
+    this.store.select('products')
+      .subscribe( data => {
+        console.log(data);
+        this.products = data.products;
+        this.loading = data.loading;
+        this.error = data.error;
+      });
+
+    this.store.dispatch({ type: '[PRODUCT] LOAD_PRODUCTS' });
+  }
+
+  /* constructor( private productService: ProductService,
                private router: Router,
                private hangarService: HangarService ) { }
 
@@ -34,9 +46,9 @@ export class ProductsComponent implements OnInit {
     if (!this.products) {
       this.router.navigate(['']);
     }
-  }
+  } */
 
-  getProduct( product: ProductModel ) {
+  /* getProduct( product: ProductModel ) {
     this.router.navigate(['/products/product', product.id]);
   }
 
@@ -66,6 +78,6 @@ export class ProductsComponent implements OnInit {
     } else {
       this.page = this.totalPages - 1;
     }
-  }
+  } */
 
 }

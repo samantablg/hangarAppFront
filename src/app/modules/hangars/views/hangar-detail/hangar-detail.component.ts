@@ -1,8 +1,8 @@
-import { HangarService } from '../../../../core/services/hangar.service';
+import { State } from 'src/app/store/state';
+import { Store } from '@ngrx/store';
 import { ActivatedRoute } from '@angular/router';
 import { HangarModel } from 'src/app/core/models/hangar.interface';
-import { Component, OnInit, Input, OnChanges } from '@angular/core';
-
+import { Component, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-hangar-detail',
@@ -12,22 +12,25 @@ import { Component, OnInit, Input, OnChanges } from '@angular/core';
 export class HangarDetailComponent implements OnInit {
 
   id: number;
-  currentHangar: HangarModel;
+  hangar: HangarModel;
+  loading: boolean;
+  error: any;
 
   constructor( private route: ActivatedRoute,
-               private hangarService: HangarService ) {
-  }
+               private store: Store<State> ) { }
 
   ngOnInit() {
     this.route.params.subscribe(
-      data => {
-        this.id = data.id;
+      params => {
+        this.id = parseInt(params.id, 10);
       }
     );
-    this.hangarService.loadHangarById(this.id)
+
+    this.store.select('hangars')
     .subscribe( data => {
-      this.currentHangar = data;
-    });
+      this.hangar = data.hangars.filter(hangar => hangar.id === this.id).pop();
+   });
+
   }
 
 }

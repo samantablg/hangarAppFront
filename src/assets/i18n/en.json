@@ -1,6 +1,7 @@
 {
     "product-name": "Product",
     "hangar-name": "Hangar",
+    "commerce": "Commerce",
     "login": {
         "user": "User",
         "user-form": "Username is required",

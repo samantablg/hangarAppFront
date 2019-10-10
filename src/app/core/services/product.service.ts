@@ -1,9 +1,9 @@
-import { ProductExtendedModel } from './../models/product-extended.interface';
 import { ProductModel } from './../models/product.interface';
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { PriceModel } from '../models/price.interface';
+import { map } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -14,18 +14,12 @@ export class ProductService {
 
   constructor( private http: HttpClient ) { }
 
-  httpOptions = {
-    headers: new HttpHeaders( { 'Content-Type': 'application/json' })
-  };
-
   public loadProducts(): Observable<ProductModel[]> {
     return this.http
-                .get<ProductModel[]>(`${ this.urlApi }products`);
-  }
-
-  public loadProductsExtended(): Observable<ProductExtendedModel[]> {
-    return this.http
-                .get<ProductExtendedModel[]>(`${ this.urlApi }productsExtended`);
+      .get<ProductModel[]>(`${ this.urlApi }productsExtended`)
+      .pipe(
+        map( result => result )
+      );
   }
 
   public loadProductsPage(page: number, items: number ): Observable<ProductModel[]> {

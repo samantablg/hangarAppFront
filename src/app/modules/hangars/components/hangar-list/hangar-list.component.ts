@@ -11,6 +11,8 @@ import { Router } from '@angular/router';
 export class HangarListComponent implements OnInit {
 
   @Input() hangars$: Observable<HangarModel[]>;
+  @Input() loading: boolean;
+  @Input() error: any;
   @Output() seeNextHangars = new EventEmitter();
   @Output() seePreviousHangars = new EventEmitter();
   hangarSelected: HangarModel;

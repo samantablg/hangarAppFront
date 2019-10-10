@@ -10,17 +10,17 @@ import { State } from 'src/app/store/state';
 export class HangarsComponent implements OnInit {
 
   hangars: HangarModel[] = [];
-  page = 0;
-  items = 5;
-  total: number;
-  hangarDetail: HangarModel;
+  loading: boolean;
+  error: any;
 
   constructor(public store: Store<State>) { }
 
   ngOnInit() {
-    this.store.select('hangar')
+    this.store.select('hangars')
       .subscribe( data => {
         this.hangars = data.hangars;
+        this.loading = data.loading;
+        this.error = data.error;
       });
 
     this.store.dispatch({ type: '[HANGAR] LOAD_HANGARS' });

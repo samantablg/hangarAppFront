@@ -1,3 +1,5 @@
+import { CommerceEffects } from './store/effects/commerce.effects';
+import { ProductsEffects } from './store/effects/product.effects';
 import { EffectsModule } from '@ngrx/effects';
 import { ConfigModule } from './config/config.module';
 import { CoreModule } from './core/core.module';
@@ -37,7 +39,7 @@ import { HangarsEffects } from './store/effects/hangar.effects';
       maxAge: 25, // Retains last 55 states
       logOnly: environment.production, // Restrict extension to log-only mode
     }),
-    EffectsModule.forRoot([HangarsEffects]),
+    EffectsModule.forRoot([HangarsEffects, ProductsEffects, CommerceEffects]),
     CoreModule,
     TranslateModule,
     FormsModule,

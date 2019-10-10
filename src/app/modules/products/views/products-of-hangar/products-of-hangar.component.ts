@@ -1,4 +1,3 @@
-import { BasicHangarModel } from 'src/app/core/models/basic-hangar.interface';
 import { ProductModel } from 'src/app/core/models/product.interface';
 import { ProductService } from '../../../../core/services/product.service';
 import { Component, OnInit } from '@angular/core';

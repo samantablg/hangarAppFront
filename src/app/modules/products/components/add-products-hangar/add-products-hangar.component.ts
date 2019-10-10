@@ -1,4 +1,3 @@
-import { BasicHangarModel } from 'src/app/core/models/basic-hangar.interface';
 import { ProductOfHangarModel } from 'src/app/core/models/product-hangar.interface';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { ProductService } from './../../../../core/services/product.service';
