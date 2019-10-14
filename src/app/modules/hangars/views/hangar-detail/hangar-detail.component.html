@@ -1,1 +1,1 @@
-<app-form-hangar *ngIf="this.hangar" [isReadOnly]="true" [hangarSelect]="this.hangar"></app-form-hangar>
+<app-form-hangar *ngIf="this.hangar" [isReadOnly]="true" [hangarSelect]="this.hangar" (deleteHangar)="deleteHangar($event)"></app-form-hangar>

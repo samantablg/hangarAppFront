@@ -87,7 +87,7 @@
             <button type="submit" class="btn">{{ "save.text" | translate }}</button>
         </div>
         <div class="form-group row" *ngIf="isReadOnly || isEdit">
-            <button (click)="deleteHangar()" class="btn">{{ "hangar.delete" | translate }}</button>
+            <button (click)="this.deleteHangar.emit(this.hangarSelect)" class="btn">{{ "hangar.delete" | translate }}</button>
         </div>
     </div>
 </form>

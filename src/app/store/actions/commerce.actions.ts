@@ -1,3 +1,4 @@
+import { ProductOfOrderModel } from './../../core/models/product-of-order.interface';
 import { OrderModel } from './../../core/models/order.interface';
 import { ProductModel } from './../../core/models/product.interface';
 import { Action } from '@ngrx/store';
@@ -12,7 +13,7 @@ export enum CommerceActionTypes {
 export class AddProductCommerce implements Action {
   readonly type = CommerceActionTypes.ADD_PRODUCT;
 
-  constructor(public payload: ProductModel) {}
+  constructor(public payload: ProductOfOrderModel) {}
 }
 
 export class AddProductCommerceFail implements Action {
@@ -24,7 +25,7 @@ export class AddProductCommerceFail implements Action {
 export class RemoveProductCommerce implements Action {
   readonly type = CommerceActionTypes.REMOVE_PRODUCT;
 
-  constructor(public payload: ProductModel) {}
+  constructor(public payload: ProductOfOrderModel) {}
 }
 
 export class SendOrderCommerce implements Action {
@@ -32,3 +33,8 @@ export class SendOrderCommerce implements Action {
 
   constructor(public payload: OrderModel) {}
 }
+
+export type CommerceActions = AddProductCommerce |
+                              AddProductCommerceFail |
+                              RemoveProductCommerce |
+                              SendOrderCommerce;

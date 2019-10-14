@@ -33,16 +33,17 @@ export class CommerceComponent implements OnInit {
   }
 
   addProductToShoppingCart(product: ProductModel) {
-    console.log(product);
-    this.productOrder.hangar_id = product.hangars.pop();
+    this.productOrder.hangar_id = product.hangars[0];
     this.productOrder.product_id = product.id;
     this.productOrder.price = product.price;
+    this.productOrder.quantity = 1;
     this.store.dispatch({ type: '[COMMERCE] ADD_PRODUCT', payload: this.productOrder });
   }
 
   removeProductToShoppingCart(product: ProductModel) {
-    this.productOrder.hangar_id = product.hangars.pop();
+    this.productOrder.hangar_id = product.hangars[0];
     this.productOrder.product_id = product.id;
+    this.productOrder.price = product.price;
     this.store.dispatch({ type: '[COMMERCE] REMOVE_PRODUCT', payload: this.productOrder });
   }
 

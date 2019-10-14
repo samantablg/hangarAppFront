@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { HangarModel } from 'src/app/core/models/hangar.interface';
 import { Store } from '@ngrx/store';
 import { State } from 'src/app/store/state';
+import * as fromRoot from 'src/app/store/reducers';
 @Component({
   selector: 'app-hangars',
   templateUrl: './hangars.component.html',

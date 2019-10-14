@@ -1,6 +1,6 @@
 import { HangarAsyncValidators } from './form-hangar.validators';
 import { HangarModel } from 'src/app/core/models/hangar.interface';
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { HangarService } from '../../../../core/services/hangar.service';
 import { Router, ActivatedRoute } from '@angular/router';
@@ -15,7 +15,9 @@ export class FormHangarComponent implements OnInit {
   @Input() isEdit?: boolean;
   @Input() hangarSelect?: HangarModel;
   @Input() addNewHangar?: boolean;
-  hangar: HangarModel;
+  @Output() postHangar = new EventEmitter<HangarModel>();
+  @Output() updateHangar = new EventEmitter<HangarModel>();
+  @Output() deleteHangar = new EventEmitter<HangarModel>();
 
   formHangar = new FormGroup({
     name: new FormControl(
@@ -43,7 +45,7 @@ export class FormHangarComponent implements OnInit {
     state: new FormControl(true)
   });
 
-  constructor(private hangarService: HangarService, private router: Router, private route: ActivatedRoute) { }
+  constructor(private hangarService: HangarService, private route: ActivatedRoute) { }
 
   ngOnInit() {
 
@@ -92,39 +94,12 @@ export class FormHangarComponent implements OnInit {
 
   saveHangar() {
     if (this.isEdit) {
-      this.updateHangar(this.formHangar.value);
+      this.updateHangar.emit(this.formHangar.value);
     } else {
       if (!this.formHangar.invalid) {
-        this.postHangar(this.formHangar.value);
+        this.postHangar.emit(this.formHangar.value);
       }
     }
-  }
-
-  updateHangar(hangar: HangarModel) {
-    this.hangarService.updateHangar(hangar)
-    .subscribe( data => {
-      window.alert('hangar modified');
-      this.router.navigate(['hangars']);
-    }, err => {
-      window.alert('error');
-    });
-  }
-
-  postHangar(hangar: HangarModel) {
-    this.hangarService.postHangar(hangar)
-    .subscribe( data => {
-      window.alert('hangar save');
-      this.router.navigate(['hangars']);
-    }, err => {
-      window.alert('error');
-    });
-  }
-
-  deleteHangar() {
-    this.hangarService.deleteHangar(this.hangarSelect.id)
-    .subscribe( data => {
-      this.router.navigate(['/hangars']);
-    });
   }
 
 }

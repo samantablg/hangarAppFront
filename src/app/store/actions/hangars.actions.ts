@@ -4,7 +4,10 @@ import { Action } from '@ngrx/store';
 export enum HangarsActionTypes {
   LOAD_HANGARS = '[HANGAR] LOAD_HANGARS',
   LOADED_HANGARS = '[HANGAR] LOADED_HANGARS',
-  LOAD_HANGARS_FAIL = '[HANGAR] LOAD_HANGARS_FAIL'
+  LOAD_HANGARS_FAIL = '[HANGAR] LOAD_HANGARS_FAIL',
+  NEW_HANGAR = '[HANGAR] NEW_HANGAR',
+  EDIT_HANGAR = '[HANGAR] EDIT_HANGAR',
+  DELETE_HANGAR = '[HANGAR] DELETE_HANGAR'
 }
 
 export class HangarsLoad implements Action {
@@ -22,4 +25,28 @@ export class HangarsLoadFail implements Action {
 
   constructor(public payload: any) {}
 }
+
+export class NewHangar implements Action {
+  type = HangarsActionTypes.NEW_HANGAR;
+
+  constructor(public payload: HangarModel) {}
+}
+
+export class EditHangar implements Action {
+  type = HangarsActionTypes.EDIT_HANGAR;
+
+  constructor(public payload: HangarModel) {}
+}
+
+export class DeleteHangar implements Action {
+  type = HangarsActionTypes.DELETE_HANGAR;
+
+  constructor(public payload: HangarModel) {}
+}
+
+export type HangarActions = HangarsLoad |
+                            HangarsLoaded |
+                            HangarsLoadFail |
+                            NewHangar |
+                            EditHangar;
 

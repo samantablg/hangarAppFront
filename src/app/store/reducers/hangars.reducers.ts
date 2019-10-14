@@ -1,9 +1,9 @@
-import { HangarsLoaded } from './../actions/hangars.actions';
+import { HangarsState } from './../state/hangars.state';
+import * as hangars from '../actions/hangars.actions';
 import { HangarsActionTypes } from '../actions/hangars.actions';
 import { initialState } from '../state/hangars.state';
-import { HangarsState } from '../state/hangars.state';
 
-export function hangarsReducer(state = initialState, action: HangarsLoaded): HangarsState {
+export function hangarsReducer(state = initialState, action: hangars.HangarActions): HangarsState {
 
   switch (action.type) {
     case HangarsActionTypes.LOAD_HANGARS:
@@ -24,6 +24,10 @@ export function hangarsReducer(state = initialState, action: HangarsLoaded): Han
         loaded: false,
         loading: false,
         error: action.payload
+      };
+    case HangarsActionTypes.DELETE_HANGAR:
+      return {
+        ...state
       };
     default:
       return state;
