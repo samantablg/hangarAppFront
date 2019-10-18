@@ -14,10 +14,6 @@ export class UserFacade {
 
   constructor(private store: Store<State>) {
     // this.isRegister$ = this.store.pipe(select('user', 'isRegister'));
-    /* this.store.select('user', 'isRegister')
-    .subscribe(response => {
-      this.isRegister$ = response;
-    }); */
   }
 
   authenticate(user: UserModel) {
@@ -33,10 +29,9 @@ export class UserFacade {
   }
 
   isRegister(name: string) {
-    this.store.dispatch({ type: '[USER] VALIDATE_USER', payload: name});
+    this.store.dispatch({ type: '[USER] VALIDATE_USER', payload: name });
     this.store.select('user', 'isRegister')
     .subscribe(response => {
-      console.log('facade :' + response);
       this.isRegister$ = response;
     });
   }

@@ -60,12 +60,10 @@ export class UserEffects {
 
     switchMap((action: userActions.ValidateUser) => {
       return this.registerService.isUserByUsername(action.payload).pipe(
-        map( response => {
-          console.log('effect: ' + response);
-          return ({
+        map( response => ({
             type: '[USER] VALIDATED_USER', payload: response
-          });
-        })
+          })
+        )
       );
     })
   );

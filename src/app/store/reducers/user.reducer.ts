@@ -32,7 +32,7 @@ export function userReducer(state = initialUserState, action): UserState {
         isUserLogged: false,
         error: action.payload
       };
-    case UserActionTypes.VALIDATED_USER:
+    case UserActionTypes.VALIDATE_USER:
       return { ...state };
     case UserActionTypes.VALIDATED_USER:
       return {

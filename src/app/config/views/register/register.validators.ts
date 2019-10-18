@@ -1,5 +1,6 @@
 import { UserFacade } from './../../../store/facade/user.facade';
 import { AbstractControl, ValidationErrors } from '@angular/forms';
+import { ɵConsole } from '@angular/core';
 
 export class RegisterValidators {
 
@@ -15,12 +16,13 @@ export class RegisterAsyncValidators {
     return (control: AbstractControl): Promise<ValidationErrors | null> => new Promise(
       (resolve, reject) => {
         userFacade.isRegister(control.value as string);
-        console.log(userFacade.isRegister$);
-        if (userFacade.isRegister$.valueOf) {
-          resolve({shouldBeUnique: true});
-        } else {
-          resolve(null);
-        }
+        setTimeout(() => {
+          if (userFacade.isRegister$) {
+            resolve({shouldBeUnique: true});
+          } else {
+            resolve(null);
+          }
+        }, 500);
     });
   }
 }

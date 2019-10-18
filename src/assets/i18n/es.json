@@ -14,7 +14,7 @@
         "logout": "Cerrar sesión",
         "register": "Registrar nuevo usuario",
         "header": "Iniciar sesión",
-        "sign": "Regístro",
+        "sign": "Registro",
         "invalid": "Login inválido",
         "password-match": "Inserta la contraseña otra vez",
         "password-fail": "Las contraseñas no coinciden"
