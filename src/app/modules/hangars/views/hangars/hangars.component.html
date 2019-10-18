@@ -1,4 +1,9 @@
 <div class="container">
-    <app-hangar-list [hangars$]="hangars" [loading]="loading" [error]="error"></app-hangar-list>
+    <app-hangar-list [hangars$]="hangars$ | async" [loading]="loading$ | async" [error]="error$ | async" (selectHangar)="selectHangar($event)" (getHangar)="getHangar($event)"></app-hangar-list>
 </div>
-<!-- (seeNextHangars)=" seeNext() " (seePreviousHangars)="seePrevious()" -->
+
+<app-button [isSelect]="isSelected" (toggleSideBar)="toggleSideBar($event)"></app-button>
+
+<app-sidebar [isOpen]="sideBarIsOpened" [hangar]="hangarSelected" (getHangar)="getHangar($event)" (editHangar)="editHangar($event)" (manageProductsOfHangar)="manageProductsOfHangar($event)" (newHangar)="newHangar()" (deleteHangar)="deleteHangar($event)"></app-sidebar>
+
+<!--[hangarSelected]="hangarSelected"-->

@@ -1,5 +1,5 @@
+import { UserFacade } from './../../../store/facade/user.facade';
 import { FormGroup, FormControl } from '@angular/forms';
-import { AuthenticationService } from '../../services/authentication.service';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
@@ -13,7 +13,7 @@ export class LoginComponent implements OnInit {
   invalidLogin = false;
   formLogin: FormGroup;
 
-  constructor(private router: Router, private loginService: AuthenticationService) {
+  constructor(private router: Router, private userFacade: UserFacade) {
     this.formLogin = new FormGroup({
       username: new FormControl(''),
       password: new FormControl(''),
@@ -32,19 +32,7 @@ export class LoginComponent implements OnInit {
   }
 
   checkLogin() {
-    this.loginService.aunthenticate(this.formLogin.value.username, this.formLogin.value.password).subscribe( userData => {
-        if (userData.token !== '') {
-          sessionStorage.setItem('username', this.formLogin.value.username);
-          const tokenStr = 'Bearer ' + userData.token;
-          sessionStorage.setItem('token', tokenStr);
-          this.invalidLogin = false;
-          this.router.navigate(['']);
-        }
-        this.invalidLogin = true;
-      }, (err) => {
-          this.invalidLogin = true;
-        }
-      );
+    this.userFacade.authenticate(this.formLogin.value);
   }
 
   newUser() {

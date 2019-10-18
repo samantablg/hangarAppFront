@@ -1,12 +1,11 @@
+import { CommerceState } from './../state/commerce.state';
 import { ProductOfOrderModel } from 'src/app/core/models/product-of-order.interface';
 import { CommerceActionTypes } from './../actions/commerce.actions';
-import { CommerceState } from './../state/commerce.state';
 import { initialState } from '../state/commerce.state';
 import * as commerce from './../actions/commerce.actions';
 import { tassign } from 'tassign';
 
 export function commerceReducer(state = initialState, action: commerce.CommerceActions): CommerceState {
-
   switch (action.type) {
     case CommerceActionTypes.ADD_PRODUCT:
       return addProductToOrder(state, action);
@@ -23,38 +22,52 @@ export function commerceReducer(state = initialState, action: commerce.CommerceA
 }
 
 function addProductToOrder(state, action) {
-  if (!isProductInOrder(state, action.payload)) {
+  const productOrder = {
+    product_id: action.payload.product_id,
+    hangar_id: action.payload.hangar_id,
+    quantity: action.payload.quantity,
+    price: action.payload.price
+  };
+  return tassign(state,
+    {
+      products_order: state.products_order.concat(productOrder),
+      totalPrice: state.totalPrice + productOrder.price,
+      totalProducts: state.totalProducts + productOrder.quantity
+    });
+  /* if (!isProductInOrder(state, action.payload)) {
     return tassign(state,
       {
-        products_order: state.products_order.concat(action.payload),
-        total_price: state.total_price + action.payload.price,
-        total_products: state.products_order.length + 1
+        products_orders: state.products_order.concat(action.payload),
+        totalPrice: state.totalPrice + action.payload.price,
+        totalProducts: state.totalProducts + 1
       });
   } else {
     return tassign(state,
       {
-        products_order: state.products_order,
-        total_price: state.total_price + action.payload.price,
-        total_products: state.products_order.length + 1
+        products_orders: state.products_order,
+        totalPrice: state.totalPrice + action.payload.price,
+        totalProducts: state.totalProducts + 1
       }
     );
-  }
+  } */
 }
 
-function removeProduct(state: CommerceState, action: commerce.CommerceActions) {
+// TODO: hay que controlar que al quitar un producto se quite bien el precio porque probablemente haya introducido más de uno.
+function removeProduct(state, action) {
   return tassign(state,
     {
       products_order: state.products_order.filter(product => product.product_id !== action.payload.product_id),
-      total_products: state.products_order.length - 1,
-      total_price: state.total_price - action.payload.price
+      totalProducts: state.totalProducts,
+      totalPrice: state.totalPrice - action.payload.price
     }
   );
 }
 
-function isProductInOrder(state: CommerceState, productOrder: ProductOfOrderModel): boolean {
+function isProductInOrder(state: CommerceState, productOrder: ProductOfOrderModel) {
   if (state.products_order.length > 0) {
     return (state.products_order.filter(product =>
        product.product_id === productOrder.product_id && product.hangar_id === productOrder.hangar_id).length > 0);
   }
   return false;
 }
+

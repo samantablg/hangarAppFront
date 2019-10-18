@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { CommerceActionTypes } from './../actions/commerce.actions';
 import { Actions, Effect, ofType } from '@ngrx/effects';
-import { switchMap } from 'rxjs/operators';
+import { switchMap, map, catchError } from 'rxjs/operators';
 import { ProductService } from 'src/app/core/services/product.service';
 import { commerceReducer } from '../reducers/commerce.reducer';
 import * as commerce from '../actions/commerce.actions';
@@ -11,7 +11,7 @@ export class CommerceEffects {
 
   constructor(private productService: ProductService, private actions$: Actions) {}
 
-  /* @Effect()
+  /*@Effect()
   loadProductsOfCommerce$ = this.actions$.pipe(
     ofType(CommerceActionTypes.LOAD_PRODUCTS_COMMERCE),
     switchMap(() => this.productService.loadProductsExtended()
@@ -20,7 +20,7 @@ export class CommerceEffects {
         catchError( error => of(new commerce.ProductsCommerceLoadFail(error)) )
       )
     )
-  ); */
+  );*/
 
 /* @Effect()
   addProduct$ = this.actions$.pipe(

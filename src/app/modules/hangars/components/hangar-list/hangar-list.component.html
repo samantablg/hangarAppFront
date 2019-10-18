@@ -1,5 +1,3 @@
-<app-button [hangarSelected]="hangarSelected" [isSelect]="isSelected"></app-button>
-
 <div class="row" *ngIf="loading">
     <div class="col">
         <div class="alert alert-info text-center">
@@ -34,7 +32,7 @@
         </tr>
     </thead>
     <tbody>
-        <tr *ngFor="let hangar of hangars$ | paginate: { itemsPerPage: 5, currentPage: page }" (click)="getHangar(hangar)">
+        <tr *ngFor="let hangar of hangars$ | paginate: { itemsPerPage: 5, currentPage: page }" (click)="this.selectHangar.emit(hangar)" (dbclick)="this.getHangar.emit(hangar)">
             <td class=" td1 ">{{ hangar.name }}</td>
             <td>{{ hangar.address }}</td>
             <td>{{ hangar.owner }}</td>

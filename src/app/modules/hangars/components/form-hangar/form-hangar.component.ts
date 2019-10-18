@@ -1,9 +1,8 @@
 import { HangarAsyncValidators } from './form-hangar.validators';
 import { HangarModel } from 'src/app/core/models/hangar.interface';
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { Component, Input, Output, EventEmitter, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { HangarService } from '../../../../core/services/hangar.service';
-import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-form-hangar',
@@ -13,12 +12,13 @@ import { Router, ActivatedRoute } from '@angular/router';
 export class FormHangarComponent implements OnInit {
   @Input() isReadOnly?: boolean;
   @Input() isEdit?: boolean;
-  @Input() hangarSelect?: HangarModel;
-  @Input() addNewHangar?: boolean;
+  @Input() hangarSelected?: HangarModel;
   @Output() postHangar = new EventEmitter<HangarModel>();
   @Output() updateHangar = new EventEmitter<HangarModel>();
   @Output() deleteHangar = new EventEmitter<HangarModel>();
 
+
+  // TODO: hay que manejar las validaciones asíncronas de otra manera
   formHangar = new FormGroup({
     name: new FormControl(
       '',
@@ -45,27 +45,15 @@ export class FormHangarComponent implements OnInit {
     state: new FormControl(true)
   });
 
-  constructor(private hangarService: HangarService, private route: ActivatedRoute) { }
+  constructor(private hangarService: HangarService) { }
 
   ngOnInit() {
-
-    if (this.isReadOnly || this.isEdit) {
-      this.route.params
-      .subscribe( data => {
-        this.hangarService.loadHangarById(data.id)
-          .subscribe( response => {
-            console.log(response);
-            this.hangarSelect = response;
-            this.name.setValue(this.hangarSelect.name);
-            this.address.setValue(this.hangarSelect.address);
-            this.owner.setValue(this.hangarSelect.owner);
-            this.email.setValue(this.hangarSelect.email);
-            this.phone.setValue(this.hangarSelect.phone);
-            this.id.setValue(this.hangarSelect.id);
-          });
-        }
-      );
-    }
+    this.name.setValue(this.hangarSelected.name);
+    this.address.setValue(this.hangarSelected.address);
+    this.owner.setValue(this.hangarSelected.owner);
+    this.email.setValue(this.hangarSelected.email);
+    this.phone.setValue(this.hangarSelected.phone);
+    this.id.setValue(this.hangarSelected.id);
   }
 
   get name() {

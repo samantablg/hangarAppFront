@@ -13,15 +13,10 @@ export class RegisterService {
   headers = new HttpHeaders({'Access-Control-Allow-Origin' : '*'});
 
   public postUser(user: UserModel) {
-    return this.http
-                .post<UserModel>(`${ this.url }`, user)
-                .subscribe( data => {
-                  console.log(data);
-                });
+    return this.http.post<UserModel>(`${ this.url }`, user);
   }
 
   public isUserByUsername(username: string) {
-    return this.http
-                .get<boolean>(`${ this.url }/${ username }`);
+    return this.http.get<boolean>(`${ this.url }/${ username }`);
   }
 }

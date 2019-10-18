@@ -1,83 +1,47 @@
-import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { Observable } from 'rxjs';
+import { Component } from '@angular/core';
 import { ProductModel } from 'src/app/core/models/product.interface';
-import { Store } from '@ngrx/store';
-import { State } from 'src/app/store/state';
+import { HangarModel } from 'src/app/core/models/hangar.interface';
+import { ProductFacade } from 'src/app/store/facade/product.facade';
+import { HangarFacade } from 'src/app/store/facade/hangar.facade';
 @Component({
   selector: 'app-products',
   templateUrl: './products.component.html',
   styleUrls: ['./products.component.css']
 })
-export class ProductsComponent implements OnInit {
+export class ProductsComponent {
 
-  products: ProductModel[] = [];
-  loading: boolean;
-  error: any;
-  /* scrollProducts: ProductModel[] = [];
-  product: ProductModel;
-  page = 0;
-  items = 6;
-  totalElements: number;
-  totalPages: number; */
+  products$: Observable<ProductModel[]>;
+  loading$: Observable<boolean>;
+  error$: Observable<any>;
+  hangars$: Observable<HangarModel[]>;
 
-  constructor(public store: Store<State>) { }
+  constructor(private router: Router,
+              private productFacade: ProductFacade,
+              private hangarFacade: HangarFacade) {
+    this.products$ = this.productFacade.products$;
+    this.loading$ = this.productFacade.loading$;
+    this.error$ = this.productFacade.error$;
 
-  ngOnInit() {
-    this.store.select('products')
-      .subscribe( data => {
-        console.log(data);
-        this.products = data.products;
-        this.loading = data.loading;
-        this.error = data.error;
-      });
+    this.productFacade.loadProducts();
 
-    this.store.dispatch({ type: '[PRODUCT] LOAD_PRODUCTS' });
-  }
-
-  /* constructor( private productService: ProductService,
-               private router: Router,
-               private hangarService: HangarService ) { }
-
-  ngOnInit() {
-    this.productService.loadProductsPage(this.page, this.items).subscribe( data => {
-      this.products = data['content'];
-      this.totalElements = data['totalElements'];
-      this.totalPages = data['totalPages'];
-    });
-    if (!this.products) {
-      this.router.navigate(['']);
-    }
-  } */
-
-  /* getProduct( product: ProductModel ) {
-    this.router.navigate(['/products/product', product.id]);
-  }
+   }
 
   insertProduct() {
     this.router.navigate(['products/new']);
   }
 
   getHangars() {
-    this.hangarService.loadBasicInfoHangars()
-    .subscribe( data => {
-      this.hangars = data;
-    });
+    this.hangars$ = this.hangarFacade.hangars$;
   }
 
-  viewProductsOfHangar( hangar: BasicHangarModel ) {
-    console.log(hangar.id);
+  viewProductsOfHangar(hangar: HangarModel) {
     this.router.navigate(['/products/hangar', hangar.id]);
   }
 
-  onScroll() {
-    this.page++;
-    if (this.page < this.totalElements / this.items ) {
-      this.productService.loadProductsPage(this.page, this.items).subscribe( data => {
-        this.scrollProducts = data['content'];
-        this.products.push(...this.scrollProducts);
-      });
-    } else {
-      this.page = this.totalPages - 1;
-    }
-  } */
+  getProduct(product: ProductModel) {
+    this.router.navigate(['/products/product', product.id]);
+  }
 
 }

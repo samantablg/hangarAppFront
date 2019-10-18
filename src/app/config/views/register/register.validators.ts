@@ -1,5 +1,5 @@
+import { UserFacade } from './../../../store/facade/user.facade';
 import { AbstractControl, ValidationErrors } from '@angular/forms';
-import { RegisterService } from '../../services/register.service';
 
 export class RegisterValidators {
 
@@ -10,19 +10,17 @@ export class RegisterValidators {
     return null;
   }
 }
-
 export class RegisterAsyncValidators {
-  static shouldBeUnique(registerService: RegisterService) {
+  static shouldBeUnique(userFacade: UserFacade) {
     return (control: AbstractControl): Promise<ValidationErrors | null> => new Promise(
       (resolve, reject) => {
-        registerService.isUserByUsername(control.value as string)
-        .subscribe(response => {
-          if (response) {
-            resolve({shouldBeUnique: true});
-          } else {
-            resolve(null);
-          }
-        });
+        userFacade.isRegister(control.value as string);
+        console.log(userFacade.isRegister$);
+        if (userFacade.isRegister$.valueOf) {
+          resolve({shouldBeUnique: true});
+        } else {
+          resolve(null);
+        }
     });
   }
 }

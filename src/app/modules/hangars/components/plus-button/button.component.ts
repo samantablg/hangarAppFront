@@ -1,5 +1,4 @@
-import { Router } from '@angular/router';
-import { Component, Input, OnInit, OnChanges } from '@angular/core';
+import { Component, Input, OnInit, Output, EventEmitter, OnChanges } from '@angular/core';
 import { HangarModel } from 'src/app/core/models/hangar.interface';
 
 @Component({
@@ -7,22 +6,17 @@ import { HangarModel } from 'src/app/core/models/hangar.interface';
   templateUrl: './button.component.html',
   styleUrls: ['./button.component.css']
 })
-export class ButtonComponent implements OnInit {
+export class ButtonComponent implements OnInit, OnChanges {
 
   @Input() isSelect: boolean;
-  @Input() hangarSelected?: HangarModel;
-  sideBarIsOpened = false;
+  @Output() toggleSideBar = new EventEmitter();
+  isSideBarOpened = false;
 
-  constructor( private router: Router ) { }
+  constructor() { }
 
-  ngOnInit() {}
-
-  toggleSideBar() {
-    if (this.isSelect) {
-      this.sideBarIsOpened = !this.sideBarIsOpened;
-    } else {
-      this.router.navigate(['hangars/new']);
-    }
+  ngOnInit() {
   }
+
+  ngOnChanges() { }
 
 }

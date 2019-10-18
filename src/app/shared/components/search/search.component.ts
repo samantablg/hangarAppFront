@@ -1,10 +1,8 @@
 import { ProductModel } from './../../../core/models/product.interface';
 import { HangarModel } from 'src/app/core/models/hangar.interface';
-import { HangarService } from './../../../core/services/hangar.service';
 import { FormGroup, FormControl } from '@angular/forms';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { ProductService } from 'src/app/core/services/product.service';
 
 @Component({
   selector: 'app-search',

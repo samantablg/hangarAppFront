@@ -1,1 +1,1 @@
-<app-form-hangar [isEdit]="true" (updateHangar)="updateHangar($event)"></app-form-hangar>
+<app-form-hangar [isEdit]="true" [hangarSelected]="hangarSelected$ | async" (updateHangar)="updateHangar($event)"></app-form-hangar>

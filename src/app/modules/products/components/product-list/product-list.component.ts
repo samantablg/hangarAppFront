@@ -7,14 +7,10 @@ import { ProductModel } from 'src/app/core/models/product.interface';
   templateUrl: './product-list.component.html',
   styleUrls: ['./product-list.component.css']
 })
-export class ProductListComponent implements OnInit {
+export class ProductListComponent {
 
   @Input() products$: Observable<ProductModel[]>;
   @Output() getProduct = new EventEmitter<ProductModel>();
 
   constructor() { }
-
-  ngOnInit() {
-  }
-
 }

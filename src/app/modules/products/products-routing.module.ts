@@ -5,6 +5,8 @@ import { ProductsComponent } from './views/products/products.component';
 import { ProductsOfHangarComponent } from './views/products-of-hangar/products-of-hangar.component';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { ProductNewComponent } from './views/product-new/product-new.component';
+import { ProductModifyComponent } from './views/product-modify/product-modify.component';
 
 const routes: Routes = [
   {
@@ -17,7 +19,7 @@ const routes: Routes = [
   },
   {
     path: 'new',
-    component: FormProductComponent
+    component: ProductNewComponent
   },
   {
     path: 'hangar/:id',
@@ -25,7 +27,7 @@ const routes: Routes = [
   },
   {
     path: 'modify/:id',
-    component: FormProductComponent
+    component: ProductModifyComponent
   },
   {
     path: 'search/:name',

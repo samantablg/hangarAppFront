@@ -1,4 +1,4 @@
-<form [formGroup]="formHangar" (ngSubmit)="saveHangar($event)">
+<form [formGroup]="formHangar" (ngSubmit)="saveHangar()">
     <div>
         <div class="form-group row">
             <label class="col-form-label" for="name">{{
@@ -7,8 +7,8 @@
             <input formControlName="name" id="name" type="text" class="form-control" [readonly]="isReadOnly" />
             <div *ngIf="name.pending">{{ "form.uniqueness" | translate }}</div>
 
-            <div *ngIf="hangarSelect">
-                <div *ngIf="name.touched && name.invalid && name.value!=hangarSelect.name && !isReadOnly" class="alert alert-danger">
+            <div *ngIf="hangarSelected">
+                <div *ngIf="name.touched && name.invalid && name.value!=hangarSelected.name && !isReadOnly" class="alert alert-danger">
                     <div *ngIf="!!name.errors.shouldBeUnique">
                         {{ 'hangar.exist' | translate }}
                     </div>
@@ -21,7 +21,7 @@
                 </div>
             </div>
 
-            <div *ngIf="!hangarSelect">
+            <div *ngIf="!hangarSelected">
                 <div *ngIf="name.touched && name.invalid && !isReadOnly " class="alert alert-danger">
                     <div *ngIf="!!name.errors.shouldBeUnique">
                         {{ 'hangar.exist' | translate }}
@@ -87,7 +87,7 @@
             <button type="submit" class="btn">{{ "save.text" | translate }}</button>
         </div>
         <div class="form-group row" *ngIf="isReadOnly || isEdit">
-            <button (click)="this.deleteHangar.emit(this.hangarSelect)" class="btn">{{ "hangar.delete" | translate }}</button>
+            <button (click)="this.deleteHangar.emit(this.hangarSelected)" class="btn">{{ "hangar.delete" | translate }}</button>
         </div>
     </div>
 </form>

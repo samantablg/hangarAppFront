@@ -1,17 +1,20 @@
-import { DeleteHangar, HangarActions } from './../actions/hangars.actions';
+import { Router } from '@angular/router';
+import { HangarActions } from '../actions/hangar.actions';
 import { HangarService } from 'src/app/core/services/hangar.service';
 import { Injectable } from '@angular/core';
-import { Actions, Effect, ofType, createEffect } from '@ngrx/effects';
-import * as hangar from '../actions/index';
-import { HangarsActionTypes } from '../actions/hangars.actions';
-import { switchMap, map, catchError, exhaustMap } from 'rxjs/operators';
-import { of } from 'rxjs';
+import { Actions, Effect, ofType } from '@ngrx/effects';
+import * as hangarActions from '../actions/hangar.actions';
+import { HangarsActionTypes } from '../actions/hangar.actions';
+import { switchMap, map, catchError, tap } from 'rxjs/operators';
+import { of, Observable } from 'rxjs';
 
 @Injectable()
-export class HangarsEffects {
+export class HangarEffects {
+
   constructor(
     private hangarService: HangarService,
-    private actions$: Actions
+    private actions$: Actions,
+    private router: Router
   ) {}
 
   @Effect()
@@ -23,27 +26,57 @@ export class HangarsEffects {
           type: '[HANGAR] LOADED_HANGARS',
           payload: response
         })),
-        catchError(error => of(new hangar.HangarsLoadFail(error)))
+        catchError(error => of(new hangarActions.HangarsLoadFail(error)))
       )
     )
   );
 
   @Effect()
-  deleteHangar$ = this.actions$.pipe(
-    ofType(HangarsActionTypes.DELETE_HANGAR),
-    switchMap( (action: hangar.DeleteHangar) => {
-      console.log(action.payload);
-      this.hangarService.deleteHangar(action.payload.id)
-      .subscribe(response => {
-        console.log(response);
-      });
-    })
-  );
-        /*
-      .pipe(
-        map(response => console.log(response))
+  saveHangar$: Observable<any> = this.actions$.pipe(
+    ofType<HangarActions>(HangarsActionTypes.NEW_HANGAR),
+
+    switchMap((action: hangarActions.NewHangar) => {
+      return this.hangarService.postHangar(action.payload).pipe(
+        map(response => ({
+          type: '[HANGAR] LOAD_HANGAR',
+          })
+        ),
+        tap(() => this.router.navigate(['hangars'])),
+        catchError(error => of(new hangarActions.HangarsLoadFail(error)))
       );
     })
-      */
+  );
+
+  @Effect()
+  deleteHangar$: Observable<any> = this.actions$.pipe(
+    ofType<HangarActions>(HangarsActionTypes.DELETE_HANGAR),
+
+    switchMap((action: hangarActions.DeleteHangar) => {
+      return this.hangarService.deleteHangar(action.payload.id).pipe(
+        map(response => ({
+          type: '[HANGAR] LOAD_HANGAR',
+          })
+        ),
+        tap(() => this.router.navigate(['hangars'])),
+        catchError(error => of(new hangarActions.HangarsLoadFail(error)))
+      );
+    })
+  );
+
+  @Effect()
+  editHangar$: Observable<any> = this.actions$.pipe(
+    ofType<HangarActions>(HangarsActionTypes.EDIT_HANGAR),
+
+    switchMap((action: hangarActions.EditHangar) => {
+      return this.hangarService.updateHangar(action.payload).pipe(
+        map(response => ({
+          type: '[HANGAR] LOAD_HANGAR',
+          })
+        ),
+        tap(() => this.router.navigate(['hangars'])),
+        catchError(error => of(new hangarActions.HangarsLoadFail(error)))
+      );
+    })
+  );
 
 }

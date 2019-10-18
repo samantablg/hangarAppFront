@@ -3,14 +3,12 @@ import { BasicAuthHtppInterceptorService } from './services/basic-auth-htpp-inte
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { LogoutComponent } from './components/logout/logout.component';
 import { LoginComponent } from './views/login/login.component';
 import { RegisterComponent } from './views/register/register.component';
 import { TranslateModule } from '@ngx-translate/core';
 
 @NgModule({
   declarations: [
-    LogoutComponent,
     LoginComponent,
     RegisterComponent
   ],

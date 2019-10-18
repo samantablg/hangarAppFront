@@ -1,6 +1,6 @@
+import { UserFacade } from './../../../store/facade/user.facade';
 import { AuthenticationService } from './../../../config/services/authentication.service';
-import { Component, Output, EventEmitter, OnChanges } from '@angular/core';
-import { Router } from '@angular/router';
+import { Component, Output, EventEmitter } from '@angular/core';
 
 @Component({
   selector: 'app-navbar',
@@ -11,14 +11,14 @@ export class NavbarComponent {
 
   @Output() emitChangeLang = new EventEmitter();
 
-  constructor( private router: Router, public loginService: AuthenticationService ) { }
+  constructor(private userFacade: UserFacade, public loginService: AuthenticationService) { }
 
   emitLanguage() {
     this.emitChangeLang.emit();
   }
 
   logoutSession() {
-    this.router.navigate(['/logout']);
+    this.userFacade.logout();
   }
 
 }

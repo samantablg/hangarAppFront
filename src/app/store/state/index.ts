@@ -1,3 +1,4 @@
+import { UserState } from './user.state';
 import { CommerceState } from './commerce.state';
 import { ProductsState } from './products.state';
 import { HangarsState } from './hangars.state';
@@ -6,10 +7,11 @@ import { RouterStateUrl } from './router.state';
 import { RouterStateSnapshot } from '@angular/router';
 
 export interface State {
-  hangars: HangarsState;
-  products: ProductsState;
+  hangar: HangarsState;
+  product: ProductsState;
   commerce: CommerceState;
   route: RouterReducerState<RouterStateUrl>;
+  user: UserState;
 }
 
 export class CustomRouterStateSerializer implements RouterStateSerializer<RouterStateUrl> {

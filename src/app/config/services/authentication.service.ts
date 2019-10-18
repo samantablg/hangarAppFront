@@ -10,7 +10,7 @@ export class AuthenticationService {
   private urlApi = 'http://localhost:8888/';
   constructor(private http: HttpClient) { }
 
-  aunthenticate(username: string, password: string): Observable<any> {
+  authenticate(username: string, password: string): Observable<any> {
     return this.http.post<any>(`${ this.urlApi }authenticate`, {username, password});
   }
 
@@ -19,7 +19,7 @@ export class AuthenticationService {
     return !(user === null);
   }
 
-  isSessionClose(): boolean { // TODO
+  isSessionClose(): boolean { // TODO:
     return false;
   }
 

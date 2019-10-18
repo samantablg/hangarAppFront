@@ -1,22 +1,7 @@
 <div *ngIf="this.product" class="container d-flex row">
-    <div class="card">
-        <div class="card-header justify-content-start">
-            <h2>{{product.name }}</h2>
-        </div>
-        <div class="card-body">
-            <p class="card-text">{{product.description}}</p>
-            <div class="row justify-content-end">
-                <a (click)="deleteProduct()" class="btn">{{ 'product.delete' | translate }}</a>
-                <a (click)="editProduct()" class="btn">{{ 'edit.text' | translate }}</a>
-                <a (click)="addPrice()" class="btn">{{ 'add-price.text' | translate }}</a>
-                <a (click)="getPrices()" class="btn">{{ 'historic.text' | translate }}</a>
-            </div>
-        </div>
-    </div>
+    <app-product-card [product]="this.product" [isDetails]="true" (addPrice)="addPrice()" (deleteProduct)="deleteProduct()" (editProduct)="editProduct()" (getPrices)="getPrices()"></app-product-card>
 
-    <div *ngIf="this.product">
-        <app-form-price [insertPrice]="insertPrice" [product]="product"></app-form-price>
+    <app-form-price [insertPrice]="insertPrice" [product]="product" (sendPrice)="savePrice($event)"></app-form-price>
 
-        <app-price-list [showHistoric]="showHistoric" [product]="product"></app-price-list>
-    </div>
+    <app-price-list [showHistoric]="showHistoric" [product]="product" [prices]="prices$ | async"></app-price-list>
 </div>

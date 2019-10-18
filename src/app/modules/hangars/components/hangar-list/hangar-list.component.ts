@@ -1,7 +1,5 @@
-import { Observable } from 'rxjs';
 import { HangarModel } from '../../../../core/models/hangar.interface';
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
-import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-hangar-list',
@@ -10,25 +8,18 @@ import { Router } from '@angular/router';
 })
 export class HangarListComponent implements OnInit {
 
-  @Input() hangars$: Observable<HangarModel[]>;
+  @Input() hangars$?: HangarModel[];
   @Input() loading: boolean;
   @Input() error: any;
   @Output() seeNextHangars = new EventEmitter();
   @Output() seePreviousHangars = new EventEmitter();
+  @Output() selectHangar = new EventEmitter<HangarModel>();
+  @Output() getHangar = new EventEmitter<HangarModel>();
   hangarSelected: HangarModel;
   isSelected = false;
+  page = 0;
 
-  constructor( private router: Router) { }
+  constructor() { }
 
   ngOnInit() { }
-
-  getHangar(hangar: HangarModel) {
-    this.router.navigate(['hangars/hangar', hangar.id]);
-  }
-
-  selectHangar(hangar: HangarModel) {
-    this.hangarSelected = hangar;
-    this.isSelected = !this.isSelected;
-    console.log(this.isSelected);
-  }
 }

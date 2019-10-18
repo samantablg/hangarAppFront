@@ -1,5 +1,3 @@
-<a (click)="toggleSideBar()" class="float">
+<a (click)="toggleSideBar.emit(this.hangarSelected)" class="float">
     <i class="fa fa-plus my-float"></i>
 </a>
-
-<app-sidebar [isOpen]="sideBarIsOpened" [hangar]="hangarSelected"></app-sidebar>

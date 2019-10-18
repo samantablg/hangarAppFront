@@ -1,8 +1,7 @@
 import { Observable } from 'rxjs';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { ProductOfHangarModel } from '../models/product-hangar.interface';
-import { ProductOfHangarExtendedModel } from '../models/product-hangar-extended.interface';
 
 @Injectable({
   providedIn: 'root'
@@ -13,34 +12,38 @@ export class ProductOfHangarService {
 
   constructor(private http: HttpClient) { }
 
-  public loadRelationships(id: number): Observable<ProductOfHangarModel[]> {
-    return this.http
-               .get<ProductOfHangarModel[]>(`${ this.urlApi }products/hangar/${ id }`);
+  httpOptions = {
+    headers: new HttpHeaders({
+      'Content-Type':  'application/json',
+      'Authorization': 'my-auth-token'
+    })
+  };
+
+
+  public loadRelationships(idHangar: number): Observable<ProductOfHangarModel[]> {
+    return this.http.get<ProductOfHangarModel[]>(`${ this.urlApi }products/hangar/${ idHangar }`);
   }
 
-  public loadRelationshipsExtended(id: number): Observable<ProductOfHangarExtendedModel[]> {
-    return this.http
-               .get<ProductOfHangarExtendedModel[]>(`${ this.urlApi }link/productsOfHangar/${ id }`);
+  public loadRelationshipsExtended(idHangar: number): Observable<ProductOfHangarModel[]> {
+    return this.http.get<ProductOfHangarModel[]>(`${ this.urlApi }link/productsOfHangar/${ idHangar }`);
   }
 
   public updateAmountOfRelationShip(productOfHangar: ProductOfHangarModel) {
-    return this.http
-                .put(`${ this.urlApi }productOfHangar/update`, productOfHangar);
+    return this.http.put(`${ this.urlApi }productOfHangar/update`, productOfHangar);
   }
 
-  public unlinkProductOfHangar( productOfHangar: ProductOfHangarModel): Observable<ProductOfHangarModel> {
+  public unlinkProductOfHangar( productOfHangar: ProductOfHangarModel) {
     return this.http
-                .put<ProductOfHangarModel>(`${ this.urlApi }productOfHangar/delete`, productOfHangar);
+    .delete<ProductOfHangarModel>
+    (`${ this.urlApi }productOfHangar/delete/${ productOfHangar.hangar}/${ productOfHangar.product}`);
   }
 
   public postProductToHangar( productOfHangar: ProductOfHangarModel) {
-    return this.http
-                .post(`${ this.urlApi }productOfHangar`, productOfHangar);
+    return this.http.post(`${ this.urlApi }productOfHangar`, productOfHangar);
   }
 
   public isProductLinkToHangar(id: number) {
-    return this.http
-                .get<boolean>(`${ this.urlApi }productOfHangar/product/${ id }`);
+    return this.http.get<boolean>(`${ this.urlApi }productOfHangar/product/${ id }`);
   }
 
   public isHangarNotEmpty(id: number) {

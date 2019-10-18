@@ -1,61 +1,38 @@
+import { Observable } from 'rxjs';
+import { RouterFacade } from 'src/app/store/facade/router.facade';
 import { ProductModel } from 'src/app/core/models/product.interface';
-import { ProductService } from '../../../../core/services/product.service';
-import { Component, OnInit } from '@angular/core';
-import { Router, ActivatedRoute } from '@angular/router';
+import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 import { ProductOfHangarModel } from 'src/app/core/models/product-hangar.interface';
-import { ProductOfHangarService } from 'src/app/core/services/product-of-hangar.service';
-import { ProductOfHangarExtendedModel } from 'src/app/core/models/product-hangar-extended.interface';
+import { ProductFacade } from 'src/app/store/facade/product.facade';
 
 @Component({
   selector: 'app-products-of-hangar',
   templateUrl: './products-of-hangar.component.html',
   styleUrls: ['./products-of-hangar.component.css']
 })
-export class ProductsOfHangarComponent implements OnInit {
+export class ProductsOfHangarComponent {
 
-  productsOfHangarExtended: ProductOfHangarExtendedModel[] = [];
-  isProductInsert = false;
+  productsOfHangar: Observable<ProductOfHangarModel[]>;
   isAmountModify = false;
   idProduct: number;
   product: ProductModel;
-  isHangarEmpty = false;
   idHangar: number;
+  productsUnlinkHangar: ProductModel[] | void;
 
-  constructor(private productOfHangarService: ProductOfHangarService,
-              private productService: ProductService,
-              private route: ActivatedRoute,
-              private router: Router) { }
+  constructor(private routerFacade: RouterFacade,
+              private productFacade: ProductFacade,
+              private router: Router) {
 
-  ngOnInit() {
-    this.route.params.subscribe(
-      data => {
-        this.idHangar = data.id;
-        this.productOfHangarService.isHangarNotEmpty(this.idHangar)
-        .subscribe(response => {
-          if (response) {
-            this.productOfHangarService.loadRelationshipsExtended(this.idHangar)
-            .subscribe( resp => {
-              this.productsOfHangarExtended = resp;
-            });
-          } else {
-            this.isHangarEmpty = true;
-          }
-        });
-    });
-  }
+                this.idHangar = this.routerFacade.id$;
+                this.productsOfHangar = this.productFacade.productsOfHangar$;
+                this.productsUnlinkHangar = this.productFacade.selectProductsUnlinkHangar(this.idHangar);
 
-  linkToHangar() {
-    this.isProductInsert = !this.isProductInsert;
-  }
+                this.productFacade.loadProductsOfHangar(this.idHangar);
+              }
 
-  seeProduct(id: number) {
-    this.productService.loadProductById(id)
-    .subscribe( data => {
-      this.product = data;
-    });
-    if (this.product) {
-      this.router.navigate(['products/product', id]);
-    }
+  getProduct(idProduct: number) {
+    this.router.navigate(['/products/product', idProduct]);
   }
 
   modifyAmount(product: number) {
@@ -64,17 +41,15 @@ export class ProductsOfHangarComponent implements OnInit {
   }
 
   deleteRelationship(productOfHangar: ProductOfHangarModel) {
-    this.productOfHangarService.unlinkProductOfHangar(productOfHangar)
-    .subscribe( response => {
-      if (response) {
-        window.alert('borrado');
-        this.router.navigate(['products']);
-      } else {
-        window.alert('fail');
-      }
-    }, err => {
-      window.alert(err);
-    });
+    this.productFacade.deleteProductOfHangar(productOfHangar);
+  }
+
+  saveProductHangar(productOfHangar: ProductOfHangarModel) {
+    this.productFacade.saveProductOfHangar(productOfHangar);
+  }
+
+  updateProductHangar(productOfHangar: ProductOfHangarModel) {
+    this.productFacade.editProductOfHangar(productOfHangar);
   }
 
 }

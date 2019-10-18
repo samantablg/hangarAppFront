@@ -1,11 +1,11 @@
 import { HangarModel } from 'src/app/core/models/hangar.interface';
 
 export interface HangarsState {
-  hangars: HangarModel[];
-  hangarSelected: HangarModel;
+  hangars: HangarModel[] | [];
+  hangarSelected: HangarModel | null;
   loaded: boolean;
   loading: boolean;
-  error: any;
+  error: any | null;
 }
 
 export const initialState: HangarsState = {
