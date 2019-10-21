@@ -10,7 +10,7 @@ export function commerceReducer(state = initialState, action: commerce.CommerceA
     case CommerceActionTypes.ADD_PRODUCT_ORDER:
       return addProductToOrder(state, action);
     case CommerceActionTypes.REMOVE_PRODUCT_ORDER:
-       return {...state }; // removeProduct(state, action);
+      return removeProduct(state, action);
     case CommerceActionTypes.SEND_ORDER:
       return sendOrder(state, action);
     case CommerceActionTypes.COMMERCE_FAIL:
@@ -27,11 +27,9 @@ function addProductToOrder(state, action) {
     quantity: action.payload.quantity,
     price: action.payload.price
   };
-  console.log(isProductInOrder(state, productOrder));
   if (isProductInOrder(state, productOrder) === undefined) {
     return tassign(state,
       {
-
         order: {
           productsOfOrder: state.order.productsOfOrder.concat(productOrder),
           totalPrice: state.order.totalPrice + action.payload.price,
@@ -42,7 +40,7 @@ function addProductToOrder(state, action) {
     return tassign(state,
       {
         order: {
-          productsOfOrder: modifyProductOfOrder(state, action),
+          productsOfOrder: incrementProductOfOrder(state, action),
           totalPrice: state.order.totalPrice + productOrder.price,
           totalProducts: state.order.totalProducts + productOrder.quantity
         }
@@ -50,19 +48,23 @@ function addProductToOrder(state, action) {
   }
 }
 
-// TODO: hay que controlar que al quitar un producto se quite bien el precio porque probablemente haya introducido más de uno.
-/* function removeProduct(state, action) {
-  return tassign(state,
-    {
-      products_order: state.products_order.filter(product => product.product_id !== action.payload.product_id),
-      totalProducts: state.totalProducts,
-      totalPrice: state.totalPrice - action.payload.price
-    }
-  );
-} */
+function removeProduct(state, action) {
+  if (isProductInOrder(state, action.payload) === undefined) {
+    return { ...state};
+  } else {
+    const product = isProductInOrder(state, action.payload);
+    console.log(product);
+    return tassign(state, {
+      order: {
+        productsOfOrder: removeProductOfOrder(state, action),
+        totalPrice: state.order.totalPrice - product.quantity * product.price,
+        totalProducts: state.order.totalProducts - product.quantity
+      }
+    });
+  }
+}
 
 function isProductInOrder(state: CommerceState, productOrder: ProductOfOrderModel): ProductOfOrderModel | undefined {
-  console.log('state: ' + state.order.productsOfOrder);
   return (state.order.productsOfOrder.find(product =>
     product.product_id === productOrder.product_id && product.hangar_id === productOrder.hangar_id));
 }
@@ -92,12 +94,22 @@ function failOrder(state, action) {
   );
 }
 
-function modifyProductOfOrder(state, action) {
+function incrementProductOfOrder(state, action) {
   const index = state.order.productsOfOrder.findIndex(
-    (product) => product.hangar_id === action.payload.hangar_id && product.product_id === action.payload.product_id);
+    (product) => {
+      return product.hangar_id === action.payload.hangar_id && product.product_id === action.payload.product_id;
+    });
   const productsOfOrder = state.order.productsOfOrder.slice();
   const productOfOrder = productsOfOrder[index];
   productOfOrder.quantity += productOfOrder.quantity;
-  productsOfOrder.splice(index, 1, productOfOrder);
-  return productsOfOrder;
+  return productsOfOrder.splice(index, 1, productOfOrder);
+}
+
+function removeProductOfOrder(state, action) {
+  const index = state.order.productsOfOrder.findIndex(
+    (product) => {
+      return product.hangar_id === action.payload.hangar_id && product.product_id === action.payload.product_id;
+    });
+  const productsOfOrder = state.order.productsOfOrder.slice();
+  return productsOfOrder.splice(index, 1);
 }
