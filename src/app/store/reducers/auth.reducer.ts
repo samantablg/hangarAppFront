@@ -1,40 +1,40 @@
-import { UserState } from './../state/user.state';
-import { initialUserState } from '../state/user.state';
-import { UserActionTypes } from './../actions/user.actions';
+import { AuthState } from '../state/auth.state';
+import { initialAuthState } from '../state/auth.state';
+import { AuthActionTypes } from '../actions/auth.actions';
 
-export function userReducer(state = initialUserState, action): UserState {
+export function authReducer(state = initialAuthState, action): AuthState {
   switch (action.type) {
-    case UserActionTypes.LOGIN_USER:
+    case AuthActionTypes.LOGIN_AUTH:
       return {
         ...state,
         user: { ... action.payload },
         isAuthenticated: true
     };
-    case UserActionTypes.LOGIN_USER_FAIL:
+    case AuthActionTypes.LOGIN_AUTH_FAIL:
       return {
         ...state,
         error: action.payload
       };
-    case UserActionTypes.LOGOUT_USER:
+    case AuthActionTypes.LOGOUT_AUTH:
       return {
         ...state,
         user: null,
         isAuthenticated: false,
       };
-    case UserActionTypes.REGISTER_USER:
+    case AuthActionTypes.REGISTER_AUTH:
       return {
         ...state,
         isUserLogged: true
       };
-    case UserActionTypes.REGISTER_USER_FAIL:
+    case AuthActionTypes.REGISTER_AUTH_FAIL:
       return {
         ...state,
         isUserLogged: false,
         error: action.payload
       };
-    case UserActionTypes.VALIDATE_USER:
+    case AuthActionTypes.VALIDATE_AUTH:
       return { ...state };
-    case UserActionTypes.VALIDATED_USER:
+    case AuthActionTypes.VALIDATED_AUTH:
       return {
         ...state,
         isRegister: action.payload

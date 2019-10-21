@@ -1,21 +1,18 @@
 import { AbstractControl, ValidationErrors } from '@angular/forms';
-import { ProductService } from 'src/app/core/services/product.service';
+import { ProductFacade } from 'src/app/store/facade/product.facade';
 
 export class ProductAsyncValidators {
-  static shouldBeUnique(productService: ProductService) {
+  static shouldBeUnique(productFacade: ProductFacade) {
     return (control: AbstractControl): Promise<ValidationErrors | null> => new Promise(
       (resolve, reject) => {
-        productService.productExistByName(control.value as string)
-        .subscribe(response => {
-          console.log(response);
-          if (!response) {
+        productFacade.isProduct(control.value as string);
+        setTimeout(() => {
+          if (productFacade.isProduct$) {
             resolve({shouldBeUnique: true});
           } else {
             resolve(null);
           }
-        }, (err) => {
-          resolve({shouldBeUnique: true});
-        });
+        }, 1000);
     });
   }
 }

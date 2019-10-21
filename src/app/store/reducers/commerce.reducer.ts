@@ -7,15 +7,14 @@ import { tassign } from 'tassign';
 
 export function commerceReducer(state = initialState, action: commerce.CommerceActions): CommerceState {
   switch (action.type) {
-    case CommerceActionTypes.ADD_PRODUCT:
+    case CommerceActionTypes.ADD_PRODUCT_ORDER:
       return addProductToOrder(state, action);
-    case CommerceActionTypes.ADD_PRODUCT_FAIL:
-      return {
-        ...state,
-        error: action.payload
-      };
-     case CommerceActionTypes.REMOVE_PRODUCT:
-       return removeProduct(state, action);
+    case CommerceActionTypes.REMOVE_PRODUCT_ORDER:
+       return {...state }; // removeProduct(state, action);
+    case CommerceActionTypes.SEND_ORDER:
+      return sendOrder(state, action);
+    case CommerceActionTypes.COMMERCE_FAIL:
+      return failOrder(state, action);
     default:
       return state;
   }
@@ -28,32 +27,31 @@ function addProductToOrder(state, action) {
     quantity: action.payload.quantity,
     price: action.payload.price
   };
-  return tassign(state,
-    {
-      products_order: state.products_order.concat(productOrder),
-      totalPrice: state.totalPrice + productOrder.price,
-      totalProducts: state.totalProducts + productOrder.quantity
-    });
-  /* if (!isProductInOrder(state, action.payload)) {
+  console.log(isProductInOrder(state, productOrder));
+  if (isProductInOrder(state, productOrder) === undefined) {
     return tassign(state,
       {
-        products_orders: state.products_order.concat(action.payload),
-        totalPrice: state.totalPrice + action.payload.price,
-        totalProducts: state.totalProducts + 1
+
+        order: {
+          productsOfOrder: state.order.productsOfOrder.concat(productOrder),
+          totalPrice: state.order.totalPrice + action.payload.price,
+          totalProducts: state.order.totalProducts + 1
+        }
       });
   } else {
     return tassign(state,
       {
-        products_orders: state.products_order,
-        totalPrice: state.totalPrice + action.payload.price,
-        totalProducts: state.totalProducts + 1
-      }
-    );
-  } */
+        order: {
+          productsOfOrder: modifyProductOfOrder(state, action),
+          totalPrice: state.order.totalPrice + productOrder.price,
+          totalProducts: state.order.totalProducts + productOrder.quantity
+        }
+    });
+  }
 }
 
 // TODO: hay que controlar que al quitar un producto se quite bien el precio porque probablemente haya introducido más de uno.
-function removeProduct(state, action) {
+/* function removeProduct(state, action) {
   return tassign(state,
     {
       products_order: state.products_order.filter(product => product.product_id !== action.payload.product_id),
@@ -61,13 +59,45 @@ function removeProduct(state, action) {
       totalPrice: state.totalPrice - action.payload.price
     }
   );
+} */
+
+function isProductInOrder(state: CommerceState, productOrder: ProductOfOrderModel): ProductOfOrderModel | undefined {
+  console.log('state: ' + state.order.productsOfOrder);
+  return (state.order.productsOfOrder.find(product =>
+    product.product_id === productOrder.product_id && product.hangar_id === productOrder.hangar_id));
 }
 
-function isProductInOrder(state: CommerceState, productOrder: ProductOfOrderModel) {
-  if (state.products_order.length > 0) {
-    return (state.products_order.filter(product =>
-       product.product_id === productOrder.product_id && product.hangar_id === productOrder.hangar_id).length > 0);
-  }
-  return false;
+function sendOrder(state, action) {
+  return tassign(state,
+    {
+      order: {
+        productsOfOrder: [],
+        totalPrice: 0,
+        totalProducts: 0
+      }
+    }
+  );
 }
 
+function failOrder(state, action) {
+  return tassign(state,
+    {
+      order: {
+        productsOfOrder: [],
+        totalPrice: 0,
+        totalProducts: 0
+      },
+      error: action.payload
+    }
+  );
+}
+
+function modifyProductOfOrder(state, action) {
+  const index = state.order.productsOfOrder.findIndex(
+    (product) => product.hangar_id === action.payload.hangar_id && product.product_id === action.payload.product_id);
+  const productsOfOrder = state.order.productsOfOrder.slice();
+  const productOfOrder = productsOfOrder[index];
+  productOfOrder.quantity += productOfOrder.quantity;
+  productsOfOrder.splice(index, 1, productOfOrder);
+  return productsOfOrder;
+}

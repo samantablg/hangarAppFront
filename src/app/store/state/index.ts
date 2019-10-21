@@ -1,4 +1,4 @@
-import { UserState } from './user.state';
+import { AuthState } from './auth.state';
 import { CommerceState } from './commerce.state';
 import { ProductsState } from './products.state';
 import { HangarsState } from './hangars.state';
@@ -11,7 +11,7 @@ export interface State {
   product: ProductsState;
   commerce: CommerceState;
   route: RouterReducerState<RouterStateUrl>;
-  user: UserState;
+  auth: AuthState;
 }
 
 export class CustomRouterStateSerializer implements RouterStateSerializer<RouterStateUrl> {

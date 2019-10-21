@@ -10,8 +10,7 @@ export enum HangarsActionTypes {
   DELETE_HANGAR = '[HANGAR] DELETE_HANGAR',
   SELECT_HANGAR = '[HANGAR] SELECT_HANGAR',
   SEARCH_HANGAR = '[HANGAR] SEARCH_HANGAR',
-  VALIDATE_HANGAR = '[HANGAR] VALIDATE_HANGAR',
-  VALIDATED_HANGAR = '[HANGAR] VALIDATED_HANGAR'
+  VALIDATE_HANGAR = '[HANGAR] VALIDATE_HANGAR'
 }
 
 export class HangarsLoad implements Action {
@@ -66,12 +65,6 @@ export class ValidateHangar implements Action {
   constructor(public payload: string) {}
 }
 
-export class ValidatedHangar implements Action {
-  type = HangarsActionTypes.VALIDATED_HANGAR;
-
-  constructor(public payload: boolean) {}
-}
-
 export type HangarActions = HangarsLoad |
                             HangarsLoaded |
                             HangarsLoadFail |
@@ -79,6 +72,5 @@ export type HangarActions = HangarsLoad |
                             EditHangar |
                             SelectHangar |
                             SearchHangar |
-                            ValidateHangar |
-                            ValidatedHangar;
+                            ValidateHangar;
 

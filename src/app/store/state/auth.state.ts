@@ -1,6 +1,6 @@
-import { UserModel } from './../../core/models/user.interface';
+import { UserModel } from '../../core/models/user.interface';
 
-export interface UserState {
+export interface AuthState {
   user: UserModel | null;
   isAuthenticated: boolean;
   isRegister: boolean;
@@ -8,7 +8,7 @@ export interface UserState {
   isUserLogged: boolean;
 }
 
-export const initialUserState: UserState = {
+export const initialAuthState: AuthState = {
   user: null,
   isAuthenticated: false,
   isRegister: false,

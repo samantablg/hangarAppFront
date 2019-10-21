@@ -1,4 +1,4 @@
-import { UserFacade } from './../../../store/facade/user.facade';
+import { AuthFacade } from '../../../store/facade/auth.facade';
 import { FormGroup, FormControl } from '@angular/forms';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
@@ -10,15 +10,12 @@ import { Router } from '@angular/router';
 })
 export class LoginComponent implements OnInit {
 
-  invalidLogin = false;
-  formLogin: FormGroup;
+  formLogin = new FormGroup({
+    username: new FormControl(''),
+    password: new FormControl(''),
+  });
 
-  constructor(private router: Router, private userFacade: UserFacade) {
-    this.formLogin = new FormGroup({
-      username: new FormControl(''),
-      password: new FormControl(''),
-    });
-   }
+  constructor(private router: Router, private authFacade: AuthFacade) {}
 
   ngOnInit() {
   }
@@ -32,7 +29,7 @@ export class LoginComponent implements OnInit {
   }
 
   checkLogin() {
-    this.userFacade.authenticate(this.formLogin.value);
+    this.authFacade.authenticate(this.formLogin.value);
   }
 
   newUser() {

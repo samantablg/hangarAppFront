@@ -9,6 +9,7 @@ export interface ProductsState {
   error: any;
   productsOfHangar: ProductOfHangarModel[] | [];
   prices: PriceModel[] | [];
+  isProduct: boolean;
 }
 
 export const initialState: ProductsState = {
@@ -17,11 +18,6 @@ export const initialState: ProductsState = {
   loading: false,
   error: null,
   productsOfHangar: [],
-  prices: []
+  prices: [],
+  isProduct: false
 };
-
-/*
-export interface ProductState {
-  products: Page<ProductModel>;
-}
-*/

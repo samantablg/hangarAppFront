@@ -2,6 +2,8 @@ import * as product from '../actions/product.actions';
 import { ProductsActionTypes } from '../actions/product.actions';
 import { initialState } from '../state/products.state';
 import { ProductsState } from '../state/products.state';
+import { ProductModel } from 'src/app/core/models/product.interface';
+import { tassign } from 'tassign';
 
 export function productReducer(state = initialState, action: product.ProductsLoaded): ProductsState {
 
@@ -12,7 +14,8 @@ export function productReducer(state = initialState, action: product.ProductsLoa
         ...state,
         loading: true,
         productsOfHangar: [],
-        prices: []
+        prices: [],
+        isProduct: false
       };
     case ProductsActionTypes.LOADED_PRODUCTS:
       return {
@@ -78,7 +81,20 @@ export function productReducer(state = initialState, action: product.ProductsLoa
       return {
         ...state,
       };
+    case ProductsActionTypes.VALIDATE_PRODUCT:
+      return findProduct(state, action);
     default:
       return state;
   }
+}
+
+function findProduct(state, action) {
+  const productResult: ProductModel | undefined = state.products.find(
+    // tslint:disable-next-line: no-shadowed-variable
+    (product: ProductModel | undefined) => product.name === action.payload);
+  return tassign(state,
+    {
+      isProduct: (productResult !== undefined),
+    }
+  );
 }

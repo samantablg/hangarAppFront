@@ -2,22 +2,4 @@
     <h3>{{ 'search.message' | translate }}</h3>
 </div>
 
-<table *ngIf="this.isHangars" class="table table-condensed table-hover">
-    <caption>
-        {{ 'hangar.list' | translate }}
-    </caption>
-    <thead>
-        <tr>
-            <th scope="col">{{ 'hangar-name' | translate }}</th>
-            <th scope="col">{{ 'hangar.address' | translate }}</th>
-            <th scope="col">{{ 'hangar.owner' | translate }}</th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr *ngFor="let hangar of hangars" (dblclick)="getHangar(hangar)">
-            <td class="td1">{{ hangar.name }}</td>
-            <td>{{ hangar.address }}</td>
-            <td>{{ hangar.owner }}</td>
-        </tr>
-    </tbody>
-</table>
+<app-hangar-list [hangars$]="hangars" (getHangar)="getHangar($event)"></app-hangar-list>

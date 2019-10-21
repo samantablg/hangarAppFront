@@ -1,2 +1,8 @@
-<app-products [products]="products" (addProductToShoppingCart)="addProductToShoppingCart($event)" (removeProductToShoppingCart)="removeProductToShoppingCart($event)"></app-products>
-<app-shopping-cart [totalPrice]="totalPrice" [totalProducts]="totalProducts"></app-shopping-cart>
+<div class="row">
+    <div class="col-md-6">
+        <app-products-shop [products]="products$ | async" (addProductToShoppingCart)="addProductToShoppingCart($event)" (removeProductToShoppingCart)="removeProductToShoppingCart($event)"></app-products-shop>
+    </div>
+    <div class="col-md-6">
+        <app-shopping-cart [totalPrice]="totalPrice$ | async" [totalProducts]="totalProducts$ | async" [order]="order$ | async" (sendOrder)="sendOrder($event)"></app-shopping-cart>
+    </div>
+</div>

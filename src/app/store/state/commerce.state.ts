@@ -1,16 +1,17 @@
 import { ProductOfOrderModel } from './../../core/models/product-of-order.interface';
+import { OrderModel } from 'src/app/core/models/order.interface';
 
 export interface CommerceState {
-  products_order: ProductOfOrderModel[];
-  totalPrice: number;
-  totalProducts: number;
+  order: OrderModel | null;
   error: any;
 }
 
 export const initialState: CommerceState = {
-  products_order: [],
-  totalPrice: 0,
-  totalProducts: 0,
+  order: {
+    productsOfOrder: [],
+    totalPrice: 0,
+    totalProducts: 0
+  },
   error: null
 };
 

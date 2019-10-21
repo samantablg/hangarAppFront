@@ -1,3 +1,4 @@
+import { OrderModel } from 'src/app/core/models/order.interface';
 import { ProductModel } from './../models/product.interface';
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
@@ -23,18 +24,15 @@ export class ProductService {
   }
 
   public loadProductsPage(page: number, items: number ): Observable<ProductModel[]> {
-    return this.http
-                .get<ProductModel[]>(`${ this.urlApi }products/${ page }/${ items }`);
+    return this.http.get<ProductModel[]>(`${ this.urlApi }products/${ page }/${ items }`);
   }
 
   public loadProductById(id: number): Observable<ProductModel> {
-    return this.http
-                .get<ProductModel>(`${ this.urlApi }product/${ id }`);
+    return this.http.get<ProductModel>(`${ this.urlApi }product/${ id }`);
   }
 
   public postProduct(product: ProductModel) {
-    return this.http
-                .post<ProductModel>(`${ this.urlApi }product`, product);
+    return this.http.post<ProductModel>(`${ this.urlApi }product`, product);
   }
 
   public updateProduct(product: ProductModel) {
@@ -42,33 +40,31 @@ export class ProductService {
   }
 
   public findProductsByName(name: string): Observable<ProductModel[]> {
-    return this.http
-                .get<ProductModel[]>(`${ this.urlApi }search/product?name=${ name }`);
+    return this.http.get<ProductModel[]>(`${ this.urlApi }search/product?name=${ name }`);
   }
 
   public productExistByName(name: string) {
-    return this.http
-                .get<boolean>(`${ this.urlApi }product/exist/${ name }`);
+    return this.http.get<boolean>(`${ this.urlApi }product/exist/${ name }`);
   }
 
   public deleteProduct(id: number) {
-    return this.http
-                .put(`${ this.urlApi }product/${ id }`, id);
+    return this.http.put(`${ this.urlApi }product/${ id }`, id);
   }
 
   public loadProductsNotAssociateToHangarById(idHangar: number): Observable<ProductModel[]> {
-    return this.http
-                .get<ProductModel[]>(`${ this.urlApi }products/unlink/${ idHangar }`);
+    return this.http.get<ProductModel[]>(`${ this.urlApi }products/unlink/${ idHangar }`);
   }
 
   public postPrice(price: number, id: number) {
-    return this.http
-                .post<PriceModel>(`${ this.urlApi }price/product/${ id }`, price);
+    return this.http.post<PriceModel>(`${ this.urlApi }price/product/${ id }`, price);
   }
 
   public loadPricesOfProduct(id: number): Observable<PriceModel[]> {
-    return this.http
-                .get<PriceModel[]>(`${ this.urlApi }price/product/${ id }`);
+    return this.http.get<PriceModel[]>(`${ this.urlApi }price/product/${ id }`);
+  }
+
+  public saveOrder(order: OrderModel): Observable<OrderModel> {
+    return this.http.post<OrderModel>(`${ this.urlApi }order`, order);
   }
 
 }

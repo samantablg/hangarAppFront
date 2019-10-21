@@ -1,3 +1,4 @@
+import { Action } from '@ngrx/store';
 import { Router } from '@angular/router';
 import { HangarActions } from '../actions/hangar.actions';
 import { HangarService } from 'src/app/core/services/hangar.service';
@@ -7,7 +8,6 @@ import * as hangarActions from '../actions/hangar.actions';
 import { HangarsActionTypes } from '../actions/hangar.actions';
 import { switchMap, map, catchError, tap } from 'rxjs/operators';
 import { of, Observable } from 'rxjs';
-
 @Injectable()
 export class HangarEffects {
 
@@ -32,12 +32,12 @@ export class HangarEffects {
   );
 
   @Effect()
-  saveHangar$: Observable<any> = this.actions$.pipe(
+  saveHangar$: Observable<Action> = this.actions$.pipe(
     ofType<HangarActions>(HangarsActionTypes.NEW_HANGAR),
 
     switchMap((action: hangarActions.NewHangar) => {
       return this.hangarService.postHangar(action.payload).pipe(
-        map(response => ({
+        map( _ => ({
           type: '[HANGAR] LOAD_HANGAR',
           })
         ),
@@ -48,12 +48,12 @@ export class HangarEffects {
   );
 
   @Effect()
-  deleteHangar$: Observable<any> = this.actions$.pipe(
+  deleteHangar$: Observable<Action> = this.actions$.pipe(
     ofType<HangarActions>(HangarsActionTypes.DELETE_HANGAR),
 
     switchMap((action: hangarActions.DeleteHangar) => {
       return this.hangarService.deleteHangar(action.payload.id).pipe(
-        map(response => ({
+        map( _ => ({
           type: '[HANGAR] LOAD_HANGAR',
           })
         ),
@@ -64,12 +64,12 @@ export class HangarEffects {
   );
 
   @Effect()
-  editHangar$: Observable<any> = this.actions$.pipe(
+  editHangar$: Observable<Action> = this.actions$.pipe(
     ofType<HangarActions>(HangarsActionTypes.EDIT_HANGAR),
 
     switchMap((action: hangarActions.EditHangar) => {
       return this.hangarService.updateHangar(action.payload).pipe(
-        map(response => ({
+        map( _ => ({
           type: '[HANGAR] LOAD_HANGAR',
           })
         ),

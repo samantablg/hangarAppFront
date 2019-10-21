@@ -1,4 +1,4 @@
-import { UserEffects } from './store/effects/user.effects';
+import { AuthEffects } from './store/effects/auth.effects';
 import { CustomRouterStateSerializer } from './store/state/index';
 import { metaReducers } from './store/reducers/index';
 import { CommerceEffects } from './store/effects/commerce.effects';
@@ -42,7 +42,7 @@ import { HangarEffects } from './store/effects/hangar.effects';
       maxAge: 25, // Retains last 55 states
       logOnly: environment.production, // Restrict extension to log-only mode
     }),
-    EffectsModule.forRoot([HangarEffects, ProductEffects, CommerceEffects, UserEffects]),
+    EffectsModule.forRoot([HangarEffects, ProductEffects, CommerceEffects, AuthEffects]),
     StoreRouterConnectingModule.forRoot(),
     CoreModule,
     TranslateModule,

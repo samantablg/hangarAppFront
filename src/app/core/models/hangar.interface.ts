@@ -1,4 +1,3 @@
-import { MinifiedModel } from './minified.interface';
 export interface HangarModel {
   id: number;
   name: string;

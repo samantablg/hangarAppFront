@@ -1,3 +1,4 @@
+import { HangarFacade } from 'src/app/store/facade/hangar.facade';
 import { HangarAsyncValidators } from './form-hangar.validators';
 import { HangarModel } from 'src/app/core/models/hangar.interface';
 import { Component, Input, Output, EventEmitter, OnInit } from '@angular/core';
@@ -23,7 +24,7 @@ export class FormHangarComponent implements OnInit {
     name: new FormControl(
       '',
       [Validators.required, Validators.minLength(3)],
-      [HangarAsyncValidators.shouldBeUnique(this.hangarService)]
+      [HangarAsyncValidators.shouldBeUnique(this.hangarFacade)]
     ),
     address: new FormControl('', [
       Validators.required,
@@ -45,15 +46,17 @@ export class FormHangarComponent implements OnInit {
     state: new FormControl(true)
   });
 
-  constructor(private hangarService: HangarService) { }
+  constructor(private hangarService: HangarService, private hangarFacade: HangarFacade) { }
 
   ngOnInit() {
-    this.name.setValue(this.hangarSelected.name);
-    this.address.setValue(this.hangarSelected.address);
-    this.owner.setValue(this.hangarSelected.owner);
-    this.email.setValue(this.hangarSelected.email);
-    this.phone.setValue(this.hangarSelected.phone);
-    this.id.setValue(this.hangarSelected.id);
+    if (this.hangarSelected) {
+      this.name.setValue(this.hangarSelected.name);
+      this.address.setValue(this.hangarSelected.address);
+      this.owner.setValue(this.hangarSelected.owner);
+      this.email.setValue(this.hangarSelected.email);
+      this.phone.setValue(this.hangarSelected.phone);
+      this.id.setValue(this.hangarSelected.id);
+    }
   }
 
   get name() {

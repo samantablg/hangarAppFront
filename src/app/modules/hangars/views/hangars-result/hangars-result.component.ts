@@ -31,6 +31,7 @@ export class HangarsResultComponent implements OnInit {
 }
 
 getHangar( hangar: HangarModel ) {
+  console.log(this.hangar);
   this.router.navigate(['/hangars/hangar', hangar.id]);
 }
 

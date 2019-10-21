@@ -1,4 +1,4 @@
-import { UserFacade } from './../../../store/facade/user.facade';
+import { AuthFacade } from '../../../store/facade/auth.facade';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Component } from '@angular/core';
 import { UserModel } from '../../../core/models/user.interface';
@@ -19,7 +19,7 @@ export class RegisterComponent {
       Validators.required,
       Validators.minLength(3),
       RegisterValidators.cannotContainSpace],
-      [RegisterAsyncValidators.shouldBeUnique(this.userFacade)
+      [RegisterAsyncValidators.shouldBeUnique(this.authFacade)
     ]),
     password: new FormControl('', [
       Validators.required
@@ -29,7 +29,7 @@ export class RegisterComponent {
     ]),
   });
 
-  constructor(private userFacade: UserFacade) { }
+  constructor(private authFacade: AuthFacade) { }
 
   get username() {
     return this.formUser.get('username');
@@ -44,7 +44,7 @@ export class RegisterComponent {
     if (this.formUser.value.password !== ''
     && this.formUser.value.password === this.formUser.value.passwordMatch /* && !this.formUser.invalid */) {
       const user: UserModel = {'username': this.formUser.value.username, 'password': this.formUser.value.password};
-      this.userFacade.register(user);
+      this.authFacade.register(user);
     }
   }
 

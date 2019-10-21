@@ -6,7 +6,7 @@ import { productReducer } from './product.reducer';
 import { commerceReducer } from './commerce.reducer';
 import { routerReducer } from '@ngrx/router-store';
 import { RouterStateUrl } from '../state/router.state';
-import { userReducer } from './user.reducer';
+import { authReducer } from './auth.reducer';
 
 // tslint:disable-next-line: one-variable-per-declaration
 export const rootReducers: ActionReducerMap<State> = {
@@ -14,7 +14,7 @@ export const rootReducers: ActionReducerMap<State> = {
   product: productReducer,
   commerce: commerceReducer,
   route: routerReducer,
-  user: userReducer
+  auth: authReducer
 };
 
 export const metaReducers: MetaReducer<State>[] = !environment.production ? [] : [];

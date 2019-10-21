@@ -1,20 +1,17 @@
+import { HangarFacade } from './../../../../store/facade/hangar.facade';
 import { AbstractControl, ValidationErrors } from '@angular/forms';
-import { HangarService } from './../../../../core/services/hangar.service';
 export class HangarAsyncValidators {
-  static shouldBeUnique(hangarService: HangarService) {
+  static shouldBeUnique(hangarFacade: HangarFacade) {
     return (control: AbstractControl): Promise<ValidationErrors | null> => new Promise(
       (resolve, reject) => {
-        hangarService.hangarExistByName(control.value as string)
-        .subscribe(response => {
-          console.log(response);
-          if (!response) {
+        hangarFacade.isHangar(control.value as string);
+        setTimeout(() => {
+          if (hangarFacade.isHangar$) {
             resolve({shouldBeUnique: true});
           } else {
             resolve(null);
           }
-        }, (err) => {
-          resolve({shouldBeUnique: true});
-        });
+        }, 1000);
     });
   }
 }

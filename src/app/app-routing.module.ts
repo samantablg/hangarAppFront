@@ -14,6 +14,7 @@ const routes: Routes = [
   { path: 'hangars', loadChildren: './modules/hangars/hangars.module#HangarsModule', canActivate: [AuthGuardService] },
   { path: 'products', loadChildren: './modules/products/products.module#ProductsModule', canActivate: [AuthGuardService] },
   { path: 'commerce', loadChildren: './modules/commerce/commerce.module#CommerceModule', canActivate: [AuthGuardService] },
+  { path: 'profile', loadChildren: './modules/profile/profile.module#ProfileModule', canActivate: [AuthGuardService] },
   { path: '**', pathMatch: 'full', redirectTo: ''}
 ];
 @NgModule({

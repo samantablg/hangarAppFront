@@ -1,15 +1,15 @@
-import { UserActionTypes } from './../actions/user.actions';
+import { AuthActionTypes } from '../actions/auth.actions';
 import { Actions, Effect, ofType } from '@ngrx/effects';
-import { AuthenticationService } from './../../config/services/authentication.service';
+import { AuthenticationService } from '../../config/services/authentication.service';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { switchMap, map, tap, catchError } from 'rxjs/operators';
-import { Observable, pipe, of } from 'rxjs';
-import * as userActions from '../actions/user.actions';
+import { Observable, of } from 'rxjs';
+import * as authActions from '../actions/auth.actions';
 import { RegisterService } from 'src/app/config/services/register.service';
 
 @Injectable()
-export class UserEffects {
+export class AuthEffects {
 
   constructor(private authService: AuthenticationService,
               private registerService: RegisterService,
@@ -18,8 +18,8 @@ export class UserEffects {
 
   @Effect({ dispatch: false})
   authenticate$: Observable<any> = this.actions$.pipe(
-    ofType(UserActionTypes.LOGIN_USER),
-    switchMap((action: userActions.LoginUser) =>
+    ofType(AuthActionTypes.LOGIN_AUTH),
+    switchMap((action: authActions.LoginAuth) =>
       this.authService.authenticate(action.payload.username, action.payload.password).pipe(
         map( response => {
           const tokenStr = 'Bearer ' + response.token;
@@ -27,14 +27,14 @@ export class UserEffects {
           sessionStorage.setItem('token', tokenStr);
         }),
         tap(() => this.router.navigate([''])),
-        catchError((error) => of(new userActions.LoginUserFail(error)))
+        catchError((error) => of(new authActions.LoginAuthFail(error)))
       )
     )
   );
 
   @Effect({ dispatch: false })
   logout$: Observable<any> = this.actions$.pipe(
-    ofType(UserActionTypes.LOGOUT_USER),
+    ofType(AuthActionTypes.LOGOUT_AUTH),
     tap(() => {
       sessionStorage.removeItem('username');
       sessionStorage.removeItem('token');
@@ -44,24 +44,24 @@ export class UserEffects {
 
   @Effect()
   register$: Observable<any> = this.actions$.pipe(
-    ofType(UserActionTypes.REGISTER_USER),
-    switchMap((action: userActions.RegisterUser) => {
+    ofType(AuthActionTypes.REGISTER_AUTH),
+    switchMap((action: authActions.RegisterAuth) => {
       return this.registerService.postUser(action.payload).pipe(
         map((response) => console.log(response)),
         tap(() => this.router.navigate(['login'])),
-        catchError((error) => of(new userActions.RegisterUserFail(error)))
+        catchError((error) => of(new authActions.RegisterAuthFail(error)))
       );
     })
   );
 
   @Effect()
   isRegister$: Observable<any> = this.actions$.pipe(
-    ofType(UserActionTypes.VALIDATE_USER),
+    ofType(AuthActionTypes.VALIDATE_AUTH),
 
-    switchMap((action: userActions.ValidateUser) => {
+    switchMap((action: authActions.ValidateAuth) => {
       return this.registerService.isUserByUsername(action.payload).pipe(
         map( response => ({
-            type: '[USER] VALIDATED_USER', payload: response
+            type: '[AUTH] VALIDATED_AUTH', payload: response
           })
         )
       );

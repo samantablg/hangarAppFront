@@ -1,12 +1,15 @@
+import { ProfileRoutingModule } from './profile-routing.module';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { ProfileComponent } from './views/profile/profile.component';
 
 
 
 @NgModule({
-  declarations: [],
+  declarations: [ProfileComponent],
   imports: [
-    CommonModule
+    CommonModule,
+    ProfileRoutingModule
   ]
 })
 export class ProfileModule { }

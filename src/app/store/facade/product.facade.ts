@@ -17,13 +17,20 @@ export class ProductFacade {
   productsUnlinkHangar: any;
   productsOfHangar$: Observable<ProductOfHangarModel[]>;
   prices$: Observable<PriceModel[]>;
+  isProduct$: boolean;
 
   constructor(private store: Store<State>) {
+
     this.products$ = this.store.pipe(select('product', 'products'));
     this.loading$ = this.store.pipe(select('product', 'loading'));
     this.error$ = this.store.pipe(select('product', 'error'));
     this.productsOfHangar$ = this.store.pipe(select('product', 'productsOfHangar'));
     this.prices$ = this.store.pipe(select('product', 'prices'));
+
+    this.store.select('product', 'isProduct')
+    .subscribe(response => {
+      this.isProduct$ = response;
+    });
   }
 
   loadProducts() {
@@ -50,8 +57,7 @@ export class ProductFacade {
   selectProductsUnlinkHangar(idHangar: number): ProductModel[] {
     this.store.select('product', 'products')
     .subscribe( products => {
-      // tslint:disable-next-line: only-arrow-functions
-      this.productsUnlinkHangar = products.filter(function(product) {
+      this.productsUnlinkHangar = products.filter( (product) => {
         return !product.hangars.includes(idHangar);
       });
     });
@@ -84,5 +90,9 @@ export class ProductFacade {
 
   savePrice(price: PriceModel) {
     this.store.dispatch({type: '[PRODUCT] NEW_PRICE', payload: price});
+  }
+
+  isProduct(name: string) {
+    this.store.dispatch({ type: '[PRODUCT] VALIDATE_PRODUCT', payload: name });
   }
 }

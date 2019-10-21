@@ -23,6 +23,7 @@ export enum ProductsActionTypes {
   LOAD_PRICES_OF_PRODUCT = '[PRODUCT] LOAD_PRICES_OF_PRODUCT',
   LOADED_PRICES_OF_PRODUCT = '[PRODUCT] LOADED_PRICES_OF_PRODUCT',
   NEW_PRICE = '[PRODUCT] NEW_PRICE',
+  VALIDATE_PRODUCT = '[PRODUCT] VALIDATE_PRODUCT'
 }
 
 export class ProductsLoad implements Action {
@@ -125,6 +126,12 @@ export class NewPriceOfProduct implements Action {
   constructor(public payload: PriceModel) {}
 }
 
+export class ValidateProduct implements Action {
+  type = ProductsActionTypes.VALIDATE_PRODUCT;
+
+  constructor(public payload: string) {}
+}
+
 export type ProductActions =  ProductsLoad |
                               ProductsLoaded |
                               ProductsLoadFail |
@@ -140,4 +147,5 @@ export type ProductActions =  ProductsLoad |
                               EditProductOfHangar |
                               PricesOfProductLoad |
                               PricesOfProductLoaded |
-                              NewPriceOfProduct;
+                              NewPriceOfProduct |
+                              ValidateProduct;

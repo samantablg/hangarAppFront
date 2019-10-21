@@ -1,4 +1,4 @@
-import { HangarActions } from '../actions/hangar.actions';
+import { HangarModel } from 'src/app/core/models/hangar.interface';
 import { HangarsState } from '../state/hangars.state';
 import * as hangars from '../actions/hangar.actions';
 import { HangarsActionTypes } from '../actions/hangar.actions';
@@ -13,7 +13,8 @@ export function hangarReducer(state = initialState, action: hangars.HangarAction
     case HangarsActionTypes.LOAD_HANGARS:
       return {
         ...state,
-        loading: true
+        loading: true,
+        isHangar: false
       };
     case HangarsActionTypes.LOADED_HANGARS:
       return {
@@ -43,8 +44,8 @@ export function hangarReducer(state = initialState, action: hangars.HangarAction
       return editHangar(state, action);
     /* case HangarsActionTypes.SEARCH_HANGAR:
       return { ...state }; */
-    case HangarsActionTypes.VALIDATION_HANGAR_NAME:
-      return { ...state };
+    case HangarsActionTypes.VALIDATE_HANGAR:
+      return findHangar(state, action);
     default:
       return state;
   }
@@ -62,4 +63,14 @@ function editHangar(state, action) {
     {
       hangarSelected: null
     });
+}
+
+function findHangar(state, action) {
+  const hangarResult: HangarModel | undefined = state.hangars.find(
+    (hangar) => hangar.name === action.payload);
+  return tassign(state,
+    {
+      isHangar: (hangarResult !== undefined),
+    }
+  );
 }

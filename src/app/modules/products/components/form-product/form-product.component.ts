@@ -1,9 +1,8 @@
-import { ProductService } from '../../../../core/services/product.service';
 import { ProductModel } from '../../../../core/models/product.interface';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { ProductAsyncValidators } from './form-product.validators';
-import { Router, ActivatedRoute } from '@angular/router';
+import { ProductFacade } from 'src/app/store/facade/product.facade';
 
 @Component({
   selector: 'app-form-product',
@@ -23,7 +22,7 @@ export class FormProductComponent implements OnInit {
       Validators.required,
       Validators.minLength(3),
     ],
-    [ProductAsyncValidators.shouldBeUnique(this.productService)]),
+    [ProductAsyncValidators.shouldBeUnique(this.productFacade)]),
     description: new FormControl('', [
       Validators.required
     ]),
@@ -31,7 +30,7 @@ export class FormProductComponent implements OnInit {
     state: new FormControl(true)
   });
 
-  constructor(private productService: ProductService) { }
+  constructor(private productFacade: ProductFacade) { }
 
   ngOnInit() {
     if (this.isEdit) {

@@ -5,7 +5,7 @@
         "array-type": false,
         "arrow-parens": false,
         "deprecation": {
-            "severity": "warning"
+            "severity": "none"
         },
         "component-class-suffix": true,
         "contextual-lifecycle": true,
