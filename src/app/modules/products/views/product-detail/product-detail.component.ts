@@ -2,7 +2,7 @@ import { Observable } from 'rxjs';
 import { PriceModel } from 'src/app/core/models/price.interface';
 import { ProductFacade } from './../../../../store/facade/product.facade';
 import { ProductModel } from 'src/app/core/models/product.interface';
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { RouterFacade } from 'src/app/store/facade/router.facade';
 
@@ -11,22 +11,25 @@ import { RouterFacade } from 'src/app/store/facade/router.facade';
   templateUrl: './product-detail.component.html',
   styleUrls: ['./product-detail.component.css']
 })
-export class ProductDetailComponent  {
+export class ProductDetailComponent implements OnInit {
 
-  product: ProductModel;
+  prices$: Observable<PriceModel[]> = this.productFacade.prices$;
+  product$: Observable<ProductModel> = this.productFacade.product$;
   insertPrice = false;
   showHistoric = false;
-  prices$: Observable<PriceModel[]>;
   id: number;
   priceOfProduct: PriceModel;
 
   constructor(private router: Router,
               private routerFacade: RouterFacade,
-              private productFacade: ProductFacade) {
-      this.id = this.routerFacade.id$;
+              private productFacade: ProductFacade) {}
 
-      this.product = this.productFacade.selectProduct(this.id);
-      this.productFacade.loadPricesOfProduct(this.id);
+  ngOnInit() {
+    this.routerFacade.id$
+    .subscribe(resp => {
+      this.id = resp;
+    });
+    this.productFacade.loadPricesOfProduct(this.id);
   }
 
   public addPrice(): void {
@@ -38,12 +41,12 @@ export class ProductDetailComponent  {
     this.prices$ = this.productFacade.prices$;
   }
 
-  public editProduct(): void {
-    this.router.navigate(['/products/modify', this.product.id]);
+  public editProduct(product: ProductModel): void {
+    this.router.navigate(['/products/modify', product.id]);
   }
 
-  public deleteProduct(): void {
-    this.productFacade.deleteProduct(this.product);
+  public deleteProduct(product: ProductModel): void {
+    this.productFacade.deleteProduct(product);
   }
 
   public savePrice(priceOfProduct: number): void {

@@ -17,6 +17,7 @@ import { PriceListComponent } from './components/price-list/price-list.component
 import { NavProductComponent } from './components/nav-product/nav-product.component';
 import { ProductCardComponent } from './components/product-card/product-card.component';
 import { ProductModifyComponent } from './views/product-modify/product-modify.component';
+import { ProductsOfHangarListComponent } from './components/products-of-hangar-list/products-of-hangar-list.component';
 @NgModule({
   declarations: [
     ProductsComponent,
@@ -31,7 +32,8 @@ import { ProductModifyComponent } from './views/product-modify/product-modify.co
     ProductListComponent,
     NavProductComponent,
     ProductCardComponent,
-    ProductModifyComponent
+    ProductModifyComponent,
+    ProductsOfHangarListComponent
   ],
   imports: [
     CommonModule, ProductsRoutingModule, ReactiveFormsModule, TranslateModule, InfiniteScrollModule

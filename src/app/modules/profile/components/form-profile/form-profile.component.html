@@ -1,0 +1,24 @@
+<form [formGroup]="formProfile">
+    <div>
+        <div class="form-group row">
+            <label class="col-form-label" for="name">Nombre</label>
+            <input formControlName="name" id="name" type="text" class="form-control" />
+        </div>
+        <div class="form-group row">
+            <label class="col-form-label" for="surname">Apellido</label>
+            <input formControlName="surname" id="surname" type="text" class="form-control" />
+        </div>
+        <div class="form-group row">
+            <label class="col-form-label" for="mail">Mail</label>
+            <input formControlName="mail" id="mail" type="text" class="form-control" />
+        </div>
+        <div class="form-group row">
+            <label class="col-form-label" for="phone">Teléfono</label>
+            <input formControlName="phone" id="phone" type="text" class="form-control" />
+        </div>
+        <div class="form-group row">
+            <label class="col-form-label" for="address">Dirección</label>
+            <input formControlName="address" id="address" type="text" class="form-control" />
+        </div>
+    </div>
+</form>

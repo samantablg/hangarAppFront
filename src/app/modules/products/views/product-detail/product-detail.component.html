@@ -1,7 +1,7 @@
-<div *ngIf="this.product" class="container d-flex row">
-    <app-product-card [product]="this.product" [isDetails]="true" (addPrice)="addPrice()" (deleteProduct)="deleteProduct()" (editProduct)="editProduct()" (getPrices)="getPrices()"></app-product-card>
+<div *ngIf="this.product$ | async" class="container d-flex row">
+    <app-product-card [product]="this.product$ | async" [isDetails]="true" (addPrice)="addPrice($event)" (deleteProduct)="deleteProduct($event)" (editProduct)="editProduct($event)" (getPrices)="getPrices()"></app-product-card>
 
-    <app-form-price [insertPrice]="insertPrice" [product]="product" (sendPrice)="savePrice($event)"></app-form-price>
+    <app-form-price [insertPrice]="insertPrice" [product]="product$ | async" (sendPrice)="savePrice($event)"></app-form-price>
 
-    <app-price-list [showHistoric]="showHistoric" [product]="product" [prices]="prices$ | async"></app-price-list>
+    <app-price-list [showHistoric]="showHistoric" [product]="product$ | async" [prices]="prices$ | async"></app-price-list>
 </div>

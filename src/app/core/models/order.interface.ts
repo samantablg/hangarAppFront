@@ -5,5 +5,3 @@ export interface OrderModel {
   totalPrice: number;
   totalProducts: number;
 }
-
-// profile: number;

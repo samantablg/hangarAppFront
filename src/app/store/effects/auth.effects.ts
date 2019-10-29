@@ -1,5 +1,6 @@
 import { AuthActionTypes } from '../actions/auth.actions';
 import { Actions, Effect, ofType } from '@ngrx/effects';
+import { Action } from '@ngrx/store';
 import { AuthenticationService } from '../../config/services/authentication.service';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
@@ -16,7 +17,7 @@ export class AuthEffects {
               private actions$: Actions,
               private router: Router) {}
 
-  @Effect({ dispatch: false})
+  @Effect({ dispatch: false })
   authenticate$: Observable<any> = this.actions$.pipe(
     ofType(AuthActionTypes.LOGIN_AUTH),
     switchMap((action: authActions.LoginAuth) =>
@@ -33,7 +34,7 @@ export class AuthEffects {
   );
 
   @Effect({ dispatch: false })
-  logout$: Observable<any> = this.actions$.pipe(
+  logout$ = this.actions$.pipe(
     ofType(AuthActionTypes.LOGOUT_AUTH),
     tap(() => {
       sessionStorage.removeItem('username');

@@ -1,14 +1,9 @@
-<div class="card-columns" *ngFor="let product of products">
-    <div *ngIf="product.price!=0 && product.hangars.length >= 1" class="card animated fadeIn fastcard-width-33">
-        <div class="card-body">
-            <h4 class="card-title">{{ product.name }}</h4>
-            <p class="card-text">{{ product.description }}</p>
-            <p class="card-text">{{ product.price }} $</p>
-            <p class="card-text">hangar: {{ product.hangars }}</p>
-        </div>
-        <div class="card-footer">
-            <a (click)="this.addProductToShoppingCart.emit(product)" class="btn">añadir</a>
-            <a (click)="this.removeProductToShoppingCart.emit(product)" class="btn">quitar</a>
-        </div>
+<div class="container" *ngFor="let product of products">
+    <div *ngIf="!isOrder && product.price!=0 && product.hangars.length >= 1" class="card animated fadeIn fastcard-width-33">
+        <app-product-card-commerce [isOrder]="isOrder" [product]="product" (getProduct)="this.getProduct.emit($event)" (addProductToShoppingCart)="addProductToShoppingCart.emit(product)"></app-product-card-commerce>
+    </div>
+    <div *ngIf="isOrder" class="card animated fadeIn fastcard-width-33">
+        <app-product-card-commerce [isOrder]="isOrder" [product]="product" (removeProductOfShoppingCart)="removeProductToShoppingCart.emit($event)" (getProduct)="this.getProduct.emit($event)" (increaseProductOfShoppingCart)="increaseProductOfShoppingCart.emit(product)" (decreaseProductOfShoppingCart)="decreaseProductOfShoppingCart.emit(product)"></app-product-card-commerce>
     </div>
 </div>
+<!-- <a (click)="this.removeProductToShoppingCart.emit(product)" class="btn">quitar</a> -->

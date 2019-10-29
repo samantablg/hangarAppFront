@@ -1,3 +1,6 @@
-<pre>precio: {{ totalPrice }}</pre>
-<pre>products: {{ totalProducts }}</pre>
-<a (click)="this.sendOrder.emit(this.order)">Comprar</a>
+<div class="container-shop">
+    <h4>Detalles de la compra</h4>
+    <h5>{{ 'commerce.price' | translate }}: {{ totalPrice }}</h5>
+    <h5>{{ 'commerce.products' | translate }}: {{ totalProducts }}</h5>
+    <a class="btn" (click)="this.sendOrder.emit(this.order)">Comprar</a>
+</div>

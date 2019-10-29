@@ -1,1 +1,1 @@
-<app-form-product [isEdit]="true" [product]="this.product" (updateProduct)="updateProduct($event)"></app-form-product>
+<app-form-product [isEdit]="true" [product]="product$ | async" (updateProduct)="updateProduct($event)"></app-form-product>

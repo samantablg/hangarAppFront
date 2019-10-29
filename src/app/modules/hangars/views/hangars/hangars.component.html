@@ -1,5 +1,5 @@
 <div class="container">
-    <app-hangar-list [hangars$]="hangars$ | async" [loading]="loading$ | async" [error]="error$ | async" (selectHangar)="selectHangar($event)" (getHangar)="getHangar($event)"></app-hangar-list>
+    <app-hangar-list [hangars$]="hangars$ | async" [loading]="loading$ | async" [hangarSelected]="hangarSelected" [error]="error$ | async" (selectHangar)="selectHangar($event)" (getHangar)="getHangar($event)"></app-hangar-list>
 </div>
 
 <app-button [isSelect]="isSelected" (toggleSideBar)="toggleSideBar($event)"></app-button>

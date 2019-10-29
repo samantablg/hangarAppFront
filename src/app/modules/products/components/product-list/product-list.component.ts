@@ -9,7 +9,7 @@ import { ProductModel } from 'src/app/core/models/product.interface';
 })
 export class ProductListComponent {
 
-  @Input() products$: Observable<ProductModel[]>;
+  @Input() products: ProductModel[];
   @Output() getProduct = new EventEmitter<ProductModel>();
 
   constructor() { }

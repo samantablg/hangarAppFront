@@ -5,12 +5,13 @@ import { RouterModule } from '@angular/router';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ShellComponent } from './shell/shell.component';
-import { NavbarComponent } from './shell/navbar/navbar.component';
-import { MainComponent } from './shell/main/main.component';
-import { FooterComponent } from './shell/footer/footer.component';
+import { NavbarComponent } from './shell/components/navbar/navbar.component';
+import { MainComponent } from './shell/views/main/main.component';
+import { FooterComponent } from './shell/views/footer/footer.component';
+import { NavbarViewComponent } from './shell/views/navbar-view/navbar-view.component';
 
 @NgModule({
-  declarations: [ShellComponent, NavbarComponent, MainComponent, FooterComponent],
+  declarations: [ShellComponent, NavbarComponent, MainComponent, FooterComponent, NavbarViewComponent],
   imports: [
     CommonModule,
     RouterModule,

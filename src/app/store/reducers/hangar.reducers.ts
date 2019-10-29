@@ -13,8 +13,7 @@ export function hangarReducer(state = initialState, action: hangars.HangarAction
     case HangarsActionTypes.LOAD_HANGARS:
       return {
         ...state,
-        loading: true,
-        isHangar: false
+        loading: true
       };
     case HangarsActionTypes.LOADED_HANGARS:
       return {
@@ -39,6 +38,7 @@ export function hangarReducer(state = initialState, action: hangars.HangarAction
     case HangarsActionTypes.NEW_HANGAR:
       return {
         ...state,
+        hangars: [...state.hangars, action.payload]
       };
     case HangarsActionTypes.EDIT_HANGAR:
       return editHangar(state, action);

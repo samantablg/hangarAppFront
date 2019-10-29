@@ -1,0 +1,21 @@
+<div class="card-container">
+    <div class="header">
+        <a>
+            <img src="./../../../../../assets/img/prod-detail.png">
+        </a>
+        <h4 *ngIf="!isOrder" (click)="this.getProduct.emit(product.id)">{{ product.name }}</h4>
+        <h4 *ngIf="isOrder" (click)="this.getProduct.emit(product.product_id)">{{ 'product.text' | translate }} {{ product.product_id }}</h4>
+    </div>
+    <div class="main">
+        <a *ngIf="isOrder" (click)="this.removeProductOfShoppingCart.emit(product)" class="remove-icon"><i class="fa fa-times" aria-hidden="true"></i></a>
+        <p *ngIf="!isOrder">{{ product.description }}</p>
+        <p>{{ 'commerce.price' | translate }}: {{ product.price }} $</p>
+        <p *ngIf="isOrder">{{ 'commerce.amount' | translate }}: {{ product.quantity }}</p>
+        <p *ngIf="!isOrder">{{ 'hangar.text' | translate }}: {{ product.hangars }}</p>
+        <div class="footer">
+            <a *ngIf="!isOrder" (click)="this.addProductToShoppingCart.emit(product)" class="btn">{{ 'commerce.add' | translate }}</a>
+            <a *ngIf="isOrder" (click)="this.decreaseProductOfShoppingCart.emit(product)" class="btn"><i class="fa fa-minus-circle" aria-hidden="true"></i></a>
+            <a *ngIf="isOrder" (click)="this.increaseProductOfShoppingCart.emit(product)" class="btn"><i class="fa fa-plus-circle" aria-hidden="true"></i></a>
+        </div>
+    </div>
+</div>

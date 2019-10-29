@@ -1,3 +1,6 @@
+import { selectProductList, selectLoading, selectError,
+         selectProductsOfHangar, selectPricesOfProduct, selectIsProduct,
+         selectProductById, selectProductsUnlinkOfHangar } from './../selectors/product.selectors';
 import { PriceModel } from 'src/app/core/models/price.interface';
 import { ProductOfHangarModel } from 'src/app/core/models/product-hangar.interface';
 import { State } from 'src/app/store/state';
@@ -10,28 +13,16 @@ import { ProductModel } from 'src/app/core/models/product.interface';
 })
 export class ProductFacade {
 
-  products$: Observable<ProductModel[]>;
-  loading$: Observable<boolean>;
-  error$: Observable<any>;
-  product: ProductModel;
-  productsUnlinkHangar: any;
-  productsOfHangar$: Observable<ProductOfHangarModel[]>;
-  prices$: Observable<PriceModel[]>;
-  isProduct$: boolean;
+  products$: Observable<ProductModel[]> = this.store.pipe(select(selectProductList));
+  loading$: Observable<boolean> = this.store.pipe(select(selectLoading));
+  error$: Observable<any> = this.store.pipe(select(selectError));
+  productsOfHangar$: Observable<ProductOfHangarModel[]> = this.store.pipe(select(selectProductsOfHangar));
+  prices$: Observable<PriceModel[]> = this.store.pipe(select(selectPricesOfProduct));
+  isProduct$: Observable<boolean> = this.store.pipe(select(selectIsProduct));
+  product$: Observable<ProductModel> = this.store.pipe(select(selectProductById));
+  productsUnlinkHangar$: Observable<ProductModel[]> = this.store.pipe(select(selectProductsUnlinkOfHangar));
 
-  constructor(private store: Store<State>) {
-
-    this.products$ = this.store.pipe(select('product', 'products'));
-    this.loading$ = this.store.pipe(select('product', 'loading'));
-    this.error$ = this.store.pipe(select('product', 'error'));
-    this.productsOfHangar$ = this.store.pipe(select('product', 'productsOfHangar'));
-    this.prices$ = this.store.pipe(select('product', 'prices'));
-
-    this.store.select('product', 'isProduct')
-    .subscribe(response => {
-      this.isProduct$ = response;
-    });
-  }
+  constructor(private store: Store<State>) { }
 
   loadProducts() {
     this.store.dispatch({ type: '[PRODUCT] LOAD_PRODUCTS' });
@@ -43,25 +34,6 @@ export class ProductFacade {
 
   newProduct(product: ProductModel) {
     this.store.dispatch({ type: '[PRODUCT] NEW_PRODUCT', payload: product});
-  }
-
-  selectProduct(id: number): ProductModel {
-    this.store.select('product', 'products')
-    .subscribe( response => {
-      this.product = response.find( prod => prod.id === id);
-    });
-
-    return this.product;
-  }
-
-  selectProductsUnlinkHangar(idHangar: number): ProductModel[] {
-    this.store.select('product', 'products')
-    .subscribe( products => {
-      this.productsUnlinkHangar = products.filter( (product) => {
-        return !product.hangars.includes(idHangar);
-      });
-    });
-    return this.productsUnlinkHangar;
   }
 
   editProduct(product: ProductModel) {

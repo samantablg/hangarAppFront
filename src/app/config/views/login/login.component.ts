@@ -17,8 +17,7 @@ export class LoginComponent implements OnInit {
 
   constructor(private router: Router, private authFacade: AuthFacade) {}
 
-  ngOnInit() {
-  }
+  ngOnInit() { }
 
   get username() {
     return this.formLogin.get('username');

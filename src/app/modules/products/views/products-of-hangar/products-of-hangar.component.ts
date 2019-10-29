@@ -1,7 +1,7 @@
 import { Observable } from 'rxjs';
 import { RouterFacade } from 'src/app/store/facade/router.facade';
 import { ProductModel } from 'src/app/core/models/product.interface';
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { ProductOfHangarModel } from 'src/app/core/models/product-hangar.interface';
 import { ProductFacade } from 'src/app/store/facade/product.facade';
@@ -11,25 +11,27 @@ import { ProductFacade } from 'src/app/store/facade/product.facade';
   templateUrl: './products-of-hangar.component.html',
   styleUrls: ['./products-of-hangar.component.css']
 })
-export class ProductsOfHangarComponent {
+export class ProductsOfHangarComponent implements OnInit {
 
-  productsOfHangar: Observable<ProductOfHangarModel[]>;
+  productsOfHangar$: Observable<ProductOfHangarModel[]> = this.productFacade.productsOfHangar$;
+  productsUnlinkHangar$: Observable<ProductModel[]> = this.productFacade.productsUnlinkHangar$;
   isAmountModify = false;
   idProduct: number;
-  product: ProductModel;
   idHangar: number;
-  productsUnlinkHangar: ProductModel[] | void;
 
   constructor(private routerFacade: RouterFacade,
               private productFacade: ProductFacade,
-              private router: Router) {
+              private router: Router) {}
 
-                this.idHangar = this.routerFacade.id$;
-                this.productsOfHangar = this.productFacade.productsOfHangar$;
-                this.productsUnlinkHangar = this.productFacade.selectProductsUnlinkHangar(this.idHangar);
+  ngOnInit() {
 
-                this.productFacade.loadProductsOfHangar(this.idHangar);
-              }
+    this.routerFacade.id$
+      .subscribe( resp => {
+        this.idHangar = resp;
+    });
+
+    this.productFacade.loadProductsOfHangar(this.idHangar);
+  }
 
   getProduct(idProduct: number) {
     this.router.navigate(['/products/product', idProduct]);
@@ -50,6 +52,7 @@ export class ProductsOfHangarComponent {
 
   updateProductHangar(productOfHangar: ProductOfHangarModel) {
     this.productFacade.editProductOfHangar(productOfHangar);
+    this.isAmountModify = !this.isAmountModify;
   }
 
 }

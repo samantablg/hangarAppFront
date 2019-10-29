@@ -1,7 +1,6 @@
 {
     "product-name": "Product",
     "hangar-name": "Hangar",
-    "commerce": "Commerce",
     "login": {
         "user": "User",
         "user-form": "Username is required",
@@ -26,7 +25,6 @@
         "text": "Select the type"
     },
     "product": {
-        "": "Product",
         "list": "List of products",
         "text": "Product",
         "desc": "Description",
@@ -36,8 +34,15 @@
         "amount": "Update the number of products",
         "manage": "Manage products"
     },
+    "commerce": {
+        "shop": "Commerce",
+        "add": "Add",
+        "price": "Price",
+        "products": "Products",
+        "addMore": "Add more",
+        "amount": "Quantity"
+    },
     "hangar": {
-        "": "Hangar",
         "text": "Hangar",
         "address": "Address",
         "owner": "Owner",
@@ -78,7 +83,6 @@
     "prices-of.text": "Prices of",
     "date.text": "Date",
     "price.text": "Prices",
-    "amount.text": "Amount",
     "relationships.text": "Relationships",
     "insertProduct.text": "Add product",
     "name-form.text": "Insert a valid name",

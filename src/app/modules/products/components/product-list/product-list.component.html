@@ -1,5 +1,5 @@
 <div class="card-columns">
-    <div *ngFor="let product of products$" class="card animated fadeIn fastcard-width-33">
+    <div *ngFor="let product of products" class="card animated fadeIn fastcard-width-33">
         <app-product-card [product]="product" [isDetails]="false"></app-product-card>
         <div class="card-footer">
             <button (click)="this.getProduct.emit(product)" type="button" class="btn">

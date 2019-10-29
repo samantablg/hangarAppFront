@@ -1,6 +1,6 @@
 import { Observable } from 'rxjs';
 import { Router } from '@angular/router';
-import { Component, HostListener, ElementRef } from '@angular/core';
+import { Component, HostListener, ElementRef, OnInit } from '@angular/core';
 import { HangarModel } from 'src/app/core/models/hangar.interface';
 import { HangarFacade } from 'src/app/store/facade/hangar.facade';
 @Component({
@@ -8,28 +8,24 @@ import { HangarFacade } from 'src/app/store/facade/hangar.facade';
   templateUrl: './hangars.component.html',
   styleUrls: ['./hangars.component.css']
 })
-export class HangarsComponent {
+export class HangarsComponent implements OnInit {
 
-  hangars$: Observable<HangarModel[]>;
-  loading$: Observable<boolean>;
-  error$: Observable<any>;
+  hangars$: Observable<HangarModel[]> = this.hangarFacade.hangars$;
+  loading$: Observable<boolean> = this.hangarFacade.loading$;
+  error$: Observable<any> = this.hangarFacade.error$;
   isSelected: boolean;
   hangarSelected: HangarModel;
   sideBarIsOpened: boolean;
 
-  constructor(private router: Router,  private hangarFacade: HangarFacade,private eRef: ElementRef) {
+  constructor(private router: Router,  private hangarFacade: HangarFacade, private eRef: ElementRef) { }
 
-    this.hangars$ = this.hangarFacade.hangars$;
-    this.loading$ = this.hangarFacade.loading$;
-    this.error$ = this.hangarFacade.error$;
-
+  ngOnInit() {
     this.hangarFacade.loadHangars();
-
   }
 
   @HostListener('document:click', ['$event'])
     clickout(event) {
-    if(!this.eRef.nativeElement.contains(event.target) && this.sideBarIsOpened) {
+    if (!this.eRef.nativeElement.contains(event.target) && this.sideBarIsOpened) {
       this.sideBarIsOpened = false;
     }
     /* documentClick(event: MouseEvent) {

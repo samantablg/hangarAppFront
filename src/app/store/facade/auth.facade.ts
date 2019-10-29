@@ -1,22 +1,19 @@
+import { Observable } from 'rxjs';
 import { State } from '../state/index';
-import { Store } from '@ngrx/store';
+import { Store, select } from '@ngrx/store';
 import { Injectable } from '@angular/core';
 import { UserModel } from 'src/app/core/models/user.interface';
+import { selectIsRegister, selectUsername, selectIsAuthenticated } from '../selectors/auth.selectors';
 @Injectable({
   providedIn: 'root'
 })
 export class AuthFacade {
 
-  // isRegister$: Observable<boolean>;
-  isRegister$: boolean;
+  isRegister$: Observable<boolean> = this.store.pipe(select(selectIsRegister));
+  username$: Observable<string> = this.store.pipe(select(selectUsername));
+  isAuthenticated$: Observable<boolean> = this.store.pipe(select(selectIsAuthenticated));
 
-  constructor(private store: Store<State>) {
-    // this.isRegister$ = this.store.pipe(select('auth', 'isRegister'));
-    this.store.select('auth', 'isRegister')
-    .subscribe(response => {
-      this.isRegister$ = response;
-    });
-  }
+  constructor(private store: Store<State>) {}
 
   authenticate(user: UserModel) {
     this.store.dispatch({ type: '[AUTH] LOGIN_AUTH', payload: user});

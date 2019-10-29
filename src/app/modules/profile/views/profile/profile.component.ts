@@ -1,4 +1,7 @@
+import { ProfileFacade } from './../../../../store/facade/profile.facade';
 import { Component, OnInit } from '@angular/core';
+import { Observable } from 'rxjs';
+import { ProfileModel } from 'src/app/core/models/profile.interface';
 
 @Component({
   selector: 'app-profile',
@@ -7,9 +10,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ProfileComponent implements OnInit {
 
-  constructor() { }
+  profile$: Observable<ProfileModel>;
+
+  constructor(private profileFacade: ProfileFacade) { }
 
   ngOnInit() {
+    this.profile$ = this.profileFacade.profile$;
+    this.profileFacade.loadProfile();
   }
 
 }

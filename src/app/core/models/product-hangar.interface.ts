@@ -1,6 +1,6 @@
 export interface ProductOfHangarModel {
-  product: number;
-  hangar: number;
-  amount: number;
+  product?: number;
+  hangar?: number;
+  amount?: number;
   nameProduct?: string;
 }

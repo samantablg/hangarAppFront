@@ -6,11 +6,13 @@ import { CommonModule } from '@angular/common';
 import { LoginComponent } from './views/login/login.component';
 import { RegisterComponent } from './views/register/register.component';
 import { TranslateModule } from '@ngx-translate/core';
+import { FormRegisterComponent } from './components/form-register/form-register.component';
 
 @NgModule({
   declarations: [
     LoginComponent,
-    RegisterComponent
+    RegisterComponent,
+    FormRegisterComponent
   ],
   imports: [
     CommonModule,

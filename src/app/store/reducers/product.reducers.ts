@@ -75,7 +75,7 @@ export function productReducer(state = initialState, action: product.ProductsLoa
     case ProductsActionTypes.LOADED_PRICES_OF_PRODUCT:
       return {
         ...state,
-        prices: [...action.payload]
+        prices: state.prices.concat(action.payload)
       };
     case ProductsActionTypes.NEW_PRICE:
       return {

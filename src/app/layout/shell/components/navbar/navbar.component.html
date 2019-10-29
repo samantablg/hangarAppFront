@@ -1,0 +1,28 @@
+<nav>
+    <label for="drop" class="toggle"></label>
+    <input type="checkbox" id="drop" />
+    <ul class="menu">
+        <li> <a [routerLink]="['']">App</a></li>
+        <li><a [routerLink]="['hangars']">{{ 'hangar.text' | translate }}</a></li>
+        <li><a [routerLink]="['products']">{{ 'product.text' | translate }}</a></li>
+        <li><a [routerLink]="['commerce']">{{ 'commerce.shop' | translate }}</a></li>
+        <li><a [routerLink]="['about']">{{ 'about-nav.text' | translate }}</a></li>
+        <li *ngIf="this.isAuthenticated" style="float:right">
+            <a [routerLink]="['commerce/order']"> <i class=" fa fa-shopping-cart " aria-hidden="true "> ({{productsOfOrder}})</i></a>
+        </li>
+        <li style="float:right">
+            <a class="change" (click)="emitChangeLang.emit()">{{ 'change.text' | translate }}</a>
+        </li>
+        <li *ngIf="this.isAuthenticated" style="float:right">
+            <!-- Drop Down -->
+            <label for="drop-1" class="toggle">{{ username }}</label>
+            <a [routerLink]="['profile']">{{ username }}</a>
+
+            <ul>
+                <li><a [routerLink]="['profile']">Ver perfil</a></li>
+                <li><a (click)="logout.emit()">{{ 'login.logout' | translate }}</a></li>
+            </ul>
+
+        </li>
+    </ul>
+</nav>

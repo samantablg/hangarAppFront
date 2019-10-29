@@ -36,6 +36,7 @@ export class FormProductComponent implements OnInit {
     if (this.isEdit) {
       this.name.setValue(this.product.name);
       this.description.setValue(this.product.description);
+      this.id.setValue(this.product.id);
     }
   }
 

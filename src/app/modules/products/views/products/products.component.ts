@@ -1,6 +1,6 @@
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ProductModel } from 'src/app/core/models/product.interface';
 import { HangarModel } from 'src/app/core/models/hangar.interface';
 import { ProductFacade } from 'src/app/store/facade/product.facade';
@@ -10,23 +10,20 @@ import { HangarFacade } from 'src/app/store/facade/hangar.facade';
   templateUrl: './products.component.html',
   styleUrls: ['./products.component.css']
 })
-export class ProductsComponent {
+export class ProductsComponent implements OnInit {
 
-  products$: Observable<ProductModel[]>;
-  loading$: Observable<boolean>;
-  error$: Observable<any>;
+  products$: Observable<ProductModel[]> = this.productFacade.products$;
+  loading$: Observable<boolean> = this.productFacade.loading$;
+  error$: Observable<any> = this.productFacade.error$;
   hangars$: Observable<HangarModel[]>;
 
   constructor(private router: Router,
               private productFacade: ProductFacade,
-              private hangarFacade: HangarFacade) {
-    this.products$ = this.productFacade.products$;
-    this.loading$ = this.productFacade.loading$;
-    this.error$ = this.productFacade.error$;
+              private hangarFacade: HangarFacade) {}
 
+  ngOnInit() {
     this.productFacade.loadProducts();
-
-   }
+  }
 
   insertProduct() {
     this.router.navigate(['products/new']);
@@ -42,6 +39,10 @@ export class ProductsComponent {
 
   getProduct(product: ProductModel) {
     this.router.navigate(['/products/product', product.id]);
+  }
+
+  hangarsNotLoaded() {
+    this.hangarFacade.loadHangars();
   }
 
 }

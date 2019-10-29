@@ -1,4 +1,7 @@
+import { ProductOfHangarModel } from 'src/app/core/models/product-hangar.interface';
+import { PriceModel } from './../../core/models/price.interface';
 import { ProductOfHangarService } from './../../core/services/product-of-hangar.service';
+import { Action } from '@ngrx/store';
 import { Router } from '@angular/router';
 import * as productActions from '../actions/product.actions';
 import { ProductsActionTypes } from '../actions/product.actions';
@@ -17,7 +20,7 @@ export class ProductEffects {
               private router: Router) {}
 
   @Effect()
-  loadProducts$ = this.actions$.pipe(
+  loadProducts$: Observable<Action> = this.actions$.pipe(
     ofType(ProductsActionTypes.LOAD_PRODUCTS),
     switchMap(() => this.productService.loadProducts()
       .pipe(
@@ -28,7 +31,7 @@ export class ProductEffects {
   );
 
   @Effect()
-  saveProduct$: Observable<any> = this.actions$.pipe(
+  saveProduct$: Observable<Action> = this.actions$.pipe(
     ofType(ProductsActionTypes.NEW_PRODUCT),
 
     switchMap((action: productActions.NewProduct) => {
@@ -44,7 +47,7 @@ export class ProductEffects {
   );
 
   @Effect()
-  deleteProduct$: Observable<any> = this.actions$.pipe(
+  deleteProduct$: Observable<Action> = this.actions$.pipe(
     ofType(ProductsActionTypes.DELETE_PRODUCT),
 
     switchMap((action: productActions.DeleteProduct) => {
@@ -60,7 +63,7 @@ export class ProductEffects {
   );
 
   @Effect({ dispatch: false})
-  editProduct$: Observable<any> = this.actions$.pipe(
+  editProduct$: Observable<Action> = this.actions$.pipe(
     ofType(ProductsActionTypes.EDIT_PRODUCT),
 
     switchMap((action: productActions.EditProduct) => {
@@ -78,9 +81,8 @@ export class ProductEffects {
   // TODO: mostrar al usuario que el producto no puede ser borrado
 
   @Effect()
-  isProductLinkToHangar$: Observable<any> = this.actions$.pipe(
+  isProductLinkToHangar$: Observable<Action> = this.actions$.pipe(
     ofType(ProductsActionTypes.CHECK_PRODUCT_DELETED),
-
     switchMap((action: productActions.CheckIfProductCanBeDeleted) => {
       return this.productOfHangarService.isProductLinkToHangar(action.payload.id).pipe(
         map(response => {
@@ -96,13 +98,13 @@ export class ProductEffects {
   );
 
   @Effect()
-  productsOfHangar$: Observable<any> = this.actions$.pipe(
+  productsOfHangar$: Observable<Action> = this.actions$.pipe(
     ofType(ProductsActionTypes.LOAD_PRODUCTS_OF_HANGAR),
-
     switchMap((action: productActions.LoadProductsOfHangar) => {
       return this.productOfHangarService.loadRelationshipsExtended(action.payload).pipe(
-        map(response => ({
-          type: '[PRODUCT] LOADED_PRODUCTS_OF_HANGAR', payload: response
+        map((response: ProductOfHangarModel[]) => ({
+          type: '[PRODUCT] LOADED_PRODUCTS_OF_HANGAR',
+          payload: [...response]
           })
         ),
         catchError(error => of(new productActions.ProductsLoadFail(error)))
@@ -110,10 +112,9 @@ export class ProductEffects {
     })
   );
 
-  @Effect({ dispatch: false})
-  deleteProductsOfHangar$: Observable<any> = this.actions$.pipe(
+  @Effect()
+  deleteProductsOfHangar$: Observable<Action> = this.actions$.pipe(
     ofType(ProductsActionTypes.DELETE_PRODUCT_OF_HANGAR),
-
     switchMap((action: productActions.DeleteProductOfHangar) => {
       return this.productOfHangarService.unlinkProductOfHangar(action.payload).pipe(
         map( _ => ({
@@ -127,7 +128,7 @@ export class ProductEffects {
   );
 
   @Effect()
-  saveProductOfHangar$: Observable<any> = this.actions$.pipe(
+  saveProductOfHangar$: Observable<Action> = this.actions$.pipe(
     ofType(ProductsActionTypes.SAVE_PRODUCT_HANGAR),
 
     switchMap((action: productActions.SaveProductHangar) => {
@@ -142,12 +143,12 @@ export class ProductEffects {
   );
 
   @Effect()
-  editProductOfHangar$: Observable<any> = this.actions$.pipe(
+  editProductOfHangar$: Observable<Action> = this.actions$.pipe(
     ofType(ProductsActionTypes.EDIT_PRODUCT_HANGAR),
 
     switchMap((action: productActions.EditProductOfHangar) => {
       return this.productOfHangarService.updateAmountOfRelationShip(action.payload).pipe(
-        map( _ => ({
+        map( () => ({
           type: '[PRODUCT] LOAD_PRODUCTS_OF_HANGAR', payload: action.payload.hangar
         })
       ),
@@ -157,13 +158,14 @@ export class ProductEffects {
   );
 
   @Effect()
-  loadPrPricesOfProduct$: Observable<any> = this.actions$.pipe(
+  loadPrPricesOfProduct$: Observable<Action> = this.actions$.pipe(
     ofType(ProductsActionTypes.LOAD_PRICES_OF_PRODUCT),
 
     switchMap((action: productActions.PricesOfProductLoad) => {
       return this.productService.loadPricesOfProduct(action.payload).pipe(
-        map( response => ({
-          type: '[PRODUCT] LOADED_PRICES_OF_PRODUCT', payload: response
+        map( (response: PriceModel[]) => ({
+          type: '[PRODUCT] LOADED_PRICES_OF_PRODUCT',
+          payload: response
         })
       ),
     tap(() => this.router.navigate(['products/product', action.payload])),
@@ -173,7 +175,7 @@ export class ProductEffects {
   );
 
   @Effect()
-  savePriceOfProduct$: Observable<any> = this.actions$.pipe(
+  savePriceOfProduct$: Observable<Action> = this.actions$.pipe(
     ofType(ProductsActionTypes.NEW_PRICE),
 
     switchMap((action: productActions.NewPriceOfProduct) => {
@@ -185,8 +187,4 @@ export class ProductEffects {
       );
     })
   );
- /* this.productService.postPrice(this.formPrice.value.price, this.product.id).subscribe( data => {
-                  console.log(data);
-                });
- */
 }

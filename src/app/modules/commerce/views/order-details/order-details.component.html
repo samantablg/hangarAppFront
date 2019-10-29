@@ -1,0 +1,4 @@
+<h3>{{ this.fullname$ | async }}</h3>
+
+<app-products-shop [url]="url$ | async" [products]="productsOfOrder$ | async" (getProduct)="getProduct($event)" (removeProductToShoppingCart)="removeProductToShoppingCart($event)" (increaseProductOfShoppingCart)="increaseProductOfShoppingCart($event)" (decreaseProductOfShoppingCart)="decreaseProductOfShoppingCart($event)"></app-products-shop>
+<app-shopping-cart [totalPrice]="totalPrice$ | async" [totalProducts]="totalProducts$ | async" [order]="order$ | async" (sendOrder)="sendOrder($event)"></app-shopping-cart>

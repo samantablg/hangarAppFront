@@ -5,13 +5,15 @@ import { HangarsState } from './hangars.state';
 import { RouterReducerState, RouterStateSerializer } from '@ngrx/router-store';
 import { RouterStateUrl } from './router.state';
 import { RouterStateSnapshot } from '@angular/router';
+import { ProfileState } from './profile.state';
 
 export interface State {
+  auth: AuthState;
+  commerce: CommerceState;
   hangar: HangarsState;
   product: ProductsState;
-  commerce: CommerceState;
+  profile: ProfileState;
   route: RouterReducerState<RouterStateUrl>;
-  auth: AuthState;
 }
 
 export class CustomRouterStateSerializer implements RouterStateSerializer<RouterStateUrl> {

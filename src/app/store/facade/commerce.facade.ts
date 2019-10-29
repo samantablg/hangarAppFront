@@ -4,21 +4,18 @@ import { Store, select } from '@ngrx/store';
 import { Injectable } from '@angular/core';
 import { State } from '../state';
 import { OrderModel } from 'src/app/core/models/order.interface';
-import { ProductModel } from 'src/app/core/models/product.interface';
+import { selectTotalPrice, selectOrder, selectTotalProducts, selectProductsOfOrder } from '../selectors/commerce.selectors';
 @Injectable({
   providedIn: 'root'
 })
 export class CommerceFacade {
 
-  totalPrice$: Observable<number>;
-  totalProducts$: Observable<number>;
-  order$: Observable<OrderModel>;
+  order$: Observable<OrderModel> = this.store.pipe(select(selectOrder));
+  totalPrice$: Observable<number> = this.store.pipe(select(selectTotalPrice));
+  totalProducts$: Observable<number> = this.store.pipe(select(selectTotalProducts));
+  productsOfOrder$: Observable<ProductOfOrderModel[]> = this.store.pipe(select(selectProductsOfOrder));
 
-  constructor(private store: Store<State>) {
-    this.totalPrice$ = this.store.pipe(select('commerce', 'order', 'totalPrice'));
-    this.totalProducts$ = this.store.pipe(select('commerce', 'order', 'totalProducts'));
-    this.order$ = this.store.pipe(select('commerce', 'order'));
-  }
+  constructor(private store: Store<State>) {}
 
   addProductToOrder(productOrder: ProductOfOrderModel) {
     this.store.dispatch({ type: '[COMMERCE] ADD_PRODUCT_ORDER', payload: productOrder });
@@ -26,6 +23,14 @@ export class CommerceFacade {
 
   removeProductOfOrder(productOrder: ProductOfOrderModel) {
     this.store.dispatch({ type: '[COMMERCE] REMOVE_PRODUCT_ORDER', payload: productOrder });
+  }
+
+  increaseProductOfOrder(productOrder: ProductOfOrderModel) {
+    this.store.dispatch({ type: '[COMMERCE] INCREASE_PRODUCT_ORDER', payload: productOrder });
+  }
+
+  decreaseProductOfOrder(productOrder: ProductOfOrderModel) {
+    this.store.dispatch({ type: '[COMMERCE] DECREASE_PRODUCT_ORDER', payload: productOrder });
   }
 
   sendOrder(order: OrderModel) {

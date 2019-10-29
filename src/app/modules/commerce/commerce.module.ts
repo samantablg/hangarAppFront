@@ -4,14 +4,18 @@ import { CommonModule } from '@angular/common';
 import { CommerceComponent } from './views/commerce/commerce.component';
 import { ProductsComponent } from './components/products-shop/products-shop.component';
 import { ShoppingCartComponent } from './components/shopping-cart/shopping-cart.component';
-
-
+import { TranslateModule } from '@ngx-translate/core';
+import { OrderDetailsComponent } from './views/order-details/order-details.component';
+import { ProductCardCommerceComponent } from './components/product-card-commerce/product-card-commerce.component';
+import { RouterModule } from '@angular/router';
 
 @NgModule({
-  declarations: [CommerceComponent, ProductsComponent, ShoppingCartComponent],
+  declarations: [CommerceComponent, ProductsComponent, ShoppingCartComponent, OrderDetailsComponent, ProductCardCommerceComponent],
   imports: [
     CommonModule,
-    CommerceRoutingModule
+    CommerceRoutingModule,
+    TranslateModule,
+    RouterModule
   ],
   exports: [CommerceComponent]
 })

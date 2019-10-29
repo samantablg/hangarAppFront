@@ -3,31 +3,20 @@ import { HangarModel } from 'src/app/core/models/hangar.interface';
 import { State } from 'src/app/store/state';
 import { Injectable } from '@angular/core';
 import { Store, select } from '@ngrx/store';
+import { selectHangarList, selectLoading, selectError, selectHangarSelected, selectIsHangar } from '../selectors/hangar.selectors';
 
 @Injectable({
   providedIn: 'root'
 })
 export class HangarFacade {
 
-  hangars$: Observable<HangarModel[]>;
-  loading$: Observable<boolean>;
-  error$: Observable<any>;
-  hangarSelected$: Observable<HangarModel>;
-  hangarResult: HangarModel | null;
-  isHangar$: boolean;
+  hangars$ = this.store.pipe(select(selectHangarList));
+  loading$ = this.store.pipe(select(selectLoading));
+  error$ = this.store.pipe(select(selectError));
+  hangarSelected$ = this.store.pipe(select(selectHangarSelected));
+  isHangar$ = this.store.pipe(select(selectIsHangar));
 
-  constructor(private store: Store<State>) {
-
-    this.hangars$ = this.store.pipe(select('hangar', 'hangars'));
-    this.loading$ = this.store.pipe(select('hangar', 'loading'));
-    this.error$ = this.store.pipe(select('hangar', 'error'));
-    this.hangarSelected$ = this.store.pipe(select('hangar', 'hangarSelected'));
-
-    this.store.select('hangar', 'isHangar')
-    .subscribe(response => {
-      this.isHangar$ = response;
-    });
-  }
+  constructor(private store: Store<State>) {}
 
   loadHangars() {
     this.store.dispatch({ type: '[HANGAR] LOAD_HANGARS' });
@@ -35,10 +24,6 @@ export class HangarFacade {
 
   selectHangar(hangar: HangarModel) {
     this.store.dispatch({ type: '[HANGAR] SELECT_HANGAR', payload: hangar});
-  }
-
-  getHangarSelected(): Observable<HangarModel> {
-    return this.store.pipe(select('hangar', 'hangarSelected'));
   }
 
   deleteHangar(hangar: HangarModel) {

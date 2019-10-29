@@ -1,0 +1,25 @@
+.container-shop {
+    height: 70vh;
+    width: 300px;
+    position: fixed;
+    z-index: 1;
+    top: 10em;
+    right: 0;
+    bottom: 10em;
+    box-sizing: border-box;
+    background-color: #fbfbfb;
+    align-content: center;
+    align-items: center;
+}
+
+.container-shop h4 {
+    margin: 35px;
+}
+
+.container-shop h5 {
+    margin: 10px;
+}
+
+.btn {
+    align-self: center
+}

@@ -10,11 +10,9 @@ import { Component } from '@angular/core';
 })
 export class FormHangarModifyComponent {
 
-  hangarSelected$: Observable<HangarModel>;
+  hangarSelected$: Observable<HangarModel> = this.hangarFacade.hangarSelected$;
 
-  constructor(private hangarFacade: HangarFacade ) {
-    this.hangarSelected$ = this.hangarFacade.getHangarSelected();
-  }
+  constructor(private hangarFacade: HangarFacade ) {}
 
   updateHangar(hangar: HangarModel) {
     this.hangarFacade.editHangar(hangar);

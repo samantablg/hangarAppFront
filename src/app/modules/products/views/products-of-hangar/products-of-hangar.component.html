@@ -1,33 +1,5 @@
 <h3>Hangar {{ this.idHangar }}</h3>
 
-<div *ngIf="(productsOfHangar | async).length == 0">
-    <h5>{{ 'hangar.empty' | translate }}</h5>
-</div>
+<app-products-of-hangar-list [productsOfHangar]="productsOfHangar$ | async" (getProduct)="getProduct($event)" (modifyAmount)="modifyAmount($event)" (deleteRelationship)="deleteRelationship($event)"></app-products-of-hangar-list>
 
-<table *ngIf="(productsOfHangar | async).length > 0" class="table table-condensed table-hover">
-    <caption>
-        {{ 'relationships.text' | translate }}
-    </caption>
-    <thead>
-        <tr>
-            <th scope="col">{{ 'product.text' | translate }}</th>
-            <th scope="col">{{ 'amount.text' | translate }}</th>
-            <th scope="col">{{ 'util.management' | translate }}</th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr *ngFor="let productOfHangar of (productsOfHangar | async)">
-            <td class="td1">
-                <a (click)="getProduct(productOfHangar.product)">{{ productOfHangar.nameProduct }}</a>
-            </td>
-            <td>{{ productOfHangar.amount }}</td>
-            <td>
-                <a (click)="deleteRelationship(productOfHangar)">{{ 'util.delete' | translate }}</a>
-                <br>
-                <a (click)="modifyAmount(productOfHangar.product)">{{ 'form.amount' | translate }}</a>
-            </td>
-        </tr>
-    </tbody>
-</table>
-
-<app-form-product-hangar [isAmountModify]="isAmountModify" [products]="productsUnlinkHangar" [idHangar]="idHangar" [idProduct]="idProduct" (saveProductOfHangar)="saveProductHangar($event)" (editProductOfHangar)="updateProductHangar($event)"></app-form-product-hangar>
+<app-form-product-hangar [isAmountModify]="isAmountModify" [products]="productsUnlinkHangar$ | async" [idHangar]="idHangar" [idProduct]="idProduct" (saveProductOfHangar)="saveProductHangar($event)" (editProductOfHangar)="updateProductHangar($event)"></app-form-product-hangar>

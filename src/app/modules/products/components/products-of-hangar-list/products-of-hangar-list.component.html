@@ -1,0 +1,29 @@
+<div *ngIf="productsOfHangar.length == 0">
+    <h5>{{ 'hangar.empty' | translate }}</h5>
+</div>
+
+<table *ngIf="productsOfHangar.length > 0" class="table table-condensed table-hover">
+    <caption>
+        {{ 'relationships.text' | translate }}
+    </caption>
+    <thead>
+        <tr>
+            <th scope="col">{{ 'product.text' | translate }}</th>
+            <th scope="col">{{ 'amount.text' | translate }}</th>
+            <th scope="col">{{ 'util.management' | translate }}</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let productOfHangar of productsOfHangar">
+            <td class="td1">
+                <a (click)="getProduct.emit(productOfHangar.product)">{{ productOfHangar.nameProduct }}</a>
+            </td>
+            <td>{{ productOfHangar.amount }}</td>
+            <td>
+                <a (click)="deleteRelationship.emit(productOfHangar)">{{ 'util.delete' | translate }}</a>
+                <br>
+                <a (click)="modifyAmount.emit(productOfHangar.product)">{{ 'form.amount' | translate }}</a>
+            </td>
+        </tr>
+    </tbody>
+</table>

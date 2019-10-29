@@ -1,12 +1,11 @@
 import { Component, Input, OnInit, Output, EventEmitter, OnChanges } from '@angular/core';
-import { HangarModel } from 'src/app/core/models/hangar.interface';
 
 @Component({
   selector: 'app-button',
   templateUrl: './button.component.html',
   styleUrls: ['./button.component.css']
 })
-export class ButtonComponent implements OnInit, OnChanges {
+export class ButtonComponent implements OnInit {
 
   @Input() isSelect: boolean;
   @Output() toggleSideBar = new EventEmitter();
@@ -14,9 +13,6 @@ export class ButtonComponent implements OnInit, OnChanges {
 
   constructor() { }
 
-  ngOnInit() {
-  }
-
-  ngOnChanges() { }
+  ngOnInit() { }
 
 }

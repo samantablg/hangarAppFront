@@ -45,7 +45,6 @@ export class FormProductHangarComponent implements OnInit {
   ngOnInit() {
     this.hangar.setValue(this.idHangar);
     this.amount.setValue(this.amount);
-    console.log(this.products);
   }
 
   addProduct(): void { // TODO: averiguar porque sucede esto

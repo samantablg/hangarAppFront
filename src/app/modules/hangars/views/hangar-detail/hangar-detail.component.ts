@@ -10,11 +10,9 @@ import { Observable } from 'rxjs';
 })
 export class HangarDetailComponent implements OnInit {
 
-  hangar$: Observable<HangarModel>;
+  hangar$: Observable<HangarModel> = this.hangarFacade.hangarSelected$;
 
-  constructor(private hangarFacade: HangarFacade) {
-    this.hangar$ = this.hangarFacade.hangarSelected$;
-   }
+  constructor(private hangarFacade: HangarFacade) {}
 
   ngOnInit() { }
 

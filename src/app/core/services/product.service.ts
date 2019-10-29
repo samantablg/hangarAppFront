@@ -63,8 +63,4 @@ export class ProductService {
     return this.http.get<PriceModel[]>(`${ this.urlApi }price/product/${ id }`);
   }
 
-  public saveOrder(order: OrderModel): Observable<OrderModel> {
-    return this.http.post<OrderModel>(`${ this.urlApi }order`, order);
-  }
-
 }

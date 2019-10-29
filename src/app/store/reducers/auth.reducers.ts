@@ -18,7 +18,10 @@ export function authReducer(state = initialAuthState, action): AuthState {
     case AuthActionTypes.LOGOUT_AUTH:
       return {
         ...state,
-        user: null,
+        user: {
+          username: '',
+          password: ''
+        },
         isAuthenticated: false,
       };
     case AuthActionTypes.REGISTER_AUTH:

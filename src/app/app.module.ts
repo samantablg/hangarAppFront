@@ -1,3 +1,4 @@
+import { ProfileEffects } from './store/effects/profile.effects';
 import { AuthEffects } from './store/effects/auth.effects';
 import { CustomRouterStateSerializer } from './store/state/index';
 import { metaReducers } from './store/reducers/index';
@@ -42,13 +43,13 @@ import { HangarEffects } from './store/effects/hangar.effects';
       maxAge: 25, // Retains last 55 states
       logOnly: environment.production, // Restrict extension to log-only mode
     }),
-    EffectsModule.forRoot([HangarEffects, ProductEffects, CommerceEffects, AuthEffects]),
+    EffectsModule.forRoot([HangarEffects, ProductEffects, CommerceEffects, AuthEffects, ProfileEffects]),
     StoreRouterConnectingModule.forRoot(),
     CoreModule,
     TranslateModule,
     FormsModule,
     ConfigModule,
-    AppRoutingModule,
+    AppRoutingModule
   ],
   providers: [{
     provide: RouterStateSerializer,
@@ -56,5 +57,4 @@ import { HangarEffects } from './store/effects/hangar.effects';
   }],
   bootstrap: [AppComponent]
 })
-export class AppModule {
-}
+export class AppModule { }

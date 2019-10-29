@@ -3,9 +3,10 @@
         <div class="form-group row">
             <label class="col-form-label" for="name">{{'name.text' | translate}}</label>
             <input formControlName="name" id="name" type="text" class="form-control" />
-            <div *ngIf="name.pending">{{ 'form.uniqueness' | translate }}</div>
-            <div *ngIf="productSelect">
-                <div *ngIf="name.touched && name.invalid && name.value!=productSelect.name" class="alert alert-danger">
+            <div *ngIf="name.pending && name.value!=product.name">{{ 'form.uniqueness' | translate }}</div>
+
+            <div *ngIf="product">
+                <div *ngIf="name.touched && name.invalid && name.value!=product.name" class="alert alert-danger">
                     <div *ngIf="!!name.errors.shouldBeUnique">
                         {{ 'product.exist' | translate }}
                     </div>
@@ -17,7 +18,7 @@
                     </div>
                 </div>
             </div>
-            <div *ngIf="!productSelect">
+            <div *ngIf="!product">
                 <div *ngIf="name.touched && name.invalid" class="alert alert-danger">
                     <div *ngIf="!!name.errors.shouldBeUnique">
                         {{ 'product.exist' | translate }}

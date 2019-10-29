@@ -32,12 +32,13 @@
         </tr>
     </thead>
     <tbody>
-        <tr *ngFor="let hangar of hangars$ | paginate: { itemsPerPage: 5, currentPage: page }" (click)="this.selectHangar.emit(hangar)" (dbclick)="this.getHangar.emit(hangar)">
-            <td class=" td1 ">{{ hangar.name }}</td>
+        <tr *ngFor="let hangar of hangars$ | paginate: { itemsPerPage: 5, currentPage: page }" (click)="this.selectHangar.emit(hangar)" (dbclick)="this.getHangar.emit(hangar)"
+            class="list" [class.selected]="hangar === hangarSelected">
+            <td class="item">{{ hangar.name }}</td>
             <td>{{ hangar.address }}</td>
             <td>{{ hangar.owner }}</td>
         </tr>
     </tbody>
 </table>
 
-<pagination-controls *ngIf="!loading && !error " (pageChange)="page=$event "></pagination-controls>
+<pagination-controls *ngIf="!loading && !error" (pageChange)="page=$event" previousLabel="" nextLabel=""></pagination-controls>

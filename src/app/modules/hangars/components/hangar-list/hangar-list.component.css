@@ -3,10 +3,14 @@ body {
     font-size: 18px;
 }
 
-.td1 {
+.item {
     cursor: pointer;
 }
 
-.td1:hover {
+.item:hover {
     color: #0C9;
+}
+
+.list.selected {
+    background-color: #E0F7FA;
 }
