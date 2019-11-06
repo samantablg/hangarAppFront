@@ -1,0 +1,20 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+main {
+    width: 100vw;
+}
+
+
+/* main {
+    font-family: 'Lato', sans-serif;
+    overflow: auto;
+    padding-bottom: 5vw;
+    min-height: 90%;
+    margin-right: auto;
+    margin-left: auto;
+    margin-top: auto;
+}
+ */

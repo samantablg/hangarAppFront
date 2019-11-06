@@ -1,7 +1,4 @@
-<app-search></app-search>
-<div class="container-fluid">
-    <div class="card-deck d-flex justify-content-center ">
-        <app-card [card]="hangarCard"></app-card>
-        <app-card [card]="productCard"></app-card>
-    </div>
+<div class="container">
+    <app-card class="card-1" [card]="hangarCard" (redirectTo)="redirectTo($event)"></app-card>
+    <app-card class="card-2" [card]="productCard" (redirectTo)="redirectTo($event)"></app-card>
 </div>

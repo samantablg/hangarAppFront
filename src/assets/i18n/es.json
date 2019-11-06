@@ -22,7 +22,7 @@
         "find": "Buscar",
         "message": "Sin resultados de búsqueda",
         "insert": "Buscar en la aplicación",
-        "text": "Selecciona el tipo de búsqueda"
+        "text": "Tipo de búsqueda"
     },
     "product": {
         "list": "Lista de productos",
@@ -51,7 +51,8 @@
         "price": "Precio",
         "products": "Productos",
         "addMore": "Añadir más",
-        "amount": "Cantidad"
+        "amount": "Cantidad",
+        "buy": "Comprar"
     },
     "form": {
         "uniqueness": "Verificando la existencia...",

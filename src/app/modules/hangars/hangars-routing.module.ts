@@ -1,5 +1,4 @@
 import { HangarDetailComponent } from './views/hangar-detail/hangar-detail.component';
-import { HangarsResultComponent } from './views/hangars-result/hangars-result.component';
 import { HangarsComponent } from './views/hangars/hangars.component';
 import { FormHangarModifyComponent } from './views/hangar-modify/hangar-modify.component';
 import { HangarNewComponent } from './views/hangar-new/hangar-new.component';
@@ -22,10 +21,6 @@ const routes: Routes = [
     {
         path: 'modify/:id',
         component: FormHangarModifyComponent
-    },
-    {
-      path: 'search/:name',
-      component: HangarsResultComponent
     }
 ];
 

@@ -1,4 +1,3 @@
-import { ProductsResultComponent } from './views/products-result/products-result.component';
 import { ProductDetailComponent } from './views/product-detail/product-detail.component';
 import { ProductsComponent } from './views/products/products.component';
 import { ProductsOfHangarComponent } from './views/products-of-hangar/products-of-hangar.component';
@@ -28,10 +27,6 @@ const routes: Routes = [
     path: 'modify/:id',
     component: ProductModifyComponent
   },
-  {
-    path: 'search/:name',
-    component: ProductsResultComponent
-  }
 ];
 
 @NgModule({

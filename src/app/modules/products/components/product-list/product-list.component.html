@@ -1,10 +1,11 @@
-<div class="card-columns">
-    <div *ngFor="let product of products" class="card animated fadeIn fastcard-width-33">
-        <app-product-card [product]="product" [isDetails]="false"></app-product-card>
+<div class="container-products">
+    <div *ngFor="let product of products" class="card-product">
+        <app-card-product [product]="product" (viewDetailsOfProduct)="this.getProduct.emit($event)"></app-card-product>
+        <!-- <app-product-card [product]="product" [isDetails]="false"></app-product-card>
         <div class="card-footer">
             <button (click)="this.getProduct.emit(product)" type="button" class="btn">
               {{ 'more.text' | translate }}
             </button>
-        </div>
+        </div> -->
     </div>
 </div>

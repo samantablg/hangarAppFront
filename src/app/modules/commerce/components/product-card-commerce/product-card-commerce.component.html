@@ -3,8 +3,8 @@
         <a>
             <img src="./../../../../../assets/img/prod-detail.png">
         </a>
-        <h4 *ngIf="!isOrder" (click)="this.getProduct.emit(product.id)">{{ product.name }}</h4>
-        <h4 *ngIf="isOrder" (click)="this.getProduct.emit(product.product_id)">{{ 'product.text' | translate }} {{ product.product_id }}</h4>
+        <span *ngIf="!isOrder" (click)="this.getProduct.emit(product.id)">{{ product.name }}</span>
+        <span *ngIf="isOrder" (click)="this.getProduct.emit(product.product_id)">{{ 'product.text' | translate }} {{ product.product_id }}</span>
     </div>
     <div class="main">
         <a *ngIf="isOrder" (click)="this.removeProductOfShoppingCart.emit(product)" class="remove-icon"><i class="fa fa-times" aria-hidden="true"></i></a>

@@ -11,7 +11,6 @@ import { FormHangarComponent } from './components/form-hangar/form-hangar.compon
 import { ReactiveFormsModule } from '@angular/forms';
 import { FormHangarModifyComponent } from './views/hangar-modify/hangar-modify.component';
 import { HangarNewComponent } from './views/hangar-new/hangar-new.component';
-import { HangarsResultComponent } from './views/hangars-result/hangars-result.component';
 import {NgxPaginationModule} from 'ngx-pagination';
 
 @NgModule({
@@ -23,7 +22,6 @@ import {NgxPaginationModule} from 'ngx-pagination';
     FormHangarComponent,
     FormHangarModifyComponent,
     HangarNewComponent,
-    HangarsResultComponent,
     HangarListComponent,
     HangarDetailComponent
   ],

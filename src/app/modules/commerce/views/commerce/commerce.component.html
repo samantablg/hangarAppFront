@@ -1,3 +1,5 @@
-<div class="container">
-    <app-products-shop [url]="url$ | async" [products]="products$ | async" (getProduct)="getProduct($event)" (productsNotLoaded)="productsNotLoaded()" (addProductToShoppingCart)="addProductToShoppingCart($event)"></app-products-shop>
+<div class="container-shop">
+    <div class="commerce">
+        <app-products-shop [url]="url$ | async" [products]="products$ | async" (getProduct)="getProduct($event)" (productsNotLoaded)="productsNotLoaded()" (addProductToShoppingCart)="addProductToShoppingCart($event)"></app-products-shop>
+    </div>
 </div>

@@ -1,6 +1,10 @@
 <div class="container-shop">
-    <h4>Detalles de la compra</h4>
-    <h5>{{ 'commerce.price' | translate }}: {{ totalPrice }}</h5>
-    <h5>{{ 'commerce.products' | translate }}: {{ totalProducts }}</h5>
-    <a class="btn" (click)="this.sendOrder.emit(this.order)">Comprar</a>
+    <span>Detalles de la compra</span>
+    <div class="shop-details">
+        <span>{{ 'commerce.price' | translate }}: ${{ totalPrice }}</span>
+        <span>{{ 'commerce.products' | translate }}: {{ totalProducts }}</span>
+    </div>
+    <div class="shop-footer">
+        <a class="btn" (click)="this.sendOrder.emit(this.order)">{{ 'commerce.buy' | translate }}</a>
+    </div>
 </div>

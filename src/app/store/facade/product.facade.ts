@@ -1,6 +1,6 @@
 import { selectProductList, selectLoading, selectError,
          selectProductsOfHangar, selectPricesOfProduct, selectIsProduct,
-         selectProductById, selectProductsUnlinkOfHangar } from './../selectors/product.selectors';
+         selectProductById, selectProductsUnlinkOfHangar, selectProductsToShop, selectProductsLike } from './../selectors/product.selectors';
 import { PriceModel } from 'src/app/core/models/price.interface';
 import { ProductOfHangarModel } from 'src/app/core/models/product-hangar.interface';
 import { State } from 'src/app/store/state';
@@ -21,6 +21,8 @@ export class ProductFacade {
   isProduct$: Observable<boolean> = this.store.pipe(select(selectIsProduct));
   product$: Observable<ProductModel> = this.store.pipe(select(selectProductById));
   productsUnlinkHangar$: Observable<ProductModel[]> = this.store.pipe(select(selectProductsUnlinkOfHangar));
+  productsToShop$: Observable<ProductModel[]> = this.store.pipe(select(selectProductsToShop));
+  productsResult$ = this.store.pipe(select(selectProductsLike));
 
   constructor(private store: Store<State>) { }
 
@@ -67,4 +69,9 @@ export class ProductFacade {
   isProduct(name: string) {
     this.store.dispatch({ type: '[PRODUCT] VALIDATE_PRODUCT', payload: name });
   }
+
+  isProductsLoaded() {
+    this.store.dispatch({ type: '[PRODUCT] IS_LOADED' });
+  }
+
 }

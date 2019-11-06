@@ -11,13 +11,13 @@ import { FormProductComponent } from './components/form-product/form-product.com
 import { ProductsOfHangarComponent } from './views/products-of-hangar/products-of-hangar.component';
 import { ProductNewComponent } from './views/product-new/product-new.component';
 import { InfiniteScrollModule } from 'ngx-infinite-scroll';
-import { ProductsResultComponent } from './views/products-result/products-result.component';
 import { ProductListComponent } from './components/product-list/product-list.component';
 import { PriceListComponent } from './components/price-list/price-list.component';
 import { NavProductComponent } from './components/nav-product/nav-product.component';
 import { ProductCardComponent } from './components/product-card/product-card.component';
 import { ProductModifyComponent } from './views/product-modify/product-modify.component';
 import { ProductsOfHangarListComponent } from './components/products-of-hangar-list/products-of-hangar-list.component';
+import { SharedModule } from 'src/app/shared/shared.module';
 @NgModule({
   declarations: [
     ProductsComponent,
@@ -28,7 +28,6 @@ import { ProductsOfHangarListComponent } from './components/products-of-hangar-l
     ProductsOfHangarComponent,
     ProductNewComponent,
     FormProductHangarComponent,
-    ProductsResultComponent,
     ProductListComponent,
     NavProductComponent,
     ProductCardComponent,
@@ -36,7 +35,12 @@ import { ProductsOfHangarListComponent } from './components/products-of-hangar-l
     ProductsOfHangarListComponent
   ],
   imports: [
-    CommonModule, ProductsRoutingModule, ReactiveFormsModule, TranslateModule, InfiniteScrollModule
+    CommonModule,
+    ProductsRoutingModule,
+    ReactiveFormsModule,
+    TranslateModule,
+    InfiniteScrollModule,
+    SharedModule
   ],
   exports: [ProductsComponent, ProductsOfHangarComponent]
 })

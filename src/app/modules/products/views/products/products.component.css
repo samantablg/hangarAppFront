@@ -1,5 +1,4 @@
-body,
-html {
+/* * {
     margin: 0;
 }
 
@@ -29,4 +28,35 @@ html {
 
 a:hover {
     box-shadow: 0 0 1em #d1e8ec;
+}
+ */
+
+* {
+    padding: 0;
+}
+
+.container * {
+    position: relative;
+}
+
+.container *:after {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+}
+
+.container {
+    display: grid;
+    grid-template-columns: 0.3fr 2.4fr 0.3fr;
+    grid-template-rows: 0.2fr 0.3fr 3.1fr 0.4fr;
+    grid-template-areas: ". . ." ". nav-product ." ". list-product ." ". . .";
+}
+
+.nav-product {
+    grid-area: nav-product;
+}
+
+.list-product {
+    grid-area: list-product;
 }

@@ -23,7 +23,12 @@ export enum ProductsActionTypes {
   LOAD_PRICES_OF_PRODUCT = '[PRODUCT] LOAD_PRICES_OF_PRODUCT',
   LOADED_PRICES_OF_PRODUCT = '[PRODUCT] LOADED_PRICES_OF_PRODUCT',
   NEW_PRICE = '[PRODUCT] NEW_PRICE',
-  VALIDATE_PRODUCT = '[PRODUCT] VALIDATE_PRODUCT'
+  VALIDATE_PRODUCT = '[PRODUCT] VALIDATE_PRODUCT',
+  IS_LOADED = '[PRODUCT] IS_LOADED'
+}
+
+export class IsProductsLoaded implements Action {
+  readonly type = ProductsActionTypes.IS_LOADED;
 }
 
 export class ProductsLoad implements Action {
@@ -31,113 +36,98 @@ export class ProductsLoad implements Action {
 }
 
 export class ProductsLoaded implements Action {
-  type = ProductsActionTypes.LOADED_PRODUCTS;
-
+  readonly type = ProductsActionTypes.LOADED_PRODUCTS;
   constructor(public payload: ProductModel[]) {}
 }
 
 export class ProductsLoadFail implements Action {
-  type = ProductsActionTypes.LOAD_PRODUCTS_FAIL;
-
+  readonly type = ProductsActionTypes.LOAD_PRODUCTS_FAIL;
   constructor(public payload: any) {}
 }
 
 export class NewProduct implements Action {
-  type = ProductsActionTypes.NEW_PRODUCT;
-
+  readonly type = ProductsActionTypes.NEW_PRODUCT;
   constructor(public payload: ProductModel) {}
 }
 
 export class SelectProduct implements Action {
-  type = ProductsActionTypes.SELECT_PRODUCT;
-
+  readonly type = ProductsActionTypes.SELECT_PRODUCT;
   constructor(public payload: number) {}
 }
 
 export class EditProduct implements Action {
-  type = ProductsActionTypes.EDIT_PRODUCT;
-
+  readonly type = ProductsActionTypes.EDIT_PRODUCT;
   constructor(public payload: ProductModel) {}
 }
 
 export class DeleteProduct implements Action {
-  type = ProductsActionTypes.DELETE_PRODUCT;
-
+  readonly type = ProductsActionTypes.DELETE_PRODUCT;
   constructor(public payload: ProductModel) {}
 }
 
 export class CheckIfProductCanBeDeleted implements Action {
-  type = ProductsActionTypes.CHECK_PRODUCT_DELETED;
-
+  readonly type = ProductsActionTypes.CHECK_PRODUCT_DELETED;
   constructor(public payload: ProductModel) {}
 }
 
 export class GetPricesOfProduct implements Action {
-  type = ProductsActionTypes.GET_PRICES_OF_PRODUCT;
-
+  readonly type = ProductsActionTypes.GET_PRICES_OF_PRODUCT;
   constructor(public payload: number) {}
 }
 
 export class LoadProductsOfHangar implements Action {
-  type = ProductsActionTypes.LOAD_PRODUCTS_OF_HANGAR;
-
+  readonly type = ProductsActionTypes.LOAD_PRODUCTS_OF_HANGAR;
   constructor(public payload: number) {}
 }
 
 export class LoadedProductsOfHangar implements Action {
-  type = ProductsActionTypes.LOADED_PRODUCTS_OF_HANGAR;
-
+  readonly type = ProductsActionTypes.LOADED_PRODUCTS_OF_HANGAR;
   constructor(public payload: ProductOfHangarModel[]) {}
 }
 
 export class DeleteProductOfHangar implements Action {
-  type = ProductsActionTypes.DELETE_PRODUCT_OF_HANGAR;
-
+  readonly type = ProductsActionTypes.DELETE_PRODUCT_OF_HANGAR;
   constructor(public payload: ProductOfHangarModel) {}
 }
 
 export class SaveProductHangar implements Action {
-  type = ProductsActionTypes.SAVE_PRODUCT_HANGAR;
-
+  readonly type = ProductsActionTypes.SAVE_PRODUCT_HANGAR;
   constructor(public payload: ProductOfHangarModel) {}
 }
 
 export class EditProductOfHangar implements Action {
-  type = ProductsActionTypes.EDIT_PRODUCT_HANGAR;
-
+  readonly type = ProductsActionTypes.EDIT_PRODUCT_HANGAR;
   constructor(public payload: ProductOfHangarModel) {}
 }
 
 export class PricesOfProductLoad implements Action {
   readonly type = ProductsActionTypes.LOAD_PRICES_OF_PRODUCT;
-
   constructor(public payload: number) {}
 }
 
 export class PricesOfProductLoaded implements Action {
-  type = ProductsActionTypes.LOADED_PRICES_OF_PRODUCT;
-
+  readonly type = ProductsActionTypes.LOADED_PRICES_OF_PRODUCT;
   constructor(public payload: PriceModel[]) {}
 }
 
 export class NewPriceOfProduct implements Action {
-  type = ProductsActionTypes.NEW_PRICE;
-
+  readonly type = ProductsActionTypes.NEW_PRICE;
   constructor(public payload: PriceModel) {}
 }
 
 export class ValidateProduct implements Action {
-  type = ProductsActionTypes.VALIDATE_PRODUCT;
-
+  readonly type = ProductsActionTypes.VALIDATE_PRODUCT;
   constructor(public payload: string) {}
 }
 
-export type ProductActions =  ProductsLoad |
+export type ProductActions =  IsProductsLoaded |
+                              ProductsLoad |
                               ProductsLoaded |
                               ProductsLoadFail |
                               NewProduct |
                               SelectProduct |
                               EditProduct |
+                              DeleteProduct |
                               CheckIfProductCanBeDeleted |
                               GetPricesOfProduct |
                               LoadProductsOfHangar |

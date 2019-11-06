@@ -1,20 +1,22 @@
+import { SharedModule } from './../shared/shared.module';
 import { HttpClient } from '@angular/common/http';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
-import { TranslateService, TranslateModule, TranslateLoader } from '@ngx-translate/core';
+import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
 import { RouterModule } from '@angular/router';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ShellComponent } from './shell/shell.component';
 import { NavbarComponent } from './shell/components/navbar/navbar.component';
-import { MainComponent } from './shell/views/main/main.component';
-import { FooterComponent } from './shell/views/footer/footer.component';
-import { NavbarViewComponent } from './shell/views/navbar-view/navbar-view.component';
+import { MainComponent } from './shell/components/main/main.component';
+import { FooterComponent } from './shell/components/footer/footer.component';
+import { NavbarViewComponent } from './shell/containers/navbar-container/navbar-container.component';
 
 @NgModule({
   declarations: [ShellComponent, NavbarComponent, MainComponent, FooterComponent, NavbarViewComponent],
   imports: [
     CommonModule,
     RouterModule,
+    SharedModule,
     TranslateModule.forRoot({
       loader: {
         provide: TranslateLoader,

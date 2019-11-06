@@ -1,5 +1,4 @@
-import { Observable } from 'rxjs';
-import { Component, OnInit, Input, EventEmitter, Output } from '@angular/core';
+import { Component, Input, EventEmitter, Output } from '@angular/core';
 import { ProductModel } from 'src/app/core/models/product.interface';
 
 @Component({

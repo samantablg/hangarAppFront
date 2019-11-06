@@ -1,3 +1,4 @@
+<div class="container-login">
 <form [formGroup]="formLogin" (ngSubmit)="checkLogin()">
     <h2 class="formLogin-heading">
         {{ 'login.header' | translate }}
@@ -17,3 +18,4 @@
         <a (click)=newUser() class="btn2">{{ 'login.register' | translate }} </a>
     </div>
 </form>
+</div>

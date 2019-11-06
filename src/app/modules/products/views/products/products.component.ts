@@ -22,7 +22,7 @@ export class ProductsComponent implements OnInit {
               private hangarFacade: HangarFacade) {}
 
   ngOnInit() {
-    this.productFacade.loadProducts();
+    this.productFacade.isProductsLoaded();
   }
 
   insertProduct() {
@@ -42,7 +42,7 @@ export class ProductsComponent implements OnInit {
   }
 
   hangarsNotLoaded() {
-    this.hangarFacade.loadHangars();
+    this.hangarFacade.isHangarsLoaded();
   }
 
 }

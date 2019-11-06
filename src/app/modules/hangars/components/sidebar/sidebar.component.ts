@@ -1,4 +1,4 @@
-import { Component, HostBinding, Input, OnChanges, Output, EventEmitter } from '@angular/core';
+import { Component, HostBinding, Input, Output, EventEmitter } from '@angular/core';
 import { HangarModel } from 'src/app/core/models/hangar.interface';
 
 @Component({

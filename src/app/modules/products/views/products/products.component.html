@@ -3,7 +3,6 @@
 
 
 <div class="container">
-    <app-nav-product [hangars]="hangars$ | async" (hangarsNotLoaded)="hangarsNotLoaded()" (insertProduct)="insertProduct()" (getHangars)="getHangars()" (viewProductsOfHangar)="viewProductsOfHangar($event)">
-    </app-nav-product>
-    <app-product-list [products]="products$ | async" (getProduct)="getProduct($event)"></app-product-list>
+    <app-nav-product class="nav-product" [hangars]="hangars$ | async" (hangarsNotLoaded)="hangarsNotLoaded()" (insertProduct)="insertProduct()" (getHangars)="getHangars()" (viewProductsOfHangar)="viewProductsOfHangar($event)"></app-nav-product>
+    <app-product-list class="list-product" [products]="products$ | async" (getProduct)="getProduct($event)"></app-product-list>
 </div>

@@ -1,0 +1,1 @@
+<app-navbar class="navbar" [productsOfOrder]="productsOfOrder | async" [username]="username$ | async" [isAuthenticated]="isAuthenticated$ | async" (loadData)="loadData()" (search)="search($event)" (emitChangeLang)="changeLang()" (logout)="logout()"></app-navbar>

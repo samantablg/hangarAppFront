@@ -12,6 +12,8 @@ export class NavbarComponent implements OnInit {
   @Input() productsOfOrder: number;
   @Output() emitChangeLang = new EventEmitter();
   @Output() logout = new EventEmitter();
+  @Output() search = new EventEmitter<string>();
+  @Output() loadData = new EventEmitter();
 
   constructor() { }
 

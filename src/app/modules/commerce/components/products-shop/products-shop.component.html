@@ -1,9 +1,5 @@
-<div class="container" *ngFor="let product of products">
-    <div *ngIf="!isOrder && product.price!=0 && product.hangars.length >= 1" class="card animated fadeIn fastcard-width-33">
+<div class="container-products">
+    <div class="container-card" *ngFor="let product of products">
         <app-product-card-commerce [isOrder]="isOrder" [product]="product" (getProduct)="this.getProduct.emit($event)" (addProductToShoppingCart)="addProductToShoppingCart.emit(product)"></app-product-card-commerce>
     </div>
-    <div *ngIf="isOrder" class="card animated fadeIn fastcard-width-33">
-        <app-product-card-commerce [isOrder]="isOrder" [product]="product" (removeProductOfShoppingCart)="removeProductToShoppingCart.emit($event)" (getProduct)="this.getProduct.emit($event)" (increaseProductOfShoppingCart)="increaseProductOfShoppingCart.emit(product)" (decreaseProductOfShoppingCart)="decreaseProductOfShoppingCart.emit(product)"></app-product-card-commerce>
-    </div>
 </div>
-<!-- <a (click)="this.removeProductToShoppingCart.emit(product)" class="btn">quitar</a> -->

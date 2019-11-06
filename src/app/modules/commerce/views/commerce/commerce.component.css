@@ -1,7 +1,26 @@
-#left {
-    float: left
+.container-shop {
+    height: 100%;
+    width: 100%;
+    margin: 0;
 }
 
-#right {
-    float: right
+.container-shop * {
+    position: relative;
+}
+
+.container-shop *:after {
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+.container-shop {
+    display: grid;
+    grid-template-columns: 0.2fr 2.6fr 0.2fr;
+    grid-template-rows: 0.2fr 2.5fr 0.2fr;
+    grid-template-areas: ". . ." ". commerce ." ". . .";
+}
+
+.commerce {
+    grid-area: commerce;
 }

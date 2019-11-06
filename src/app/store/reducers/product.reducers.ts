@@ -1,11 +1,11 @@
-import * as product from '../actions/product.actions';
+import * as products from '../actions/product.actions';
 import { ProductsActionTypes } from '../actions/product.actions';
 import { initialState } from '../state/products.state';
 import { ProductsState } from '../state/products.state';
 import { ProductModel } from 'src/app/core/models/product.interface';
 import { tassign } from 'tassign';
 
-export function productReducer(state = initialState, action: product.ProductsLoaded): ProductsState {
+export function productReducer(state = initialState, action: products.ProductActions): ProductsState {
 
   // TODO: cambiar reducers
   switch (action.type) {
@@ -31,6 +31,10 @@ export function productReducer(state = initialState, action: product.ProductsLoa
         loading: false,
         error: action.payload
       };
+    case ProductsActionTypes.IS_LOADED:
+      return {
+        ...state
+      };
     case ProductsActionTypes.DELETE_PRODUCT:
       return {
         ...state
@@ -54,7 +58,7 @@ export function productReducer(state = initialState, action: product.ProductsLoa
     case ProductsActionTypes.LOADED_PRODUCTS_OF_HANGAR:
       return {
         ...state,
-        productsOfHangar: [ ...action.payload]
+        productsOfHangar: action.payload
       };
     case ProductsActionTypes.DELETE_PRODUCT_OF_HANGAR:
       return {

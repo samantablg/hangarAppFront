@@ -1,7 +1,8 @@
+import { State } from 'src/app/store/state';
 import { ProductOfHangarModel } from 'src/app/core/models/product-hangar.interface';
 import { PriceModel } from './../../core/models/price.interface';
 import { ProductOfHangarService } from './../../core/services/product-of-hangar.service';
-import { Action } from '@ngrx/store';
+import { Action, Store } from '@ngrx/store';
 import { Router } from '@angular/router';
 import * as productActions from '../actions/product.actions';
 import { ProductsActionTypes } from '../actions/product.actions';
@@ -9,7 +10,8 @@ import { of, Observable } from 'rxjs';
 import { Injectable } from '@angular/core';
 import { Actions, Effect, ofType } from '@ngrx/effects';
 import { ProductService } from 'src/app/core/services/product.service';
-import { switchMap, map, catchError, tap } from 'rxjs/operators';
+import { switchMap, map, catchError, tap, withLatestFrom } from 'rxjs/operators';
+import { selectLoaded } from '../selectors/product.selectors';
 
 @Injectable()
 export class ProductEffects {
@@ -17,7 +19,21 @@ export class ProductEffects {
   constructor(private productService: ProductService,
               private productOfHangarService: ProductOfHangarService,
               private actions$: Actions,
-              private router: Router) {}
+              private router: Router,
+              private store: Store<State>) {}
+
+  @Effect()
+  isLoaded$ = this.actions$.pipe(
+    ofType(ProductsActionTypes.IS_LOADED),
+    withLatestFrom(this.store.select(selectLoaded)),
+    map(([action, isLoaded]: [productActions.IsProductsLoaded, boolean]) => {
+      if (!isLoaded) {
+        return new productActions.ProductsLoad();
+      } else {
+        return of({});
+      }
+    })
+  );
 
   @Effect()
   loadProducts$: Observable<Action> = this.actions$.pipe(

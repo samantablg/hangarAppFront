@@ -20,17 +20,15 @@ export class HangarsComponent implements OnInit {
   constructor(private router: Router,  private hangarFacade: HangarFacade, private eRef: ElementRef) { }
 
   ngOnInit() {
-    this.hangarFacade.loadHangars();
+    this.hangarFacade.isHangarsLoaded();
   }
 
   @HostListener('document:click', ['$event'])
     clickout(event) {
-    if (!this.eRef.nativeElement.contains(event.target) && this.sideBarIsOpened) {
-      this.sideBarIsOpened = false;
-    }
-    /* documentClick(event: MouseEvent) {
-      if (this.sideBarIsOpened)
-        this.sideBarIsOpened = false; */
+      if (!this.eRef.nativeElement.contains(event.target) && this.sideBarIsOpened) {
+        this.sideBarIsOpened = false;
+        this.hangarSelected = null;
+      }
     }
 
   selectHangar(hangar: HangarModel) {

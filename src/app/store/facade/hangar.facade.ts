@@ -1,9 +1,14 @@
-import { Observable } from 'rxjs';
 import { HangarModel } from 'src/app/core/models/hangar.interface';
 import { State } from 'src/app/store/state';
 import { Injectable } from '@angular/core';
 import { Store, select } from '@ngrx/store';
-import { selectHangarList, selectLoading, selectError, selectHangarSelected, selectIsHangar } from '../selectors/hangar.selectors';
+import { selectHangarList,
+         selectLoading,
+         selectError,
+         selectHangarSelected,
+         selectIsHangar,
+         selectHangarsLike
+       } from '../selectors/hangar.selectors';
 
 @Injectable({
   providedIn: 'root'
@@ -15,6 +20,7 @@ export class HangarFacade {
   error$ = this.store.pipe(select(selectError));
   hangarSelected$ = this.store.pipe(select(selectHangarSelected));
   isHangar$ = this.store.pipe(select(selectIsHangar));
+  hangarsResult$ = this.store.pipe(select(selectHangarsLike));
 
   constructor(private store: Store<State>) {}
 
@@ -40,6 +46,10 @@ export class HangarFacade {
 
   isHangar(name: string) {
     this.store.dispatch({ type: '[HANGAR] VALIDATE_HANGAR', payload: name });
+  }
+
+  isHangarsLoaded() {
+    this.store.dispatch({ type: '[HANGAR] IS_LOADED' });
   }
 
 }

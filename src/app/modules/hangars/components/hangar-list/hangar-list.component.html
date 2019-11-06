@@ -20,25 +20,26 @@
     </div>
 </div>
 
-<table class="table table-condensed table-hover" *ngIf="!loading && !error">
-    <caption>
-        {{ 'hangar.list' | translate }}
-    </caption>
-    <thead>
-        <tr>
-            <th scope="col">Hangar</th>
-            <th scope="col">{{ 'hangar.address' | translate }}</th>
-            <th scope="col">{{ 'hangar.owner' | translate }}</th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr *ngFor="let hangar of hangars$ | paginate: { itemsPerPage: 5, currentPage: page }" (click)="this.selectHangar.emit(hangar)" (dbclick)="this.getHangar.emit(hangar)"
-            class="list" [class.selected]="hangar === hangarSelected">
-            <td class="item">{{ hangar.name }}</td>
-            <td>{{ hangar.address }}</td>
-            <td>{{ hangar.owner }}</td>
-        </tr>
-    </tbody>
-</table>
+<div class="table-hangar">
+    <table *ngIf="!loading && !error">
+        <caption>
+            {{ 'hangar.list' | translate }}
+        </caption>
+        <thead>
+            <tr>
+                <th>Hangar</th>
+                <th>{{ 'hangar.address' | translate }}</th>
+                <th>{{ 'hangar.owner' | translate }}</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let hangar of hangars$ | paginate: { itemsPerPage: 5, currentPage: page }" (click)="this.selectHangar.emit(hangar)" (dbclick)="this.getHangar.emit(hangar)" class="list" [class.selected]="hangar === hangarSelected">
+                <td class="item">{{ hangar.name }}</td>
+                <td>{{ hangar.address }}</td>
+                <td>{{ hangar.owner }}</td>
+            </tr>
+        </tbody>
+    </table>
 
-<pagination-controls *ngIf="!loading && !error" (pageChange)="page=$event" previousLabel="" nextLabel=""></pagination-controls>
+    <pagination-controls *ngIf="!loading && !error" (pageChange)="page=$event" previousLabel="" nextLabel=""></pagination-controls>
+</div>

@@ -1,3 +1,4 @@
+import { Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -10,7 +11,7 @@ export class HomeComponent implements OnInit {
   public hangarCard: any;
   public productCard: any;
 
-  constructor() { }
+  constructor(private router: Router) { }
 
   ngOnInit() {
     this.hangarCard = {
@@ -24,6 +25,10 @@ export class HomeComponent implements OnInit {
       url: 'products',
       img: '../../../../assets/img/products.png'
     };
+  }
+
+  redirectTo(url: string) {
+    this.router.navigate(['', url]);
   }
 
 }

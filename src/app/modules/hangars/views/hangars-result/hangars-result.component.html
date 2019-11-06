@@ -1,5 +1,0 @@
-<div *ngIf="!this.isHangars">
-    <h3>{{ 'search.message' | translate }}</h3>
-</div>
-
-<app-hangar-list [hangars$]="hangars" (getHangar)="getHangar($event)"></app-hangar-list>

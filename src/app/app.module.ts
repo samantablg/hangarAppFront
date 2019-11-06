@@ -1,3 +1,4 @@
+import { SharedModule } from './shared/shared.module';
 import { ProfileEffects } from './store/effects/profile.effects';
 import { AuthEffects } from './store/effects/auth.effects';
 import { CustomRouterStateSerializer } from './store/state/index';
@@ -13,11 +14,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { HomeComponent } from './shared/views/home/home.component';
-import { CardComponent } from './shared/components/card/card.component';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
-import { SearchComponent } from './shared/components/search/search.component';
-import { AboutComponent } from './shared/views/about/about.component';
 import { TranslateModule } from '@ngx-translate/core';
 import { StoreRouterConnectingModule, RouterStateSerializer } from '@ngrx/router-store';
 import { StoreModule } from '@ngrx/store';
@@ -28,16 +25,13 @@ import { HangarEffects } from './store/effects/hangar.effects';
 @NgModule({
   declarations: [
     AppComponent,
-    HomeComponent,
-    CardComponent,
-    SearchComponent,
-    AboutComponent
   ],
   imports: [
     BrowserModule,
     HttpClientModule,
     LayoutModule,
     ReactiveFormsModule,
+    FormsModule,
     StoreModule.forRoot(rootReducers, { metaReducers }),
     StoreDevtoolsModule.instrument({
       maxAge: 25, // Retains last 55 states
@@ -47,9 +41,9 @@ import { HangarEffects } from './store/effects/hangar.effects';
     StoreRouterConnectingModule.forRoot(),
     CoreModule,
     TranslateModule,
-    FormsModule,
     ConfigModule,
-    AppRoutingModule
+    AppRoutingModule,
+    SharedModule
   ],
   providers: [{
     provide: RouterStateSerializer,

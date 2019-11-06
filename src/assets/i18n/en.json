@@ -22,7 +22,7 @@
         "find": "Search",
         "message": "No search results",
         "insert": "Search in the app",
-        "text": "Select the type"
+        "text": "Type of search"
     },
     "product": {
         "list": "List of products",
@@ -40,7 +40,8 @@
         "price": "Price",
         "products": "Products",
         "addMore": "Add more",
-        "amount": "Quantity"
+        "amount": "Quantity",
+        "buy": "Buy"
     },
     "hangar": {
         "text": "Hangar",

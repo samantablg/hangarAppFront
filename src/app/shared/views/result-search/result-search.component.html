@@ -1,0 +1,4 @@
+<div class="container">
+    <app-list *ngIf="this.hangarsResult$ | async" [result]="this.hangarsResult$ | async"></app-list>
+    <app-list *ngIf="this.productsResult$ | async" [result]="this.productsResult$ | async"></app-list>
+</div>

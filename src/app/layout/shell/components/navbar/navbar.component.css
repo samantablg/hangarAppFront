@@ -10,6 +10,7 @@ nav {
     margin: 0;
     padding: 0;
     background-color: #24292f;
+    width: 100%
 }
 
 
@@ -57,13 +58,6 @@ nav a {
 }
 
 
-/* Background color change on Hover */
-
-nav a:hover {
-    background-color: #000000;
-}
-
-
 /* Hide Dropdowns by Default
  * and giving it a position of absolute */
 
@@ -83,10 +77,29 @@ nav ul li:hover>ul {
 
 
 /* Fisrt Tier Dropdown */
-
+/* TODO: cuando se despliega el toggle se agranda la pantalla */
 nav ul ul li {
-    width: 140px;
+    width: 120px;;
     float: none;
-    display: list-item;
+    display: block;
     position: relative;
+}
+
+.right {
+    float: right;
+}
+
+@media (max-width: 1034px) {
+    .search {
+        visibility: hidden;
+    }
+}
+
+@media (max-width: 959px) {
+    .navbar {
+        width: auto;
+    }
+    .right {
+        visibility: hidden;
+    }
 }

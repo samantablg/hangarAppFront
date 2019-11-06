@@ -1,9 +1,6 @@
-import { GetPricesOfProduct } from './../../../../store/actions/product.actions';
 import { Observable } from 'rxjs';
 import { CommerceFacade } from './../../../../store/facade/commerce.facade';
-import { Component, OnInit, OnChanges } from '@angular/core';
-import { Store } from '@ngrx/store';
-import { State } from 'src/app/store/state';
+import { Component, OnInit, } from '@angular/core';
 import { ProductModel } from 'src/app/core/models/product.interface';
 import { ProductOfOrderModel } from 'src/app/core/models/product-of-order.interface';
 import { ProductFacade } from 'src/app/store/facade/product.facade';
@@ -18,7 +15,7 @@ import { Router } from '@angular/router';
 })
 export class CommerceComponent implements OnInit {
 
-  products$: Observable<ProductModel[]> = this.productFacade.products$;
+  products$: Observable<ProductModel[]>;
   totalPrice$: Observable<number>;
   totalProducts$: Observable<number>;
   order$: Observable<OrderModel>;
@@ -38,6 +35,7 @@ export class CommerceComponent implements OnInit {
 
   ngOnInit() {
 
+    this.products$ = this.productFacade.productsToShop$;
     this.totalPrice$ = this.commerceFacade.totalPrice$;
     this.totalProducts$  = this.commerceFacade.totalProducts$;
     this.order$ = this.commerceFacade.order$;

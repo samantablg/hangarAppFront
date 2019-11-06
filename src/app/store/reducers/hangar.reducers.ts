@@ -29,6 +29,10 @@ export function hangarReducer(state = initialState, action: hangars.HangarAction
         loading: false,
         error: action.payload
       };
+      case HangarsActionTypes.IS_LOADED:
+        return {
+          ...state,
+        };
     case HangarsActionTypes.DELETE_HANGAR:
       return {
         ...state
@@ -42,8 +46,6 @@ export function hangarReducer(state = initialState, action: hangars.HangarAction
       };
     case HangarsActionTypes.EDIT_HANGAR:
       return editHangar(state, action);
-    /* case HangarsActionTypes.SEARCH_HANGAR:
-      return { ...state }; */
     case HangarsActionTypes.VALIDATE_HANGAR:
       return findHangar(state, action);
     default:

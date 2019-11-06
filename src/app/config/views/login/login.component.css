@@ -1,3 +1,16 @@
+.container-login {
+    width: 75vw;
+    height: 75vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+form {
+    width: 75%;
+    height: 75%;
+}
+
 .btn:hover {
     box-shadow: 0 0 2em #d1e8ec;
     background-color: #aeccd1;

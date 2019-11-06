@@ -1,25 +1,69 @@
 .container-shop {
-    height: 70vh;
-    width: 300px;
-    position: fixed;
-    z-index: 1;
-    top: 10em;
-    right: 0;
-    bottom: 10em;
-    box-sizing: border-box;
-    background-color: #fbfbfb;
-    align-content: center;
+    height: 100%;
+    width: 100%;
+    background-color: #EDF3F0;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.container-shop>span {
+    /* margin-top: 2vmin; */
+    color: #1E804C;
+    font-weight: bolder;
+    font-size: 4vmin;
+    width: 100%;
+    text-align: center;
+}
+
+.shop-details {
+    height: 45%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    margin: 2vmin;
+}
+
+.shop-details>span {
+    color: #1E804C;
+    font-weight: normal;
+    font-size: 2vmin;
+}
+
+.shop-footer {
+    height: 20%;
+    display: flex;
+    justify-content: center;
     align-items: center;
 }
 
-.container-shop h4 {
-    margin: 35px;
-}
-
-.container-shop h5 {
-    margin: 10px;
-}
-
 .btn {
-    align-self: center
+    background: linear-gradient(135deg, #6e8efb, #a777e3);
+    cursor: pointer;
+    width: 75%;
+    height: 50%;
+    background-position: 20%;
 }
+
+.shop-footer>a {
+    font-weight: bolder;
+    font-size: 2vmin;
+}
+
+
+/* @keyframes flash {
+  from,
+  50%,
+  to {
+    opacity: 1;
+  }
+
+  25%,
+  75% {
+    opacity: 0;
+  }
+}
+
+.flash {
+  animation-name: flash;
+} */

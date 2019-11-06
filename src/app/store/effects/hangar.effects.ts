@@ -1,4 +1,7 @@
+import { HangarsLoad } from './../actions/hangar.actions';
 import { Action } from '@ngrx/store';
+import { State } from 'src/app/store/state';
+import { Store } from '@ngrx/store';
 import { Router } from '@angular/router';
 import { HangarActions } from '../actions/hangar.actions';
 import { HangarService } from 'src/app/core/services/hangar.service';
@@ -6,16 +9,32 @@ import { Injectable } from '@angular/core';
 import { Actions, Effect, ofType } from '@ngrx/effects';
 import * as hangarActions from '../actions/hangar.actions';
 import { HangarsActionTypes } from '../actions/hangar.actions';
-import { switchMap, map, catchError, tap } from 'rxjs/operators';
+import { switchMap, map, catchError, tap, withLatestFrom } from 'rxjs/operators';
 import { of, Observable } from 'rxjs';
+import { selectLoaded } from '../selectors/hangar.selectors';
+
 @Injectable()
 export class HangarEffects {
 
   constructor(
     private hangarService: HangarService,
     private actions$: Actions,
-    private router: Router
+    private router: Router,
+    private store: Store<State>
   ) {}
+
+  @Effect()
+  isLoaded$ = this.actions$.pipe(
+    ofType(HangarsActionTypes.IS_LOADED),
+    withLatestFrom(this.store.select(selectLoaded)),
+    map(([action, isLoaded]: [hangarActions.IsHangarsLoaded, boolean]) => {
+      if (!isLoaded) {
+        return new HangarsLoad();
+      } else {
+        return of({});
+      }
+    })
+  );
 
   @Effect()
   loadHangars$ = this.actions$.pipe(
@@ -78,5 +97,4 @@ export class HangarEffects {
       );
     })
   );
-
 }

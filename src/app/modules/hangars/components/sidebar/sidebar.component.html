@@ -1,27 +1,27 @@
 <div class="sidebar">
     <ul>
         <li>
-            <a class="nav-link" (click)="this.getHangar.emit(this.hangar)">
+            <a (click)="this.getHangar.emit(this.hangar)">
         {{ 'view-hangar.text' | translate }}
       </a>
         </li>
         <li>
-            <a class="nav-link" (click)="this.editHangar.emit(this.hangar)">
+            <a (click)="this.editHangar.emit(this.hangar)">
                 {{ 'modify-hangar.text' | translate }}
       </a>
         </li>
         <li>
-            <a class="nav-link" (click)="this.manageProductsOfHangar.emit(this.hangar)">
+            <a (click)="this.manageProductsOfHangar.emit(this.hangar)">
               {{ 'product.manage' | translate }}
     </a>
         </li>
         <li>
-            <a class="nav-link" (click)="this.deleteHangar.emit(this.hangar)">
+            <a (click)="this.deleteHangar.emit(this.hangar)">
               {{ 'hangar.delete' | translate }}
     </a>
         </li>
         <li>
-            <a class="nav-link" (click)="this.newHangar.emit()">
+            <a (click)="this.newHangar.emit()">
                 {{ 'add-hangar.text' | translate }}
       </a>
         </li>

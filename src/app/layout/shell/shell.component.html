@@ -1,3 +1,5 @@
-<app-navbar-view (emitChangeLang)="changeLang()"></app-navbar-view>
-<app-main></app-main>
-<app-footer></app-footer>
+<div class="layout">
+    <app-navbar-container class="navbar" (emitChangeLang)="changeLang()"></app-navbar-container>
+    <app-main class="main"></app-main>
+    <app-footer class="footer"></app-footer>
+</div>

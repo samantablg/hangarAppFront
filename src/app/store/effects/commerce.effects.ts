@@ -13,7 +13,6 @@ import { AddedProductOfOrder,
          DiminishedProductOfOrder,
          NoChangeOrder } from '../actions/commerce.actions';
 import { Observable, of } from 'rxjs';
-import { Action } from '@ngrx/store';
 import { Router } from '@angular/router';
 import { ProductOfOrderModel } from './../../core/models/product-of-order.interface';
 

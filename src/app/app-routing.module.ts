@@ -5,12 +5,14 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { HomeComponent } from './shared/views/home/home.component';
 import { AboutComponent } from './shared/views/about/about.component';
+import { ResultSearchComponent } from './shared/views/result-search/result-search.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent, canActivate: [AuthGuardService] },
   { path: 'about', component: AboutComponent },
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
+  { path: 'search/:name', component: ResultSearchComponent },
   { path: 'hangars', loadChildren: './modules/hangars/hangars.module#HangarsModule', canActivate: [AuthGuardService] },
   { path: 'products', loadChildren: './modules/products/products.module#ProductsModule', canActivate: [AuthGuardService] },
   { path: 'commerce', loadChildren: './modules/commerce/commerce.module#CommerceModule', canActivate: [AuthGuardService] },

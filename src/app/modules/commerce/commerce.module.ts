@@ -8,9 +8,16 @@ import { TranslateModule } from '@ngx-translate/core';
 import { OrderDetailsComponent } from './views/order-details/order-details.component';
 import { ProductCardCommerceComponent } from './components/product-card-commerce/product-card-commerce.component';
 import { RouterModule } from '@angular/router';
+import { ProductsOrderComponent } from './components/products-order/products-order.component';
 
 @NgModule({
-  declarations: [CommerceComponent, ProductsComponent, ShoppingCartComponent, OrderDetailsComponent, ProductCardCommerceComponent],
+  declarations: [
+    CommerceComponent,
+    ProductsComponent,
+    ShoppingCartComponent,
+    OrderDetailsComponent,
+    ProductCardCommerceComponent,
+    ProductsOrderComponent],
   imports: [
     CommonModule,
     CommerceRoutingModule,

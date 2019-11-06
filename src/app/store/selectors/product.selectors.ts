@@ -16,6 +16,11 @@ export const selectLoading = createSelector(
   (state: ProductsState) => state.loading
 );
 
+export const selectLoaded = createSelector(
+  selectProductState,
+  (state: ProductsState) => state.loaded
+);
+
 export const selectError = createSelector(
   selectProductState,
   (state: ProductsState) => state.error
@@ -36,6 +41,11 @@ export const selectIsProduct = createSelector(
   (state: ProductsState) => state.isProduct
 );
 
+export const selectProductsToShop = createSelector(
+  selectProductState,
+  (state: ProductsState) => state.products.filter(prod => prod.price > 0 && prod.hangars.length > 0)
+);
+
 export const selectProductById = createSelector(
   selectProductList,
   fromRouter.selectRouterState,
@@ -49,14 +59,9 @@ export const selectProductsUnlinkOfHangar = createSelector(
     return !product.hangars.includes(parseInt(route.state.params.id, 10));
   })
 );
-/*
-selectProductsUnlinkHangar(idHangar: number): ProductModel[] {
-    this.store.select('product', 'products')
-    .subscribe( products => {
-      this.productsUnlinkHangar = products.filter( (product) => {
-        return !product.hangars.includes(idHangar);
-      });
-    });
-    return this.productsUnlinkHangar;
-  }
-*/
+
+export const selectProductsLike = createSelector(
+  selectProductList,
+  fromRouter.selectRouterState,
+  (products: ProductModel[], route): ProductModel[] => products.filter(product => product.name.includes(route.state.params.name))
+);

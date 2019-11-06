@@ -1,3 +1,8 @@
+* {
+    padding: 0;
+    margin: 0;
+}
+
 .btn {
     display: inline-block;
     font-weight: 400;
@@ -18,4 +23,11 @@
 
 .btn:active {
     box-shadow: none;
+}
+
+.hangar {
+    width: 75vw;
+    height: 75vh;
+    padding-top: 5vh;
+
 }
