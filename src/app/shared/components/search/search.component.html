@@ -1,26 +1,6 @@
-<form [formGroup]="formSearch" (ngSubmit)="searchApp()" class="form-inline md-form mr-auto mb-4">
-    <div class="d-flex column justify-content-between">
-        <div class="form-group">
-            <input type="text" class="form-control" formControlName="search" name="search" placeholder="{{ 'search.insert' | translate }}" />
-        </div>
-
-        <div class="form-group">
-            <div>
-                <select class="form-control" formControlName="type" name="type">
-          <option value="">{{ "search.text" | translate }}</option>
-          <option
-            *ngFor="let option of type"
-            [value]="option"
-          >
-            {{ option  | translate }}
-          </option>
-        </select>
-            </div>
-        </div>
-        <div class="form-group">
-            <button type="submit" class="btn">
-        {{ "search.find" | translate }}
-      </button>
-        </div>
+<div class="search-box">
+    <div class="icon">
+        <img src="assets/img/magnifying-glass.svg">
     </div>
-</form>
+    <input type="text" placeholder="{{ 'search.find' | translate }}" [(ngModel)]="text" (keydown.enter)="this.search.emit(this.text)" (click)="firstClick()">
+</div>

@@ -1,7 +1,5 @@
-import { ProductModel } from './../../../core/models/product.interface';
-import { HangarModel } from 'src/app/core/models/hangar.interface';
 import { FormGroup, FormControl } from '@angular/forms';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { Router } from '@angular/router';
 
 @Component({
@@ -10,20 +8,32 @@ import { Router } from '@angular/router';
   styleUrls: ['./search.component.css']
 })
 export class SearchComponent implements OnInit {
-  formSearch: FormGroup;
-  result: HangarModel[] | ProductModel[] = [];
-  type = ['hangar-name', 'product-name'];
 
-  constructor( private router: Router ) {
-    this.formSearch = new FormGroup({
-      search: new FormControl(''),
-      type: new FormControl('')
-    });
-  }
+  @Output() search = new EventEmitter<string>();
+  @Output() loadData = new EventEmitter();
+
+  text: string;
+  click = 0;
+
+  /* type = ['hangar-name', 'product-name'];
+
+  formSearch: FormGroup = new FormGroup({
+    search: new FormControl(''),
+    type: new FormControl('')
+  }); */
+
+  constructor() {}
 
   ngOnInit() {}
 
-  searchHangar() {
+  firstClick() {
+    this.click += 1;
+    if (this.click === 1) {
+      this.loadData.emit();
+    }
+  }
+
+  /* searchHangar() {
     if (this.formSearch.value.search !== '') {
       this.router.navigate(['hangars/search', this.formSearch.value.search]);
     }
@@ -41,5 +51,5 @@ export class SearchComponent implements OnInit {
     } else if (this.formSearch.value.type === 'hangar-name') {
       return this.searchHangar();
     }
-  }
+  } */
 }

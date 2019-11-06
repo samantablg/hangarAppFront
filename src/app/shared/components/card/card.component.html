@@ -1,9 +1,9 @@
-<div class="card row align-items-center">
-    <img class="card-img-top" [src]="card.img" alt="{{ card.title }}">
-    <div class="card-body">
-        <h4 class="card-title">{{ card.title | translate }}</h4>
+<div class="card">
+    <img [src]="card.img" alt="{{ card.title }}">
+    <div class="body">
+        <span class="title">{{ card.title | translate }}</span>
     </div>
-    <div class="card-footer">
-        <a routerLink="{{ card.url }}" class="btn">{{ 'list.text' | translate }}</a>
+    <div class="footer">
+        <app-button [url]="card.url" [text]="'list.text'" (buttonClicked)="buttonClicked()"></app-button>
     </div>
 </div>
