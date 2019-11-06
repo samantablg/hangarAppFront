@@ -31,7 +31,7 @@ export class HangarEffects {
       if (!isLoaded) {
         return new HangarsLoad();
       } else {
-        return of({});
+        return of(new hangarActions.NoAction());
       }
     })
   );
@@ -53,7 +53,6 @@ export class HangarEffects {
   @Effect()
   saveHangar$: Observable<Action> = this.actions$.pipe(
     ofType<HangarActions>(HangarsActionTypes.NEW_HANGAR),
-
     switchMap((action: hangarActions.NewHangar) => {
       return this.hangarService.postHangar(action.payload).pipe(
         map( _ => ({
@@ -69,16 +68,15 @@ export class HangarEffects {
   @Effect()
   deleteHangar$: Observable<Action> = this.actions$.pipe(
     ofType<HangarActions>(HangarsActionTypes.DELETE_HANGAR),
-
     switchMap((action: hangarActions.DeleteHangar) => {
       return this.hangarService.deleteHangar(action.payload.id).pipe(
-        map( _ => ({
+        map(response => ({
           type: '[HANGAR] LOAD_HANGAR',
           })
         ),
         tap(() => this.router.navigate(['hangars'])),
         catchError(error => of(new hangarActions.HangarsLoadFail(error)))
-      );
+        );
     })
   );
 

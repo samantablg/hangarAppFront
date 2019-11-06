@@ -24,7 +24,8 @@ export enum ProductsActionTypes {
   LOADED_PRICES_OF_PRODUCT = '[PRODUCT] LOADED_PRICES_OF_PRODUCT',
   NEW_PRICE = '[PRODUCT] NEW_PRICE',
   VALIDATE_PRODUCT = '[PRODUCT] VALIDATE_PRODUCT',
-  IS_LOADED = '[PRODUCT] IS_LOADED'
+  IS_LOADED = '[PRODUCT] IS_LOADED',
+  NO_ACTION = '[PRODUCT] NO_ACTION'
 }
 
 export class IsProductsLoaded implements Action {
@@ -120,6 +121,11 @@ export class ValidateProduct implements Action {
   constructor(public payload: string) {}
 }
 
+export class NoAction implements Action {
+  readonly type = ProductsActionTypes.NO_ACTION;
+}
+
+
 export type ProductActions =  IsProductsLoaded |
                               ProductsLoad |
                               ProductsLoaded |
@@ -138,4 +144,5 @@ export type ProductActions =  IsProductsLoaded |
                               PricesOfProductLoad |
                               PricesOfProductLoaded |
                               NewPriceOfProduct |
-                              ValidateProduct;
+                              ValidateProduct |
+                              NoAction;

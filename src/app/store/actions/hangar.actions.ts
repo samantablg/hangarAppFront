@@ -10,7 +10,8 @@ export enum HangarsActionTypes {
   DELETE_HANGAR = '[HANGAR] DELETE_HANGAR',
   SELECT_HANGAR = '[HANGAR] SELECT_HANGAR',
   VALIDATE_HANGAR = '[HANGAR] VALIDATE_HANGAR',
-  IS_LOADED = '[HANGAR] IS_LOADED'
+  IS_LOADED = '[HANGAR] IS_LOADED',
+  NO_ACTION = '[HANGAR] NO_ACTION'
 }
 
 export class HangarsLoad implements Action {
@@ -18,37 +19,37 @@ export class HangarsLoad implements Action {
 }
 
 export class HangarsLoaded implements Action {
-  type = HangarsActionTypes.LOADED_HANGARS;
+  readonly type = HangarsActionTypes.LOADED_HANGARS;
   constructor(public payload: HangarModel[]) {}
 }
 
 export class HangarsLoadFail implements Action {
-  type = HangarsActionTypes.LOAD_HANGARS_FAIL;
+  readonly type = HangarsActionTypes.LOAD_HANGARS_FAIL;
   constructor(public payload: any) {}
 }
 
 export class NewHangar implements Action {
-  type = HangarsActionTypes.NEW_HANGAR;
+  readonly type = HangarsActionTypes.NEW_HANGAR;
   constructor(public payload: HangarModel) {}
 }
 
 export class EditHangar implements Action {
-  type = HangarsActionTypes.EDIT_HANGAR;
+  readonly type = HangarsActionTypes.EDIT_HANGAR;
   constructor(public payload: HangarModel) {}
 }
 
 export class DeleteHangar implements Action {
-  type = HangarsActionTypes.DELETE_HANGAR;
+  readonly type = HangarsActionTypes.DELETE_HANGAR;
   constructor(public payload: HangarModel) {}
 }
 
 export class SelectHangar implements Action {
-  type = HangarsActionTypes.SELECT_HANGAR;
+  readonly type = HangarsActionTypes.SELECT_HANGAR;
   constructor(public payload: HangarModel) {}
 }
 
 export class ValidateHangar implements Action {
-  type = HangarsActionTypes.VALIDATE_HANGAR;
+  readonly type = HangarsActionTypes.VALIDATE_HANGAR;
   constructor(public payload: string) {}
 }
 
@@ -56,12 +57,18 @@ export class IsHangarsLoaded implements Action {
   readonly type = HangarsActionTypes.IS_LOADED;
 }
 
+export class NoAction implements Action {
+  readonly type = HangarsActionTypes.NO_ACTION;
+}
+
 export type HangarActions = HangarsLoad |
                             HangarsLoaded |
                             HangarsLoadFail |
                             NewHangar |
+                            DeleteHangar |
                             EditHangar |
                             SelectHangar |
                             ValidateHangar |
+                            NoAction |
                             IsHangarsLoaded;
 
