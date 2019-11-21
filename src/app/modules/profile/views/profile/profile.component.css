@@ -1,10 +1,19 @@
 * {
     margin: 0;
     padding: 0;
+    height: 100vh;
 }
 
 .container-profile {
-    height: 75vh;
-    width: 75vw;
-    padding: 5vmin;
+    height: 100%;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-content: center;
+}
+
+.profile {
+    width: 40%;
+    height: 40%;
+    margin: 5vmin;
 }

@@ -10,6 +10,7 @@ import { NavbarComponent } from './shell/components/navbar/navbar.component';
 import { MainComponent } from './shell/components/main/main.component';
 import { FooterComponent } from './shell/components/footer/footer.component';
 import { NavbarViewComponent } from './shell/containers/navbar-container/navbar-container.component';
+import { AngularSvgIconModule } from 'angular-svg-icon';
 
 @NgModule({
   declarations: [ShellComponent, NavbarComponent, MainComponent, FooterComponent, NavbarViewComponent],
@@ -17,6 +18,7 @@ import { NavbarViewComponent } from './shell/containers/navbar-container/navbar-
     CommonModule,
     RouterModule,
     SharedModule,
+    AngularSvgIconModule,
     TranslateModule.forRoot({
       loader: {
         provide: TranslateLoader,

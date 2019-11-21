@@ -1,9 +1,3 @@
-.toggle,
-[id^=drop] {
-    display: none;
-}
-
-
 /* Giving a background-color to the nav container. */
 
 nav {
@@ -11,16 +5,6 @@ nav {
     padding: 0;
     background-color: #24292f;
     width: 100%
-}
-
-
-/* Since we'll have the "ul li" "float:left"
- * we need to add a clear after the container. */
-
-nav:after {
-    content: "";
-    display: table;
-    clear: both;
 }
 
 
@@ -36,20 +20,30 @@ nav ul {
     width: 100%
 }
 
+.item:hover {
+    border-bottom: 3px solid #0C9;
+}
+
 
 /* Positioning the navigation items inline */
 
-nav ul li {
-    margin: 0px;
+nav ul li,
+label {
+    margin: 0;
     display: inline-block;
-    background-color: #24292f;
-    cursor: pointer
+    background: #24292f;
+    cursor: pointer;
+}
+
+.right {
+    float: right;
 }
 
 
 /* Styling the links */
 
-nav a {
+nav a,
+label {
     display: block;
     padding: 14px 20px;
     color: rgb(209, 232, 236);
@@ -57,37 +51,43 @@ nav a {
     text-decoration: none;
 }
 
+input {
+    display: none
+}
 
-/* Hide Dropdowns by Default
- * and giving it a position of absolute */
+nav ul li label {
+    color: rgb(209, 232, 236);
+}
 
-nav ul ul {
-    display: none;
+ul.submenu {
+    visibility: collapse;
+    max-height: 0;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    list-style-type: none;
+    background: #24292f;
+    transition: max-height 0.5s ease-out;
     position: absolute;
-    /* has to be the same number as the "line-height" of "nav a" */
-    top: 60px;
+    min-width: 100%;
+    color: rgb(209, 232, 236);
+}
+
+#drop-1:checked~.submenu {
+    visibility: visible;
 }
 
 
-/* Display Dropdowns on Hover */
-
-nav ul li:hover>ul {
-    display: inherit;
+/* svg-icon {
+    height: 5px;
 }
 
-
-/* Fisrt Tier Dropdown */
-/* TODO: cuando se despliega el toggle se agranda la pantalla */
-nav ul ul li {
-    width: 120px;;
-    float: none;
-    display: block;
-    position: relative;
-}
-
-.right {
-    float: right;
-}
+.icon {
+    fill: rgb(209, 232, 236);
+    display: flex;
+    flex-direction: row;
+} */
 
 @media (max-width: 1034px) {
     .search {

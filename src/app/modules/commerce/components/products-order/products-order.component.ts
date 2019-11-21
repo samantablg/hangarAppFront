@@ -9,15 +9,14 @@ import { ProductOfOrderModel } from 'src/app/core/models/product-of-order.interf
 export class ProductsOrderComponent implements OnInit {
 
   @Input() products: ProductOfOrderModel[];
-  @Input() url: string;
   @Output() removeProductToShoppingCart = new EventEmitter<ProductOfOrderModel>();
   @Output() increaseProductOfShoppingCart = new EventEmitter<ProductOfOrderModel>();
   @Output() decreaseProductOfShoppingCart = new EventEmitter<ProductOfOrderModel>();
   @Output() getProduct = new EventEmitter<number>();
+  @Output() moreShopping = new EventEmitter();
 
   constructor() { }
 
-  ngOnInit() {
-  }
+  ngOnInit() {}
 
 }

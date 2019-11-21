@@ -1,4 +1,3 @@
-import { OrderModel } from 'src/app/core/models/order.interface';
 import { ProductModel } from './../models/product.interface';
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';

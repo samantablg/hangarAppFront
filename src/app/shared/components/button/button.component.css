@@ -1,8 +1,8 @@
-a {
+span {
     display: flex;
     justify-content: center;
     align-items: center;
-    color: #212529;
+    color: #0C9;
     border: 1px solid #e7ebef;
     padding: .375rem .75rem;
     font-size: 1rem;
@@ -10,10 +10,17 @@ a {
     border-radius: 5px;
     width: 100%;
     height: 100%;
-    text-align: center;
+    cursor: pointer;
 }
 
-a:hover {
-    box-shadow: 0 0 1em #d1e8ec;
-    background-color: #aeccd1;
+@media(max-width: 1279px) {
+    span {
+        font-size: 10px;
+    }
+}
+
+@media(max-width: 874px) {
+    span {
+        font-size: 7px;
+    }
 }

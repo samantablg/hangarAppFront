@@ -16,10 +16,6 @@ import { Router } from '@angular/router';
 export class CommerceComponent implements OnInit {
 
   products$: Observable<ProductModel[]>;
-  totalPrice$: Observable<number>;
-  totalProducts$: Observable<number>;
-  order$: Observable<OrderModel>;
-  url$: Observable<string>;
 
   productOrder: ProductOfOrderModel = {
     hangar_id: 0,
@@ -30,17 +26,11 @@ export class CommerceComponent implements OnInit {
 
   constructor(private commerceFacade: CommerceFacade,
               private productFacade: ProductFacade,
-              private routerFacade: RouterFacade,
               private router: Router) { }
 
   ngOnInit() {
-
     this.products$ = this.productFacade.productsToShop$;
-    this.totalPrice$ = this.commerceFacade.totalPrice$;
-    this.totalProducts$  = this.commerceFacade.totalProducts$;
-    this.order$ = this.commerceFacade.order$;
-    this.url$ = this.routerFacade.url$;
-   }
+  }
 
   addProductToShoppingCart(product: ProductModel) {
     this.productOrder.hangar_id = product.hangars[0];
@@ -50,9 +40,6 @@ export class CommerceComponent implements OnInit {
     this.commerceFacade.addProductToOrder(this.productOrder);
   }
 
-  sendOrder(order: OrderModel) {
-    this.commerceFacade.sendOrder(order);
-  }
 
   productsNotLoaded() {
     this.productFacade.loadProducts();

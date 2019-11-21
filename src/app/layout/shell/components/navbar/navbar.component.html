@@ -1,30 +1,44 @@
 <nav>
     <ul class="menu">
         <li> <a [routerLink]="['']">App</a></li>
-        <li><a [routerLink]="['hangars']">{{ 'hangar.text' | translate }}</a></li>
-        <li><a [routerLink]="['products']">{{ 'product.text' | translate }}</a></li>
-        <li><a [routerLink]="['commerce']">{{ 'commerce.shop' | translate }}</a></li>
-        <li><a [routerLink]="['about']">{{ 'about-nav.text' | translate }}</a></li>
+        <li><a class="item" [routerLink]="['hangars']">{{ 'hangar.text' | translate }}</a></li>
+        <li><a class="item" [routerLink]="['products']">{{ 'product.text' | translate }}</a></li>
+        <li><a class="item" [routerLink]="['commerce']">{{ 'commerce.shop' | translate }}</a></li>
+        <li><a class="item" [routerLink]="['about']">{{ 'about-nav.text' | translate }}</a></li>
         <li class="search">
             <app-search (search)="this.search.emit($event)" (loadData)="this.loadData.emit()"></app-search>
         </li>
+
         <li class="right">
+            <!-- Drop Down -->
+            <input id="drop-1" type="checkbox" name="menu" />
+            <label for="drop-1">{{ "user" | uppercase}}</label>
+            <ul class="submenu">
+                <li><a [routerLink]="['profile']">Ver perfil</a></li>
+                <li><a (click)="logout.emit()">{{ 'login.logout' | translate }}</a></li>
+            </ul>
+        </li>
+
+        <li class="right">
+            <!-- <svg-icon src="assets/icon/shopping-cart.svg"></svg-icon> -->
             <a [routerLink]="['commerce/order']"> <i class=" fa fa-shopping-cart " aria-hidden="true "> ({{productsOfOrder}})</i></a>
         </li>
         <!-- *ngIf="this.isAuthenticated"  -->
         <li class="right">
-            <a class="change" (click)="emitChangeLang.emit()">{{ 'change.text' | translate }}</a>
+            <a (click)="emitChangeLang.emit()">{{ 'change.text' | translate }}</a>
         </li>
-        <li *ngIf="this.isAuthenticated" class="right">
-            <!-- Drop Down -->
-            <label for="drop-1" class="toggle">{{ username }}</label>
-            <a [routerLink]="['profile']">{{ username }}</a>
+        <!-- *ngIf="this.isAuthenticated" -->
+
+    </ul>
+</nav>
+
+<!-- <li class="right">
+            Drop Down
+            <a [routerLink]="['profile']">{{ "user" | uppercase}}</a>
 
             <ul>
                 <li><a [routerLink]="['profile']">Ver perfil</a></li>
                 <li><a (click)="logout.emit()">{{ 'login.logout' | translate }}</a></li>
             </ul>
 
-        </li>
-    </ul>
-</nav>
+        </li> -->

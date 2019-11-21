@@ -1,20 +1,13 @@
 * {
     margin: 0;
     padding: 0;
+    height: 100vh;
 }
 
 main {
-    width: 100vw;
+    top: 0;
+    right: 0;
+    left: 0;
+    width: 100%;
+    background: #faf9f8;
 }
-
-
-/* main {
-    font-family: 'Lato', sans-serif;
-    overflow: auto;
-    padding-bottom: 5vw;
-    min-height: 90%;
-    margin-right: auto;
-    margin-left: auto;
-    margin-top: auto;
-}
- */

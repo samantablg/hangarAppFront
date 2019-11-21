@@ -1,11 +1,5 @@
 <div class="container-products">
     <div *ngFor="let product of products" class="card-product">
-        <app-card-product [product]="product" (viewDetailsOfProduct)="this.getProduct.emit($event)"></app-card-product>
-        <!-- <app-product-card [product]="product" [isDetails]="false"></app-product-card>
-        <div class="card-footer">
-            <button (click)="this.getProduct.emit(product)" type="button" class="btn">
-              {{ 'more.text' | translate }}
-            </button>
-        </div> -->
+        <app-card-product [product]="product" [buttonAction]="buttonAction" (productAction)="this.productAction.emit($event)"></app-card-product>
     </div>
 </div>

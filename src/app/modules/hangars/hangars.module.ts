@@ -1,3 +1,4 @@
+import { SharedModule } from 'src/app/shared/shared.module';
 import { HangarDetailComponent } from './views/hangar-detail/hangar-detail.component';
 import { HangarListComponent } from './components/hangar-list/hangar-list.component';
 import { TranslateModule } from '@ngx-translate/core';
@@ -6,7 +7,7 @@ import { HangarsComponent } from './views/hangars/hangars.component';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { SidebarComponent } from './components/sidebar/sidebar.component';
-import { ButtonComponent } from './components/plus-button/button.component';
+import { PlusButtonComponent } from './components/plus-button/plus-button.component';
 import { FormHangarComponent } from './components/form-hangar/form-hangar.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { FormHangarModifyComponent } from './views/hangar-modify/hangar-modify.component';
@@ -18,7 +19,7 @@ import {NgxPaginationModule} from 'ngx-pagination';
     HangarsComponent,
     HangarDetailComponent,
     SidebarComponent,
-    ButtonComponent,
+    PlusButtonComponent,
     FormHangarComponent,
     FormHangarModifyComponent,
     HangarNewComponent,
@@ -30,7 +31,8 @@ import {NgxPaginationModule} from 'ngx-pagination';
     HangarsRoutingModule,
     ReactiveFormsModule,
     NgxPaginationModule,
-    TranslateModule
+    TranslateModule,
+    SharedModule
   ],
   exports: [HangarsComponent]
 })

@@ -1,0 +1,22 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+section {
+    padding: 5px;
+    display: flex;
+    flex-direction: column;
+}
+
+label {
+    color: #24292f;
+    font-size: x-large;
+}
+
+input {
+    width: 100%;
+    border: 1px solid #e7ebef;
+    color: #24292f;
+    height: 40px;
+}

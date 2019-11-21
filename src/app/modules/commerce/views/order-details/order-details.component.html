@@ -3,7 +3,7 @@
         <h3>Nombre cliente</h3>
     </div>
     <div class="products-order">
-        <app-products-order [url]="url$ | async" [products]="productsOfOrder$ | async" (getProduct)="getProduct($event)" (removeProductToShoppingCart)="removeProductToShoppingCart($event)" (increaseProductOfShoppingCart)="increaseProductOfShoppingCart($event)"
+        <app-products-order [products]="productsOfOrder$ | async" (getProduct)="getProduct($event)" (moreShopping)="moreShopping()" (removeProductToShoppingCart)="removeProductToShoppingCart($event)" (increaseProductOfShoppingCart)="increaseProductOfShoppingCart($event)"
             (decreaseProductOfShoppingCart)="decreaseProductOfShoppingCart($event)"></app-products-order>
     </div>
     <div class="shopping-cart">

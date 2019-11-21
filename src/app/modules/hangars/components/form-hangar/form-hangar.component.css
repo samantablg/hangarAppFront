@@ -3,31 +3,28 @@
     margin: 0;
 }
 
-.btn {
-    display: inline-block;
-    font-weight: 400;
-    color: #212529;
-    text-align: center;
-    vertical-align: middle;
-    border: 0.5px solid transparent;
-    font-size: 1rem;
-    line-height: 1.0;
-    border-radius: 0.45rem;
-    color: #24292f;
-    border-color: #d1e8ec;
+.container-form {
+    margin: 0;
+    height: 100%;
 }
 
-.btn:hover {
-    background-color: #aeccd1;
+.container-form * {
+    position: relative;
 }
 
-.btn:active {
-    box-shadow: none;
+.container-form *:after {
+    position: absolute;
+    top: 0;
+    left: 0;
 }
 
-.hangar {
-    width: 75vw;
-    height: 75vh;
-    padding-top: 5vh;
+.container-form {
+    display: grid;
+    grid-template-columns: 0.5fr 3.3fr 0.5fr;
+    grid-template-rows: 0.2fr 2.6fr 0.2fr;
+    grid-template-areas: ". . ." ". form ." ". . .";
+}
 
+.form {
+    grid-area: form;
 }

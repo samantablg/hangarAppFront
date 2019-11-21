@@ -1,1 +1,3 @@
-<app-form-hangar [isEdit]="false" [isReadOnly]="false" (postHangar)="postHangar($event)"></app-form-hangar>
+<div class="container-form">
+    <app-form-hangar [isEdit]="false" [isReadOnly]="false" [action]="'form.save'" (actionHangar)="postHangar($event)"></app-form-hangar>
+</div>

@@ -1,5 +1,10 @@
-.form-profile {
-    background: red;
-    padding: 10px;
-    margin: auto;
+* {
+    margin: 0;
+    padding: 0;
+}
+
+.formProfile {
+    display: flex;
+    flex-direction: column;
+    border: 1px solid #e7ebef;
 }

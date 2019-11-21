@@ -12,8 +12,7 @@ export class CardComponent implements OnInit {
 
   constructor() { }
 
-  ngOnInit() {
-  }
+  ngOnInit() { }
 
   buttonClicked() {
     this.redirectTo.emit(this.card.url);

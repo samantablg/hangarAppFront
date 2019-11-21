@@ -1,26 +1,14 @@
-<div class="form-pofile">
-    <form [formGroup]="formProfile">
-        <div>
-            <div class="form-group row">
-                <label class="col-form-label" for="name">Nombre</label>
-                <input formControlName="name" id="name" type="text" class="form-control" />
-            </div>
-            <div class="form-group row">
-                <label class="col-form-label" for="surname">Apellido</label>
-                <input formControlName="surname" id="surname" type="text" class="form-control" />
-            </div>
-            <div class="form-group row">
-                <label class="col-form-label" for="mail">Mail</label>
-                <input formControlName="mail" id="mail" type="text" class="form-control" />
-            </div>
-            <div class="form-group row">
-                <label class="col-form-label" for="phone">Teléfono</label>
-                <input formControlName="phone" id="phone" type="text" class="form-control" />
-            </div>
-            <div class="form-group row">
-                <label class="col-form-label" for="address">Dirección</label>
-                <input formControlName="address" id="address" type="text" class="form-control" />
-            </div>
-        </div>
-    </form>
-</div>
+<form [formGroup]="form">
+    <app-input-form formControlName='name' [label]="'Nombre'" [isReadOnly]="this.isEdit"></app-input-form>
+
+    <app-input-form formControlName='surname' [label]="'Apellido'" [isReadOnly]="this.isEdit"></app-input-form>
+
+    <app-input-form formControlName='mail' [label]="'Mail'" [isReadOnly]="this.isEdit"></app-input-form>
+
+    <app-input-form formControlName='phone' [label]="'Teléfono'" [isReadOnly]="this.isEdit"></app-input-form>
+
+    <app-input-form formControlName='address' [label]="'Dirección'" [isReadOnly]="this.isEdit"></app-input-form>
+
+    <button (click)="isFormEdit.emit()">Modificar</button>
+    <button *ngIf="!this.isEdit" (click)="save()">Guardar</button>
+</form>

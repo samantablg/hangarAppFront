@@ -1,8 +1,8 @@
 .table-hangar {
     display: flex;
     flex-direction: column;
-    width: 100%;
-    height: 100%;
+    width: auto;
+    height: auto;
 }
 
 table {
@@ -15,6 +15,10 @@ table {
 
 thead {
     border-bottom: .1vh solid #24292f;
+}
+
+tr {
+    height: 4em;
 }
 
 tbody>tr {
@@ -32,5 +36,3 @@ tbody>tr {
 .list.selected {
     background: #e7ebef;
 }
-
-/* linear-gradient(135deg, #6e8efb, #a777e3) */

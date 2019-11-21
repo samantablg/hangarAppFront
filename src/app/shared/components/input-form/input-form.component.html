@@ -1,0 +1,4 @@
+<form>
+    <label for='input'>{{ this.label }}</label>
+    <input type="text" placeholder="{{ this.value }}" [readonly]="isReadOnly" [value]="this.value" (input)="this.onChange($event.target.value)" (blur)="this.onTouche()" />
+</form>

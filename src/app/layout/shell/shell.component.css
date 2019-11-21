@@ -1,7 +1,6 @@
 * {
     margin: 0;
     padding: 0;
-    width: 100vw;
 }
 
 .layout {
@@ -12,7 +11,6 @@
 }
 
 .main {
-    background: #faf9f8;
     display: flex;
     flex: 1;
 }
@@ -23,46 +21,7 @@
 }
 
 .footer {
-    position: relative;
+    position: fixed;
     bottom: 0;
     width: 100%;
 }
-
-
-/* * {
-    margin: 0;
-    padding: 0;
-    width: 100vw;
-}
-
-.layout { height: 100%; margin: 0; }
-
-.layout * { 
- position: relative;
-}
-
-.layout *:after { 
- position: absolute;
- top: 0;
- left: 0;
-}
-
-.layout {
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
-  grid-template-rows: 0.3fr 2.5fr 0.2fr;
-  grid-template-areas: "navbar navbar navbar" "main main main" "footer footer footer";
-}
-
-.navbar {
-    grid-area: navbar;
-    top: 0;
-}
-
-.main {
-    grid-area: main;
-    background: #faf9f8;
-}
-
-.footer { grid-area: footer; }
- */

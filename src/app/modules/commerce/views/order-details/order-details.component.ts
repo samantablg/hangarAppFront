@@ -6,7 +6,6 @@ import { OrderModel } from 'src/app/core/models/order.interface';
 import { ProductOfOrderModel } from 'src/app/core/models/product-of-order.interface';
 import { RouterFacade } from 'src/app/store/facade/router.facade';
 import { Router } from '@angular/router';
-import { ProductModel } from 'src/app/core/models/product.interface';
 
 @Component({
   selector: 'app-order-details',
@@ -20,7 +19,6 @@ export class OrderDetailsComponent implements OnInit {
   totalProducts$: Observable<number>;
   order$: Observable<OrderModel>;
   productsOfOrder$: Observable<ProductOfOrderModel[]>;
-  url$: Observable<string>;
   productOrder: ProductOfOrderModel = {
     hangar_id: 0,
     product_id: 0,
@@ -30,7 +28,6 @@ export class OrderDetailsComponent implements OnInit {
 
   constructor(private commerceFacade: CommerceFacade,
               private profileFacade: ProfileFacade,
-              private routerFacade: RouterFacade,
               private router: Router) { }
 
   ngOnInit() {
@@ -39,7 +36,6 @@ export class OrderDetailsComponent implements OnInit {
     this.totalProducts$  = this.commerceFacade.totalProducts$;
     this.order$ = this.commerceFacade.order$;
     this.productsOfOrder$ = this.commerceFacade.productsOfOrder$;
-    this.url$ = this.routerFacade.url$;
   }
 
   sendOrder(order: OrderModel) {
@@ -60,5 +56,9 @@ export class OrderDetailsComponent implements OnInit {
 
   decreaseProductOfShoppingCart(productOfOrder: ProductOfOrderModel) {
     this.commerceFacade.decreaseProductOfOrder(productOfOrder);
+  }
+
+  moreShopping() {
+    this.router.navigate(['/commerce']);
   }
 }

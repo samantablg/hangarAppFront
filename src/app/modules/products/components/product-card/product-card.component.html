@@ -4,7 +4,7 @@
     </div>
     <div class="card-body">
         <p class="card-text">{{product.description}}</p>
-        <p *ngIf="product.price !== 0 && isDetails">precio: {{product.price}}</p>
+        <p *ngIf="product.price !== 0 && isDetails">precio: ${{product.price}}</p>
         <div class="row justify-content-end" *ngIf="isDetails">
             <a (click)="this.deleteProduct.emit(product)" class="btn">{{ 'product.delete' | translate }}</a>
             <a (click)="this.editProduct.emit(product)" class="btn">{{ 'edit.text' | translate }}</a>

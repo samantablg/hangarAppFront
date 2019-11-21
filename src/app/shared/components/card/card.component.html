@@ -4,6 +4,6 @@
         <span class="title">{{ card.title | translate }}</span>
     </div>
     <div class="footer">
-        <app-button [url]="card.url" [text]="'list.text'" (buttonClicked)="buttonClicked()"></app-button>
+        <app-button [url]="card.url" [text]="'list.text' | translate" (click)="buttonClicked()"></app-button>
     </div>
 </div>

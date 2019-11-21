@@ -1,6 +1,12 @@
 <div class="container-products">
-    <div class="container-card" *ngFor="let product of products">
-        <app-product-card-commerce [isOrder]="true" [product]="product" (removeProductOfShoppingCart)="removeProductToShoppingCart.emit($event)" (getProduct)="this.getProduct.emit($event)" (increaseProductOfShoppingCart)="increaseProductOfShoppingCart.emit(product)"
-            (decreaseProductOfShoppingCart)="decreaseProductOfShoppingCart.emit(product)"></app-product-card-commerce>
-    </div>
+
+    <h3>Artículos</h3>
+    <ul>
+        <li *ngFor="let product of products">
+            <app-product-card-order [product]="product" (removeProductOfShoppingCart)="removeProductToShoppingCart.emit($event)" (getProduct)="this.getProduct.emit($event)" (increaseProductOfShoppingCart)="increaseProductOfShoppingCart.emit(product)" (decreaseProductOfShoppingCart)="decreaseProductOfShoppingCart.emit(product)"></app-product-card-order>
+        </li>
+        <li>
+            <button (click)="moreShopping.emit()">Seguir comprando</button>
+        </li>
+    </ul>
 </div>

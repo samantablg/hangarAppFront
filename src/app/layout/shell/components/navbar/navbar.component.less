@@ -1,0 +1,90 @@
+/* Giving a background-color to the nav container. */
+
+nav {
+    margin: 0;
+    padding: 0;
+    background-color: @basecolor;
+    width: 100%
+}
+
+
+/* Removing padding, margin and "list-style" from the "ul",
+ * and adding "position:reltive" */
+
+nav ul {
+    float: left;
+    padding: 0;
+    margin: 0;
+    list-style: none;
+    position: relative;
+    width: 100%
+}
+
+
+/* Positioning the navigation items inline */
+
+nav ul li,
+label {
+    margin: 0;
+    display: inline-block;
+    background: #24292f;
+    cursor: pointer;
+}
+
+.right {
+    float: right;
+}
+
+
+/* Styling the links */
+
+nav a,
+label {
+    display: block;
+    padding: 14px 20px;
+    color: rgb(209, 232, 236);
+    font-size: 17px;
+    text-decoration: none;
+}
+
+input {
+    display: none
+}
+
+nav ul li label {
+    color: rgb(209, 232, 236);
+}
+
+ul.submenu {
+    visibility: collapse;
+    max-height: 0;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    list-style-type: none;
+    background: #24292f;
+    transition: max-height 0.5s ease-out;
+    position: absolute;
+    min-width: 100%;
+    color: rgb(209, 232, 236);
+}
+
+#drop-1:checked~.submenu {
+    visibility: visible;
+}
+
+@media (max-width: 1034px) {
+    .search {
+        visibility: hidden;
+    }
+}
+
+@media (max-width: 959px) {
+    .navbar {
+        width: auto;
+    }
+    .right {
+        visibility: hidden;
+    }
+}

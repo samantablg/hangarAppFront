@@ -29,7 +29,7 @@
         "text": "Producto",
         "desc": "Descripción",
         "name": "Debe contener al menos tres caracteres",
-        "delete": "Borrar producto",
+        "delete": "Borrar",
         "exist": "El nombre del producto ya existe",
         "amount": "Actualice el numero de productos de este tipo que hay en el hangar",
         "manage": "Gestionar productos"
@@ -42,26 +42,30 @@
         "phone": "Teléfono",
         "list": "Lista de hangares",
         "empty": "Este hangar no tiene productos almacenados",
-        "delete": "Borrar hangar",
+        "delete": "Borrar",
         "exist": "El nombre del hangar ya existe"
     },
     "commerce": {
         "shop": "Tienda",
-        "add": "Añadir",
+        "add": "Añadir al carrito",
         "price": "Precio",
         "products": "Productos",
         "addMore": "Añadir más",
         "amount": "Cantidad",
-        "buy": "Comprar"
+        "buy": "Comprar",
+        "shopping": "Seguir comprando"
     },
     "form": {
         "uniqueness": "Verificando la existencia...",
         "amount": "Cambiar la cantidad",
-        "product": "Seleccione el producto que quiere almacenar"
+        "product": "Seleccione el producto que quiere almacenar",
+        "save": "Guardar",
+        "delete": "Borrar",
+        "modify": "Modificar"
+
     },
     "util": {
-        "management": "Gestión",
-        "delete": "Borrar"
+        "management": "Gestión"
     },
     "about.text": "El Hangar es un lugar utilizado para guardar aeronaves, generalmente de grandes dimensiones y situado en los aeródromos. También se denomina hangar, en los portaaviones, al lugar en el que, con similar fin, pernoctan y se arman los aviones. Este puede estar blindado, para protegerse de los ataques aéreos, o puede prescindirse de él para ganar espacio, como fue el caso de los portaaviones japoneses, siendo estos más vulnerables a los ataques aéreos. En todo caso es una parte altamente funcional de los portaaviones, ya que es donde se hace el mantenimiento de las aeronaves.",
     "about-nav.text": "Sobre nosotros",
@@ -70,13 +74,11 @@
     "list.text": "Lista",
     "change.text": "Cambiar idioma",
     "view-hangar.text": "Ver hangar",
-    "modify-hangar.text": "Modificar hangar",
     "add-hangar.text": "Nuevo hangar",
     "name.text": "Nombre",
-    "save.text": "Guardar",
     "new-prod.text": "Nuevo producto",
     "prod-hangar.text": "Productos de hangar",
-    "more.text": "Más",
+    "more.text": "Ver más",
     "edit.text": "Editar",
     "add-price.text": "Añadir precio",
     "historic.text": "Histórico",

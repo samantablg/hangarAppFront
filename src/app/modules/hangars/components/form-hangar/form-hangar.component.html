@@ -1,15 +1,14 @@
-<div class="hangar">
-    <form [formGroup]="formHangar" (ngSubmit)="saveHangar()">
-    <div>
-        <div class="form-group row">
-            <label class="col-form-label" for="name">{{
+<div class="container-form">
+    <form [formGroup]="formHangar" class="form">
+        <div>
+            <label for="name">{{
         "name.text" | translate
       }}</label>
-            <input formControlName="name" id="name" type="text" class="form-control" [readonly]="isReadOnly" />
-            <div *ngIf="name.pending">{{ "form.uniqueness" | translate }}</div>
+            <input formControlName="name" id="name" type="text" [readonly]="isReadOnly" />
+            <div *ngIf="name.pending && name.touched && !isReadOnly">{{ "form.uniqueness" | translate }}</div>
 
             <div *ngIf="hangarSelected">
-                <div *ngIf="name.touched && name.invalid && name.value!=hangarSelected.name && !isReadOnly" class="alert alert-danger">
+                <div *ngIf="name.touched && name.invalid && name.value!=hangarSelected.name && !isReadOnly">
                     <div *ngIf="!!name.errors.shouldBeUnique">
                         {{ 'hangar.exist' | translate }}
                     </div>
@@ -23,7 +22,7 @@
             </div>
 
             <div *ngIf="!hangarSelected">
-                <div *ngIf="name.touched && name.invalid && !isReadOnly " class="alert alert-danger">
+                <div *ngIf="name.touched && name.invalid && !isReadOnly">
                     <div *ngIf="!!name.errors.shouldBeUnique">
                         {{ 'hangar.exist' | translate }}
                     </div>
@@ -37,45 +36,45 @@
             </div>
 
         </div>
-        <div class="form-group row">
-            <label class="col-form-label" for="address">{{
+        <div>
+            <label for="address">{{
         "hangar.address" | translate
       }}</label>
-            <input formControlName="address" id="address" type="text" class="form-control" [readonly]="isReadOnly" />
-            <div *ngIf="address.touched && address.invalid" class="alert alert-danger">
+            <input formControlName="address" id="address" type="text" [readonly]="isReadOnly" />
+            <div *ngIf="address.touched && address.invalid">
                 <div *ngIf="!!address.errors.required">
                     {{ "address-form.text" | translate }}
                 </div>
             </div>
         </div>
-        <div class="form-group row">
-            <label class="col-form-label" for="owner">{{
+        <div>
+            <label for="owner">{{
         "hangar.owner" | translate
       }}</label>
-            <input formControlName="owner" id="owner" type="text" class="form-control" [readonly]="isReadOnly" />
-            <div *ngIf="owner.touched && owner.invalid" class="alert alert-danger">
+            <input formControlName="owner" id="owner" type="text" [readonly]="isReadOnly" />
+            <div *ngIf="owner.touched && owner.invalid">
                 <div *ngIf="!!owner.errors.required">
                     {{ "owner-form.text" | translate }}
                 </div>
             </div>
         </div>
-        <div class="form-group row">
-            <label class="col-form-label" for="email">{{
+        <div>
+            <label for="email">{{
         "hangar.email" | translate
       }}</label>
-            <input formControlName="email" id="email" type="text" class="form-control" [readonly]="isReadOnly" />
-            <div *ngIf="email.touched && email.invalid" class="alert alert-danger">
+            <input formControlName="email" id="email" type="text" [readonly]="isReadOnly" />
+            <div *ngIf="email.touched && email.invalid">
                 <div *ngIf="!!email.errors.required">
                     {{ "email-form.text" | translate }}
                 </div>
             </div>
         </div>
-        <div class="form-group row">
-            <label class="col-form-label" for="phone">{{
+        <div>
+            <label for="phone">{{
         "hangar.phone" | translate
       }}</label>
-            <input formControlName="phone" id="phone" type="text" class="form-control" [readonly]="isReadOnly" />
-            <div *ngIf="phone.touched && phone.invalid" class="alert alert-danger">
+            <input formControlName="phone" id="phone" type="text" [readonly]="isReadOnly" />
+            <div *ngIf="phone.touched && phone.invalid">
                 <div *ngIf="!!phone.errors.required">
                     {{ "phone-form.text" | translate }}
                 </div>
@@ -84,12 +83,9 @@
                 </div>
             </div>
         </div>
-        <div class="form-group row" *ngIf="!isReadOnly">
-            <button type="submit" class="btn">{{ "save.text" | translate }}</button>
+
+        <div>
+            <app-button (click)="hangarAction()" [text]="action | translate "></app-button>
         </div>
-        <div class="form-group row" *ngIf="isReadOnly || isEdit">
-            <button (click)="this.deleteHangar.emit(this.hangarSelected)" class="btn">{{ "hangar.delete" | translate }}</button>
-        </div>
-    </div>
-</form>
+    </form>
 </div>

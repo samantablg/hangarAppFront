@@ -1,3 +1,4 @@
+import { HangarAdapter } from './../../core/models/hangar.interface';
 import { HangarsLoad } from './../actions/hangar.actions';
 import { Action } from '@ngrx/store';
 import { State } from 'src/app/store/state';
@@ -31,7 +32,7 @@ export class HangarEffects {
       if (!isLoaded) {
         return new HangarsLoad();
       } else {
-        return of(new hangarActions.NoAction());
+        return new hangarActions.NoAction();
       }
     })
   );
@@ -43,12 +44,13 @@ export class HangarEffects {
       this.hangarService.loadHangars().pipe(
         map(response => ({
           type: '[HANGAR] LOADED_HANGARS',
-          payload: response
-        })),
+          payload: response.map(hangar => new HangarAdapter().adapt(hangar) )
+        }),
         catchError(error => of(new hangarActions.HangarsLoadFail(error)))
       )
     )
-  );
+  )
+);
 
   @Effect()
   saveHangar$: Observable<Action> = this.actions$.pipe(

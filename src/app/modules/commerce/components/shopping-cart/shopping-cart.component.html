@@ -5,6 +5,6 @@
         <span>{{ 'commerce.products' | translate }}: {{ totalProducts }}</span>
     </div>
     <div class="shop-footer">
-        <a class="btn" (click)="this.sendOrder.emit(this.order)">{{ 'commerce.buy' | translate }}</a>
+        <app-button (click)="this.sendOrder.emit(this.order)" [text]="'commerce.buy'"></app-button>
     </div>
 </div>

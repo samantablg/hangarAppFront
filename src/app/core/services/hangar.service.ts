@@ -13,40 +13,11 @@ export class HangarService {
   private urlApi = 'http://localhost:8888/api/';
 
   constructor( private http: HttpClient ) {}
-  // TODO: Cambiar la forma de recibir la informacón del back
+
+  /* En los efectos recibo la información y controlo que traiga lo que yo quiero*/
 
   public loadHangars(): Observable<HangarModel[]> {
-    return this.http
-      .get<HangarModel[]>(`${ this.urlApi }hangars`)
-      .pipe(
-        map(result => result)
-      );
-  }
-
-  public loadHangarById(id: number): Observable<HangarModel> {
-    return this.http
-      .get<HangarModel>(`${ this.urlApi }hangar/${ id }`)
-      .pipe(
-        map(result => result)
-      );
-  }
-
-  public loadHangarsPage(page: number, items: number ): Observable<HangarModel[]> {
-    return this.http
-      .get<HangarModel[]>(`${ this.urlApi }hangars/${ page }/${ items }`)
-      .pipe(
-        map(result => result )
-      );
-  }
-
-  public loadBasicInfoHangars(): Observable<MinifiedModel[]> {
-    return this.http
-                .get<MinifiedModel[]>(`${ this.urlApi }basicDataHangars`);
-  }
-
-  public findHangarsByName(name: string): Observable<HangarModel[]> {
-    return this.http
-                .get<HangarModel[]>(`${ this.urlApi }search?name=${ name }`);
+    return this.http.get<HangarModel[]>(`${ this.urlApi }hangars`);
   }
 
   public postHangar(hangar: HangarModel) {
@@ -67,5 +38,32 @@ export class HangarService {
   public deleteHangar(id: number) {
     return this.http.put(`${ this.urlApi }hangar/${ id }`, '');
   }
+
+  /* public loadHangarById(id: number): Observable<HangarModel> {
+    return this.http
+      .get<HangarModel>(`${ this.urlApi }hangar/${ id }`)
+      .pipe(
+        map(result => result)
+      );
+  } */
+
+  /* public loadHangarsPage(page: number, items: number ): Observable<HangarModel[]> {
+    return this.http
+      .get<HangarModel[]>(`${ this.urlApi }hangars/${ page }/${ items }`)
+      .pipe(
+        map(result => result )
+      );
+  } */
+
+  /* public loadBasicInfoHangars(): Observable<MinifiedModel[]> {
+    return this.http
+                .get<MinifiedModel[]>(`${ this.urlApi }basicDataHangars`);
+  } */
+
+  /* public findHangarsByName(name: string): Observable<HangarModel[]> {
+    return this.http
+                .get<HangarModel[]>(`${ this.urlApi }search?name=${ name }`);
+  } */
+
 
 }

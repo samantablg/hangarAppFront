@@ -2,7 +2,11 @@
 </div> -->
 
 
-<div class="container">
-    <app-nav-product class="nav-product" [hangars]="hangars$ | async" (hangarsNotLoaded)="hangarsNotLoaded()" (insertProduct)="insertProduct()" (getHangars)="getHangars()" (viewProductsOfHangar)="viewProductsOfHangar($event)"></app-nav-product>
-    <app-product-list class="list-product" [products]="products$ | async" (getProduct)="getProduct($event)"></app-product-list>
+<div class="container-product">
+    <div class="sidebar-product">
+        <app-side-product [hangars]="hangars$ | async" (hangarsNotLoaded)="hangarsNotLoaded()" (insertProduct)="insertProduct()" (getHangars)="getHangars()" (viewProductsOfHangar)="viewProductsOfHangar($event)"></app-side-product>
+    </div>
+    <div class="list-product">
+        <app-product-list [buttonAction]="'more.text'" [products]="products$ | async" (productAction)="getProduct($event)"></app-product-list>
+    </div>
 </div>

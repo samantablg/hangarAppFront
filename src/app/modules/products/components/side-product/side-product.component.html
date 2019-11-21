@@ -1,0 +1,16 @@
+<ul class="menu">
+    <li>
+        <a (click)="this.insertProduct.emit()">
+          {{ 'new-prod.text' | translate }}
+        </a>
+    </li>
+    <li>
+        <input id="drop" type="checkbox" name="menu" />
+        <label for="drop" (click)="this.getHangars.emit()">{{ 'hangars.text' | translate }}</label>
+        <ul class="submenu">
+            <li *ngFor="let hangar of hangars">
+                <a (click)="this.viewProductsOfHangar.emit(hangar)">{{ hangar.name }}</a>
+            </li>
+        </ul>
+    </li>
+</ul>

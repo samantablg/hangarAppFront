@@ -20,4 +20,8 @@ export class CommerceService {
   public getProfile(): Observable<ProfileModel> {
     return this.http.get<ProfileModel>(`${ this.urlApi }profileClient`);
   }
+
+  public saveProfile(profile: ProfileModel): Observable<ProfileModel> {
+    return this.http.put<ProfileModel>(`${ this.urlApi }updateProfile`, profile);
+  }
 }

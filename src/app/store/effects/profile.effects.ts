@@ -28,4 +28,16 @@ export class ProfileEffects {
       )
     )
   );
+
+  @Effect()
+  editProfile$: Observable<Action> = this.actions$.pipe(
+    ofType(ProfileActionTypes.EDIT_PROFILE),
+    switchMap((action: profileActions.EditProfile) => {
+      return this.commerceService.saveProfile(action.payload).pipe(
+        map(profile => new profileActions.ProfileLoad()),
+        catchError(error => of(new profileActions.FailProfile(error)))
+      );
+    })
+  );
+
 }

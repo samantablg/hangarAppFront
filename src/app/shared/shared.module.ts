@@ -11,6 +11,7 @@ import { HomeComponent } from './views/home/home.component';
 import { NgModule } from '@angular/core';
 import { ResultSearchComponent } from './views/result-search/result-search.component';
 import { ListComponent } from './components/list/list.component';
+import { InputFormComponent } from './components/input-form/input-form.component';
 
 @NgModule({
   declarations: [
@@ -21,7 +22,8 @@ import { ListComponent } from './components/list/list.component';
     ButtonComponent,
     CardProductComponent,
     ResultSearchComponent,
-    ListComponent
+    ListComponent,
+    InputFormComponent
   ],
   imports: [
     CommonModule,
@@ -34,7 +36,8 @@ import { ListComponent } from './components/list/list.component';
     ButtonComponent,
     CardProductComponent,
     SearchComponent,
-    ResultSearchComponent
+    ResultSearchComponent,
+    InputFormComponent
   ]
 })
 export class SharedModule { }

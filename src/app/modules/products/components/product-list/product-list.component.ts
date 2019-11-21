@@ -1,4 +1,4 @@
-import { Component, Input, EventEmitter, Output } from '@angular/core';
+import { Component, Input, EventEmitter, Output, OnInit } from '@angular/core';
 import { ProductModel } from 'src/app/core/models/product.interface';
 
 @Component({
@@ -6,10 +6,20 @@ import { ProductModel } from 'src/app/core/models/product.interface';
   templateUrl: './product-list.component.html',
   styleUrls: ['./product-list.component.css']
 })
-export class ProductListComponent {
+export class ProductListComponent implements OnInit {
 
+  @Input() buttonAction: string;
   @Input() products: ProductModel[];
-  @Output() getProduct = new EventEmitter<ProductModel>();
+  @Output() productAction = new EventEmitter<ProductModel>();
+  @Output() productsNotLoad = new EventEmitter();
 
-  constructor() { }
+  constructor() {
+  }
+
+  ngOnInit() {
+    if (this.products === undefined) {
+      this.productsNotLoad.emit();
+    }
+
+  }
 }

@@ -1,0 +1,19 @@
+<div class="productOrder">
+    <span class="principal">
+      <p>{{ 'product.text' | translate }} {{ product.product_id }}</p>
+      <a (click)="this.removeProductOfShoppingCart.emit(product)" class="icon">
+          <img src="assets/icon/close.svg">
+      </a>
+  </span>
+    <span class="amount">
+      <div class="left">
+          <p>{{ 'commerce.price' | translate }}: ${{ product.price }}</p>
+      </div>
+      <div class="right">
+          <a (click)="this.decreaseProductOfShoppingCart.emit(product)" class="icon"><img src="assets/icon/substract.svg" ></a>
+          <p>{{ product.quantity }}</p>
+          <a (click)="this.increaseProductOfShoppingCart.emit(product)" class="icon"><img src="assets/icon/add.svg"></a>
+      </div>
+  </span>
+
+</div>

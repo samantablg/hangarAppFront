@@ -1,5 +1,0 @@
-<div class="container-products">
-    <div class="container-card" *ngFor="let product of products">
-        <app-product-card-commerce [isOrder]="isOrder" [product]="product" (getProduct)="this.getProduct.emit($event)" (addProductToShoppingCart)="addProductToShoppingCart.emit(product)"></app-product-card-commerce>
-    </div>
-</div>

@@ -1,5 +1,5 @@
 import { ProfileFacade } from './../../../../store/facade/profile.facade';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit} from '@angular/core';
 import { Observable } from 'rxjs';
 import { ProfileModel } from 'src/app/core/models/profile.interface';
 
@@ -11,12 +11,22 @@ import { ProfileModel } from 'src/app/core/models/profile.interface';
 export class ProfileComponent implements OnInit {
 
   profile$: Observable<ProfileModel>;
+  isEdit = false;
 
   constructor(private profileFacade: ProfileFacade) { }
 
   ngOnInit() {
     this.profile$ = this.profileFacade.profile$;
     this.profileFacade.loadProfile();
+  }
+
+  isFormEdit() {
+    this.isEdit = !this.isEdit;
+    console.log(this.isEdit);
+  }
+
+  updateProfile(profile) {
+    this.profileFacade.saveProfile(profile);
   }
 
 }

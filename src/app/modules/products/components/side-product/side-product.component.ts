@@ -2,11 +2,11 @@ import { HangarModel } from 'src/app/core/models/hangar.interface';
 import { Component, Output, EventEmitter, Input, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'app-nav-product',
-  templateUrl: './nav-product.component.html',
-  styleUrls: ['./nav-product.component.css']
+  selector: 'app-side-product',
+  templateUrl: './side-product.component.html',
+  styleUrls: ['./side-product.component.css']
 })
-export class NavProductComponent implements OnInit {
+export class SideProductComponent implements OnInit {
 
   @Input() hangars: HangarModel[];
   @Output() insertProduct = new EventEmitter();

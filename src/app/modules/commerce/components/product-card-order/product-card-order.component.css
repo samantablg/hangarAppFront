@@ -1,4 +1,4 @@
-.card-container {
+/* .card-container {
     display: flex;
     flex-direction: row;
     background: #EDE7F6;
@@ -59,4 +59,55 @@
 
 a.btn:hover {
     color: #0C9;
+} */
+
+* {
+    margin: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.productOrder {
+    background: #96D5D2;
+    color: #24292f;
+    display: flex;
+    flex-direction: column;
+    align-items: space-around;
+}
+
+.amount {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.principal {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.right {
+    width: min-content;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+}
+
+.amount>.right>p {
+    font-weight: bolder;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+}
+
+.icon {
+    cursor: pointer;
+    width: 15px;
+    height: 15px;
+    border: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }

@@ -18,4 +18,8 @@ export class ProfileFacade {
   loadProfile() {
     this.store.dispatch({ type: '[PROFILE] LOAD_PROFILE' });
   }
+
+  saveProfile(profile: ProfileModel) {
+    this.store.dispatch({ type: '[PROFILE] EDIT_PROFILE', payload: profile });
+  }
 }

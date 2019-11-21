@@ -30,7 +30,7 @@ export class ProductEffects {
       if (!isLoaded) {
         return new productActions.ProductsLoad();
       } else {
-        return of(new productActions.NoAction());
+        return new productActions.NoAction();
       }
     })
   );

@@ -29,19 +29,20 @@
         "text": "Product",
         "desc": "Description",
         "name": "Should be minimum 3 characters",
-        "delete": "Delete product",
+        "delete": "Delete",
         "exist": "Product name already taken",
         "amount": "Update the number of products",
         "manage": "Manage products"
     },
     "commerce": {
         "shop": "Commerce",
-        "add": "Add",
+        "add": "Add to cart",
         "price": "Price",
         "products": "Products",
         "addMore": "Add more",
         "amount": "Quantity",
-        "buy": "Buy"
+        "buy": "Buy",
+        "shopping": "More shopping"
     },
     "hangar": {
         "text": "Hangar",
@@ -51,18 +52,20 @@
         "phone": "Phone",
         "list": "List of hangars",
         "empty": "This hangar has no products stored",
-        "delete": "Delete Hangar",
+        "delete": "Delete",
         "exist": "Hangar name already taken"
     },
     "form": {
         "uniqueness": "Checking for uniqueness...",
         "amount": "Modify the amount",
-        "product": "Select the product you want to store"
+        "product": "Select the product you want to store",
+        "save": "Save",
+        "delete": "Delete",
+        "modify": "Modify"
     },
     "util": {
-        "management": "Management",
-        "delete": "Delete",
-        "amount": "Change the amount"
+        "management": "Management"
+
     },
     "about.text": "A hangar is a closed building structure to hold aircraft or spacecraft. Hangars are built of metal, wood, or concrete. The word hangar comes from Middle French hanghart ('enclosure near a house'), of Germanic origin, from Frankish *haimgard ('home-enclosure', 'fence around a group of houses'), from *haim ('home, village, hamlet') and gard ('yard').",
     "about-nav.text": "About",
@@ -74,10 +77,8 @@
     "modify-hangar.text": "Modify hangar",
     "add-hangar.text": "New hangar",
     "name.text": "Name",
-    "save.text": "Save",
-    "new-prod.text": "New Product",
     "prod-hangar.text": "Products of Hangar",
-    "more.text": "More",
+    "more.text": "View More",
     "edit.text": "Edit",
     "add-price.text": "Add price",
     "historic.text": "Historic",

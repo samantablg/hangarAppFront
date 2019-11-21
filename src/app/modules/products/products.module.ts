@@ -13,7 +13,7 @@ import { ProductNewComponent } from './views/product-new/product-new.component';
 import { InfiniteScrollModule } from 'ngx-infinite-scroll';
 import { ProductListComponent } from './components/product-list/product-list.component';
 import { PriceListComponent } from './components/price-list/price-list.component';
-import { NavProductComponent } from './components/nav-product/nav-product.component';
+import { SideProductComponent } from './components/side-product/side-product.component';
 import { ProductCardComponent } from './components/product-card/product-card.component';
 import { ProductModifyComponent } from './views/product-modify/product-modify.component';
 import { ProductsOfHangarListComponent } from './components/products-of-hangar-list/products-of-hangar-list.component';
@@ -29,7 +29,7 @@ import { SharedModule } from 'src/app/shared/shared.module';
     ProductNewComponent,
     FormProductHangarComponent,
     ProductListComponent,
-    NavProductComponent,
+    SideProductComponent,
     ProductCardComponent,
     ProductModifyComponent,
     ProductsOfHangarListComponent
@@ -42,7 +42,7 @@ import { SharedModule } from 'src/app/shared/shared.module';
     InfiniteScrollModule,
     SharedModule
   ],
-  exports: [ProductsComponent, ProductsOfHangarComponent]
+  exports: [ProductsComponent, ProductsOfHangarComponent, ProductListComponent]
 })
 
 export class ProductsModule {
